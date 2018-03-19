@@ -8,13 +8,13 @@
 
 # Course Material
 
-- [1 Introduction](notes/1_Introduction)
-- [2 Bash](notes/2_Bash)
-- [3 More Commands](notes/3_MoreCommands)
-- [4 Regular Expressions](notes/4_RegularExpressions)
-- [5 Using `sed` and `awk`](notes/5_SedAwk)
-- [6 Writing `bash` Scripts](notes/6_WritingScripts)
-- [7 More Advanced Scripting Techniques](notes/7_MoreAdvancedScripts)
+- [1 Introduction](notes/1_Introduction.md)
+- [2 Bash](notes/2_Bash.md)
+- [3 More Commands](notes/3_MoreCommands.md)
+- [4 Regular Expressions](notes/4_RegularExpressions.md)
+- [5 Using `grep`, `sed` and `awk`](notes/5_GrepSedAwk.md)
+- [6 Writing `bash` Scripts](notes/6_WritingScripts.md)
+- [7 More Advanced Scripting Techniques](notes/7_MoreAdvancedScripts.md)
 
 ### [Cheatsheet](cheatsheet.md)
 

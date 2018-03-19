@@ -1,7 +1,8 @@
 # Cheatsheet for BIG-SA Introduction to BASH Workshop
 
-<tr><td colspan="4"><b>File system navigation and file management</b></td></tr>
 <table>
+
+<tr><td colspan="4" height=80><b>File system navigation and file management</b></td></tr>
 
 <tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
 
@@ -10,20 +11,163 @@
     <td></td>
     <td></td>
 </tr>
-
 <tr><td>`pwd`</td>
     <td>Print working directory, i.e show where you are</td>
     <td>none commonly used</td>
     <td></td>
 </tr>
-
 <tr><td>`ls`</td>
     <td>List contents of a directory</td>
     <td>-a, -h, -l</td>
     <td></td>
 </tr>
+<tr><td>`cd`</td>
+    <td>Change directory</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`mv`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`cp`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`rm`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`rmdir`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`mkdir`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+<tr><td colspan="4"></td> </tr>
+
+<tr><td colspan="4" height=80>**File viewing**</td></tr>
+
+<tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
+<tr><td>`cat`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`less`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`wc`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`head`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`less`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`grep`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+<tr><td colspan="4"></td> </tr>
+
+
+<tr><td colspan="4" height=80>**Keyboard Shortcuts**</td></tr>
+
+<tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
+<tr><td>[Tab] key</td>
+    <td>Tab auto-complete</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>[Up]/[Down] arrow keys</td>
+    <td>Cycle through previous commands</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>[Ctrl]+[Shift]+C, [Ctrl]+[Shift]+V</td>
+    <td>Copy and paste highlighted text in terminal</td>
+    <td></td>
+    <td></td>
+</tr>
+
+<tr><td colspan="4"></td> </tr>
+<tr><td colspan="4" height=80>**File/Stream editing**</td></tr>
+<tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
+<tr><td>`echo`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`sed`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`awk`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+<tr><td colspan="4"></td> </tr>
+<tr><td colspan="4" height=80>**Special characters/symbols**</td></tr>
+<tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
+<tr><td>`|`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`&`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`>`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`<`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+
+
+<tr><td colspan="4"></td> </tr>
+
+
+<tr><td height=500 colspan="4"></td></tr>
 
 </table>
+
+
+
+
+
+
+
+
 
 **Navigation and file management**
 
@@ -40,10 +184,6 @@
 | `mkdir`     |                               | -p                 |
 
 **File viewing**
-
-<table>
-<tr><th>What</th></tr>
-</table>
 
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
