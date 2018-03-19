@@ -1,7 +1,7 @@
 # Cheatsheet for BIG-SA Introduction to BASH Workshop
 
-<table>
 <tr><td colspan="4"><b>File system navigation and file management</b></td></tr>
+<table>
 
 <tr><th>Command/Symbol</th><th>Descrption</th><th>Useful options</th><th>Section</th>
 
@@ -25,7 +25,7 @@
 
 </table>
 
-** Navigation and file management **
+**Navigation and file management**
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:----------- |:----------------------------- |:------------------ |:------------------ |
@@ -39,7 +39,7 @@
 | `rmdir`     |                               |                    |
 | `mkdir`     |                               | -p                 |
 
-** File viewing **
+**File viewing**
 
 <table>
 <tr><th>What</th></tr>
@@ -55,7 +55,7 @@
 | `tail`      |                               | -n# (e.g., -n100)  |
 | `echo`      |                               | -e                 |
 
-** Editing **
+**Editing**
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:----------- |:----------------------------- |:------------------ |:------------------ |
