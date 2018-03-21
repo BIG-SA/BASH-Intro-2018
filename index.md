@@ -16,6 +16,12 @@
 - [6 Writing `bash` Scripts](notes/6_WritingScripts.md)
 - [7 More Advanced Scripting Techniques](notes/7_MoreAdvancedScripts.md)
 
+I think we should introduce these concepts at some point, preferrably early:
+
+- **executable vs data files**
+- **command structure**: everything typed into the console starts with a program/commmand
+- **file, process, streams (input/output/error)**
+
 ### [Cheatsheet](cheatsheet.md)
 
 [Back To Top](#introduction-to-bash)
