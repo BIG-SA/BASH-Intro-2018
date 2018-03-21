@@ -100,9 +100,9 @@ Instructions for how to set-up everything on your own machine are at the followi
 Please follow these very carefully, and call an instructor over if you have trouble.
 In particular, the Windows set-ups may take a while to get sorted.
 
-- [Mac/OSX](install/osxInstall.md)
-- [Windows](install/windowsInstall.md)
+- [Mac/OSX](../install/osxInstall.md)
+- [Windows](../install/windowsInstall.md)
 
 If you are already running Ubuntu, your computer will already be set-up correctly.
 
-[Home](index.md)
+[Home](../)
