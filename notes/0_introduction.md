@@ -90,7 +90,7 @@ This will be important as we all set our computers up in the following section.
 # Do we need a section here on feedback?
 
 ## Computer Setup
-# Should we require that attendees do this before the session and ask us via Slack if they need assistance? If so we need to ammend this section.
+# Should we require that attendees do this before the session and ask us via Slack if they need assistance? If so we need to amend this section.
 
 Previously we have run these sessions using Virtual Machines, but today we are opting for running all sessions using the tools locally installed on your own machines.
 *As there will be a huge variety of laptops in the room, the initial set-up may be a difficult to begin with*, but will settle as the day progresses.
@@ -100,9 +100,9 @@ Instructions for how to set-up everything on your own machine are at the followi
 Please follow these very carefully, and call an instructor over if you have trouble.
 In particular, the Windows set-ups may take a while to get sorted.
 
-- [Mac/OSX](../install/osxInstall)
-- [Windows](../install/windowsInstall)
+- [Mac/OSX](install/osxInstall.md)
+- [Windows](install/windowsInstall.md)
 
 If you are already running Ubuntu, your computer will already be set-up correctly.
 
-[Home](../)
+[Home](index.md)
