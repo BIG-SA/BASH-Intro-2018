@@ -8,13 +8,12 @@
 
 # Course Material
 
-- [1 Introduction](notes/1_Introduction.md)
-- [2 Bash](notes/2_Bash.md)
-- [3 More Commands](notes/3_MoreCommands.md)
-- [4 Regular Expressions](notes/4_RegularExpressions.md)
-- [5 Using `grep`, `sed` and `awk`](notes/5_GrepSedAwk.md)
-- [6 Writing `bash` Scripts](notes/6_WritingScripts.md)
-- [7 More Advanced Scripting Techniques](notes/7_MoreAdvancedScripts.md)
+- [0 Introduction](notes/0_introduction.md)
+- [1 Bash Basics](notes/1_bash.md)
+- [2 Filters](notes/2_filters.md)
+- [3 Sed, Awk and Grep](notes/3_sed_awk_grep.md)
+- [4 Writing Bash Scripts](notes/4_bash_scripting.md)
+- [5 More Advanced Scripting Techniques](notes/5_MoreAdvancedScripts.md)
 
 I think we should introduce these concepts at some point, preferrably early:
 
