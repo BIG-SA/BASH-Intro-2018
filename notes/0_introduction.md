@@ -105,4 +105,4 @@ In particular, the Windows set-ups may take a while to get sorted.
 
 If you are already running Ubuntu, your computer will already be set-up correctly.
 
-[Home](../)
+[Home](https://github.com/BIG-SA/BASH-Intro-2018)
