@@ -32,7 +32,7 @@ The workshop will be run in 2 hour sessions, weekly for four weeks starting from
 | ---------- | ---------- | ---------- | ---------- | ---------- |
 | Wed, April 4th | 2-4pm | Nth Terrace | TBA | Intro to Bash |
 | Wed, April 11th | 2-4pm | Nth Terrace | TBA | Bash Filters |
-| Wed, April 18th | 2-4pm | Nth Terrace | TBA | Sed, Awk and Grep |
+| Wed, April 18th | 2-4pm | Nth Terrace | TBA | Grep, Sed and Awk |
 | Wed, April 25th | 2-4pm | Nth Terrace | TBA | Bash Scripting |
 
 There will be a number of components covered during these sessions:

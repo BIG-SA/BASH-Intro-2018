@@ -62,12 +62,12 @@
     <td></td>
     <td></td>
 </tr>
-<tr><td>`less`</td>
+<tr><td>`more`</td>
     <td></td>
     <td></td>
     <td></td>
 </tr>
-<tr><td>`wc`</td>
+<tr><td>`less`</td>
     <td></td>
     <td></td>
     <td></td>
@@ -77,7 +77,12 @@
     <td></td>
     <td></td>
 </tr>
-<tr><td>`less`</td>
+<tr><td>`tail`</td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr><td>`wc`</td>
     <td></td>
     <td></td>
     <td></td>
@@ -203,3 +208,5 @@
 | `sort`      |                               |                    |
 | `uniq`      |                               | -c                 |
 | `wget`      |                               |                    |
+
+`history`

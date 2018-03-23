@@ -20,6 +20,8 @@ I think we should introduce these concepts at some point, preferrably early:
 - **executable vs data files**
 - **command structure**: everything typed into the console starts with a program/commmand
 - **file, process, streams (input/output/error)**
+- **binary vs ASCII/text files**
+
 
 ### [Cheatsheet](cheatsheet.md)
 
