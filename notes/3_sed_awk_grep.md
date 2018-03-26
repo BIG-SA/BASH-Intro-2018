@@ -22,7 +22,7 @@ There are a couple important caveats to remember when using Nano:
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
-<li> **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movement, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended to beginners.
+<li> **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 
   **To quit:** type `:q`
