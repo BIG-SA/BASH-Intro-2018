@@ -6,14 +6,14 @@
 
 In this lesson, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
 
-## Command Line Interface (CLI) Text editors (for small-ish files)
+## Command Line Interface (CLI) Text editors (for Small-ish Files)
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we work with ASCII (or plain text) files.
 
 We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
 
 <ol>
-<li> **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>) to invoke the program. To quit, hold [Ctrl] and press X (^X).
+<li> <b>Nano</b>/<b>Pico</b>:  Nano is an easy to use text editor. On most Linux systems, just type `nano` (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>) to invoke the program. To quit, hold [Ctrl] and press X (^X).
 There are a couple important caveats to remember when using Nano:
 
 <ul>
@@ -25,10 +25,12 @@ There are a couple important caveats to remember when using Nano:
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
-<li> **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
-To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 
-  **To quit:** type `:q`
+
+<li> <b>vi</b>/<b>vim</b>: <b>vi</b> is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
+To start <b>vi</b>, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
+
+  <b>To quit:</b> type `:q`
 
   ![vi screentshot](../images/3_vi_screenshot.png)
 
@@ -115,8 +117,8 @@ Try answering these questions:
 3. How many lines contain "**RBX1**"?
 
 4. Ignoring the header, in how many entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
-
 5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
+
 
 <details>
 <summary>**Answers**</summary>
