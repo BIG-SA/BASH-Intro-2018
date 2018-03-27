@@ -23,29 +23,37 @@ There are a couple important caveats to remember when using Nano:
 </ul>
 
 
-![Nano screenshot](../images/3_nano_screenshot.png)
+  ![Nano screenshot](../images/3_nano_screenshot.png)
 
-
+<br><br>
 
 <li> <b>vi</b>/<b>vim</b>: <b>vi</b> is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start <b>vi</b>, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
 
+  <br><br>
   <b>To quit:</b> type `:q`
+  <br><br>
 
   ![vi screentshot](../images/3_vi_screenshot.png)
 
+<br><br>
 
 <li> **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
 
-  **To quit:** type `^x^c` (that is: `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+  <br><br>
+  <b>To quit:</b> type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+  <br><br>
 
   ![vi screentshot](../images/3_emacs_screenshot.png)
 
+<br><br>
 
 <li> **ne**: **ne** (nice editor) is intended to be easier to use than **vi**, but more functional than **nano**. Start by **ne** by entering `ne`.<sup>[4]</sup>
 
+  <br><br>
   If you are stuck in `ne`, press [Esc] twice to show the program menu.
 
+  <br><br>
   ![vi screentshot](../images/3_ne_screenshot.png)
 
 </ol>
