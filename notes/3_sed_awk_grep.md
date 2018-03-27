@@ -53,6 +53,7 @@ To start <b>vi</b>, just enter <code>vi</code>. If you are using a recent Linux 
   <br>
   If you are stuck in <code>ne</code>, press [Esc] twice to display the program menu.
   <br>
+
   ![vi screentshot](../images/3_ne_screenshot.png)
 
 </ol>
