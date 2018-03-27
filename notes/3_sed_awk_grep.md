@@ -13,45 +13,45 @@ In general, we rarely work with binary file formats (e.g. MS Office files) in th
 We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
 
 <ol>
-<li> <b>Nano</b>/<b>Pico</b>:  Nano is an easy to use text editor. On most Linux systems, just type <pre>nano</pre> (or <pre>pico</pre>, the command <pre>pico</pre> is often soft-linked to `nano`<sup>[1]</sup>) to invoke the program. To quit, hold [Ctrl] and press X (^X).
+<li> <b>Nano</b>/<b>Pico</b>:  Nano is an easy to use text editor. On most Linux systems, just type <code>nano</code> to start the program (or <code>pico</code>, the command <code>pico</code> is often soft-linked to <code>nano</code><sup>[1]</sup>). To quit, hold [Ctrl] and press X (^X).
 There are a couple important caveats to remember when using Nano:
 
 <ul>
 <li> Nano will load the entire file into memory, so it may take a while when working with large files.
 
-<li> Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
+<li> Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by <code>-w</code> option.
 </ul>
 
 
   ![Nano screenshot](../images/3_nano_screenshot.png)
 
-<br>
+<br><br>
 
 <li> <b>vi</b>/<b>vim</b>: <b>vi</b> is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
-To start <b>vi</b>, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
+To start <b>vi</b>, just enter <code>vi</code>. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
 
   <br>
-  <b>To quit:</b> type `:q`
+  <b>To quit:</b> type <code>:q</code>
   <br>
 
   ![vi screentshot](../images/3_vi_screenshot.png)
 
-<br>
+<br><br>
 
-<li> **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
+<li> <b>Emacs</b>: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether <b>vi</b> or <b>Emacs</b> is better. To start Emacs, just enter <code>emacs</code>. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type <code>emacs -nw</code>.
 
   <br>
-  <b>To quit:</b> type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+  <b>To quit:</b> type <code>^x^c</code> (i.e. <code>[Ctrl]-X [Ctrl]-C</code>, or in Emacs shorthand: <code>C-x  C-c</code>).<sup>[3]</sup>
   <br>
 
   ![vi screentshot](../images/3_emacs_screenshot.png)
 
-<br>
+<br><br>
 
-<li> **ne**: **ne** (nice editor) is intended to be easier to use than **vi**, but more functional than **nano**. Start by **ne** by entering `ne`.<sup>[4]</sup>
+<li> <b>ne</b> (<b>n</b>ice <b>e</b>ditor) is intended to be easier to use than <b>vi</b>, but more functional than <b>nano</b>. Start by <b>ne</b> by entering <code>ne</code>.<sup>[4]</sup>
 
   <br>
-  If you are stuck in `ne`, press [Esc] twice to display the program menu.
+  If you are stuck in <code>ne</code>, press [Esc] twice to display the program menu.
   <br>
   ![vi screentshot](../images/3_ne_screenshot.png)
 
