@@ -8,6 +8,7 @@ Command-line tools are the mainstay of analysis for large (biological or non-bio
 - automating analyses across multiple datasets/experiments
 - manipulations of data which are repetitive or laborious to perform manually
 - job submission to HPC clusters
+- the list goes on and on....
 
 Today we’ll explore a few commands to help you gain a little familiarity with some important ones, and to enable you to find help when you’re working by yourself. We don’t expect you to remember all the commands & options from today. The important thing is to become familiar with the basic syntax for commands, how to put them together, and where to look for help when you’re unsure.
 
@@ -57,11 +58,13 @@ or something similar.
 
 The terminal interface will look different as you browse around the room. Here is an example of what it usually looks like in a Linux environment.
 
+Figure 1. The Terminal
+
 ![The Terminal](../images/1_bash_fig1_ubuntu_terminal.png)
 
-On bash you will have this “$” sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computers name and other things that can be set. Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
+On bash you will have this `$` sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computers name and other things that can be set. Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
 
-The main point here is that all the bash commands you'll use in this workshop should be typed after the "$"
+The main point here is that all the bash commands you'll use in this workshop should be typed after the `$`
 
 The prompt is there to indicate that the shell is waiting for a task/instruction. The user defines the task by using the keyboard and typing in commands. The shell then evaluates the command, processes and returns the output. Following this the shell provides a new prompt and is ready to do it all over again. The whole process is often referred to as REPL (read - evaluate - print - loop)
 
@@ -71,13 +74,13 @@ Lets try it with some simple commands. Type the command `ls` in the terminal.
 ls
 ```
 
-The command `ls` stands for listing and does simply as the name implies, lists the contents of a directory/folder. More to come on this! ls is possibly one of the most used commands on the comman-line and we will use it often throughout this workshop. Now try this as well
+The command `ls` stands for **l**i**s**ting and does simply as the name implies, lists the contents of a directory/folder. More to come on this! ls is possibly one of the most used commands on the comman-line and we will use it often throughout this workshop. Now try this as well
 
 ```
 echo $SHELL
 ```
 
-echo is like an inbuilt print command and $SHELL is a system variable that holds the name of the current shell in use. Some of these terms like variable may seem foreign but don’t worry too much about them right now, we’ll get to all of that in good time.
+`echo` is like an inbuilt print command and `$SHELL` is a system variable that holds the name of the current shell in use. Some of these terms like variable may seem foreign but don’t worry too much about them right now, we’ll get to all of that in good time.
 
 We need to take note of a couple of things before we move on. First, the shell is case sensitive! try the second command all in lower case like this
 
@@ -99,11 +102,13 @@ pwd
 
 The command `pwd` is what we use to **p**rint the **w**orking **d**irectory (the directory that you currently reside in). This paticular directory is usually referred to as your *home* directory. This is also the information that the tilde represents as a shorthand version, so whenever you see the tilde in a directory path, it is interpreted as *home* directory (more on this to come).
 
-***NOTE: *** In the above command, the home directory began with a slash, i.e. `/`. On a Unix-based system (Linux and Mac), this is considered to be the root directory of the file system. Windows users would be more familiar with seeing `C:\` as the root of the drive, and this is an important difference in the two directory structures. Note also that whilst Windows uses the backslash (\\) to indicate a new directory, a Linux-based system uses the forward slash (/), or more commonly just referred to simply as `slash`, marking another but very important difference between the two OS's. Git bash on Windows adopts the Unix style.
+***NOTE: *** In the above command, the home directory began with a slash, i.e. `/`. On a Unix-based system (Linux and Mac), this is considered to be the root directory of the file system. Windows users would be more familiar with seeing `C:\` as the root of the drive.
 
 ### Know thine file system!
 
-To gain a better understanding of the concept your home directory, we first need to know how the file system as a whole is configured. On most modern OS’s the file system is laid out in a hierarchical manner. Files and folders are housed in other folders which in turn (with other files) are also housed in folders and so on all the way to the top folder which houses everything. This all-encompassing top level folder is commonly referred to as root and is represented by the lone forward slash /. Windows users would be more familiar with seeing C:\ as the root of the file system, and this is a very important difference in the two directory structures. Note also that whilst Windows uses the backslash (\) to indicate a new directory, a Linux-based system uses the forward slash (/), or more commonly just referred to simply as “slash”.
+To gain a better understanding of the concept your home directory, we first need to know how the file system as a whole is configured. On most modern OS’s the file system is laid out in a hierarchical manner. Files and folders are housed in other folders which in turn (with other files) are also housed in folders and so on all the way to the top folder which houses everything. This all-encompassing top level folder is commonly referred to as root and is represented by the lone forward slash `/`. Windows users would be more familiar with seeing `C:\` as the root of the file system, and this is a very important difference in the two directory structures. Note also that whilst Windows uses the backslash (\\) to indicate a new directory, a Linux-based system uses the forward slash (/), or more commonly just referred to simply as “slash”.
+
+Figure 2. Typical file system hierarchy
 
 ![Typical file system hierarchy](../images/1_bash_fig2_file_sys_hierarchy.png)
 
@@ -172,7 +177,7 @@ or even just
 cd
 ```
 
-### Looking at the Contents of any Directory
+### Looking at the Contents of any Directory (`ls`)
 
 We have used this command a bit now `ls`: **l**i**s**t the contents of a directory. With `ls`, we can specify which directory we wish to view the contents of, without having to change into that directory. We simply type the ls command, followed by a space, then the directory we wish to view the contents of. To look at the contents of the root directory of the file system (i.e. /), we simply add that directory after the command `ls`.
 
@@ -237,15 +242,15 @@ ls ~/D <tab>
 
 and it will look like the auto-complete is not working. This is because there are two possibilities and it doesn’t know which you want. Hit the tab twice and both will appear in the terminal, then choose one. As well as directory paths, you can use this to auto-complete filenames.
 
-***Note: *** This technique can be used to also find command names. Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer. If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
+***Handy tip: *** This technique can be used to also find command names. Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer. If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
 
-***Note: *** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
+***Handy tip: *** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
 ## Working with Files and Directories
 
 So we now know how to move around and explore the file system from within the terminal but how do we create new ones or modify what already exists.
 
-### Make/Remove Directories
+### Make/Remove Directories (`mkdir` `rmdir`)
 
 Let move to our home directory if we are not already there and then move into the Desktop folder
 
@@ -278,7 +283,7 @@ That was simple. Lets get rid of it now. The command we use to remove a director
 
 ***Note: *** rmdir only works on empty directories. Later we’ll learn how to delete folders even if they contain files.
 
-### Make/Remove Files
+### Make/Remove Files (`touch` `rm`)
 
 Interestingly, unlike mkdir there is no dedicated command to make a file. Fortunately, anyone of about a dozen commands that manipulate files will, when executed, create a file if that file does not already exist. The most commonly used command to acheive this is `touch` which was originally created for an entirely different purpose. I don’t know anyone who uses touch for it’s intended purpose anymore but it’s an easy way to make a new file. Create a new file called “practice_file”.
 
@@ -292,7 +297,7 @@ Easy! It’s empty but we created it. Check that it’s there before removing it
 rm practice_file
 ```
 
-### Copy/Move/Rename Files/Folders
+### Copy/Move/Rename Files/Folders (`cp` `mv`)
 
 When calling the commands to make or remove files/directories we provide one peice of information (argument) to the command which is the name of the object to create/remove. With the `cp` and `mv` (stands for copy and move repectively) commands, we need to provide an additional peice of information (2 arguments).
 
@@ -323,7 +328,7 @@ If you are keen, try creating a few folders/files in the current directory and t
 
 ### Removing non-empty directories
 
-As is, neither “rmdir” or “rm” will delete a folder that contains an object. To do so we must recursively delete the contents one at a time or by using a wild card (more on this to come). However, there is a flag in the “rm” command that does this automatically. Try this on your newly created folders,
+As is, neither `rmdir` or `rm` will delete a folder that contains an object. To do so we must recursively delete the contents one at a time or by using a wild card (more on this to come). However, there is a flag in the “rm” command that does this automatically. Try this on your newly created folders,
 
 ```
 rm Users
@@ -345,9 +350,9 @@ Alternatively referred to as a wild character or wildcard character, a wildcard 
 
 Wildcards in the terminal are somewhat like this. Here is the basic set of wildcards;
 
-1. ? Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
-2. * Asterix - represents zero or more characters
-3. [ ] Closed square brackets - user defined range of characters
+1. `?` Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
+2. `*` Asterix - represents zero or more characters
+3. `[ ]` Closed square brackets - user defined range of characters
 
 we have set up some exercises for you to try out your skills using wildcards and below
 are some examples of how wildcards are used.
