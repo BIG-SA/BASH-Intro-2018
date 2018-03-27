@@ -116,7 +116,7 @@ Try answering these questions:
 
 4. Ignoring the header, in how many entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
 
-5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" to "**TBX-1**".
+5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
 <details>
 <summary>**Answers**</summary>
@@ -126,7 +126,7 @@ Try answering these questions:
 <li> 1 line only
 <li> Too many to count in **nano** (but the answer is 5775).
 <li> Too hard in **nano** (answer is 36).
-<li> *Madness! I am NOT doing that!*
+<li> *Madness! I am NOT doing that in nano!*
 </ol>
 
 </details>
