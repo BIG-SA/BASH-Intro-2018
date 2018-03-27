@@ -25,35 +25,34 @@ There are a couple important caveats to remember when using Nano:
 
   ![Nano screenshot](../images/3_nano_screenshot.png)
 
-<br><br>
+<br>
 
 <li> <b>vi</b>/<b>vim</b>: <b>vi</b> is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start <b>vi</b>, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
 
-  <br><br>
+  <br>
   <b>To quit:</b> type `:q`
-  <br><br>
+  <br>
 
   ![vi screentshot](../images/3_vi_screenshot.png)
 
-<br><br>
+<br>
 
 <li> **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
 
-  <br><br>
+  <br>
   <b>To quit:</b> type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
-  <br><br>
+  <br>
 
   ![vi screentshot](../images/3_emacs_screenshot.png)
 
-<br><br>
+<br>
 
 <li> **ne**: **ne** (nice editor) is intended to be easier to use than **vi**, but more functional than **nano**. Start by **ne** by entering `ne`.<sup>[4]</sup>
 
-  <br><br>
-  If you are stuck in `ne`, press [Esc] twice to show the program menu.
-
-  <br><br>
+  <br>
+  If you are stuck in `ne`, press [Esc] twice to display the program menu.
+  <br>
   ![vi screentshot](../images/3_ne_screenshot.png)
 
 </ol>
@@ -70,7 +69,7 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 <table>
 <tr><td bgcolor="#EEEEEE">
 ** *Preparing the data file and some exercises* **
-<br><br>
+<br>
 <ol>
 
 <li>Locate and uncompress the file `GRCh38.chr22.ensembl.biomart.txt.gz` in the `files` directory:
@@ -117,14 +116,17 @@ Try answering these questions:
 
   <details><summary>Hint:</summary>
   You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.</details>
+  <br>
 
 2. How many lines contain "**DNAJB7**"?
 
   <details><summary>Hint:</summary>Use M-W ([Alt]-W) to repeat search.</details>
+  <br>
 
 3. How many lines contain "**RBX1**"?
 
 4. Ignoring the header, in how many entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
+
 5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
 
@@ -140,6 +142,9 @@ Try answering these questions:
 </ol>
 
 </details>
+
+
+
 
 
 <hr>
