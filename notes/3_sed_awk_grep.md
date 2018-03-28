@@ -68,17 +68,22 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 <div width="80%">
 
 <table>
-<tr><td bgcolor="#EEEEEE">
-** *Preparing the data file and some exercises* **
-<br>
+<tr><td bgcolor="">
+<b><i>Preparing the data file and some exercises</i></b>
+<br><br>
+
 <ol>
 
-<li>Locate and uncompress the file `GRCh38.chr22.ensembl.biomart.txt.gz` in the `files` directory:
+<li>Locate and uncompress the file <code>GRCh38.chr22.ensembl.biomart.txt.gz</code> in the <code>files</code> directory:
 <br><br>
-  `$ gunzip -k GRCh38.chr22.ensembl.biomart.txt.gz`
+  <code>$ gunzip -k GRCh38.chr22.ensembl.biomart.txt.gz</code>
 <br><br>
-  (**Q:** What is the function of the option `-k`?)
+  (Q: What is the function of the option <code>-k</code>?)
 <br><br>
+
+<li>Locate and extract the file <code>3_many_files.tar.gz</code> in the <code>files</code> directory:
+<br><br>
+
 
 <li>Use what you have learnt so far and find out:
   <br><br><ul>
@@ -96,7 +101,7 @@ CLI text editors are very convenient when you want to quickly edit a small text 
   <br><li> What are the column headers?
   </ul><br>
 
-<li>Which column is "**Gene name**"? How many unique gene names are there in the file?
+<li>Which column is "<b>Gene name</b>"? How many unique gene names are there in the file?
 <br><br>
 
 <li>Can you derive the answers to questions 2-4 without uncompressing the original file?
@@ -107,40 +112,40 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 
 You should now have some idea of the structure of the data file. Now, open the file in nano:
 
-`$ nano GRCh38.chr22.ensembl.biomart.txt`
+  <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
 
 This will takes a few seconds, depending on your machine. Other editors (vi, emacs) may be a bit faster.
 
 Try answering these questions:
 
-1. What is the first line that contains "**DNAJB7**"?
+1. What is the first line that contains "<b>DNAJB7</b>"?
 
   <details><summary>Hint:</summary>
-  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.</details>
+  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
   <br>
 
-2. How many lines contain "**DNAJB7**"?
+2. How many lines contain "<b>DNAJB7</b>"?
 
   <details><summary>Hint:</summary>Use M-W ([Alt]-W) to repeat search.</details>
   <br>
 
-3. How many lines contain "**RBX1**"?
+3. How many lines contain "<b>RBX1</b>"?
 
-4. Ignoring the header, in how many entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
+4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different?
 
-5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
+5. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
 
 6. [Example with LOTS of files]
 
 <details>
-<summary>**Answers**</summary>
+<summary><b>Answers</b></summary>
 
 <ol>
 <li> 55151
 <li> 1 line only
-<li> Too many to count in **nano** (but the answer is 5775).
-<li> Too hard in **nano** (answer is 36).
-<li> *Madness! I am NOT doing that in nano!*
+<li> Too many to count in <b>nano</b> (but the answer is 5775).
+<li> Too hard in <b>nano</b> (answer is 36).
+<li> <i>Madness! I am NOT doing that in nano!</i>
 </ol>
 
 </details>
