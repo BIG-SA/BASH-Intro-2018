@@ -130,6 +130,7 @@ Try answering these questions:
 
 5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
+6. [Example with LOTS of files]
 
 <details>
 <summary>**Answers**</summary>
@@ -145,10 +146,21 @@ Try answering these questions:
 </details>
 
 
+## Command Structure
+
+
+Hopefully, by now you can appreciate that using text editors are not the best way to query large data sets.
+
+
+
+
 
 
 
 <hr>
+
+
+
 
 
 

@@ -1,5 +1,130 @@
 # Cheatsheet for BIG-SA Introduction to BASH Workshop
 
+
+
+
+**Navigation and file management**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:----------- |:----------------------------- |:------------------ |:------------------ |
+| `man`       | Display on-line manual        | -k                 |
+| `pwd`       | Print working directory, i.e show where you are | none commonly used |
+| `ls`        | List contents of a directory  | -a, -h, -l         |
+| `cd`        | Change directory              | (scroll down in `man builtins` to find `cd`) |
+| `mv`        |                               | -b, -f, -u         |
+| `cp`        |                               | -b, -f, -u         |
+| `rm`        |                               | -r (careful...)    |
+| `rmdir`     |                               |                    |
+| `mkdir`     |                               | -p                 |
+
+
+
+
+
+**File viewing**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:----------- |:----------------------------- |:------------------ |:------------------ |
+| `cat`       |                               |                    |
+| `less`      |                               |                    |
+| `more`      |                               |                    |
+| `head`      |                               | -n# (e.g., -n100)  |
+| `tail`      |                               | -n# (e.g., -n100)  |
+| `wc`        |                               | -l                 |
+
+
+
+
+
+**Keyboard shortcuts**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:----------- |:----------------------------- |:------------------ |:------------------ |
+| [Tab]       | tab-autocomplete              |                    |                    |
+| [Up]/[Down] | Cycle through previous commands |                    |
+| [Ctrl][Shift]-C, [Ctrl][Shift]-V      | Copy and paste highlighted text in terminal |  |
+
+
+
+
+**Filters, file/stream editing**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:----------- |:----------------------------- |:------------------ |:------------------ |
+| `cut`       |                               | -d, -f, -s         |
+| `paste`     |                               |                    |
+| `sort`      |                               |                    |
+| `uniq`      |                               | -c                 |
+| `grep`      |                               |                    |
+| `echo`      |                               | -e                 |
+| `sed`       |                               |                    |
+| `awk`       |                               |                    |
+
+
+
+**General utilities**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:------------------ |:--------------- |:------------------ |:--------- |
+| `history`          |                 | -c                 |           |
+| `top`              |                 | -c                 |           |
+| `ps`               |                 | -c                 |           |
+
+
+
+
+**Network**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:------------------ |:--------------- |:------------------ |:--------- |
+| `wget`             |                 |                    |           |
+| `curl`             |                 |                    |           |
+
+
+**Special symbols**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:------------------ |:--------------- |:------------------ |:--------- |
+| `|`                |                 |                    |           |
+| `>`                |                 |                    |           |
+| `<`                |                 |                    |           |
+| `&`                |                 |                    |           |
+
+
+
+**Archiving and compression**
+
+| **Command/Symbol** | **Description** | **Useful options** |  Section  |
+|:------------------ |:--------------- |:------------------ |:--------- |
+| `tar`              |                 | -x -z -c -v -f     |           |
+| `gunzip`, `gzip`   |                 | -k, -c             |           |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <table>
 
 <tr><td colspan="4" height=80><b>File system navigation and file management</b></td></tr>
@@ -164,49 +289,4 @@
 
 <tr><td height=500 colspan="4"></td></tr>
 
-</table>
-
-
-
-
-
-
-
-
-
-**Navigation and file management**
-
-| **Command/Symbol** | **Description** | **Useful options** |  Section  |
-|:----------- |:----------------------------- |:------------------ |:------------------ |
-| `man`       | Display on-line manual        | -k                 |
-| `pwd`       | Print working directory, i.e show where you are | none commonly used |
-| `ls`        | List contents of a directory  | -a, -h, -l         |
-| `cd`        | Change directory              | (scroll down in `man builtins` to find `cd`) |
-| `mv`        |                               | -b, -f, -u         |
-| `cp`        |                               | -b, -f, -u         |
-| `rm`        |                               | -r (careful...)    |
-| `rmdir`     |                               |                    |
-| `mkdir`     |                               | -p                 |
-
-**File viewing**
-
-
-| **Command/Symbol** | **Description** | **Useful options** |  Section  |
-|:----------- |:----------------------------- |:------------------ |:------------------ |
-| `cat`       |                               |                    |
-| `less`      |                               |                    |
-| `wc`        |                               | -l                 |
-| `head`      |                               | -n# (e.g., -n100)  |
-| `tail`      |                               | -n# (e.g., -n100)  |
-| `echo`      |                               | -e                 |
-
-**Editing**
-
-| **Command/Symbol** | **Description** | **Useful options** |  Section  |
-|:----------- |:----------------------------- |:------------------ |:------------------ |
-| `cut`       |                               | -d, -f, -s         |
-| `sort`      |                               |                    |
-| `uniq`      |                               | -c                 |
-| `wget`      |                               |                    |
-
-`history`
+</table> -->
