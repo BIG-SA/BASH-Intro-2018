@@ -68,7 +68,7 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 <div width="80%">
 
 <table>
-<tr><td bgcolor="">
+<tr><td bgcolor="#DDDDDD">
 <b><i>Preparing the data file and some exercises</i></b>
 <br><br>
 
@@ -83,7 +83,10 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 
 <li>Locate and extract the file <code>3_many_files.tar.gz</code> in the <code>files</code> directory:
 <br><br>
-
+  <code>$ tar xzvf 3_many_files.tar.gz</code>
+<br><br>
+  This should create a sub-direction (<code>3_many_files</code>) containing 100 TSV files.
+  <br><br>
 
 <li>Use what you have learnt so far and find out:
   <br><br><ul>
@@ -118,24 +121,27 @@ This will takes a few seconds, depending on your machine. Other editors (vi, ema
 
 Try answering these questions:
 
-1. What is the first line that contains "<b>DNAJB7</b>"?
+
+1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
 
   <details><summary>Hint:</summary>
   You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
   <br>
 
-2. How many lines contain "<b>DNAJB7</b>"?
+2. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
 
   <details><summary>Hint:</summary>Use M-W ([Alt]-W) to repeat search.</details>
   <br>
 
 3. How many lines contain "<b>RBX1</b>"?
 
-4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different?
+4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
 
 5. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
 
-6. [Example with LOTS of files]
+6. Now look into the files in the created sub-directory <code>3_many_files</code>. Open <b><code>datafile1</code></b>. Does it contain an entry for "MAPK1"?
+
+7. Which files in <code>3_many_files</code> directory contain entries for "MAPK1"?
 
 <details>
 <summary><b>Answers</b></summary>
@@ -145,7 +151,10 @@ Try answering these questions:
 <li> 1 line only
 <li> Too many to count in <b>nano</b> (but the answer is 5775).
 <li> Too hard in <b>nano</b> (answer is 36).
-<li> <i>Madness! I am NOT doing that in nano!</i>
+<li> Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+<li> There is an entry for MAPK11, but not MAPK1.
+<li> Seems like too much work... (<i>but the answer is datafile11, datafile26, datafile28,
+datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98</i>)
 </ol>
 
 </details>

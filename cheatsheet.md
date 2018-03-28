@@ -67,10 +67,9 @@
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:------------------ |:--------------- |:------------------ |:--------- |
 | `history`          |                 | -c                 |           |
-| `top`              |                 | -c                 |           |
-| `ps`               |                 | -c                 |           |
-
-
+| `top`              |                 |                    |           |
+| `ps`               |                 | -u                 |           |
+| `fg`               | bring process to foreground |                    |           |
 
 
 **Network**
