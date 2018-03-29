@@ -58,22 +58,22 @@ To start <b>vi</b>, just enter <code>vi</code>. If you are using a recent Linux 
 
 </ol>
 
+<br><br><br><br>
 <hr>
-
-## Working with large files
+## Working with large files or many files
 
 CLI text editors are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `more`, `less` or `cat`), however, they are less useful when the files are very large. Let's try working on a data file using **nano**.
 
 
-<div width="80%">
+
+
+**1. Prepare the data files (and some revision exercises)**
+<details><summary>Instructions</summary>
 
 <table>
 <tr><td bgcolor="#DDDDDD">
-<b><i>Preparing the data file and some exercises</i></b>
-<br><br>
 
 <ol>
-
 <li>Locate and uncompress the file <code>GRCh38.chr22.ensembl.biomart.txt.gz</code> in the <code>files</code> directory:
 <br><br>
   <code>$ gunzip -k GRCh38.chr22.ensembl.biomart.txt.gz</code>
@@ -89,13 +89,11 @@ CLI text editors are very convenient when you want to quickly edit a small text 
   <br><br>
 
 <li>Use what you have learnt so far and find out:
-  <br><br><ul>
-  <li> What is the size of the uncompressed file?
-  <br>
-  <li> How many characters, words and lines does it contain?
-  <br>
-  </ul>
-  <br>
+  <br><br>
+  <ul>
+    <li> What is the size of the uncompressed file?  <br>
+    </ul><br>
+    <li> How many characters, words and lines does it contain?  <br>
 
 <li>How are the data organised in the file? i.e. does it look like a tabulated data file? If so, then:
   <br><ul>
@@ -109,61 +107,76 @@ CLI text editors are very convenient when you want to quickly edit a small text 
 
 <li>Can you derive the answers to questions 2-4 without uncompressing the original file?
 </ol>
+
+You should now have some idea of the structure of the data file.
+
 </td></tr>
 </table>
-</div>
+</details>
 
-You should now have some idea of the structure of the data file. Now, open the file in nano:
+<br>
+
+**2. Exercise 1 (`GRCh38.chr22.ensembl.biomart.txt`)**
+
+  1. Open the extracted file in nano:
 
   <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
 
-This will takes a few seconds, depending on your machine. Other editors (vi, emacs) may be a bit faster.
+  This may take a few seconds, depending on your machine.
+  Once the file has loaded, try answering the following questions using the functions provided by **nano**.
 
-Try answering these questions:
-
-
-1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
+  1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
 
   <details><summary>Hint:</summary>
   You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
+
+  2. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
+
+  <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
+
+  3. How many lines contain "<b>RBX1</b>"?
+
+  4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
+
+  5. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
+
   <br>
 
-2. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
 
-  <details><summary>Hint:</summary>Use M-W ([Alt]-W) to repeat search.</details>
-  <br>
+**3. Exercise 2 (`3_many_files/`)**
 
-3. How many lines contain "<b>RBX1</b>"?
+  Now look into the files in the created sub-directory <code>3_many_files</code>.
 
-4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
+  6. Open the file <b><code>datafile1</code></b> in nano. Does it contain an entry for "MAPK1"?
 
-5. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
+  7. Which files in <code>3_many_files</code> directory contain entries for "MAPK1"?
 
-6. Now look into the files in the created sub-directory <code>3_many_files</code>. Open <b><code>datafile1</code></b>. Does it contain an entry for "MAPK1"?
-
-7. Which files in <code>3_many_files</code> directory contain entries for "MAPK1"?
+<br>
 
 <details>
 <summary><b>Answers</b></summary>
 
-<ol>
-<li> 55151
-<li> 1 line only
-<li> Too many to count in <b>nano</b> (but the answer is 5775).
-<li> Too hard in <b>nano</b> (answer is 36).
-<li> Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
-<li> There is an entry for MAPK11, but not MAPK1.
-<li> Seems like too much work... (<i>but the answer is datafile11, datafile26, datafile28,
+<ul>
+<li> (2-2) 55151
+<li> (2-3) 1 line only
+<li> (2-4) Too many to count in <b>nano</b> (but the answer is 5775).
+<li> (2-5) Too hard in <b>nano</b> (answer is 36).
+<li> (2-6) Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+<li> (3-1) There is an entry for MAPK11, but not MAPK1.
+<li> (3-2) Seems like too much work... (<i>but the answer is datafile11, datafile26, datafile28,
 datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98</i>)
-</ol>
+</ul>
 
 </details>
 
+<br>
+
+Hopefully by now you can appreciate that using text editors are not the best way to query large data sets. The rest of this class, we will examine three of the most commonly used CLI tools for working with large data sets: `grep`, `sed`, and `awk`.
+
+<br><br><br><br>
+<hr>
 
 ## Command Structure
-
-
-Hopefully, by now you can appreciate that using text editors are not the best way to query large data sets.
 
 
 
