@@ -120,19 +120,19 @@ You should now have some idea of the structure of the data file.
 
   1. Open the extracted file in nano:
 
-  <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
+    <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
 
-  This may take a few seconds, depending on your machine.
-  Once the file has loaded, try answering the following questions using the functions provided by **nano**.
+    This may take a few seconds, depending on your machine.
+    Once the file has loaded, try answering the following questions using the functions provided by **nano**.
 
-  1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>? Give line number.
+  1. What is the first line that contains "<b>DNAJB7</b>" in  <code>GRCh38.chr22.ensembl.biomart.txt</code>? Give line number.
 
-  <details><summary>Hint:</summary>
-  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
+    <details><summary>Hint:</summary>
+    You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
 
   2. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
 
-  <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
+    <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
 
   3. How many lines contain "<b>RBX1</b>"?
 
