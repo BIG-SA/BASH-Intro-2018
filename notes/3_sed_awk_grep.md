@@ -125,7 +125,7 @@ You should now have some idea of the structure of the data file.
   This may take a few seconds, depending on your machine.
   Once the file has loaded, try answering the following questions using the functions provided by **nano**.
 
-  1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
+  1. What is the first line that contains "<b>DNAJB7</b>" in <code>GRCh38.chr22.ensembl.biomart.txt</code>? Give line number.
 
   <details><summary>Hint:</summary>
   You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
@@ -173,24 +173,37 @@ datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets. The rest of this class, we will examine three of the most commonly used CLI tools for working with large data sets: `grep`, `sed`, and `awk`.
 
-<br><br><br><br>
+<br><br>
 <hr>
 
-## Command Structure
+### Primer on Linux Command Structure
+
+Before we introduce these tools, you may find it useful to [familiarise](extra_command_syntax.md) yourself
+with the structure (or syntax) of a typical Linux command.
+
+However, feel free to continue on if you already understand the topic.
 
 
-
-
-
-
-
+<br><br>
 <hr>
 
+# `Grep`
+
+`grep`<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. For example, one of exercises above asks to find "DNAJB7" in the data file. We can do this simply in `grep`:
+
+`$ grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt`
+
+This is `grep` in the simplest form, which requires two arguments: the pattern to look for, `DNAJB7`, and the file in which to look for the pattern, `GRCh38.chr22.ensembl.biomart.txt`.
+By default, `grep` prints out the line(s) which contains the query pattern.
 
 
 
 
 
+
+
+<br><br>
+<hr>
 
 *Footnotes*
 
@@ -201,3 +214,5 @@ Hopefully by now you can appreciate that using text editors are not the best way
 [3] The Control (Ctrl) key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
 
 [4] You can install `ne` by entering `sudo apt install ne` on Ubuntu.
+
+[5] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
