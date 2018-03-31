@@ -118,29 +118,29 @@ You should now have some idea of the structure of the data file.
 
 **2. Exercise 1 (`GRCh38.chr22.ensembl.biomart.txt`)**
 
-  1. Open the extracted file in nano:
+1. Open the extracted file in nano:
 
-    <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
+  <code>$ nano GRCh38.chr22.ensembl.biomart.txt</code>
 
-    This may take a few seconds, depending on your machine.
-    Once the file has loaded, try answering the following questions using the functions provided by **nano**.
+  This may take a few seconds, depending on your machine.
+  Once the file has loaded, try answering the following questions using the functions provided by **nano**.
 
-  1. What is the first line that contains "<b>DNAJB7</b>" in  <code>GRCh38.chr22.ensembl.biomart.txt</code>? Give line number.
+2. What is the first line that contains "<b>DNAJB7</b>" in  <code>GRCh38.chr22.ensembl.biomart.txt</code>? Give line number.
 
-    <details><summary>Hint:</summary>
-    You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
+  <details><summary>Hint:</summary>
+  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
 
-  2. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
+3. How many lines in <code>GRCh38.chr22.ensembl.biomart.txt</code> contain "<b>DNAJB7</b>"?
 
-    <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
+  <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
 
-  3. How many lines contain "<b>RBX1</b>"?
+4. How many lines contain "<b>RBX1</b>"?
 
-  4. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
+5. Ignoring the header, in how many entries (lines) are the "<b>Gene name</b>" and "<b>HGNC symbol</b>" values different in <code>GRCh38.chr22.ensembl.biomart.txt</code>?
 
-  5. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
+6. Change all instances of "<b>TBX1</b>" in "<b>Gene name</b>" and "<b>HGNC symbol</b>" columns to "<b>TBX-1</b>", but not in other columns.
 
-  <br>
+<br>
 
 
 **3. Exercise 2 (`3_many_files/`)**
