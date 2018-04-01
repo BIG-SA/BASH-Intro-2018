@@ -57,9 +57,9 @@
 | `uniq`      |                               | -c                 |
 | `grep`      |                               |                    |
 | `echo`      |                               | -e                 |
+| `tee`       |                               |                    |
 | `sed`       |                               |                    |
 | `awk`       |                               |                    |
-
 
 
 **General utilities**
@@ -69,7 +69,9 @@
 | `history`          |                 | -c                 |           |
 | `top`              |                 |                    |           |
 | `ps`               |                 | -u                 |           |
-| `fg`               | bring process to foreground |                    |           |
+| `kill`, `pkill`    |                 | -u                 |           |
+| `whoami`           |                 | -u                 |           |
+| `fg`               | bring process to foreground |        |           |
 
 
 **Network**
@@ -85,7 +87,7 @@
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:------------------ |:--------------- |:------------------ |:--------- |
 | <code>&#124;</code> |                 |                    |           |
-| `>`                |                 |                    |           |
+| `>`, `>>`          |                 |                    |           |
 | `<`                |                 |                    |           |
 | `&`                |                 |                    |           |
 | `*`, `?`           | wildcards       |                    |           |

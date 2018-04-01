@@ -145,11 +145,11 @@ You should now have some idea of the structure of the data file.
 
 **3. Exercise 2 (`3_many_files/`)**
 
-  Now look into the files in the created sub-directory <code>3_many_files</code>.
+Now look into the files in the created sub-directory <code>3_many_files</code>.
 
-  6. Open the file <b><code>datafile1</code></b> in nano. Does it contain an entry for "MAPK1"?
+  7. Open the file <b><code>datafile1</code></b> in nano. Does it contain an entry for "MAPK1"?
 
-  7. Which files in <code>3_many_files</code> directory contain entries for "MAPK1"?
+  8. Which files in <code>3_many_files</code> directory contain entries for "MAPK1"?
 
 <br>
 
@@ -171,7 +171,7 @@ datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile
 
 <br>
 
-Hopefully by now you can appreciate that using text editors are not the best way to query large data sets. The rest of this class, we will examine three of the most commonly used CLI tools for working with large data sets: `grep`, `sed`, and `awk`.
+Hopefully by now you can appreciate that using text editors are not the best way to query large data sets. In the rest of this class, we will examine three of the most commonly used CLI tools for working with large data sets: `grep`, `sed`, and `awk`.
 
 <br><br>
 <hr>
@@ -183,18 +183,33 @@ with the structure (or syntax) of a typical Linux command.
 
 However, feel free to continue on if you already understand the topic.
 
-
 <br><br>
 <hr>
 
 # `Grep`
 
-`grep`<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. For example, one of exercises above asks to find "DNAJB7" in the data file. We can do this simply in `grep`:
+**grep**<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
+
+`$ grep [PATTERN] [FILE]`
+
+which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, the grep command to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt` is:
 
 `$ grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt`
 
-This is `grep` in the simplest form, which requires two arguments: the pattern to look for, `DNAJB7`, and the file in which to look for the pattern, `GRCh38.chr22.ensembl.biomart.txt`.
-By default, `grep` prints out the line(s) which contains the query pattern.
+By default, grep prints every line that contains at least one instance of search pattern. (In modern terminal programs, matching strings in each line will be highlighted.)
+
+
+
+
+
+Options:
+
+- -w
+- -f
+- -F
+- -e
+- wild cards (in files)
+- -n
 
 
 

@@ -8,13 +8,15 @@ The general structure of a Linux/UNIX command line looks like:
 
 `command [-option(s)] [argument(s)]`
 
-The most important thing to note is that the command line *always* starts with a "command", which is an executable file or program.
+The most important thing to note is that the command line *always* starts with a "command", which is an executable file or program (any file with the executable bit set).
 
+## Options and arguments
 
-
-## Executable commands
+Options are settings built into the command program (or script), that alter the default behaviour of the program. Some options are "flags", which simply turns on or off a specific behaviour, while others require some input value, which are called "arguments".
 
 Some commands can be used without any options or arguments, e.g. `ls` and `pwd`.
 
-
-## Options and arguments
+- commands that expect arguments
+- arguments without options
+- combining options
+- required options (subcommands, e.g. tar)
