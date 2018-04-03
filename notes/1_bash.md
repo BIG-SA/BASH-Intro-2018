@@ -510,10 +510,59 @@ To do so we must recursively delete the contents one at a time or by using a wil
 rm Users
 ```
 
-that won't work!
+(This wont actually work)
 
 ```
 rm -r Users
 ```
 
 Done!
+
+## Adding Arguments (or flags) to Commands
+
+In the previous command we added the flag `-r` to the command `rm`.
+This took the place of the first argument placing the directory name as the second argument, and told `rm` how to operate on the directory.
+Here, we set the command `rm` to act **r**ecursively.
+
+### Accessing Help Pages
+
+How do we know what additional flags can be set as an argument?
+Most commands come with an inbuilt help page, that we can access a few ways.
+The most common method is to add the flag `--help` after a command.
+
+```
+rm --help
+```
+
+![](../images/1_bash_rm_help.png)
+
+Note the convention that single letters follow a single dash (`-`) whilst complete words follow a double dash (`--`).
+*What would happen if we tried to type two words after the `--` with a space between them?*
+
+This method of checking the help page printed the entire contents of the help file into the terminal window.
+This can be great for short help pages like this, but can sometimes be so long that we can't read everything.
+Most of the `builtin` commands like `rm` also come with a full manual which is much longer and more detailed.
+We can access this using a command `man` which is actually a bit tricky.
+Instead of dumping all the information, this will open an interactive viewer within the terminal itself called `less`, which is like a primitive Adobe Acrobat Reader, where we can only view text information.
+Once we enter this viewer and have finished looking through the manual, we have to exit using the `q` key (for **q**uit).
+This will return us to `bash`.
+
+Let's call the command `man` (for **man**ual) and give it the argument `rm`.
+This tells `man` which manual to open.
+
+```
+man rm
+```
+
+To scroll through this manual, we can use our cursor arrows to move line by line, or you can use the space bar to jump down a page (i.e. a screenful).
+The `b` key goes **b**ack a page.
+As well as viewing help pages, the viewer (or *pager*) less can be used for browsing text-based files in the terminal itself.
+We'll come back to this later.
+
+#### Homework Question
+
+Use the `man` command to access the help page for `ls`.
+
+1. How would we sort files by size when using `ls`?
+2. How would we only display directories instead of all files?
+3. How would we sort files by the last time they were saved?
