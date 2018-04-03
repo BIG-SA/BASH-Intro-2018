@@ -1,2 +1,4 @@
-theme: black
+theme : black
 mathjax : TeX-MML-AM_HTMLorMML-full
+layout : center-left
+published : true
