@@ -1,9 +1,9 @@
 # Introduction
 
-[Introduction](#introduction)
-[Course Information](#course-information)
-[Protocols](#protocols)
-[Computer Setup](#computer-setup)
+[Introduction](#introduction)  
+[Course Information](#course-information)  
+[Protocols](#protocols)  
+[Computer Setup](#computer-setup)  
 
 ## General Information
 
