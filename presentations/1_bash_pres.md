@@ -22,7 +22,7 @@
 
 - Science is littered with retractions as a result of GUI mistakes
     - Google Keith Baggerly
-- Reproducible Research $$\implies$$ Script Everything!
+- Reproducible Research $\implies$ Script Everything!
 - Nothing is forgotten & you can find any errors
 - Common workflows can be easily automated
 
