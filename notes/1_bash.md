@@ -1,3 +1,6 @@
+* TOC
+{:toc}
+
 # Introducing Bash
 
 [Background](#background)
