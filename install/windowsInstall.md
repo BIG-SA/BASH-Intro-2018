@@ -41,7 +41,7 @@ One final tool we need to install is the `nano` editor.
 We'll use this to edit text files directly in the terminal.
 This install can be a bit tricky, so before you move on close `git bash` if you have it open, then re-open `git bash` using your right-click to select `Run as administrator`
 
-From there on just paste the following commands:
+From there on just paste the following commands (you may need to use either a *right-click* or `Ctrl+Shift+v` to paste these):
 ```
 wget https://www.nano-editor.org/dist/win32-support/nano-git-0d9a7347243.exe
 mv nano-git-0d9a7347243.exe /c/Program\ Files/Git/usr/bin/nano.exe

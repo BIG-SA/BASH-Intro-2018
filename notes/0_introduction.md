@@ -12,10 +12,10 @@ This is series of training workshops and materials developed by the Bioinformati
 
 Some additional resources run by the Bioinformatics Hub which may be of interest beyond today are:
 
-- A University web-page at http://www.adelaide.edu.au/bioinformatics-hub/
-- To be kept up to date on upcoming events and workshops, please join the internal Bioinformatics mailing list on http://list.adelaide.edu.au/mailman/listinfo/ bioinfo
-- A Twitter account https://twitter.com/UofABioinfoHub/
-- An active Slack team for discussing Bioinformatics questions with the local community. Slack teams do require an invitation to join, so please email the Hub on bioinf_hub@adelaide.edu.au to join the community. All are welcome.
+- A [University web-page](http://www.adelaide.edu.au/bioinformatics-hub/)
+- To be kept up to date on upcoming events and workshops, please join the internal [Bioinformatics mailing list](http://list.adelaide.edu.au/mailman/listinfo/bioinfo)
+- A [Twitter account](https://twitter.com/UofABioinfoHub/)
+- An active Slack team for discussing Bioinformatics questions with the local community. Slack teams do require an invitation to join, so please [email the Hub](mailto:bioinf_hub@adelaide.edu.au) to join the community. All are welcome.
 
 ## Course Information
 
