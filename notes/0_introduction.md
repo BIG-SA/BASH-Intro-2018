@@ -1,5 +1,7 @@
 # Introduction
 
+[Computer Setup](#computer-setup)
+
 ## General Information
 
 Thank you for your attendance & welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
@@ -12,13 +14,13 @@ Some additional resources run by the Bioinformatics Hub which may be of interest
 - A Twitter account https://twitter.com/UofABioinfoHub/
 - An active Slack team for discussing Bioinformatics questions with the local community. Slack teams do require an invitation to join, so please email the Hub on bioinf_hub@adelaide.edu.au to join the community. All are welcome.
 
-# Course Information
+## Course Information
 
-## Schedule
+### Schedule
 
 The workshop will be run in a weekly series of 2 hour sessions, with sessions for each campus as below
 
-### North Terrace
+#### North Terrace
 
 All sessions will be held in The Braggs, 313-314
 
@@ -30,7 +32,7 @@ All sessions will be held in The Braggs, 313-314
 | Wed, April 25th | - | ANZAC DAY |
 | Wed, May 2nd | 2-4pm | Bash Scripting |
 
-### Waite Campus
+#### Waite Campus
 
 All sessions will be held in the Biometry Hub Meeting Room, Level 2, Waite Building
 
@@ -41,7 +43,7 @@ All sessions will be held in the Biometry Hub Meeting Room, Level 2, Waite Build
 | Tues, April 24th | 2-4pm | The tools `grep`, `sed` and `awk` |
 | Tues, May 1st | 2-4pm | Bash Scripting |
 
-### Roseworthy Campus
+#### Roseworthy Campus
 
 All sessions will be held in the Davies Conference Room, Davies Building
 
@@ -52,7 +54,7 @@ All sessions will be held in the Davies Conference Room, Davies Building
 | Mon, April 30th | 2-4pm | The tools `grep`, `sed` and `awk` |
 | Mon, May 6th | 2-4pm | Bash Scripting |
 
-## Outline
+### Course Outline
 
 There will be a number of components covered during these sessions:
 
@@ -76,7 +78,7 @@ These basic tools are essential for writing what are known as shell scripts, whi
 These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to the genome.
 A knowledge of this simple type of programming and navigation is also essential for accessing the high-performance computing resources such as *phoenix*.
 
-## Aims
+### Course Aims
 The long-term goal of this workshop is to enable you to carry out your own data analysis in a **reproducible** manner, using standard bioinformatics tools or write your own programs.
 This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming later in the year.
 
@@ -112,7 +114,7 @@ by Software Carpentary (http://software-carpentry.org/lessons/) and Ryans Tutori
 
 We hope it will be useful in enabling you to continue and to advance your research.
 
-# Computer Setup
+## Computer Setup
 
 Previously we have run these sessions using Virtual Machines, but today we are opting for running all sessions using the tools locally installed on your own machines.
 *As there will be a huge variety of laptops in the room, the initial set-up may be a difficult to begin with*, but will settle as the day progresses.
@@ -128,4 +130,4 @@ In particular, the Windows set-ups may take a while to get sorted.
 If you are already running Ubuntu, your computer will already be set-up correctly.
 
 
-[Home](https://github.com/BIG-SA/BASH-Intro-2018)
+[Home](https://big-sa.github.io/BASH-Intro-2018/)
