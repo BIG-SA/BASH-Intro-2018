@@ -1,5 +1,8 @@
 # Introducing Bash
 
+[Background](#background)
+[Meet the prompt](#meet-the-prompt)
+
 ## Background
 
 Command-line tools are the mainstay of analysis for large (biological or non-biological) data sets. Good candidate examples for command-line analyses in bioinformatics are:
@@ -14,7 +17,7 @@ Today we’ll explore a few commands to help you gain a little familiarity with 
 
 ### Why should you learn the basics
 
-The command-line is a bit of a beast and is often thought of as daunting. To soften the blow, try not to think of it as a choice between the command-line and the Graphical user innterface (GUI) but rather as an extra tool in the tool box. There are tasks that are more suited and easier to complete using the GUI. However, many tasks and especially so in the field of bioinformatics, are better off completed and sometimes only available on the command-line.
+The command-line is a bit of a beast and is often thought of as daunting. To soften the blow, try not to think of it as a choice between the command-line and the Graphical user innterface (GUI) but rather as an extra tool in the tool box. There are tasks that are more suited and easier to complete using the GUI. However, many tasks (especially in the field of bioinformatics) are better off completed and are sometimes only available on the command-line.
 
 The command-line may feel more like programming than using a mouse but in essence its almost the same thing. Some advantages of using the command-line over the GUI are;
 
@@ -27,7 +30,7 @@ Unfortunately it also comes with a few disadvantages;
 - primarily textual in nature
 - steep learning curve
 
-Learning even just the basic bash commands will open up new avenues of exploration in any data science project you might tackle. And, may even get you over the line on that new job application … What have you got to loose?
+Learning even just the basic `bash` commands will open up new avenues of exploration in any data science project you might tackle. And, may even get you over the line on that new job application … What have you got to lose?
 
 ### Initial Goals
 
@@ -35,15 +38,18 @@ Learning even just the basic bash commands will open up new avenues of explorati
 2. Learn how to navigate directories, as well as to copy, move & delete the files within them
 3. Look up the help page of a command needed to perform a specified task
 
-### What is bash (command-line/terminal/shell/prompt)
+## What is bash?
 
-These are names for basically the same thing and will often be used interchangeably.
+The command-line, terminal, shell, prompt and bash, are names for basically the same thing and will often be used interchangeably.
 
-The command-line has a library of programs (commands) which are built into it at the time of installing the operating system, some of which are part of the "Bourne-again Shell", or bash. We’ll explore a few of these commands today. If you’ve ever heard of the phrase shell scripts, this refers to a series of these commands strung together into a text file which is then able to be executed as a single command.
+The command-line has a library of programs (commands) which are built into it at the time of installing the operating system, some of which are part of the "*Bourne-again Shell*", or `bash`.
+(The original shell was created by Stephen Bourne at Bell Labs in the 1970's, and this updated version was initially released in 1989 as a security update and hilarious joke.)
+We’ll explore a few of these commands today.
+If you’ve ever heard of the phrase *shell scripts*, this refers to a series of these commands strung together into a text file, which is then able to be executed as a single command.
 
 Without further ado,
 
-## Open your Terminal - Meet the prompt.
+## Meet the prompt
 
 Firstly we need to open a terminal as we did during the set-up steps.
 Mac/Linux users will notice some text describing your computer of the form
@@ -62,25 +68,34 @@ Figure 1. The Terminal
 
 ![The Terminal](../images/1_bash_fig1_ubuntu_terminal.png)
 
-On bash you will have this `$` sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computers name and other things that can be set. Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
+On bash you will have this `$` sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computers name and other things that can be set.
+Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
 
-The main point here is that all the bash commands you'll use in this workshop should be typed after the `$`
+The main point here is that all the bash commands you'll use in this workshop should be typed after the `$` where you should see a cursor flashing.
 
-The prompt is there to indicate that the shell is waiting for a task/instruction. The user defines the task by using the keyboard and typing in commands. The shell then evaluates the command, processes and returns the output. Following this the shell provides a new prompt and is ready to do it all over again. The whole process is often referred to as REPL (read - evaluate - print - loop)
+The prompt is there to indicate that the shell is waiting for a task/instruction.
+The user defines the task by using the keyboard and typing in commands.
+The shell then evaluates the command, processes and returns the output.
+Following this the shell provides a new prompt and is ready to do it all over again.
+The whole process is often referred to as REPL (read - evaluate - print - loop)
 
-Lets try it with some simple commands. Type the command `ls` in the terminal.
+Lets try it with some simple commands. Type the command `ls` in the terminal, followed by the `Enter` key to complete the command.
 
 ```
 ls
 ```
 
-The command `ls` stands for **l**i**s**ting and does simply as the name implies, lists the contents of a directory/folder. More to come on this! ls is possibly one of the most used commands on the comman-line and we will use it often throughout this workshop. Now try this as well
+The command `ls` stands for **l**i**s**ting as the name implies, lists the contents of a directory/folder.
+(More to come on this!)
+`ls` is possibly one of the most used commands on the command-line and we will use it often throughout this workshop.
+Now try this as well
 
 ```
 echo $SHELL
 ```
 
-`echo` is like an inbuilt print command and `$SHELL` is a system variable that holds the name of the current shell in use. Some of these terms like variable may seem foreign but don’t worry too much about them right now, we’ll get to all of that in good time.
+`echo` is like an inbuilt print command and `$SHELL` is a system variable that holds the name of the current shell in use.
+Some of these terms like variable may seem foreign but don’t worry too much about them right now, we’ll get to all of that in good time.
 
 We need to take note of a couple of things before we move on. First, the shell is case sensitive! try the second command all in lower case like this
 
@@ -88,9 +103,24 @@ We need to take note of a couple of things before we move on. First, the shell i
 echo $shell
 ```
 
-Can you explain the output? a Linux-based file system such as Ubuntu or Mac OS-X is case-sensitive, whilst Windows is not. As such, the command `LS` is completely different to `ls` and if `LS` is the name of a command which has been defined in your shell, you will get completely different results than from the intended ls command.
+**Can you explain the different output?**
 
-***handy tip: *** the shell has a memory that can be traversed by using the up and down arrow keys. You may not have much in there yet but try it out and make use of it as much as you can, its a massive time saver. You also have the ability to modify and rerun any command stored in history by moving the cursor left or right with the arrow keys and deleting and/or adding appropriate text.
+A Linux-based file system such as Ubuntu or Mac OS-X is case-sensitive, whilst Windows is not.
+As such, the command `LS` is completely different to `ls` and if `LS` is the name of a command which has been defined in your shell, you will get completely different results than from the intended ls command.
+
+**The term "print"**
+
+In the paragraph above, we mentioned that `echo` is like an inbuilt print command.
+Did we mean that we sent something to a printer?
+Clearly not.
+Back in 1989, everyone had dot-matrix printers and printing actally meant "print the results to the screen."
+As we'll learn later, this is also called "standard output" or `stdout`.
+
+#### A Handy Tip:
+
+The shell also has a memory that can be traversed by using the up and down arrow keys.
+You may not have much in there yet but try it out and make use of it as much as you can, it's a massive time saver.
+You also have the ability to modify and rerun any command stored in history by moving the cursor left or right with the arrow keys and deleting and/or adding appropriate text.
 
 ### Are you lost? Orientation in bash
 
@@ -100,33 +130,45 @@ Type the command `pwd` in the terminal and you will see the output which describ
 pwd
 ```
 
-The command `pwd` is what we use to **p**rint the **w**orking **d**irectory (the directory that you currently reside in). This paticular directory is usually referred to as your *home* directory. This is also the information that the tilde represents as a shorthand version, so whenever you see the tilde in a directory path, it is interpreted as *home* directory (more on this to come).
+The command `pwd` is what we use to **p**rint the **w**orking **d**irectory (the directory that you currently reside in).
+This directory you are currently in (we hope), is usually referred to as your *home* directory.
+This is also the information that the tilde represents as a shorthand version, so whenever you see the tilde in a directory path, or in your prompt, it is interpreted as *home* directory.
 
-***NOTE: *** In the above command, the home directory began with a slash, i.e. `/`. On a Unix-based system (Linux and Mac), this is considered to be the root directory of the file system. Windows users would be more familiar with seeing `C:\` as the root of the drive.
+### Know your file system!
 
-### Know thine file system!
-
-To gain a better understanding of the concept your home directory, we first need to know how the file system as a whole is configured. On most modern OS’s the file system is laid out in a hierarchical manner. Files and folders are housed in other folders which in turn (with other files) are also housed in folders and so on all the way to the top folder which houses everything. This all-encompassing top level folder is commonly referred to as root and is represented by the lone forward slash `/`. Windows users would be more familiar with seeing `C:\` as the root of the file system, and this is a very important difference in the two directory structures. Note also that whilst Windows uses the backslash (\\) to indicate a new directory, a Linux-based system uses the forward slash (/), or more commonly just referred to simply as “slash”.
+To gain a better understanding of the concept your home directory, we first need to know how the file system as a whole is configured.
+On most modern OS’s the file system is laid out in a hierarchical manner.
+Files and folders are housed in other folders which in turn (with other files) are also housed in folders and so on all the way to the top folder which houses everything.
+This all-encompassing top level folder is commonly referred to as root and is represented in Linux-based systems by the lone forward slash `/`.
+Windows users would be more familiar with seeing `C:\` as the root of the file system, and this is a very important difference in the two directory structures.
+Note also that whilst Windows uses the backslash (\\) to indicate a new directory, a Linux-based system uses the forward slash (/) to separate directories, or more commonly just referred to simply as “slash”.
 
 Figure 2. Typical file system hierarchy
 
 ![Typical file system hierarchy](../images/1_bash_fig2_file_sys_hierarchy.png)
 
-Here’s a depiction of the Linux file system. Obviously, there is a lot missing in the above figure. The home directory (sue) for user Sue is housed within the home folder which itself is housed within the root folder. The path all the way from the top is thus “root–>home –>sue” or in command-line terms /home/sue.
+Here’s a depiction of the Linux file system.
+Obviously, there is a lot missing in the above figure.
+The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root fol
+der. The path all the way from the top is thus “root–>home –>jono or in command-line terms /home/jono.
 
-***Note: *** the forward slash is also used to delimit or separate the individual folder names (and file name too).
+***Note: *** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
 
-***Note: *** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to avoid using spaces whenever naming folders or files (more on this to come).
+***Note: *** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
 
-#### task
-Lets diverge a bit and do a small group exercise. Open a GUI file/directory browser on your machine and move around. Whilst you are exploring pay attention to the horizontal navigation bar that tells you where you are. As you move around try and get a feel for how a path is built.
+#### Task
+Lets diverge a bit and do a small group exercise.
+Open a GUI file/directory browser on your machine and click through a few folders.
+Whilst you are exploring pay attention to the horizontal navigation bar that tells you where you are.
+As you move around try and get a feel for how a path is built.
 
 ### Changing Directories (`cd`)
 
 In this section we will learn how to change directories using `bash`.
 Try to mirror this using your conventional GUI approach so you can understand what's actually happening.
 
-With your GUI based file/directory browser, change to the directory indicated by the `pwd` command. Now let's go the other way, navigate to a random spot on your machine using the GUI and then try to get to that same spot in the terminal
+With your GUI based file/directory browser, navigate to the directory indicated by the `pwd` command.
+Now let's go the other way, navigate to a random spot on your machine using the GUI and then try to get to that same spot in the terminal
 
 The built-in command which we use to *change directory* is `cd`. For example, If I want to get to a folder located at root–>home–>johnny–>workshop1, I could do this
 
@@ -147,7 +189,7 @@ Use the `ls` command to inspect the contents of the folder and compare it to wha
 
 ***Note: *** you may have come stuck here due to "absolute" and "relative" paths. We'll clear this up in the next section.
 
-No matter where we are in a file system, we can move up a directory in the hierarchy by using the command
+No matter where we are in a file system, we can move up a directory (i.e. one step towards the root) by using the command
 
 ```
 cd .. #the space between the `cd` and `..` is important and the hash character on this line is special too. Why?
@@ -179,26 +221,52 @@ cd
 
 ### Looking at the Contents of any Directory (`ls`)
 
-We have used this command a bit now `ls`: **l**i**s**t the contents of a directory. With `ls`, we can specify which directory we wish to view the contents of, without having to change into that directory. We simply type the ls command, followed by a space, then the directory we wish to view the contents of. To look at the contents of the root directory of the file system (i.e. /), we simply add that directory after the command `ls`.
+We have already used the `ls` command a bit now to **l**i**s**t the contents of a directory while we were navigating.
+With `ls`, we can specify which directory we wish to view the contents of, without having to change into that directory.
+We simply type the `ls` command, followed by a space, then the directory we wish to view the contents of.
+To look at the contents of the root directory of the file system (i.e. /), we simply add that directory after the command `ls`.
 
 ```
 ls /
 ```
 
-Here you can see a whole raft of directories which contain the vital information for the computer’s operating system. Among them should be the /home directory which is one level above your own home directory, and where the home directories for all users are located, as mentioned earlier.
+Here you can see a whole raft of directories which contain the vital information for the computer’s operating system.
+Among them should be the /home directory which is one level above your own home directory, and where the home directories for all users are located, as mentioned earlier.
+Try looking in that directory:
 
-### Relative Vs Absolute Paths
+```
+ls /home
+```
 
-To aid you in your understanding of this concept lets do a simple mind experiment. Can anyone explain to me how to get to their office in this building?
+## Relative Vs Absolute Paths
 
-There really is only 2 ways to do so;
-1. identify a shared known point of interest (landmark) and give step by step directions
-from there
+This is an important concept required for finding your way around any computer (or file system).
+To aid you in your understanding of this concept lets do a simple mind experiment.
+Can anyone explain to me how to get to the ground floor bathroom in this building?
+
+There really is only 2 ways to do so:
+
+1. give step by step directions from the main entrance (or another landmark)
 2. give step by step directions from where we are right now
 
-The same concept applies to the terminal except that there is only one landmark (not exactly true!) which is root `/`. All paths starting with / are said to be absolute. These paths, if correct, will work no matter where you are in the file system. On the other hand a relative path makes use of the fact that the terminal knows exactly where it is and so you can tell it where you want to go relative to that position. In summary, absolute paths specify a location (file or directory) in the system all the way from the top most folder (root directory) and thus always start with `/`. Relative paths specify a location in the system relative the the current working directory and will never start with the slash. This is an important point which will hopefully become more clear throughout the session.
+The same concept applies to the terminal except that there is only one "main entrance"  which is root `/`.
+All paths starting with / are said to be **absolute paths**, and detail the path from the "main entrance".
+These paths, if correct, will work no matter where you are in the file system.
+On the other hand a **relative path** makes use of the fact that the terminal knows exactly where you are now, so you can tell it where you want to go relative to that position.
+In summary:
 
-***Note: *** The terminal also knows of one more landmark which we hinted at before and that is the users home directory. As mentioned before, the special charater to denote this location is the tilda `~`. It can be used from anywhere as a landmark just like the slash. Try it!
+- Absolute paths specify a location (file or directory) in the system *all the way from the top most folder* (root directory) and thus always start with `/`
+- Relative paths specify a location in the system *relative the the current working directory* and will never start with the slash. This is an important point which will hopefully become more clear throughout the session.
+
+***Note: *** The terminal also knows of one more landmark which we hinted at before and that is the users home directory.
+As mentioned before, the special charater to denote this location is the tilda `~`.
+It can be used from anywhere as a landmark just like the slash. Try it!
+
+You can even use the `echo` command to see the path it represents, noting that this is an absolute path itself.
+
+```
+echo ~
+```
 
 #### Questions
 
@@ -220,19 +288,24 @@ Starting from /home/amanda/data/, which of the following commands could Amanda u
 8. cd
 9. cd ..
 
-### Tab Completion
+## Tab Completion
 
-Typing in long paths and/or filenames can be tedious. The terminal has a special feature which aids in completing this task called tab completion.
+Typing in long paths and/or filenames can be tedious.
+Fortunately the terminal has a special feature which aids in completing this task called tab completion.
+This is the ability to automatically complete a command, file or directory name using the `tab` key. Try typing
 
-A very helpful and time-saving tool in the command line is the ability to automatically
-complete a command, file or directory name using the `tab` key. Try typing
 ```
 ls /home/<the first letter of your username> <tab>
 ```
 
-where `<the first letter of your username>` would be j for me and `tab` represents the tab key.
+where `<the first letter of your username>` would be j for john and `tab` represents the tab key.
 
-Notice how your username is completed automatically! This functionality will automatically fill as far as it can until conflicting options are reached. In this case, there was only one option so it was able to complete all the way to the end of the file path. This enables us to quickly enter long file paths without the risk of typos. Using this trick will save you an enormous amount of time trying to find why something doesn’t work. The most common error we’ll see today will be mistakes in file paths caused by people not takingv advantage of this trick.
+Notice how your username is completed automatically!
+This functionality will automatically fill as far as it can until conflicting options are reached.
+In this case, there was only one option so it was able to complete all the way to the end of the file path.
+This enables us to quickly enter long file paths without the risk of typos.
+Using this trick will save you an enormous amount of time trying to find why something doesn’t work.
+The most common error we’ll see today will be mistakes in file paths caused by people not taking advantage of this trick.
 
 Now enter
 
@@ -240,18 +313,29 @@ Now enter
 ls ~/D <tab>
 ```
 
-and it will look like the auto-complete is not working. This is because there are two possibilities and it doesn’t know which you want. Hit the tab twice and both will appear in the terminal, then choose one. As well as directory paths, you can use this to auto-complete filenames.
+and for most of you, it will look like the auto-complete is not working.
+This is because there are two possibilities and it doesn’t know which you want.
+Hit the tab twice and both will appear in the terminal, then choose one.
+As well as directory paths, you can use this to auto-complete filenames.
 
-***Handy tip: *** This technique can be used to also find command names. Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer. If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
+***Handy tip: *** This technique can be used to also find command names.
+Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer.
+If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
 
 ***Handy tip: *** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
-## Working with Files and Directories
+## Commands and Arguments
+
+In most of the above, we typed the name of a command like `cd`, `ls` or `echo` then followed it with the name of a folder, e.g. `ls /`.
+This follows the important syntax of `command argument` where a space separates these two.
+Later on we'll see commands where we supply multiple arguments, and the space is playing a key role here.
+In `bash` the first space separates the `command` from the `argument` and every subsequent space separates the arguments.
+This is the main reason we don't like to use folder names which contain spaces.
+There is a way of using spaces (by "escaping" the space with a `\`), but spaces in paths can cause difficulties during numerous process and should be avoided at all costs.
+
+## Making and Removing Directories
 
 So we now know how to move around and explore the file system from within the terminal but how do we create new ones or modify what already exists.
-
-### Make/Remove Directories (`mkdir` `rmdir`)
-
 Let move to our home directory if we are not already there and then move into the Desktop folder
 
 ```
@@ -265,9 +349,9 @@ ls
 ```
 
 Lets create a folder. In the terminal we create directories using the command `mkdir` which
-is short for **M**a**k**e **Dir**ectory. Make Directory just like Change Directory takes one
-argument (more about arguments later). In this case it will be the name of the folder to
-create. Lets call it “practice_folder”.
+is short for **m**a**k**e **dir**ectory.
+Make Directory just like Change Directory takes one argument.
+In this case it will be the name of the folder to create. Lets call it “practice_folder”.
 
 ```
 mkdir practice_folder
@@ -275,23 +359,29 @@ mkdir practice_folder
 
 #### Questions
 
-Can you think of an alternative argument that would result in the same outcome? Hint: was that a relative or absolute path?
+1. Can you think of an alternative argument that would result in the same outcome? Hint: was that a relative or absolute path?
+2. Note that we used the underscore symbol to conect the two words in the folder name. What do you think would happen if we replaced it with a space?
 
-Also, note that we used the underscore symbol to conect the two words in the folder name. What do you think would happen if we replaced it with a space?
 
-That was simple. Lets get rid of it now. The command we use to remove a directory is rmdir which is short for **R**e**m**ove **Dir**ectory.
+That was simple. Lets get rid of it now.
+The command we use to remove a directory is rmdir which is short for **r**e**m**ove **dir**ectory.
 
-***Note: *** rmdir only works on empty directories. Later we’ll learn how to delete folders even if they contain files.
+***Note: *** rmdir only works on empty directories. Soon we’ll learn how to delete folders even if they contain files.
 
 ### Make/Remove Files (`touch` `rm`)
 
-Interestingly, unlike mkdir there is no dedicated command to make a file. Fortunately, anyone of about a dozen commands that manipulate files will, when executed, create a file if that file does not already exist. The most commonly used command to acheive this is `touch` which was originally created for an entirely different purpose. I don’t know anyone who uses touch for it’s intended purpose anymore but it’s an easy way to make a new file. Create a new file called “practice_file”.
+Interestingly, unlike `mkdir` there is no dedicated command to make a file.
+Fortunately, any one of about a dozen commands that manipulate files will, when executed, create a file if that file does not already exist.
+The most commonly used command to acheive this is `touch` which was originally created for an entirely different purpose.
+I don’t know anyone who uses touch for it’s intended purpose anymore but it’s an easy way to make a new file.
+Create a new file called “practice_file”.
 
 ```
-touch practice_folder
+touch practice_file
 ```
 
-Easy! It’s empty but we created it. Check that it’s there before removing it using `rm` which is short for **R**e**m**ove.
+Easy! It’s empty but we created it.
+Check that it’s there before removing it using `rm` which is short for **r**e**m**ove.
 
 ```
 rm practice_file
