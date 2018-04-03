@@ -163,46 +163,95 @@ Now look into the files in the created sub-directory <code>3_many_files</code>.
 <li> (2-5) Too hard in <b>nano</b> (answer is 36).
 <li> (2-6) Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
 <li> (3-1) There is an entry for MAPK11, but not MAPK1.
-<li> (3-2) Seems like too much work... (<i>but the answer is datafile11, datafile26, datafile28,
+<li> (3-2) Seems like it would be too much work to go through each file individually (<i>but the answer is datafile11, datafile26, datafile28,
 datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98</i>)
 </ul>
+
 
 </details>
 
 <br>
 
-Hopefully by now you can appreciate that using text editors are not the best way to query large data sets. In the rest of this class, we will examine three of the most commonly used CLI tools for working with large data sets: `grep`, `sed`, and `awk`.
+Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
+
+As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
+
+In the rest of this class, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.
 
 <br><br>
 <hr>
 
 ### Primer on Linux Command Structure
 
-Before we introduce these tools, you may find it useful to [familiarise](extra_command_syntax.md) yourself
-with the structure (or syntax) of a typical Linux command.
-
+Before we introduce these tools, you may find it useful to familiarise yourself
+with [the structure (or syntax) of a typical Linux command](extra_command_syntax.md).
 However, feel free to continue on if you already understand the topic.
 
 <br><br>
 <hr>
 
-# `Grep`
+# `grep`
 
-**grep**<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
 
 `$ grep [PATTERN] [FILE]`
 
-which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, the grep command to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt` is:
+which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`:
 
 `$ grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt`
 
-By default, grep prints every line that contains at least one instance of search pattern. (In modern terminal programs, matching strings in each line will be highlighted.)
+By default, **`grep`** prints every line that contains at least one instance of search pattern. (In modern terminal programs, matching strings in each line will be highlighted.)
+
+You can also search for multiple files at the same time, by:
+
+1. Providing multiple file names:
+
+  `$ grep DNAJB7 3_many_files/datafile1 3_many_files/datafile2`
+
+2. Or by using file name wild-cards:
+
+  `$ grep DNAJB7 3_many_files/datafile2?`
+
+  `$ grep DNAJB7 3_many_files/*`
+
+**grep** has many useful options. You can find out about all the available options by reading its help page (`man grep`). We will look at some examples for a few of the more common options.
+
+### Word-matching
+
+**Example 1 (`-w`)**
+
+If we want to retrieve entries related to **DDT** gene, we may try a command like:
+
+`grep DDT GRCh38.chr22.ensembl.biomart.txt`
+
+However, this will also retrieve entries that match **DDTL**. To retrieve entries which are only related to DDT, we can use the `-w` option:
+
+`grep -w DDT GRCh38.chr22.ensembl.biomart.txt`
+
+This will match lines that contain the string "`DDT`" which are immediately flanked by non-alphanumerical characters (i.e. spaces, tabs, and symbols), and therefore DDTL will no longer match.
+
+**Example 2**
+
+One of the columns in the file is "**GO term name**". If we want to search for entries for which the value in this column is "transport", we may try something like:
+
+`$ grep -w transport GRCh38.chr22.ensembl.biomart.txt`
+
+However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
+
+This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport". In other words, we are looking for the string "`[tab]transport[tab]`".
 
 
 
 
+Ctrl-V does not work in a script
 
-Options:
+use -P
+
+
+
+### Searching for multiple terms at the same time
+
+If we want to
 
 - -w
 - -f
@@ -210,7 +259,7 @@ Options:
 - -e
 - wild cards (in files)
 - -n
-
+- -v
 
 
 
