@@ -157,9 +157,9 @@ Obviously, there is a lot missing in the above figure.
 The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root fol
 der. The path all the way from the top is thus “root–>home –>jono or in command-line terms /home/jono.
 
-***Note: *** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
+**Note:** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
 
-***Note: *** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
+**Note:** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
 
 #### Task
 {:.no_toc}
@@ -193,7 +193,7 @@ cd /home/johnny/workshop1
 
 Use the `ls` command to inspect the contents of the folder and compare it to what you see in the GUI.
 
-***Note: *** you may have come stuck here due to "absolute" and "relative" paths. We'll clear this up in the next section.
+**Note:** you may have come stuck here due to "absolute" and "relative" paths. We'll clear this up in the next section.
 
 No matter where we are in a file system, we can move up a directory (i.e. one step towards the root) by using the command
 
@@ -244,7 +244,7 @@ Try looking in that directory:
 ls /home
 ```
 
-## Relative Vs Absolute Paths
+### Relative Vs Absolute Paths
 
 This is an important concept required for finding your way around any computer (or file system).
 To aid you in your understanding of this concept lets do a simple mind experiment.
@@ -264,7 +264,7 @@ In summary:
 - Absolute paths specify a location (file or directory) in the system *all the way from the top most folder* (root directory) and thus always start with `/`
 - Relative paths specify a location in the system *relative the the current working directory* and will never start with the slash. This is an important point which will hopefully become more clear throughout the session.
 
-***Note: *** The terminal also knows of one more landmark which we hinted at before and that is the users home directory.
+**Note:** The terminal also knows of one more landmark which we hinted at before and that is the users home directory.
 As mentioned before, the special charater to denote this location is the tilda `~`.
 It can be used from anywhere as a landmark just like the slash. Try it!
 
@@ -325,11 +325,11 @@ This is because there are two possibilities and it doesn’t know which you want
 Hit the tab twice and both will appear in the terminal, then choose one.
 As well as directory paths, you can use this to auto-complete filenames.
 
-***Handy tip: *** This technique can be used to also find command names.
+**Handy tip:** This technique can be used to also find command names.
 Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer.
 If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
 
-***Handy tip: *** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
+**Handy tip:** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
 ## Creating and Deleting Files
 
@@ -376,7 +376,7 @@ mkdir practice_folder
 That was simple. Lets get rid of it now.
 The command we use to remove a directory is rmdir which is short for **r**e**m**ove **dir**ectory.
 
-***Note: *** rmdir only works on empty directories. Soon we’ll learn how to delete folders even if they contain files.
+**Note:** rmdir only works on empty directories. Soon we’ll learn how to delete folders even if they contain files.
 
 ### Make/Remove Files (`touch` `rm`)
 
@@ -399,37 +399,60 @@ rm practice_file
 
 ### Copy/Move/Rename (`cp` `mv`)
 
-When calling the commands to make or remove files/directories we provide one peice of information (argument) to the command which is the name of the object to create/remove. With the `cp` and `mv` (stands for copy and move repectively) commands, we need to provide an additional peice of information (2 arguments).
+When calling the commands to make or remove files/directories we provide one piece of information (argument) to the command which is the name of the object to create/remove.
+With the `cp` and `mv` (stands for copy and move repectively) commands, we now need to provide an additional peice of information (2 arguments).
 
-1. the name of the object we want to copy/move
-2. the place in the file system to move the object to
+1. the *name of the object we want to copy/move*
+2. the *place in the file system to move the object to*
 
 The order is important so the command must look like this,
 
 ```
 cp <name_of_object_to_copy> <location_to_copy_object_to>
-# OR
+```
+
+or
+
+```
 mv <name_of_object_to_move> <location_to_move_object_to>
 ```
 
-***Note: *** renaming a file OR folder is just a special case of the mv command. For example, given the file “file one.txt”, we would use the mv command like this to rename it
+**Note:** renaming a file OR folder is just **a special case of the mv command**.
+For example, given the file “file one.txt”, we would use the `mv` command like this to rename it.
+Let's create the file and check that it's there first.
+Then we'll rename it (using `mv`) and delete it.
+
+```
+touch file_one.txt
+ls
+```
+
+OK. If you see it there you'll know it exists.
 
 ```
 mv file_one.txt renamed_file.txt
+ls
+```
+You should now see the file with it's new name in that list, so let's delete it.
+
+```
+rm renamed_file.txt
 ```
 
-#### Task
+#### Homework Task
 {:.no_toc}
 
-In the current directory, see if you can recreate these folders in the correct structure. After you have finished, try deleting the “Users” directory.
+1 - See if you can recreate these folders in your home folder (`~`).
+Create some in order, but for some of the others try creating folders/files in your home directory, then moving them to their correct location.
+After you have finished, try deleting the “Users” directory.
 
 ![Create Dir Structure](../images/1_bash_fig3_create_file_sys_hierarchy.png)
 
-If you are keen, try creating a few folders/files in the current directory and then moving them to there correct location.
 
 ### Removing non-empty directories
 
-As is, neither `rmdir` or `rm` will delete a folder that contains an object. To do so we must recursively delete the contents one at a time or by using a wild card (more on this to come). However, there is a flag in the “rm” command that does this automatically. Try this on your newly created folders,
+As is, neither `rmdir` or `rm` will delete a folder that contains an object.
+To do so we must recursively delete the contents one at a time or by using a wild card (more on this to come). However, there is a flag in the “rm” command that does this automatically. Try this on your newly created folders,
 
 ```
 rm Users
