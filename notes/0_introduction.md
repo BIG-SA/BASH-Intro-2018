@@ -1,39 +1,63 @@
 # Introduction
 
+[Introduction](#introduction)  
+[Course Information](#course-information)  
+[Protocols](#protocols)  
+[Computer Setup](#computer-setup)  
+
 ## General Information
-# Should we add BIG-SA details (if we have any by then?)
 
 Thank you for your attendance & welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
-This is an offering by the University of Adelaide, Bioinformatics Hub and the Bioinformatics Interest Group - South Australia (BIG-SA).
-
-The Bioinformatics Hub is a centrally funded initiative from the Department of Vice-Chancellor (Research), with the aim of assisting & enabling researchers in their work.
-Training workshops & seminars such as this one are an important part of this initiative.
+This is series of training workshops and materials developed by the Bioinformatics Interest Group - South Australia (BIG-SA), specifically using the skills and resources of the Bioinformatics Hub (University of Adelaide) and the ACRF Cancer Genomics Facility
 
 Some additional resources run by the Bioinformatics Hub which may be of interest beyond today are:
 
-- A University web-page at http://www.adelaide.edu.au/bioinformatics-hub/
-- To be kept up to date on upcoming events and workshops, please join the internal Bioinformatics mailing list on http://list.adelaide.edu.au/mailman/listinfo/ bioinfo
-- A Twitter account https://twitter.com/UofABioinfoHub/
-- An active Slack team for discussing Bioinformatics questions with the local community. Slack teams do require an invitation to join, so please email the Hub on bioinf_hub@adelaide.edu.au to join the community. All are welcome.
+- A [University web-page](http://www.adelaide.edu.au/bioinformatics-hub/)
+- To be kept up to date on upcoming events and workshops, please join the internal [Bioinformatics mailing list](http://list.adelaide.edu.au/mailman/listinfo/bioinfo)
+- A [Twitter account](https://twitter.com/UofABioinfoHub/)
+- An active Slack team for discussing Bioinformatics questions with the local community. Slack teams do require an invitation to join, so please [email the Hub](mailto:bioinf_hub@adelaide.edu.au) to join the community. All are welcome.
 
-Today’s workshop has been put together based on previous material and courses prepared by Dr Stephen Bent (University of Queensland), with generous technical support & advice provided by Dr Nathan Watson-Haigh and Dr Dan Kortschak.
+## Course Information
 
-Sections of the workshop are also based loosely on material and courses prepared
-by Software Carpentary (http://software-carpentry.org/lessons/) and Ryans Tutorials
-(http://ryanstutorials.net/)
+### Schedule
 
-We hope it will be useful in enabling you to continue and to advance your research.
+The workshop will be run in a weekly series of 2 hour sessions, with sessions for each campus as below
 
-## Course Summary
+#### North Terrace
 
-The workshop will be run in 2 hour sessions, weekly for four weeks starting from the 4th of April as follows;
+All sessions will be held in The Braggs, 313-314
 
-| Date | Time | location | Room | Details |
-| ---------- | ---------- | ---------- | ---------- | ---------- |
-| Wed, April 4th | 2-4pm | Nth Terrace | TBA | Intro to Bash |
-| Wed, April 11th | 2-4pm | Nth Terrace | TBA | Bash Filters |
-| Wed, April 18th | 2-4pm | Nth Terrace | TBA | Grep, Sed and Awk |
-| Wed, April 25th | 2-4pm | Nth Terrace | TBA | Bash Scripting |
+| Date | Time | Main Topics |
+| ---------- |---------- | ---------- |
+| Wed, April 4th | 2-4pm  | Introduction to `bash` |
+| Wed, April 11th | 2-4pm | Working with files in `bash` |
+| Wed, April 18th | 2-4pm | The tools `grep`, `sed` and `awk` |
+| Wed, April 25th | - | ANZAC DAY |
+| Wed, May 2nd | 2-4pm | Bash Scripting |
+
+#### Waite Campus
+
+All sessions will be held in the Biometry Hub Meeting Room, Level 2, Waite Building
+
+| Date | Time | Main Topics |
+| ---------- |---------- | ---------- |
+| Tues, April 10th | 2-4pm  | Introduction to `bash` |
+| Tues, April 17th | 2-4pm | Working with files in `bash` |
+| Tues, April 24th | 2-4pm | The tools `grep`, `sed` and `awk` |
+| Tues, May 1st | 2-4pm | Bash Scripting |
+
+#### Roseworthy Campus
+
+All sessions will be held in the Davies Conference Room, Davies Building
+
+| Date | Time | Main Topics |
+| ---------- |---------- | ---------- |
+| Mon, April 16th | 2-4pm  | Introduction to `bash` |
+| Mon, April 23rd | 2-4pm | Working with files in `bash` |
+| Mon, April 30th | 2-4pm | The tools `grep`, `sed` and `awk` |
+| Mon, May 6th | 2-4pm | Bash Scripting |
+
+### Course Outline
 
 There will be a number of components covered during these sessions:
 
@@ -57,40 +81,44 @@ These basic tools are essential for writing what are known as shell scripts, whi
 These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to the genome.
 A knowledge of this simple type of programming and navigation is also essential for accessing the high-performance computing resources such as *phoenix*.
 
-## Course Aims
-The long-term goal of this workshop is to enable you to carry out your own
-data analysis using standard bioinformatics tools or write your own programs. This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming later in the year.
+### Course Aims
+The long-term goal of this workshop is to enable you to carry out your own data analysis in a **reproducible** manner, using standard bioinformatics tools or write your own programs.
+This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming later in the year.
 
-We expect the participants, by the end of both workshops, to:
+By the end of both courses, we expect the participants to:
 1. Be relatively comfortable working with the command line interface, and familiar with the standard Unix command line tools
 2. Understand standard NGS data formats
 3. Be able to run several basic NGS data analysis methods (e.g. variant calling)
 4. Understand how some simple python scripts work for custom data analysis
 
-## Workshop Instructors
+### Acknowledgements
 
-Your helpers will be
+This course has been put together by Paul Wang, John Toubia, Stephen Pederson and Jimmy Breen, based on previous material prepared by Stephen Bent, Nathan Watson-Haigh and Dan Kortschak.
 
-- Steve Pederson, Hien To, Alastair Ludington (Bioinformatics Hub)
-- Jimmy Breen (Robinson Research Institute & Bioinformatics Hub)
-- Paul Wang, John Toubia (Centre for Cancer Biology)
+Sections of the workshop are also based loosely on material and courses prepared
+by Software Carpentary (http://software-carpentry.org/lessons/) and Ryans Tutorials
+(http://ryanstutorials.net/)
 
-## Recommendations For Working
+We hope it will be useful in enabling you to continue and to advance your research.
+
+## Protocols
+
+### Entering Commands
 
 In the following pages, we strongly encourage you to manually type all commands.
-The mistakes you will inevitably make will actually be important learning steps.
+The mistakes you will inevitably make will actually *be important learning steps*.
 Additionally, in your work beyond today, you will probably not have any instructions to follow.
 The experience of typing these commands will equip you for future work far better than if you simply copy & paste.
 
+### Calling For Help
+
 For today’s session, you will also be provided with red post-it notes.
-**Please use these to signal whether you need help or not by placing them on your monitors**.
+Please use these to signal whether you need help or not **by placing them on your monitors**.
 These are easy for instructors to spot so we can make our way over, although do be aware that there will be times when all instructors are busy.
 This will be important as we all set our computers up in the following section.
 
-# Do we need a section here on feedback?
 
 ## Computer Setup
-# Should we require that attendees do this before the session and ask us via Slack if they need assistance? If so we need to amend this section.
 
 Previously we have run these sessions using Virtual Machines, but today we are opting for running all sessions using the tools locally installed on your own machines.
 *As there will be a huge variety of laptops in the room, the initial set-up may be a difficult to begin with*, but will settle as the day progresses.
@@ -105,4 +133,5 @@ In particular, the Windows set-ups may take a while to get sorted.
 
 If you are already running Ubuntu, your computer will already be set-up correctly.
 
-[Home](https://github.com/BIG-SA/BASH-Intro-2018)
+
+[Home](https://big-sa.github.io/BASH-Intro-2018/)
