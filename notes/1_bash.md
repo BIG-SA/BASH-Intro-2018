@@ -331,6 +331,58 @@ If we’d hit the `tab` key after typing `hea`, then the command head would have
 
 **Handy tip:** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
+### Wildcards
+
+Alternatively referred to as a wild character or wildcard character, a wildcard is a symbol used to replace or represent one or more characters.
+Wildcards are typically either an asterisk (*), which represents one or more characters or question mark (?), which represents a single character.
+This is like in some card games the joker is used as a wildcard meaning that the owner of that joker can choose to view it as any one of the 52 playing cards in the deck.  
+A similar concept is the blank tile in Scrabble which can be used as any one of the letters in the alphabet in order to complete words (like Free and ”Bear”!)
+
+![Wildcards](../images/1_bash_fig4_wildcards_scrabble2.png)
+
+Wildcards in the terminal are somewhat like this. Here is the basic set of wildcards;
+
+1. `?` Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
+2. `*` Asterix - represents zero or more characters
+3. `[ ]` Closed square brackets - user defined range of characters
+
+We have set up some exercises for you to try out your skills using wildcards and below
+are some examples of how wildcards are used.
+*Please just copy and paste the following line of code into your terminal to create some files for this section.*
+
+```
+touch cubane.pdb ethane.pdb methane.pdb octane.pdb propane.pdb elephant.txt i_dont_belong.txt neither_do_i.txt pentane.pdb this_is_boring_as_hell.txt
+```
+
+Let's have look at the files we just created
+
+```
+ls
+```
+
+What files will be returned by?
+
+```
+ls p*
+ls *pbd
+```
+
+What will the different results be for the following two commands?
+
+```
+ls ?thane.pdb
+ls *thane.pdb
+```
+
+We can also use the square brackets to specify one or more characters
+
+```
+ls *.[p]*
+ls *.[t]*
+ls *.[pt]*
+```
+
+
 ## Creating and Deleting Files
 
 ### Commands and Arguments
@@ -465,20 +517,3 @@ rm -r Users
 ```
 
 Done!
-
-### Wildcards
-
-Alternatively referred to as a wild character or wildcard character, a wildcard is a symbol used to replace or represent one or more characters. Wildcards are typically either an asterisk (*), which represents one or more characters or question mark (?), which represents a single character. Not sure if anyone plays or has played card games? In certain card games the joker is used as a wildcard meaning that the owner of that joker can choose to view it as any one of the 52 playing cards in the deck. A similar concept is the blank tile in Scrabble which can be used as any one of the letters in the alphabet in order to complete words (like Paul and ”Socks”!)
-
-![Wildcards](../images/1_bash_fig4_wildcards_scrabble.png)
-
-Wildcards in the terminal are somewhat like this. Here is the basic set of wildcards;
-
-1. `?` Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
-2. `*` Asterix - represents zero or more characters
-3. `[ ]` Closed square brackets - user defined range of characters
-
-we have set up some exercises for you to try out your skills using wildcards and below
-are some examples of how wildcards are used.
-
-![Wildcards 2](../images/1_bash_fig5_wildcard_examples.png)
