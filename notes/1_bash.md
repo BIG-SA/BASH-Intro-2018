@@ -40,7 +40,7 @@ Learning even just the basic `bash` commands will open up new avenues of explora
 2. Learn how to navigate directories, as well as to copy, move & delete the files within them
 3. Look up the help page of a command needed to perform a specified task
 
-## What is bash?
+## What is `bash`?
 
 The command-line, terminal, shell, prompt and bash, are names for basically the same thing and will often be used interchangeably.
 
