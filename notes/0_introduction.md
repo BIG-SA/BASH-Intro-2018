@@ -1,5 +1,8 @@
 # Introduction
 
+[Introduction](#introduction)
+[Course Information](#course-information)
+[Protocols](#protocols)
 [Computer Setup](#computer-setup)
 
 ## General Information
@@ -88,6 +91,16 @@ By the end of both courses, we expect the participants to:
 3. Be able to run several basic NGS data analysis methods (e.g. variant calling)
 4. Understand how some simple python scripts work for custom data analysis
 
+### Acknowledgements
+
+This course has been put together by Paul Wang, John Toubia, Stephen Pederson and Jimmy Breen, based on previous material prepared by Stephen Bent, Nathan Watson-Haigh and Dan Kortschak.
+
+Sections of the workshop are also based loosely on material and courses prepared
+by Software Carpentary (http://software-carpentry.org/lessons/) and Ryans Tutorials
+(http://ryanstutorials.net/)
+
+We hope it will be useful in enabling you to continue and to advance your research.
+
 ## Protocols
 
 ### Entering Commands
@@ -104,15 +117,6 @@ Please use these to signal whether you need help or not **by placing them on you
 These are easy for instructors to spot so we can make our way over, although do be aware that there will be times when all instructors are busy.
 This will be important as we all set our computers up in the following section.
 
-## Acknowledgements
-
-This course has been put together by Paul Wang, John Toubia, Stephen Pederson and Jimmy Breen, based on previous material prepared by Stephen Bent, Nathan Watson-Haigh and Dan Kortschak.
-
-Sections of the workshop are also based loosely on material and courses prepared
-by Software Carpentary (http://software-carpentry.org/lessons/) and Ryans Tutorials
-(http://ryanstutorials.net/)
-
-We hope it will be useful in enabling you to continue and to advance your research.
 
 ## Computer Setup
 
