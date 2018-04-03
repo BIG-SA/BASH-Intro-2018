@@ -1,9 +1,9 @@
+* TOC
+{:toc}
+
 # Introduction
 
-[Introduction](#introduction)  
-[Course Information](#course-information)  
-[Protocols](#protocols)  
-[Computer Setup](#computer-setup)  
+[Opening Presentation](https://gitpitch.com/BIG-SA/BASH-Intro-2018/master?grs=github&t=black)
 
 ## General Information
 
