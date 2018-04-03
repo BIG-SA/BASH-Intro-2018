@@ -181,6 +181,11 @@ In the rest of this class, we will examine three of the most commonly used CLI t
 <br><br>
 <hr>
 
+
+
+
+
+
 ### Primer on Linux Command Structure
 
 Before we introduce these tools, you may find it useful to familiarise yourself
@@ -190,13 +195,25 @@ However, feel free to continue on if you already understand the topic.
 <br><br>
 <hr>
 
+
+
+
+
+
+
+
+
+
+
+
+
 # `grep`
 
-**`grep`**<sup>[5]</sup> is an utility for search fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
 
 `$ grep [PATTERN] [FILE]`
 
-which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`:
+which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`, we would enter:
 
 `$ grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt`
 
@@ -214,7 +231,7 @@ You can also search for multiple files at the same time, by:
 
   `$ grep DNAJB7 3_many_files/*`
 
-**grep** has many useful options. You can find out about all the available options by reading its help page (`man grep`). We will look at some examples for a few of the more common options.
+**`grep`** has many useful options. You can find out all of the available options by reading its help page (`man grep`). We will look at examples of some of the more common options.
 
 ### Word-matching
 
@@ -228,7 +245,7 @@ However, this will also retrieve entries that match **DDTL**. To retrieve entrie
 
 `grep -w DDT GRCh38.chr22.ensembl.biomart.txt`
 
-This will match lines that contain the string "`DDT`" which are immediately flanked by non-alphanumerical characters (i.e. spaces, tabs, and symbols), and therefore DDTL will no longer match.
+This will match lines that contain the string "`DDT`" which are immediately flanked by non-word constituent characters (word constituent characters are alphanumerics and the underscore) and therefore DDTL will no longer match.
 
 **Example 2**
 
@@ -238,18 +255,30 @@ One of the columns in the file is "**GO term name**". If we want to search for e
 
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
 
-This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport". In other words, we are looking for the string "`[tab]transport[tab]`".
+This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport". In other words, we are looking for the string "`[tab]transport[tab]`":
 
+`$ grep "[tab]transport[tab]" GRCh38.chr22.ensembl.biomart.txt`
 
+To enter an actual [tab] character, you need to use the key sequence: [Ctrl-V][tab]. Just pressing the [tab] key will not work.
 
+While this works when you are entering commands directly in the command line terminal, it will not work in a script (as you will see in the next lesson). So the alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
 
-Ctrl-V does not work in a script
+`$ grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt`
 
-use -P
 
 
 
 ### Searching for multiple terms at the same time
+
+
+
+
+
+
+
+
+
+
 
 If we want to
 
@@ -261,6 +290,11 @@ If we want to
 - -n
 - -v
 
+
+
+Exercises:
+1) how to grep for actual "\t" in file
+2)
 
 
 
