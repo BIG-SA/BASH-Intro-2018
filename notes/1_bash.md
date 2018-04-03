@@ -15,7 +15,8 @@ Command-line tools are the mainstay of analysis for large (biological or non-bio
 
 Today we’ll explore a few commands to help you gain a little familiarity with some important ones, and to enable you to find help when you’re working by yourself. We don’t expect you to remember all the commands & options from today. The important thing is to become familiar with the basic syntax for commands, how to put them together, and where to look for help when you’re unsure.
 
-### Why should you learn the basics {:.no_toc}
+### Why should you learn the basics 
+{:.no_toc}
 
 The command-line is a bit of a beast and is often thought of as daunting. To soften the blow, try not to think of it as a choice between the command-line and the Graphical user innterface (GUI) but rather as an extra tool in the tool box. There are tasks that are more suited and easier to complete using the GUI. However, many tasks (especially in the field of bioinformatics) are better off completed and are sometimes only available on the command-line.
 
