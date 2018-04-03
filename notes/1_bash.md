@@ -15,7 +15,7 @@ Command-line tools are the mainstay of analysis for large (biological or non-bio
 
 Today we’ll explore a few commands to help you gain a little familiarity with some important ones, and to enable you to find help when you’re working by yourself. We don’t expect you to remember all the commands & options from today. The important thing is to become familiar with the basic syntax for commands, how to put them together, and where to look for help when you’re unsure.
 
-### Why should you learn the basics 
+### Why should you learn the basics
 {:.no_toc}
 
 The command-line is a bit of a beast and is often thought of as daunting. To soften the blow, try not to think of it as a choice between the command-line and the Graphical user innterface (GUI) but rather as an extra tool in the tool box. There are tasks that are more suited and easier to complete using the GUI. However, many tasks (especially in the field of bioinformatics) are better off completed and are sometimes only available on the command-line.
@@ -34,6 +34,7 @@ Unfortunately it also comes with a few disadvantages;
 Learning even just the basic `bash` commands will open up new avenues of exploration in any data science project you might tackle. And, may even get you over the line on that new job application … What have you got to lose?
 
 ### Initial Goals
+{:.no_toc}
 
 1. Gain familiarity and confidence within the `bash` environment
 2. Learn how to navigate directories, as well as to copy, move & delete the files within them
@@ -50,7 +51,8 @@ If you’ve ever heard of the phrase *shell scripts*, this refers to a series of
 
 Without further ado,
 
-## Meet the prompt
+### Meet the prompt
+{:.no_toc}
 
 Firstly we need to open a terminal as we did during the set-up steps.
 Mac/Linux users will notice some text describing your computer of the form
@@ -118,12 +120,14 @@ Back in 1989, everyone had dot-matrix printers and printing actally meant "print
 As we'll learn later, this is also called "standard output" or `stdout`.
 
 #### A Handy Tip:
+{:.no_toc}
 
 The shell also has a memory that can be traversed by using the up and down arrow keys.
 You may not have much in there yet but try it out and make use of it as much as you can, it's a massive time saver.
 You also have the ability to modify and rerun any command stored in history by moving the cursor left or right with the arrow keys and deleting and/or adding appropriate text.
 
 ### Are you lost? Orientation in bash
+{:.no_toc}
 
 Type the command `pwd` in the terminal and you will see the output which describes the `home` directory for your login (in most cases!).
 
@@ -135,7 +139,7 @@ The command `pwd` is what we use to **p**rint the **w**orking **d**irectory (the
 This directory you are currently in (we hope), is usually referred to as your *home* directory.
 This is also the information that the tilde represents as a shorthand version, so whenever you see the tilde in a directory path, or in your prompt, it is interpreted as *home* directory.
 
-### Know your file system!
+## Know your file system!
 
 To gain a better understanding of the concept your home directory, we first need to know how the file system as a whole is configured.
 On most modern OS’s the file system is laid out in a hierarchical manner.
@@ -158,6 +162,7 @@ der. The path all the way from the top is thus “root–>home –>jono or in co
 ***Note: *** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
 
 #### Task
+{:.no_toc}
 Lets diverge a bit and do a small group exercise.
 Open a GUI file/directory browser on your machine and click through a few folders.
 Whilst you are exploring pay attention to the horizontal navigation bar that tells you where you are.
@@ -270,6 +275,7 @@ echo ~
 ```
 
 #### Questions
+{:.no_toc}
 
 Look through the following paths and guess which are absolute and which are relative.
 1. /var/www/log/dmesg
@@ -289,7 +295,7 @@ Starting from /home/amanda/data/, which of the following commands could Amanda u
 8. cd
 9. cd ..
 
-## Tab Completion
+### Tab Completion
 
 Typing in long paths and/or filenames can be tedious.
 Fortunately the terminal has a special feature which aids in completing this task called tab completion.
@@ -325,7 +331,9 @@ If we’d hit the `tab` key after typing `hea`, then the command head would have
 
 ***Handy tip: *** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
-## Commands and Arguments
+## Creating and Deleting Files
+
+### Commands and Arguments
 
 In most of the above, we typed the name of a command like `cd`, `ls` or `echo` then followed it with the name of a folder, e.g. `ls /`.
 This follows the important syntax of `command argument` where a space separates these two.
@@ -334,7 +342,7 @@ In `bash` the first space separates the `command` from the `argument` and every 
 This is the main reason we don't like to use folder names which contain spaces.
 There is a way of using spaces (by "escaping" the space with a `\`), but spaces in paths can cause difficulties during numerous process and should be avoided at all costs.
 
-## Making and Removing Directories
+### Making and Removing Directories
 
 So we now know how to move around and explore the file system from within the terminal but how do we create new ones or modify what already exists.
 Let move to our home directory if we are not already there and then move into the Desktop folder
@@ -359,6 +367,7 @@ mkdir practice_folder
 ```
 
 #### Questions
+{:.no_toc}
 
 1. Can you think of an alternative argument that would result in the same outcome? Hint: was that a relative or absolute path?
 2. Note that we used the underscore symbol to conect the two words in the folder name. What do you think would happen if we replaced it with a space?
@@ -388,7 +397,7 @@ Check that it’s there before removing it using `rm` which is short for **r**e*
 rm practice_file
 ```
 
-### Copy/Move/Rename Files/Folders (`cp` `mv`)
+### Copy/Move/Rename (`cp` `mv`)
 
 When calling the commands to make or remove files/directories we provide one peice of information (argument) to the command which is the name of the object to create/remove. With the `cp` and `mv` (stands for copy and move repectively) commands, we need to provide an additional peice of information (2 arguments).
 
@@ -409,7 +418,8 @@ mv <name_of_object_to_move> <location_to_move_object_to>
 mv file_one.txt renamed_file.txt
 ```
 
-#### task
+#### Task
+{:.no_toc}
 
 In the current directory, see if you can recreate these folders in the correct structure. After you have finished, try deleting the “Users” directory.
 
