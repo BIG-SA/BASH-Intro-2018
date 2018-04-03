@@ -1,9 +1,7 @@
-* TOC
-{:toc}
 
 # Introduction
 
-[Opening Presentation](https://gitpitch.com/BIG-SA/BASH-Intro-2018/master?grs=github&t=black)
+[Opening Presentation](https://gitpitch.com/BIG-SA/BASH-Intro-2018/)
 
 ## General Information
 
