@@ -1,15 +1,12 @@
 ## Introduction to Bash
 
-BIG-SA Collaboration between:
-
-- Bioinformatics Hub (University of Adelaide)
-- ACRF Cancer Genomics Facility
+https://big-sa.github.io/BASH-Intro-2018/
 
 ---
 
-### Computer Setup
+*BIG-SA* is a collaboration between:
 
-- May be challenging
-- We have spare "live" USBs
+- Bioinformatics Hub (University of Adelaide)
+- ACRF Cancer Genomics Facility
 
 ---?include=presentations/1_bash_pres.md

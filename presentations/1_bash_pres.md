@@ -2,6 +2,13 @@
 
 +++
 
+### Computer Setup
+
+- May be challenging
+- We have spare "live" USBs
+
++++
+
 ### Course Tutors
 
 - Steve Pederson, Hien To, Jimmy Breen
