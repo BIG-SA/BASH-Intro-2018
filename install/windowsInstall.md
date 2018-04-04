@@ -9,7 +9,7 @@ If you have not pre-configured your machine, we will provide you with an USB con
 If you are running Windows 10 and have [already installed Ubuntu as an app](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0), please use this installation in preference to the below.
 Otherwise, please follow these instructions to install a working version of bash on your computer.
 This is part of the version control software `git` and is the best alternative for Windows.
-There are some subtle differences between Mac and Linux versions, but most of will be cosmetic for these sessions.
+There are some subtle differences between Mac and Linux versions, but most are cosmetic for these sessions.
 
 1. Download and install `git bash` by going to the following site: [https://git-for-windows.github.io/](https://git-for-windows.github.io/) and selecting the `Git-2.xx.x-(32|64)-bit.exe` file as is appropriate for your computer.
 If you're unsure if you have a 32 or 64 bit computer, follow [these instructions](https://www.lifewire.com/am-i-running-a-32-bit-or-64-bit-version-of-windows-2624475)

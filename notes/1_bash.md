@@ -364,7 +364,7 @@ What files will be returned by?
 
 ```
 ls p*
-ls *pbd
+ls *pdb
 ```
 
 What will the different results be for the following two commands?
