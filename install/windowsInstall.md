@@ -8,50 +8,24 @@ If you have not pre-configured your machine, we will provide you with an USB con
 
 If you are running Windows 10 and have [already installed Ubuntu as an app](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0), please use this installation in preference to the below.
 Otherwise, please follow these instructions to install a working version of bash on your computer.
+This is part of the version control software `git` and is the best alternative for Windows.
+There are some subtle differences between Mac and Linux versions, but most of will be cosmetic for these sessions.
 
 1. Download and install `git bash` by going to the following site: [https://git-for-windows.github.io/](https://git-for-windows.github.io/) and selecting the `Git-2.xx.x-(32|64)-bit.exe` file as is appropriate for your computer.
 If you're unsure if you have a 32 or 64 bit computer, follow [these instructions](https://www.lifewire.com/am-i-running-a-32-bit-or-64-bit-version-of-windows-2624475)
-2. When presented with this screen during installation, select the first option
+2. Please install to `C:\Program Files\Git` (the default). If you do install elsewhere please change any file paths below accordingly.
+3. Accept all defaults **until you see the following screen**. Please use the drop-down menu to select `nano` as the default editor instead of `vim`.
+
+![](../images/0_install_gitbash_nano.png)
+
+4. When presented with this screen during installation, select the first option
 
 ![](https://blog.assembla.com/hs-fs/hub/365/file-2182891772-png/Blog/Git_on_windows_blog/Git_adjustPath.png?t=1505570223016)
 
-- Accept defaults for all other options, especially the following:
+5. Accept defaults *for all other options*, especially the following:
 
 ![](https://blog.assembla.com/hs-fs/hub/365/file-2181997909-png/Blog/Git_on_windows_blog/Git_Configure_LineEndings.png?t=1505570223016)
 
-## Installing `wget`
-
-After installation, you will need to install the additional tool called `wget`.
-To perform this installation
-
-1. Download the [32-bit](https://eternallybored.org/misc/wget/1.19.4/32/wget.exe) or [64-bit](https://eternallybored.org/misc/wget/1.19.4/64/wget.exe) file ending in `.exe`
-2. Move this file to `C:\Program Files\Git\mingw64\bin\`
-
-Once you have completed the installation, open Git Bash and enter the following in the terminal
-
-```
-wget --version
-```
-
-If you receive an error message **use the post-it notes** to ask for help from an instructor
-
-## Installing `nano`
-
-One final tool we need to install is the `nano` editor.
-We'll use this to edit text files directly in the terminal.
-This install can be a bit tricky, so before you move on close `git bash` if you have it open, then re-open `git bash` using your right-click to select `Run as administrator`
-
-From there on just paste the following commands (you may need to use either a *right-click* or `Ctrl+Shift+v` to paste these):
-```
-wget https://www.nano-editor.org/dist/win32-support/nano-git-0d9a7347243.exe
-mv nano-git-0d9a7347243.exe /c/Program\ Files/Git/usr/bin/nano.exe
-echo 'alias nano="winpty nano"' >> ~/.bash_profile
-```
-
-Close and reopen `git bash` then enter `nano` in the terminal.
-If you enter what looks like a *blank editor screen*, you've been sucsessful.
-You can exit `nano` by entering `Ctrl+x`.
-If you have not been successful, call an instructor over.
 
 ## Installing Notepad++
 
