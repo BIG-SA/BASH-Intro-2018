@@ -15,7 +15,7 @@ brew install wget
 ```
 4. Add the paths of the recently installed `sed` and `wget` into your `PATH`
 ```
-echo "export PATH=\${PATH}:/usr/local/Cellar/gnu-sed/4.4/bin:/usr/local/Cellar/wget/1.19.1_1/bin" >> ~/.bash_profile
+echo "export PATH=\${PATH}:/usr/local/Cellar/gnu-sed/4.5/bin:/usr/local/Cellar/wget/1.19.4_1/bin" >> ~/.bash_profile
 ```
 
 After completing the above steps, close the terminal then open it again.
