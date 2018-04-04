@@ -518,6 +518,7 @@ rm -r Users
 
 Done!
 
+
 ## Adding Arguments (or flags) to Commands
 
 In the previous command we added the flag `-r` to the command `rm`.
@@ -558,6 +559,16 @@ To scroll through this manual, we can use our cursor arrows to move line by line
 The `b` key goes **b**ack a page.
 As well as viewing help pages, the viewer (or *pager*) less can be used for browsing text-based files in the terminal itself.
 We'll come back to this later.
+
+# WARNING
+{:.no_toc}
+
+The above command `rm -r` is potentially **VERY** dangerous.
+**DO NOT** enter this command, but if we executed `rm -r` from the root of our file system (`/`), what would happen.
+If you just broke out into a cold sweat, that's normal & completely justified.
+
+**It is also important to note that there is no `undo` option in bash.**
+What's done is done, so do be careful.
 
 #### Homework Question
 
