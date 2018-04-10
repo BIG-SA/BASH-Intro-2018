@@ -11,7 +11,7 @@
 
 ### Course Tutors
 
-- Steve Pederson, Hien To, Jimmy Breen
+- Steve Pederson, Hien To, Charlotte Sai
 - Lloyd Low, Rick Tearle
 - John Toubia, Paul Wang
 
