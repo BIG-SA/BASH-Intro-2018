@@ -20,7 +20,7 @@ We also learned some important concepts
 - Tab auto-completion and using the [Up]/[Down] arrows
 - Relative vs Absolute paths
 - The `<command> <argument>` structure of bash commands
-- Using wildcards `?`, `*` and `[]` to select subsets of files or directories
+- Using wild cards `?`, `*` and `[]` to select subsets of files or directories
 
 ## This Session
 
@@ -38,7 +38,7 @@ Commands for today:
 Key concepts for today:
 
 - Understanding text vs binary data
-- Understanding `stdout` and introducing `stderr`
+- Understanding `stdin`, `stdout` and `stderr`
 - Downloading data
 - Compressed data
 
@@ -65,7 +65,7 @@ pwd
 
 Did we specify a relative or absolute path when we created the directory?  
 
-(If you weren't in your home folder when you  exectuted the `mkdir` command, make sure you know where you created this folder.)
+(If you weren't in your home folder when you  executed the `mkdir` command, make sure you know where you created this folder.)
 
 It might be a good idea to open your usual file explorer and navigate to this folder.
 You'll be able to see any files we create appearing, and that will help you download any files to the correct place.
@@ -75,29 +75,32 @@ You'll be able to see any files we create appearing, and that will help you down
 Let's get some data for this session.
 Save [this file](../files/BDGP6_genes.gtf) to the folder `BashWk2` which you just created.
 Just use Firefox, Chrome, Explorer, Safari or whichever browser you prefer.
-This file contained genomic information for every known gene in the Drosophila melanogaster genome in a (mostly) tab-separated format.
+This file contains genomic information for every known gene in the Drosophila melanogaster genome in a (mostly) tab-separated format.
 
 ## File Suffixes and Plain Text Files
 
 This file we've downloaded has the suffix `.gtf`.
+
 **What program do you think you should open this with?**
 
 (If you answered 'none', well done)
 
 We're very used to files with a given suffix being associated with a specific program, such as `.xlsx` with Excel, and `.docx` with MS Word.
 These file types are binary files, which means they are not in plain text format, but have been (at least partially) encoded into `0/1` binary numbers that computers see everything as.
-We generally can't read files like this with anything but specific software which knows to to decode these patterns of `0` and `1`.
+We generally can't read files like this with anything but specific software which knows how to decode these patterns of `0` and `1`.
 
 Many other file types are actually just saved as plain text, with the most common of these being a `.csv` file.
-We could actually open a `.csv` file with any plain text editor/viewer, even though we're used to opening them with Excel.
+We could actually open a `.csv` (`c`omma `s`eparated `v`alues) file with any plain text editor/viewer, even though we're used to opening them with Excel.
 Another common file type is a `.tsv` file, which represents *tab-separated values* as opposed to *comma-separated values*.
 **If we changed the suffix of a .csv file to .tsv, would we have changed the commas within the file to tabs?**
 Clearly, the answer is no.
 
 File suffixes for plain text files like this are really just communicating to other users what the layout of the file is.
 In the case of a `.gtf` file there is a set layout, which includes some "header" lines followed by a series of tab-separated columns.
-It's really just a plain text file though and we could change the suffix at will.
-If we do that though, nobody else will know what the internal structure of the file will be & we'll either be a hindrance or a terrible practical joker.
+It's really just a plain text file though and we could change the suffix at will, like we imagined for our imaginary csv/tsv file.
+If we do that though, nobody else will know what the internal structure of the file will be & we'll either be a difficult co-worker or a terrible practical joker.
+The important thing to realise is that the suffix of files doesn't affect their internal structure.
+They are simply used to communicate *what the structure of the file is*.
 
 
 # Looking Through Large Files
@@ -113,24 +116,24 @@ If you get sick of watching it, just hit `Ctrl+c` to stop the stream of text.
 cat BDGP6_genes.gtf
 ```
 
-This is clearly not a helpful way to look at a large file like this, so an alternate method is just to scan the first few lines using the command `head`.
+This is clearly not a helpful way to look at a large file like this, so an alternate method is just to print the first few lines using the command `head`.
 Note the lines at the start which begin with a `#` symbol.
-These are the 'header' lines which are not in the tab-separated format that the rest of the file is, but contain important information about the contents of the file, which here are the genome build, genome build date etc.
-This is pretty darn useful information for a bioinformatician.
+These are the 'header' lines which are not in the tab-separated format that the rest of the file is, but contain important information about the contents of the file.
+Here is the genome build, genome build date etc., which is pretty darn useful information for a bioinformatician.
 
 ```
 head BDGP6_genes.gtf
 ```
 
-This shows us the first 10 lines by default, and we can change this to the first 20 by setting the additional argument (or flag) `-n` to the value 20.
+`head` shows us the first 10 lines by default, and we can change this to the first 20 by setting the additional argument (or flag) `-n` to the value 20.
 We can choose any value we like here, as long as it's a whole number (or integer).
 
 ```
 head -n 20 BDGP6_genes.gtf
 ```
 
-In the way the programmers like dumb jokes, to look at the end of the file, we can use the command `tail`.
-The flag `-n` can be set in the same way for this command.
+In the typical way that programmers like dumb jokes and obvious commands, to look at the end of the file we can use `tail`.
+The flag `-n` can be set in the same way for this.
 
 ```
 tail BDGP6_genes.gtf
@@ -141,7 +144,7 @@ These are 3 ways to look through any plain text file in `bash` by printing a str
 ## Using the Pager `less`
 
 If we want to browse through the file in a more interactive way, we can use the pager `less` which many of us saw last week when we discovered `man` pages.
-In actual fact, using the `-h` or `--help` flags effectively dumped the whole help page to `stdout`, whilst using the `man` command instead sends the strem of information to `less`.
+In actual fact, using the `-h` or `--help` flags effectively dumped the whole help page to `stdout`, whilst using the `man` command instead sends the stream of information to `less`.
 Let's try this with our `.gtf` file.
 
 ```
@@ -154,7 +157,7 @@ Although we can navigate through the less pager using up & down arrows on our ke
 | Command |	Action  |
 | ------- | ------- |
 | `<enter>`	|go down one line |
-| `spacebar` | go down one page (i.e. a screenful) |
+| `<spacebar>` | go down one page (i.e. a screenful) |
 | `b`	| go backwards one page |
 | `<` |	go to the beginning of the document |
 | `>` |	go to the end of the document |
@@ -164,17 +167,17 @@ You won't be able to type anything into the file, or into `bash` here so after y
 
 `less` is actually quite powerful and has functions for searching for key pieces of text.
 Open the `gtf` file in `less` again and try entering `/ncRNA`.
-By typing the `/` we are telling `less` that a search pattern follows, and once we hit the `<Enter>` key, less searches for the pattern and highlights any occurences.
+By typing the `/` we are telling `less` that a search pattern follows, and once we hit the `<Enter>` key, less searches for the pattern and highlights any occurrences.
 We can search for the same pattern again simply by hitting the `/` key and hitting `<Enter>` again.
 We only need to re-enter a pattern if we're searching for something new.
 This way we can quickly step through large files and look for any text that we're trying to find.
 
 Try entering a few other patterns and see if you can find anything you're interested in.
-Once you've finshed exploring, hit `q` to quit `less`.
-To fully expore `less` you can check out the `man` page for `less`, which will ironically be shown to you in `less`.
+Once you've finished exploring, hit `q` to quit `less`.
+To fully explore `less` you can check out the `man` page for `less`, which will ironically be shown to you in `less`.
 (Programmers are hilarious).
-If you're on `git bash` you'll have to be content with the less hysterical `less --help`
-
+If you're on `git bash` you'll have to be content with the less hysterical `less --help`.
+(Get it: "less hysterical". I told you we're hilarious)
 
 
 ## Word and line counts
@@ -191,9 +194,10 @@ wc BDGP6_genes.gtf
 A common usage is to quickly perform a line count, using `wc -l`.
 Try it out and see how many lines our `gtf` file has.
 
-# Text In the Terminal
+# Standard Output
 
-## Standard Output
+## Text In the Terminal
+
 All the information we’ve seen in the terminal so far has been from a data stream known as standard output, or `stdout` for short.
 There are two primary data streams in play when we use commands in `bash`.
 The first as we’ve seen is `stdout`, with the alternative stream being standard error, or `stderr` for short.
@@ -202,8 +206,8 @@ We’ll ignore that for the rest of the day, but it’s good to know it exists.
 
 When a command sends information to us via `stdout`, we refer to this as printing to `stdout`.
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
-We can display a line of plain text in `stdout` by using the command `echo`, which we breifly saw last week.
-The most simple proram that people learn to write in most languages is called "Hello World" and we’ll do the same thing today.
+We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last week.
+The most simple program that people learn to write in most languages is called "Hello World" and we’ll do the same thing today.
 
 ```
 echo 'Hello World'
@@ -274,37 +278,37 @@ cat hello.txt
 
 (Did you remember to use tab auto-complete in the above commands?)
 
-*For those using phoenix as an HPC, the queueing system will usually generate a file from each job/script which ends in *out.
+*For those using phoenix as an HPC, the queuing system will usually generate a file from each job/script which ends in *out.
 This is all of the standard output from your job captured into a file for you to inspect later.*
 
 ## Redirecting `stdout` to Another Tool
 
 The idea of sending text to a file, like we have just done makes intuitive sense for most of us.
-There is another incredibly useful functionality in `bash` which is commely referred to as the *pipe*.
+There is another incredibly useful functionality in `bash` which is commonly referred to as the *pipe*.
 The reasons for this are two-fold.
 Firstly, we use the `|` symbol which looks like a drain-pipe, and conceptually this is exactly what we are doing and why we have tried to make you familiar with the term `stdout`.
 
-Apart from `less`, all of the tools we have used have sent their output to `stdout` which has either appeared in the termainl window, or in the files we created.
+Apart from `less`, all of the above tools have sent their output to `stdout` which has either appeared in the terminal window, or in the files we created.
 Most commands are **also able to accept input** from `stdout` instead of referring to a file on the disk, and by using the `|` symbol it is literally like attaching a pipe to `stdout` from one command and redirecting the stream of data to the standard input (i.e. `stdin`) of another command.
 
 Let's try this with a couple of familiar processes first.
 **How many lines do you see from this process we tried earlier?**
 
 ```
-echo -e "Hello\tworld"
+echo -e "Hello\tWorld"
 ```
 
 So if we take this output and pipe it into `wc`, we should know what to expect.
 
 ```
-echo -e "Hello\tworld" | wc -l
+echo -e "Hello\tWorld" | wc -l
 ```
 
 So here, we'e taken the output from `echo` and piped it to the input of `wc`.
 Let's confirm what we're seeing by changing that `<tab>` separator to a line break.
 
 ```
-echo -e "Hello\nworld" | wc -l
+echo -e "Hello\nWorld" | wc -l
 ```
 
 *There is literally no limit to how many commands we can chain together like this.*
@@ -320,18 +324,18 @@ ls --help | less
 ## Selecting a column
 
 Sometimes we want to dig a little deeper through a file, and we can extract one or more columns from any delimited file using the filter `cut`.
-By default, it looks for `<tab>` separated columns, but this can be set to any delimiter we can imagine.
-Let's try to grab just the first column, except we know that this has thousands of lines, so let's use our amazing skills to just look at the first few lines.
+By default `cut` looks for `<tab>` separated columns, but this can be set to any delimiter.
+Let's try to grab just the first column, except this has thousands of lines, so let's use our amazing skills to just look at the first few lines using the pipe in a very common way.
 
 ```
 cut -f1  BDGP6_genes.gtf | head
 ```
 
-This will have set the first column to `stdout`, wherever a `<tab>`-separated line was found.
+This will have sent the first column to `stdout`, wherever a `<tab>`-separated line was found.
 Where no `<tab>` symbol was found, this will have sent the whole line to `stdout`.
 By default we're using the `<tab>` symbol as the delimiter, so check the help or man page to *see if you can find a way to stop cut printing any lines that don't contain a delimiter.*
 
-Now, we've found out how to extract the chromosome information from this file, which is what the first column holds, let's try and do something useful.
+Now we've found out how to extract the chromosome information from this file, which is what the first column holds, let's try and do something useful.
 
 ## Summarising data using `uniq`
 
@@ -354,10 +358,23 @@ Pretty cool, huh!
 If we needed that for another analysis we could even write this to a file using `>`.
 **Should we keep the header information if we did that?**
 
-Let's go completely nuts and use a different delimiter inthe `cut` command.
-You might have spotted that beyond the 8th column, the `<tab>`delimiters stop and we have a single column, with values separated by a semi-colon.
-We can specifiy this as the delimiter using the argument `-d\;`.
+We can also select multiple columns using the above strategies.
+
+```
+cut -f1,2 -s BDGP6_genes.gtf | uniq -c
+```
+
+Or even
+
+```
+cut -f1-3 -s BDGP6_genes.gtf | uniq -c
+```
+
+Let's go completely nuts and use a different delimiter for the `cut` command.
+You might have spotted that beyond the 8th column, the `<tab>` delimiters stop and we have a single column, with values separated by a semi-colon.
+We can specify this as the delimiter using the argument `-d\;`.
 Here we've had to escape the semi-colon as it is a special character as we want to use it as a true semi-colon.
+
 
 **If we wanted to get the gene_biotype column, what number would we need to put after the `-f`argument?**
 Try piping this into `uniq -c` and see what happens?
@@ -372,3 +389,157 @@ To really make this work, we'd need to sort the column in between the `cut` and 
 ```
 cut -f4 -s -d\; BDGP6_genes.gtf | sort | uniq -c
 ```
+
+### Homework Question
+{:.no_toc}
+
+Try to count how many genes are on each chromosome, but separate them by strand.
+
+# File Management
+
+## Downloading Files
+
+At the beginning of today's session, we downloaded a file using our browser, but we can also download files using `bash`.
+Two common tools for this are `wget` and `curl`.
+They behave quite similarly, so let's try them both.
+First we'll **delete our `gtf` file**, so we can download it again using `bash`.
+
+This file is stored at `https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf`, so let's try this using `wget`.
+
+```
+wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf
+```
+
+This will save the original file, and if you didn't delete it, the new copy may have been renamed.
+To avoid this type of problem , we can assign the name of the downloaded file using the `-O` flag.
+
+```
+wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf -O duplicate.gtf
+```
+
+As some OSs don't have `wget` installed by default, you may need to use `curl` for downloading files.
+An important difference is that `curl` streams the download to `stdout`, so you need to redirect this to a file.
+
+```
+curl https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf > another_duplicate.gtf
+```
+
+## Checking Files
+
+If you've just run all of the above lines, you'll actually have three copies of the same file on your disk.
+There is a convenient utility in bash called `md5sum` which we can use to check if two files are identical.
+The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a unique sum using this algorithm.
+
+```
+md5sum BDGP6_genes.gtf
+```
+
+For small files like this, it's very fast to calculate, but can be a fair bit slower for large files.
+
+We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
+
+```
+mds5sum *gtf
+```
+And we could sort these in order to more easily detect duplicated files
+
+```
+mds5sum * | sort
+```
+
+These sums are sometimes given by data providers so we can check our files against the originals to ensure nothing has become corrupted during a file transfer.
+Although this is relatively rare, it does happen so is good to know about.
+
+## Compressed files
+
+Sometimes the files we download are compressed with one of a number of algorithms.
+The file suffix is usually informative here, and helps us decide on the correct algorithm for extracting files.
+The most common formats are given below.
+
+| File Suffix |	Compression Command |	Extraction Command	| Useful Arguments |
+| ----------- | ------------------- | ------------------- | ---------------- |
+| .zip	| zip |	unzip	 | -d, -c, -f |
+| .gz	| gzip	| gunzip <br> zcat| -d, -c, -f |
+| .tar.gz	 | tar	  | tar	| -x, -v, -f, -z |
+| .bz2	   | bzip2	| bunzip2	 |  |
+
+### Using `zip`
+{:.no_toc}
+
+Let's try compressing some of our additional `.gtf` files so we can see how this works.
+The most common format (particularly for Windows users) is a `zip` file, and this is pretty easy to use.
+To `zip` a file, we just enter the name of the intended archive as the first argument to `zip` (without the suffix), and the file we wish to compress as the final argument to `zip`.
+
+```
+zip duplicate duplicate.gtf
+```
+
+This will have created `duplicate.zip` and the original file *will still be there*.
+Let's check our directory using the `l`ong-listing version of `ls`, and telling `ls` to write file sizes in `h`uman-readable format.
+As you'll see, the compressed file is much smaller.
+
+```
+ls -lh dup*
+```
+
+AS we already have the original, we can delete this zip file without too many fears.
+
+```
+rm duplicate.zip
+```
+
+### Using `gzip`
+{:.no_toc}
+
+A very common compression type in bioinformatics is `gzip`, which usually exports files with a `gz` suffix.
+Let's create a `gzip` version of our `duplicate.gtf` file again.
+
+```
+gzip duplicate.gtf
+ls -lh dup*
+```
+
+Notice, that this time the original was replaced with this compressed version.
+This can be very useful for quickly finding some disk space.
+
+Let's extract the file again.
+
+```
+gunzip duplicate.gtf.gz
+```
+
+If we'd wanted to keep the original, we could set the `-k` flag (for `k`eep), although we don't usually need to do this.
+
+```
+gzip -k duplicate.gtf
+ls -lh dup*
+```
+
+A very handy feature of `gzip` compression is the `-c` flag, which instead of extracting the file, leaves the compressed file on disk, but streams the extracted contents to `stdout`.
+
+```
+gunzip -c duplicate.gtf.gz
+```
+
+This way we can pipe the output to any `bash` tools we need without extracting the file and bloating our disk usage.
+There's a shortcut to this in common use called `zcat`, which is an `alias` for `gunzip -c` and can be thought of as a `z`ipped version of `cat`.
+The only difference is we can type fewer letters and get away with it.
+
+### Using `tar`
+{:.no_toc}
+
+The final of the most common compression formats is the `t`ape `ar`chive format, which has a very long history.
+These files usually end with the `tar.gz` suffix, but we **don't need to use `gunzip` first**.
+Usually these files contain complex directory structures and the common way to extract these is using `tar -xzvf`.
+Many software tools actually come using this format and require you to run a `Makefile` in a specific directory, but this is starting to get into the serious part of town if you're having to do this and you may want to ask for help.
+
+#### Homework Questions
+{:.no_toc}
+
+Using your `BashWk2` folder
+
+1. Count how many genes are on each strand of each chromosome for the gtf `BDGP6_genes.gtf`
+2. Download the file ftp://ftp.ensembl.org/pub/release-92/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.92.gtf.gz
+3. Without extracting the file, count how many different types of features there are in the third column.
+4. Write this summary to the file `featureTypes.txt`
+5. Repeat this process counting how many of each of these features there are on each chromosome and write the output to the file `featuresByChromosome.txt`.
