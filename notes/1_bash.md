@@ -225,6 +225,11 @@ or even just
 cd
 ```
 
+Let's stay in our home directory and make sure we know where it is.
+This will vary considerably for each of our computers.
+For University-administered Windows computers, this may be `/u`, or it may be `/c/Users/<yourname>` if you're the administrator for your own laptop.
+For OSX users, this may be `/Users/<yourname>`
+
 ### Looking at the Contents of any Directory (`ls`)
 
 We have already used the `ls` command a bit now to **l**i**s**t the contents of a directory while we were navigating.
@@ -348,9 +353,11 @@ Wildcards in the terminal are somewhat like this. Here is the basic set of wildc
 
 We have set up some exercises for you to try out your skills using wildcards and below
 are some examples of how wildcards are used.
-*Please just copy and paste the following line of code into your terminal to create some files for this section.*
+*Please just copy and paste the following three line of code into your terminal to create some files for this section.*
 
 ```
+mkdir temp
+cd temp
 touch cubane.pdb ethane.pdb methane.pdb octane.pdb propane.pdb elephant.txt i_dont_belong.txt neither_do_i.txt pentane.pdb this_is_boring_as_hell.txt
 ```
 
@@ -397,10 +404,10 @@ There is a way of using spaces (by "escaping" the space with a `\`), but spaces 
 ### Making and Removing Directories
 
 So we now know how to move around and explore the file system from within the terminal but how do we create new ones or modify what already exists.
-Let move to our home directory if we are not already there and then move into the Desktop folder
+Let move to our home directory if we are not already there
 
 ```
-cd /home/<user>/Desktop
+cd ~
 ```
 
 Now, check the contents of this directory (you should be aware of the contents before you run the command)
@@ -447,6 +454,13 @@ Check that it’s there before removing it using `rm` which is short for **r**e*
 
 ```
 rm practice_file
+```
+
+Let's create a folder for the rest of the session, and perform all the remaining commands in this folder
+
+```
+mkdir BashWk1
+cd BashWk1
 ```
 
 ### Copy/Move/Rename (`cp` `mv`)
