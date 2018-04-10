@@ -496,7 +496,7 @@ rm renamed_file.txt
 
 1 - See if you can recreate these folders in your home folder (`~`).
 Create some in order, but for some of the others try creating folders/files in your home directory, then moving them to their correct location.
-After you have finished, try deleting the “Users” directory.
+After you have finished, try deleting the "temp" directory.
 
 ![Create Dir Structure](../images/1_bash_fig3_create_file_sys_hierarchy.png)
 
