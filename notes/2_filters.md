@@ -199,10 +199,16 @@ Try it out and see how many lines our `gtf` file has.
 ## Text In the Terminal
 
 All the information we’ve seen in the terminal so far has been from a data stream known as standard output, or `stdout` for short.
-There are two primary data streams in play when we use commands in `bash`.
+There are two primary data output streams in play when we use commands in `bash`.
 The first as we’ve seen is `stdout`, with the alternative stream being standard error, or `stderr` for short.
-This is where commands and tools send their error messages.
-We’ll ignore that for the rest of the day, but it’s good to know it exists.
+This is where commands and tools send their error messages, and some NGS tools output important information to this stream.
+Both data streams appear in the terminal, which can also be a little confusing, however when we redirect the output in the sections below, only `stdout` will be redirected.
+Redirection of `stderr` will not be covered, but is also a common task.
+We'll introduce `stdin` in a few minutes too, but this is an alternative input which tools are able to operate on, besides directly working on files.
+
+Figure 1: Data Streams
+
+![DataStreams](https://ryanstutorials.net/linuxtutorial/img/streams.png)
 
 When a command sends information to us via `stdout`, we refer to this as printing to `stdout`.
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
