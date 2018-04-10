@@ -507,13 +507,13 @@ As is, neither `rmdir` or `rm` will delete a folder that contains an object.
 To do so we must recursively delete the contents one at a time or by using a wild card (more on this to come). However, there is a flag in the “rm” command that does this automatically. Try this on your newly created folders,
 
 ```
-rm Users
+rm temp
 ```
 
 (This wont actually work)
 
 ```
-rm -r Users
+rm -r temp
 ```
 
 Done!
