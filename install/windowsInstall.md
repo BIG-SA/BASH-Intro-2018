@@ -6,8 +6,9 @@ If you have not pre-configured your machine, we will provide you with an USB con
 
 ## Installing Bash on Windows
 
-If you are running Windows 10 and have [already installed Ubuntu as an app](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0), please use this installation in preference to the below.
-Otherwise, please follow these instructions to install a working version of bash on your computer.
+- If you are running Windows 10 and have [already installed Ubuntu as an app](https://tutorials.ubuntu.com/tutorial/tutorial-ubuntu-on-windows#0), please use this installation in preference to the below.
+Please do not install this especially though as it can be a very difficult install.
+- Otherwise, **please follow these instructions to install a working version of bash on your computer**.
 This is part of the version control software `git` and is the best alternative for Windows.
 There are some subtle differences between Mac and Linux versions, but most are cosmetic for these sessions.
 
