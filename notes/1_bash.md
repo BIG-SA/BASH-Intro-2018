@@ -564,7 +564,7 @@ We'll come back to this later.
 {:.no_toc}
 
 The above command `rm -r` is potentially **VERY** dangerous.
-**DO NOT** enter this command, but if we executed `rm -r` from the root of our file system (`/`), what would happen.
+**DO NOT** enter this, but if we executed `rm -r` from the root of our file system (`/`), can you imagine what would happen?
 If you just broke out into a cold sweat, that's normal & completely justified.
 
 **It is also important to note that there is no `undo` option in bash.**
