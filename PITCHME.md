@@ -10,3 +10,5 @@ https://big-sa.github.io/BASH-Intro-2018/
 - ACRF Cancer Genomics Facility
 
 ---?include=presentations/1_bash_pres.md
+
+---?include=presentations/2_filters_pres.md
