@@ -36,6 +36,8 @@ Many NGS tools use these streams:
 
 e.g. Alignments to `stdout`, diagnostics to `stderr`
 
-### filters
++++
+
+### Filters
 
 ![](https://camo.githubusercontent.com/1652e94dd89d73b1e5ad43feabe12d5aac7e033b/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f3161444b397a716163677572465a537a6a704c4d5653676f64306a462d4b4648576553565f53554c387668452f7075623f773d39313626683d333534)
