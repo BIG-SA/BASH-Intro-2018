@@ -60,6 +60,8 @@ cd BashWk2
 pwd
 ```
 
+It might also be worth checking to see if any changes have been made to the [computer setup](0_introduction.html#computer-setup) instructions.
+
 #### Question
 {:.no_toc}
 
@@ -214,6 +216,7 @@ When a command sends information to us via `stdout`, we refer to this as printin
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
 We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last week.
 The most simple program that people learn to write in most languages is called "Hello World" and we’ll do the same thing today.
+For this line, the quotes can either be single or double.
 
 ```
 echo 'Hello World'
@@ -228,6 +231,8 @@ echo 'This computer will self destruct in 10 seconds!'
 
 There are a few subtleties about text which are worth noting.
 **Inspect the `man echo` page & note the effects of the -e option.**
+*(Unfortunately, it appears that this option has not been included in the help page for those in OSX.
+The argument does work in the actual command though. Go figure...)*
 This allows you to specify tabs, new lines & other special characters by using the backslash to signify these characters.
 This is an important concept & the use of a backslash to escape the normal meaning of a character is very common.
 Try the following three commands & see what effects these special characters have.
@@ -275,7 +280,7 @@ cat hello.txt
 To add any additional information to the file, we can use the `>>` symbol which appends new information to the file without overwriting anything.
 If the file doesn’t already exist it will be created, but this time *if the file does exist*, the file will not be overwritten, but rather the new information will be *added to the end of the existing information*.
 Let’s see this in action.
-(Pay attention to the correct quotation marks here)
+(Pay attention to the correct quotation marks here. If you use single quotation marks, the apostrophe will be interpreted as the end of the quote marks.)
 
 ```
 echo "It's me." >> hello.txt
@@ -310,7 +315,7 @@ So if we take this output and pipe it into `wc`, we should know what to expect.
 echo -e "Hello\tWorld" | wc -l
 ```
 
-So here, we'e taken the output from `echo` and piped it to the input of `wc`.
+So here, we've taken the output from `echo` and piped it to the input of `wc`.
 Let's confirm what we're seeing by changing that `<tab>` separator to a line break.
 
 ```
@@ -320,6 +325,7 @@ echo -e "Hello\nWorld" | wc -l
 *There is literally no limit to how many commands we can chain together like this.*
 
 We can even do silly (but sometime useful) things like piping the output of a help page into `less` if we're on `git bash`, and don't have any `man` pages.
+Unfortunately, this won't work for OSX due to the weirdness of the different implementations of bash (BSD vs GNU).
 
 ```
 ls --help | less
@@ -396,11 +402,6 @@ To really make this work, we'd need to sort the column in between the `cut` and 
 cut -f4 -s -d\; BDGP6_genes.gtf | sort | uniq -c
 ```
 
-### Homework Question
-{:.no_toc}
-
-Try to count how many genes are on each chromosome, but separate them by strand.
-
 # File Management
 
 ## Downloading Files
@@ -434,21 +435,20 @@ curl https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf > another_du
 
 If you've just run all of the above lines, you'll actually have three copies of the same file on your disk.
 There is a convenient utility in bash called `md5sum` which we can use to check if two files are identical.
-The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a unique sum using this algorithm.
+The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a unique sum using this algorithm. **NB: OSX users won't have `md5sum` installed. Please use `md5 -r` instead for all subsequent commands.**
 
 ```
 md5sum BDGP6_genes.gtf
 ```
 
 For small files like this, it's very fast to calculate, but can be a fair bit slower for large files.
-
 We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
-
-**NB: OSX users won't have `md5sum` installed. Please use `md5` instead. Unfortunately the sort will sort by filename instead of the actual sum for you.**
 
 ```
 mds5sum *gtf
 ```
+
+
 And we could sort these in order to more easily detect duplicated files
 
 ```
@@ -476,6 +476,7 @@ The most common formats are given below.
 
 Let's try compressing some of our additional `.gtf` files so we can see how this works.
 The most common format (particularly for Windows users) is a `zip` file, and this is pretty easy to use.
+If `zip` doesn't work on `git bash` head to the [windows installation page](../install/windowsInstall) for instructions to set this up correctly.
 To `zip` a file, we just enter the name of the intended archive as the first argument to `zip` (without the suffix), and the file we wish to compress as the final argument to `zip`.
 
 ```
@@ -546,8 +547,8 @@ Many software tools actually come using this format and require you to run a `Ma
 
 Using your `BashWk2` folder
 
-1. Count how many genes are on each strand of each chromosome for the gtf `BDGP6_genes.gtf`
-2. Download the file ftp://ftp.ensembl.org/pub/release-92/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.92.gtf.gz
+1. Count how many genes are on each strand of each chromosome for the gtf `BDGP6_genes.gtf`.
+2. Using `wget` or `curl`, download the file ftp://ftp.ensembl.org/pub/release-92/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.92.gtf.gz
 3. Without extracting the file, count how many different types of features there are in the third column.
 4. Write this summary to the file `featureTypes.txt`
 5. Repeat this process counting how many of each of these features there are on each chromosome and write the output to the file `featuresByChromosome.txt`.
