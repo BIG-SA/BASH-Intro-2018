@@ -27,6 +27,11 @@ If you're unsure if you have a 32 or 64 bit computer, follow [these instructions
 
 ![](https://blog.assembla.com/hs-fs/hub/365/file-2181997909-png/Blog/Git_on_windows_blog/Git_Configure_LineEndings.png?t=1505570223016)
 
+## Installing `zip`
+
+Check that your installation of `git-bash` is in `C:\Program Files\Git`, and using your file explorer move to this directory.
+Once you're there head into `usr` then `bin`.
+Download [this file](http://stahlworks.com/dev/zip.exe) and move the file into `C:\Program Files\Git\usr\bin` where we have just navigated to.
 
 ## Installing Notepad++
 
