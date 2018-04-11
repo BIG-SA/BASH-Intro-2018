@@ -444,6 +444,8 @@ For small files like this, it's very fast to calculate, but can be a fair bit sl
 
 We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
 
+**NB: OSX users won't have md5Sum installed. Please use `md5` instead. Unfortunately the sort will sort by filename instead of the actual sum for you.**
+
 ```
 mds5sum *gtf
 ```
