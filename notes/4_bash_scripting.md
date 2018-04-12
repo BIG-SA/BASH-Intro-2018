@@ -8,8 +8,31 @@ Stephen Pederson
 Paul Wang
 John Toubia
 
+## Recap
+
+## This session
+
+This session we will be tying together many of the concepts that you have learnt over the last few weeks. Today we'll be learning about:
+
+- Executing `bash` Scripts
+- Path orientation within scripts
+- Variables
+- Control statements
+- Iteration using `for` loops
 
 ## Before we start
+
+Much like we have bgun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of /home/<yourname>, /Users/<yourname>, /u or /c/Users/<yourname>. The best way to get to this directory is
+
+    cd ~
+
+From here let’s create a new folder for today:
+
+    mkdir BashWk4
+    cd BashWk4
+    pwd
+
+## Today's Data
 
 To run example scripts in this tutorial, we will need some example data. The Australian government provide a large amount of open data on the website [data.gov.au](https://data.gov.au/), and to create scripts we will use a dataset containing information about particle pollution data for the year 2015 and ongoing for the Adelaide CBD region.
 
@@ -79,14 +102,50 @@ The hash symbol generally functions as a comment character in scripts (as shown 
 Comments are very important in programming because they act as notes or explainations so you can understand what you were thinking when you wrote it. If you look at your code 6 months from now, there is a very strong chance that you won’t recall exactly what you were thinking at the time, so these comments can be a good place just to explain something to the future version of yourself. There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
 
 
+## File permissions
 
-## Executing a script
+An important concept in UNIX computing is file permissions. There are files in which you look at and interact with when you are running analysis on a UNIX command line, and there are files in which are incredibily important to the system that we shouldnt be able to touch. And of course, if you are creating and interacting with files in your home directory, you want to make those files only available to you, and not other users.
+
+A file can have there are three types of attributes:
+
+1. Ownership permissions: what actions the owner of the file can perform on the file
+2. Group permissions: what actions a user, who is a member of the group that a file belongs to, can perform on the file, and
+3. Other's permissions: what action all other users can perform on the file
+
+To demonstrate what this means, I'm going to run a simple `ls` command on the data directory that we downloaded and unpacked for this tutorial:
+
+    ls -l ./ADL07p
+
+The result on my computer is:
+
+    total 2192
+    -rw-r--r--  1 jbreen  staff  26826 23 Jun  2016 ADL07p_1hr201501.csv
+    -rw-r--r--  1 jbreen  staff  24288 23 Jun  2016 ADL07p_1hr201502.csv
+    -rw-r--r--  1 jbreen  staff  26977 23 Jun  2016 ADL07p_1hr201503.csv
+    -rw-r--r--  1 jbreen  staff  25593 23 Jun  2016 ADL07p_1hr201504.csv
+    ...
+
+For each file there is a number of blocks of information. For now, we don't need to know what everything means, but you initially you might be able to guess what each means. The third and fourth block of information (i.e. `jbreen` and `staff`) are the owner and group permissions. After that there is the size of the file (in bytes), the date that the file was last edited and then the name of the file.
+
+The first block contains the important information and that is regarding file access permissions. These permissions follow the format of read(r), write(w) and execute(x). The block contains the following information:
+
+| Directory | Owner | Group | Other |
+|-----------|-------|-------|-------|
+| - or "d"  |  rwx  |  rwx  |  rwx  |
+
+So in my directory, `ADL07p_1hr201501.csv` has the permissions of `-rw-r--r--` which means that its a file (not a directory), where `jbreen` (the owner) has read and write access but can't execute it `rw-`, members of the group (`staff`) has read access only and everyone else has read access only.
+
+
+
+## Adjusting file permissions and executing a script
 
 There are two main ways of executing a script. Firstly, as shown in "Basic Example 1", we can just declare the intepreter of the language on the command-line, followed by the name of the script.
 
     $ bash basic_example_1.sh
 
-However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be "executible". This means that it can be run as a program and not just a regular file. If you recall the flags from earlier which denoted the read/write/execute permissions of a file, all we need to do is set the execute permission for this file. First we’ll look at the files in the folder using `ls -l` and note these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
+However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
+
+First we’ll look at the files in the folder using `ls -l` and note these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
 
     $ chmod +x ./basic_example_1.sh
 
@@ -95,6 +154,10 @@ If you run `ls -l` again, you'll notice that the third flag in the triplet has n
     $ ./basic_example_1.sh
 
 Let’s now look at another simple scripts.
+
+## Path orientation
+
+
 
 ## Variables
 
@@ -192,6 +255,12 @@ Using the skills in this tutorial, as well as your knowledge of commands such as
 
 ---
 
+### Control statements
+
+When we write scripts, we generally do it for a specific purpose, and therefore we are generally in control of the input data and the execution of the code that we have created. However, if I was to create a program for others to use, we often need to make sure the script is robust to any issue that the user defined inputs might throw at it.
+
+
+
 ## Iteration and `for` loops
 
 So far we've just touched on executing one file at a time. But what if you want to run the same command on multiple files?
@@ -247,5 +316,3 @@ In the following example we are going to read some text and make four files
 Now save this script and run it:
 
     bash basic_example_3.sh
-
-### Control statements
