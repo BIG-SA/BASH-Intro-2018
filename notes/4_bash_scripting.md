@@ -1,94 +1,100 @@
 
 # Bash Scripting
 
+2018-04-04
+
+Jimmy Breen (jimmymbreen@gmail.com)
+Stephen Pederson
+Paul Wang
+John Toubia
+
+
+## Before we start
+
+To run example scripts in this tutorial, we will need some example data. The Australian government provide a large amount of open data on the website [data.gov.au](https://data.gov.au/), and to create scripts we will use a dataset containing information about particle pollution data for the year 2015 and ongoing for the Adelaide CBD region.
+
+Side note: Public datasets are becoming increasily common in today's society, and many companies and media outlets use this data to investigate everything from the missuse of public funds, to environmental monitoring. A brilliant example of "data journalism" is the US website [fivethirtyeight](http://fivethirtyeight.com/).
+
+To download this data, we will need to go to our "files" directory, run the `wget` command to get a zip file containing all our csv files, and unpack the zip file:
+
+    cd ./BASH-Intro-2018/files/
+    wget -c https://data.sa.gov.au/data/dataset/9fd65c8d-a3bc-474e-9cf2-03a58a837fc0/resource/a0fa35fb-fedf-4db6-8bbb-668f9959fe42/download/adl07p.zip
+    unzip adl07p.zip
+
+
+---
+
+## Introduction
+
 Sometimes we need to perform repetitive tasks on multiple files, or need to perform complex series of tasks and writing the set of instructions as a script is a very powerful way of performing these tasks. They are also an excellent way of ensuring the commands you have used in your research are retained for future reference. Keeping copies of all electronic processes to ensure reproducibility is a very important component of any research.
 
-## Scripts are just basic "to-do" lists
+### Scripts are just basic "to-do" lists
 
 Many people can get freaked out by the complexity of a program "script", but its really quite simple. Think of a script as a to-do list that you are giving the computer to run a task. The script/code is sent to a interpreter (in our case, we mean the program `bash`), which then converts the to-do list into a language that the computer can understand and execute.
 
-Programmers will often start a project with a basic outline of the tasks that we need to do.
+Programmers will often start a project with a basic outline of the tasks that we need to do. Often we call it "pseudo-code".
 
 ### Basic example 1
 
-For example, I want to take my comma seprated file (csv file) and remove the 2nd column of the table. To do this I would write the following pseudo-code:
+Have a look at our Adelaide CBD dataset by using the command `less` on the first month file of 2015 ("./ADL07p/ADL07p_1hr201501.csv"). Theres a lot of data in there, but we want to simplify it by only grabbing the 1st column ("Date/Time") and the 4th and 5th columns ("Temperature Deg C" and "Barometric Pressure atm"). To do this I would write the following pseudo-code:
 
-    Step 1: Open input file
-    Step 2: Cut the file into columns (there are 5 columns)
-    Step 3: Print every column except column 2
+    Step 1: Change into our data directory
+    Step 2: Open input file
+    Step 3: Cut the file into columns
+    Step 3: Print 1st, 4th and 5th column
     Step 4: Output the result into a new file
 
 This simple example can be written in bash below (Don't worry that you don't understand all of it yet. That will come later):
 
     #!/bin/bash
 
+    # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
+    cd ./BASH-Intro-2018/files
+
     # Read the input file in my current directory into a variable
-    INPUT="./MyInputFile.csv"
+    INPUT="ADL07p/ADL07p_1hr201501.csv"
 
     # Use unix cut to divide the file into columns via the ","
-    #   - print each column except 2
+    #   - print each column except 2 and 3
     #   - create a new file
-    cut -d',' -f1,3,4,5 ${INPUT} > ${INPUT}.newfile.csv
+    cut -d',' -f1,4,5 ${INPUT} > ${INPUT}.new.csv
 
 Save this file as "basic_example_1.sh". To run this file on the command-line, we would run:
 
     $ bash basic_example_1.sh
 
-## Description of a shell script
+What was the output? What was contained in the new file and what was the file called?
 
-Every bash shell script begins with what is known as a shebang, which we would commonly recognise as a hash sign followed by an exclamation mark, i.e #!. This is immediately followed by /bin/bash, which tells the interpreter to run the command `bash` in the directory /bin. This opening sequence is vital & tells the computer how to respond to all of the following commands. As a string this looks like:
+
+## Using the `#` symbol: Shebang and Comments
+
+The example above displayed a very basic example of a bash shell script.
+
+Every bash shell script begins with what is known as a "shebang", which we would commonly recognise as a hash sign followed by an exclamation mark, i.e #!. This is immediately followed by /bin/bash, which tells the interpreter to run the command `bash` in the directory /bin. This opening sequence is vital & tells the computer how to respond to all of the following commands. As a string this looks like:
 
     #!/bin/bash
 
 The hash symbol generally functions as a comment character in scripts (as shown above in "Basic example 1"). Sometimes we can include lines in a script to remind ourselves what we’re trying to do, and we can preface these with the hash to ensure the interpreter doesn’t try to run them. It’s presence as a comment here, followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts & programs.
 
-Let’s now look at another simple scripts. These are really just examples of some useful things you can do & may not really be the best scripts from a technical perspective. Hopefully they give you some pointers so you can get going
-
-### Basic Example 2
-
-Don’t try to enter these commands directly in the terminal!!! They are designed to be placed in a script which we will do after we’ve inspected the contents of the script. First, just have a look through the script & make sure you understand what the script is doing.
-
-    #!/bin/bash
-
-    # First we'll declare some variables with some text strings
-    ME='Put your name here'
-    MESSAGE='This is your first script'
-
-    # Now well place these variables into a command to get some output
-    echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
+Comments are very important in programming because they act as notes or explainations so you can understand what you were thinking when you wrote it. If you look at your code 6 months from now, there is a very strong chance that you won’t recall exactly what you were thinking at the time, so these comments can be a good place just to explain something to the future version of yourself. There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
 
 
-Firstly, you may notice some lines that begin with the # character. These are comments which have no impact on the execution of the script, but are written so you can understand what you were thinking when you wrote it. If you look at your code 6 months from now, there is a very strong chance that you won’t recall exactly what you were thinking, so these comments can be a good place just to explain something to the future version of yourself. There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
 
-Using the text editor gedit, enter the above code into a file setting your actual name as the ME variable, and save it as wellDone.sh in your home folder.
+## Executing a script
 
-### Executing the script
+There are two main ways of executing a script. Firstly, as shown in "Basic Example 1", we can just declare the intepreter of the language on the command-line, followed by the name of the script.
 
-Unfortunately, this script cannot be executed yet but we can easily enable execution of the code inside the script. If you recall the flags from earlier which denoted the read/write/execute permissions of a file, all we need to do is set the execute permission for this file. First we’ll look at the files in the folder using `ls -l` and note these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
+    $ bash basic_example_1.sh
 
-Notice that the third flag in the triplet has now become an x. This indicates that we can now execute the file in the terminal. As a security measure, Linux doesn’t allow you to execute a script from within the same directory so to execute it enter the following:
+However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be "executible". This means that it can be run as a program and not just a regular file. If you recall the flags from earlier which denoted the read/write/execute permissions of a file, all we need to do is set the execute permission for this file. First we’ll look at the files in the folder using `ls -l` and note these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
 
-    ./basic_example_2.sh
+    $ chmod +x ./basic_example_1.sh
 
+If you run `ls -l` again, you'll notice that the third flag in the triplet has now become an x. This indicates that we can now execute the file in the terminal. As a security measure, Linux doesn’t allow you to execute a script from within the same directory so to execute it enter the following:
 
-### Making a Small Change
+    $ ./basic_example_1.sh
 
-Notice that the third flag in the triplet has now become an x. This indicates that we can now execute the file in the terminal. As a security measure, Linux doesn’t allow you to execute a script from within the same directory so to execute it enter the following:
-
-    ./wellDone.sh
-
- Now let’s change the variable ME in the script to read as
-
-    ME=$1
-
-and save this as wellDone2.sh. You’ll now need to set the execute permission again.
-
-    chmod +x wellDone2.sh
-
-This time we have set the script to receive input from a command-line argument, and we will need to supply a value, which will then be placed in the variable ME. Choose whichever random name you want and enter the following
-
-    ./wellDone2.sh Boris
-
+Let’s now look at another simple scripts.
 
 ## Variables
 
@@ -96,12 +102,22 @@ As you've probably noticed above, a variable is essentially a holding place for 
 
 Additionally, notice the use of the curly brackets around the variable name in "Basic example 1" (e.g. `${INPUT}`). Whilst not being strictly required, this can make it easy for you to follow in the future when you’re looking back. Its also helpful to type variables using strictly upper-case letters. This is another optional coding style, but can also make things clear for you as you look back through your work. Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
 
-### Special variables
+### What can be a variable?
 
-As we've seen in "Basic Example 2", the variable `$1` is special in the sense that it demarks the first argument at the command-line. So if we execute the command `./wellDone2.sh Boris`, "Boris" will be the value assigned to $1. There are a number of special variables that can be used when writing bash scripts, and these have certain behaviours:
+[TLDP.org](http://tldp.org/HOWTO/Bash-Prog-Intro-HOWTO.html#toc1) defines variable as:
+
+    "in bash (a variable) can contain a number, a character, a string of characters. You have no need to declare a variable, just assigning a value to its reference will create it."
+
+This can be anything from the name of a file (as we've seen in "Basic Example 1", where we read our file into the variable `${INPUT}`), a number of string or even the output of unix command (more of those later)
+
+---
+
+__NOTE: Special Variables__
+
+There are a number of special variables that can be used when writing bash scripts, and these have certain behaviours:
 
 - `$0` - The name of the Bash script.
-- `$1` -> `$9` - The first 9 arguments to the Bash script. (As mentioned above.)
+- `$1` -> `$9` - The first 9 arguments to the Bash script.
 - `$#` - How many arguments were passed to the Bash script.
 - `$@` - All the arguments supplied to the Bash script.
 - `$?` - The exit status of the most recently run process.
@@ -112,21 +128,65 @@ As we've seen in "Basic Example 2", the variable `$1` is special in the sense th
 - `$RANDOM` - Returns a different random number each time is it referred to.
 - `$LINENO` - Returns the current line number in the Bash script.
 
-Within a script we can also read the results of commands into variables. For example, I want to read the total number of lines in a file into the variable "LINES". We could write something like this script:
+---
+
+#### Basic Example 2
+
+Using the text editor gedit, enter the above code into a file setting your actual name as the ME variable, and save it as wellDone.sh in your home folder.
+
+    #!/bin/bash
+
+    # First we'll declare some variables with some text strings
+    ME='Put your name here'
+    MESSAGE='This is your first script'
+
+    # Now well place these variables into a command to get some output
+    echo -e 'Hello ${ME}\n"${MESSAGE}"\nWell Done!'
+
+Now change permissions and execute the script, and see what the output is
+
+### Command line arguments
+
+Consider the `ME` variable in the script above. Let’s change the variable to read a special variable `$1`:
+
+    ME=$1
+
+Now save this as `wellDone2.sh`. You’ll now need to set the execute permission again.
+
+    chmod +x wellDone2.sh
+
+This time we have set the script to receive input from a command-line argument, and we will need to supply a value, which will then be placed in the variable ME. Choose whichever random name you want and enter the following
+
+    $ ./wellDone2.sh Boris
+
+### Command outputs as variables
+
+So its clear that you can assign a number or a string to a variable (e.g. 'Put your name here' and 'This is your first script' was assigned to the variables ME and MESSAGE in Basic Example 2), but you can also capture output of a unix command and assign it to a variable.
+
+#### Basic Example 3
+
+Type the following script into a text file and save it as "count_lines.sh":
 
     #!/bin/bash
 
     # Read in my input file into INPUT
-    INPUT="my_file.txt"
+    INPUT=$1
 
     # Count the number of lines using wc and read into LINES
     LINES=$(wc -l ${INPUT})
 
     # print the variable to see the result
-    echo "${LINES}"
+    echo "The number of months contained in the data is ${LINES}"
+
+Set the permissions and execute the file by declaring the name of the script and one of our Adelaide CBD csv files:
+
+    $ ./count_lines.sh ADL07p/ADL07p_1hr201704.csv
 
 
-EXERCISE:
+
+## EXERCISE
+
+
 
 ## Iteration and `for` loops
 
