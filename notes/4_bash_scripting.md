@@ -157,7 +157,38 @@ Let’s now look at another simple scripts.
 
 ## Path orientation
 
+If you look back at "Basic Example 1", when we ran the command `cut -d',' -f1,4,5 ${INPUT}`, it made a file called `${INPUT}.new.csv`. This looks a little bit messy because if your input file is a csv file, you end up producing an output file that has the extension `.csv.new.csv`. Additionally, when running commands are you are not in the directory that contains the file, the output file can be saved in a different location.
 
+To overcome these issues, we are able to use a few different UNIX commands to help orientate us within the file system.
+
+- `basename ${INPUT}`: Outputs the name of the file without the full path.
+- `dirname ${INPUT}`: Outputs the name of directory in relation to the file.
+- `readlink -f ${INPUT}`: Outputs the full name and full path of the file
+- `pwd`: Print full path of the directory you are currently in
+
+The command `basename` is incredibly useful in bash scripting because it can also be used to strip a specific file extension of a file. For example, lets re-write "Basic Example 1" using `basename` to remove the file extension and save the file without the hideous `.csv.new.csv`.
+
+    #!/bin/bash
+
+    # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
+    #cd ./BASH-Intro-2018/files
+
+    # Read the input file in my current directory into a variable
+    INPUT="ADL07p/ADL07p_1hr201501.csv"
+
+    # Get the filename without the path and extension
+    DIR=$(dirname ${INPUT})
+    NAME=$(basename ${INPUT} .csv)
+    BASE=$(pwd)
+
+    echo "I am current in the directory: ${BASE}"
+    echo "The file directory name is ${DIR}"
+    echo "The file base name is ${NAME}"
+
+    # Use unix cut to divide the file into columns via the ","
+    #   - print each column except 2 and 3
+    #   - create a new file
+    cut -d',' -f1,4,5 ${INPUT} > ${BASE}/${DIR}/newfile.${NAME}.csv
 
 ## Variables
 
@@ -173,11 +204,10 @@ Additionally, notice the use of the curly brackets around the variable name in "
 
 This can be anything from the name of a file (as we've seen in "Basic Example 1", where we read our file into the variable `${INPUT}`), a number of string or even the output of unix command (more of those later)
 
----
 
-__NOTE: Special Variables__
+### Special Variables
 
-There are a number of special variables that can be used when writing bash scripts, and these have certain behaviours:
+Additionally, there are a number of special variables that can be used when writing bash scripts, and these have certain behaviours:
 
 - `$0` - The name of the Bash script.
 - `$1` -> `$9` - The first 9 arguments to the Bash script.
@@ -191,7 +221,6 @@ There are a number of special variables that can be used when writing bash scrip
 - `$RANDOM` - Returns a different random number each time is it referred to.
 - `$LINENO` - Returns the current line number in the Bash script.
 
----
 
 #### Basic Example 2
 
@@ -247,7 +276,7 @@ Set the permissions and execute the file by declaring the name of the script and
 
 ---
 
-## EXERCISE
+### EXERCISE
 
 The Adelaide CBD Particule data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
 
@@ -255,11 +284,87 @@ Using the skills in this tutorial, as well as your knowledge of commands such as
 
 ---
 
-### Control statements
+## Control statements
 
 When we write scripts, we generally do it for a specific purpose, and therefore we are generally in control of the input data and the execution of the code that we have created. However, if I was to create a program for others to use, we often need to make sure the script is robust to any issue that the user defined inputs might throw at it.
 
+Thats where control statements are helpful. They are used in almost all programming languages and act as a traffic light or decision structure for tasks to proceed. The main control statement that you will use in your scripting are `if` or `if/else` statements, which have the following format:
 
+    if <condition>
+     then
+        ### series of code goes here
+    fi
+
+This statement only makes one decision. If the condition is confirmed, then it runs the code after the `then` command and finishes. But you can have multiple decisions:
+
+    if <condition>
+     then
+        ### series of code if the condition is satisfied
+     else
+        ### series of code if the condition is not satisfied
+    fi
+
+or
+
+    if <condition1>
+     then
+        ### series of code for condition1
+    elif <condition2>
+     then
+        ### series of code for condition2
+    else
+        ### series of code if the condition is not satisfied
+    fi
+
+__NOTE:__ Be sure to note the use of formatting on control statements. Generally, the `then` statement is one space indented from the `if` command, and the code that is inside the conditional is 1 tab inside. You do not need the tab or space for the control statment to work, but its considered good programming practise to separate your code so its clear to the person reading it. The same is done with `for` loops, which we will introduce later.
+
+There are three types of conditions that you can use in an `if` statment: String, File and Arithmetic-based conditions. Today we will only cover a few, but if you want to know all of them, check out [this page](https://www.howtoforge.com/tutorial/linux-shell-scripting-lessons-3/).
+
+Like the explanation above, `if` statements are good for file checking. For example:
+
+    #!/bin/bash
+
+    cd
+    ls
+    if [ -e sample.sh ]
+    then
+        echo "file exists!"
+    else
+        echo "file does not exist"
+    fi
+
+The `-e` flag here means "return true if file exists".
+
+### Basic example 4
+
+Here is a real-life example from a whole-genome bisuflite sequencing project that I was working on previously:
+
+Ive made my script that takes in 3 command-line arguments at the time of execution. A reference genome, the name of the directory where all my files are and the suffix of the file that I want to test. So the script can take 3 commands, but what if the user accidently puts in 2? Or 1? Well I used a control statement to check whether the user has done the correct thing. If they havent, I want to print out a little help page that informs them what the correct useage of the script is.
+
+    #!/bin/bash -l
+
+    suff=$3
+    dir=$2
+    ref=$1
+
+    # Input variable checks
+    if [ $# -lt 3 ]
+    then
+        echo "Usage: $0 <ref> <directory containing bedGraph(gz)> <file suffix>\n"
+        echo "\n"
+        echo "Example: $0 hg19.fasta directory _CpG.bedGraph.gz"
+        exit 1
+    fi
+
+The `if` statement here essentially means, "if there are less than 3 arguments (arguments here is "$#") at time of execution, then print out three echo commands and exit".
+
+---
+
+### EXERCISE
+
+Using your Adelaide CBD air data, write a script that counts the number of fields/columns in each file. Use a control statement to only count files that have no empty fields (i.e. columns with no data in them)
+
+---
 
 ## Iteration and `for` loops
 
@@ -292,7 +397,7 @@ In this context, the word "item" ends up being the variable, and so we run the c
 
 Lets write a script that shows you how a for loop works
 
-## Basic example 3
+## Basic example 5
 
 In the following example we are going to read some text and make four files
 
@@ -316,3 +421,19 @@ In the following example we are going to read some text and make four files
 Now save this script and run it:
 
     bash basic_example_3.sh
+
+---
+
+### EXERCISE
+
+Write a script that uses a `for` loop to rename each file in the "ADL07p" directory. Rename the file so it has the word "newfile_" at the front of the file (e.g. ADL07p_1hr201710.csv -> newfile_ADL07p_1hr201710.csv)
+
+---
+
+## Take home exercise
+
+Create a script that does the following:
+
+1. Download the following csv file from the [data.gov.au](https://data.gov.au/) website: https://data.gov.au/dataset/ff0b0b45-e772-4835-9525-a6d7e20ea93d/resource/eef6a84b-ad44-446f-9cf9-fb5d135e3123/download/wyndhamcatdogslist.csv
+2. Count the number of dogs and cats detailed in the file
+3. Use a control statement to count the number of Black Labradors
