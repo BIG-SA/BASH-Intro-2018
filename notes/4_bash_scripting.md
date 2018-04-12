@@ -182,11 +182,15 @@ Set the permissions and execute the file by declaring the name of the script and
 
     $ ./count_lines.sh ADL07p/ADL07p_1hr201704.csv
 
-
+---
 
 ## EXERCISE
 
+The Adelaide CBD Particule data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
 
+Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015
+
+---
 
 ## Iteration and `for` loops
 
