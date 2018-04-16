@@ -45,6 +45,7 @@ To download this data, we will need to go to our "files" directory, run the `wge
     unzip adl07p.zip
 
 
+
 ---
 
 ## Introduction
@@ -87,7 +88,11 @@ Save this file as "basic_example_1.sh". To run this file on the command-line, we
 
     $ bash basic_example_1.sh
 
-What was the output? What was contained in the new file and what was the file called?
+__Questions__
+
+- What was the output? 
+- What was contained in the new file and what was the file called?
+- Where was this file saved and why was it saved there?
 
 
 ## Using the `#` symbol: Shebang and Comments
@@ -269,7 +274,7 @@ Type the following script into a text file and save it as "count_lines.sh":
     LINES=$(wc -l ${INPUT})
 
     # print the variable to see the result
-    echo "The number of months contained in the data is ${LINES}"
+    echo "The number of hours contained in the data is ${LINES}"
 
 Set the permissions and execute the file by declaring the name of the script and one of our Adelaide CBD csv files:
 
@@ -281,7 +286,7 @@ Set the permissions and execute the file by declaring the name of the script and
 
 The Adelaide CBD Particule data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
 
-Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015
+Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015 data and outputs the answer
 
 ---
 
