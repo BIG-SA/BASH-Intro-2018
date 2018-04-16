@@ -241,13 +241,16 @@ One method to search for multiple terms at the same time is to use *extended* gr
 
 `$ grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf`
 
-But while this may work okay for just a few terms, if we want to search for many terms, this is still rather tedious. For example if we want to search for these genes: Ace, Ada, Zen, Alc, Alh, Bdp1, Bft, bwa. We can instead use the `-f` option.
+While this may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
+
+For example if we want to search for these genes: Ace, Ada, Zen, Alc, Alh, Bdp1, Bft, bwa.
 
 First we need to create a file, and enter the genes of interest one per line. Call this file "gene_names". Then we can perform the search by:
 
 `$ grep -wif gene_names BDGP6_genes.gtf`
 
 However, take care that there are no trailing spaces after the gene names, and there are no empty lines.
+
 
 **Example 5: inverse search**
 
@@ -277,25 +280,27 @@ Look for genes:
 
 1. Look up the help page to see which option can provide the line number of search output.
 
+-------------
+
+# `sed` : stream editor
+- just the most basic form: 's\search\replace\'
+- can search but also edit contents
+
+-------------
+
+# `awk`
+- introduce only the simplest mode
+- most useful for working with tabulated data
+- can search for values in specific columns
+- can format output more easily than sed, e.g. can print specific columns
+
+-------------
+
+## get students to decipher some unholy combination of sed, awk and grep command
+
+-------------
 
 
-If we want to
-
-- -F
-- -e
-
-
-
-Exercises:
-1) how to grep for actual "\t" in file
-2)
-
-
-
-
-
-<br><br>
-<hr>
 
 *Footnotes*
 
