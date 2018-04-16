@@ -22,7 +22,7 @@ This session we will be tying together many of the concepts that you have learnt
 
 ## Before we start
 
-Much like we have bgun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of /home/<yourname>, /Users/<yourname>, /u or /c/Users/<yourname>. The best way to get to this directory is
+Much like we have begun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of /home/<yourname>, /Users/<yourname>, /u or /c/Users/<yourname>. The best way to get to this directory is
 
     cd ~
 
@@ -43,6 +43,7 @@ To download this data, we will need to go to our "files" directory, run the `wge
     cd ./BASH-Intro-2018/files/
     wget -c https://data.sa.gov.au/data/dataset/9fd65c8d-a3bc-474e-9cf2-03a58a837fc0/resource/a0fa35fb-fedf-4db6-8bbb-668f9959fe42/download/adl07p.zip
     unzip adl07p.zip
+
 
 
 ---
@@ -72,7 +73,8 @@ This simple example can be written in bash below (Don't worry that you don't und
     #!/bin/bash
 
     # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
-    cd ./BASH-Intro-2018/files
+    # The following line will need to be modified accordingly if you saved the files somewhere other than ~/BashWk4/BASH-Intro-2018/files
+    cd ~/BashWk4/BASH-Intro-2018/files
 
     # Read the input file in my current directory into a variable
     INPUT="ADL07p/ADL07p_1hr201501.csv"
@@ -86,7 +88,11 @@ Save this file as "basic_example_1.sh". To run this file on the command-line, we
 
     $ bash basic_example_1.sh
 
-What was the output? What was contained in the new file and what was the file called?
+__Questions__
+
+- What was the output? 
+- What was contained in the new file and what was the file called?
+- Where was this file saved and why was it saved there?
 
 
 ## Using the `#` symbol: Shebang and Comments
@@ -125,7 +131,7 @@ The result on my computer is:
     -rw-r--r--  1 jbreen  staff  25593 23 Jun  2016 ADL07p_1hr201504.csv
     ...
 
-For each file there is a number of blocks of information. For now, we don't need to know what everything means, but you initially you might be able to guess what each means. The third and fourth block of information (i.e. `jbreen` and `staff`) are the owner and group permissions. After that there is the size of the file (in bytes), the date that the file was last edited and then the name of the file.
+For each file there is a number of blocks of information. For now, we don't need to know what everything means, but initially you might be able to guess what each means. The third and fourth block of information (i.e. `jbreen` and `staff`) are the owner and group permissions. After that there is the size of the file (in bytes), the date that the file was last edited and then the name of the file.
 
 The first block contains the important information and that is regarding file access permissions. These permissions follow the format of read(r), write(w) and execute(x). The block contains the following information:
 
@@ -145,7 +151,7 @@ There are two main ways of executing a script. Firstly, as shown in "Basic Examp
 
 However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
 
-First we’ll look at the files in the folder using `ls -l` and note these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
+First we’ll look at the files in the folder using `ls -l` and note that unlike the above figure, these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
 
     $ chmod +x ./basic_example_1.sh
 
@@ -157,7 +163,7 @@ Let’s now look at another simple scripts.
 
 ## Path orientation
 
-If you look back at "Basic Example 1", when we ran the command `cut -d',' -f1,4,5 ${INPUT}`, it made a file called `${INPUT}.new.csv`. This looks a little bit messy because if your input file is a csv file, you end up producing an output file that has the extension `.csv.new.csv`. Additionally, when running commands are you are not in the directory that contains the file, the output file can be saved in a different location.
+If you look back at "Basic Example 1", when we ran the command `cut -d',' -f1,4,5 ${INPUT}`, it made a file called `${INPUT}.new.csv`. This looks a little bit messy because if your input file is a csv file, you end up producing an output file that has the extension `.csv.new.csv`. Additionally, when running commands you are not in the directory that contains the file, the output file can be saved in a different location.
 
 To overcome these issues, we are able to use a few different UNIX commands to help orientate us within the file system.
 
@@ -192,7 +198,7 @@ The command `basename` is incredibly useful in bash scripting because it can als
 
 ## Variables
 
-As you've probably noticed above, a variable is essentially a holding place for information that the program needs to run its code. In "Basic example 1", we read our input file into the variable INPUT and in "Basic example 2", we read text into the variable ME and MESSAGE. You'll notice that when you declare the variable you use the equals sign to assign the information to that variable name (e.g. VARIABLE_NAME="THIS IS THE INFORMATION"), while when you actually use the variable in your code, we put a `$` in front to declare that this is in fact a variable.
+As you've probably noticed above, a variable is essentially a holding place for information that the program needs to run its code. In "Basic example 1", we read our input file into the variable INPUT and in "Basic example 2", we will read text into the variables ME and MESSAGE. You'll notice that when you declare the variable you use the equals sign to assign the information to that variable name (e.g. VARIABLE_NAME="THIS IS THE INFORMATION"), while when you actually use the variable in your code, we put a `$` in front to declare that this is in fact a variable.
 
 Additionally, notice the use of the curly brackets around the variable name in "Basic example 1" (e.g. `${INPUT}`). Whilst not being strictly required, this can make it easy for you to follow in the future when you’re looking back. Its also helpful to type variables using strictly upper-case letters. This is another optional coding style, but can also make things clear for you as you look back through your work. Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
 
@@ -202,7 +208,7 @@ Additionally, notice the use of the curly brackets around the variable name in "
 
     "in bash (a variable) can contain a number, a character, a string of characters. You have no need to declare a variable, just assigning a value to its reference will create it."
 
-This can be anything from the name of a file (as we've seen in "Basic Example 1", where we read our file into the variable `${INPUT}`), a number of string or even the output of unix command (more of those later)
+This can be anything from the name of a file (as we've seen in "Basic Example 1" where we read our file into the variable `${INPUT}`), a number or string or even the output of a unix command (more of those later)
 
 
 ### Special Variables
@@ -224,7 +230,7 @@ Additionally, there are a number of special variables that can be used when writ
 
 #### Basic Example 2
 
-Using the text editor gedit, enter the above code into a file setting your actual name as the ME variable, and save it as wellDone.sh in your home folder.
+Using the text editor gedit, enter the code below into a file setting your actual name as the ME variable, and save it as wellDone.sh in your home folder.
 
     #!/bin/bash
 
@@ -268,7 +274,7 @@ Type the following script into a text file and save it as "count_lines.sh":
     LINES=$(wc -l ${INPUT})
 
     # print the variable to see the result
-    echo "The number of months contained in the data is ${LINES}"
+    echo "The number of hours contained in the data is ${LINES}"
 
 Set the permissions and execute the file by declaring the name of the script and one of our Adelaide CBD csv files:
 
@@ -280,7 +286,7 @@ Set the permissions and execute the file by declaring the name of the script and
 
 The Adelaide CBD Particule data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
 
-Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015
+Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015 data and outputs the answer
 
 ---
 
@@ -339,7 +345,7 @@ The `-e` flag here means "return true if file exists".
 
 Here is a real-life example from a whole-genome bisuflite sequencing project that I was working on previously:
 
-Ive made my script that takes in 3 command-line arguments at the time of execution. A reference genome, the name of the directory where all my files are and the suffix of the file that I want to test. So the script can take 3 commands, but what if the user accidently puts in 2? Or 1? Well I used a control statement to check whether the user has done the correct thing. If they havent, I want to print out a little help page that informs them what the correct useage of the script is.
+I've made a script that takes in 3 command-line arguments at the time of execution; a reference genome, the name of the directory where all my files are and the suffix of the file that I want to test. So the script can take 3 commands, but what if the user accidently puts in 2? Or 1? Well I used a control statement to check whether the user has done the correct thing. If they havent, I want to print out a little help page that informs them what the correct usage of the script is.
 
     #!/bin/bash -l
 
@@ -370,7 +376,7 @@ Using your Adelaide CBD air data, write a script that counts the number of field
 
 So far we've just touched on executing one file at a time. But what if you want to run the same command on multiple files?
 
-For this we can use a `for` loop. A loop is a type of statement that enables the programmer to execute repetitive tasks in one small bit of code, instead of just repeatedly writing the command. The loop has three elements, a) the item, b) the iteratable object or list, and c) command to run on our item.
+For this we can use a `for` loop. A loop is a type of statement that enables the programmer to execute repetitive tasks in one small bit of code, instead of just repeatedly writing the command. The loop has three elements; a) the item, b) the iteratable object or list, and c) command to run on our item.
 
 Take our to-do list analogy for example. Instead of writing:
 
@@ -407,7 +413,7 @@ In the following example we are going to read some text and make four files
     WORKING_DIR=$(pwd)
 
     # Create a new directory called results where our files will be saved
-    mkdir -p ${WORKING_DIRECTORY}/results
+    mkdir -p ${WORKING_DIR}/results
 
     # Loop:  1.Iterate over the list of numbers "1 2 3 4 5" and read into NUM
     #   2. Echo some text into a new file

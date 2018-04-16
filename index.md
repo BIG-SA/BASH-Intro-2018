@@ -42,7 +42,7 @@ All sessions will be held in the Biometry Hub Meeting Room, Level 2, Waite Build
 
 ### Roseworthy Campus
 
-All sessions will be held in the Davies Conference Room, Davies Building
+All sessions will be held in the Meeting Room, Eastick Building
 
 | Date | Time | Main Topics |
 | ---------- |---------- | ---------- |

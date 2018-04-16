@@ -227,7 +227,7 @@ cd
 
 Let's stay in our home directory and make sure we know where it is.
 This will vary considerably for each of our computers.
-For University-administered Windows computers, this may be `/u`, or it may be `/c/Users/<yourname>` if you're the administrator for your own laptop.
+**For University-administered Windows computers, this may be `/u`, or it may be `/c/Users/<yourname>` if you're the administrator for your own laptop**.
 For OSX users, this may be `/Users/<yourname>`
 
 ### Looking at the Contents of any Directory (`ls`)
@@ -307,12 +307,12 @@ Fortunately the terminal has a special feature which aids in completing this tas
 This is the ability to automatically complete a command, file or directory name using the `tab` key. Try typing
 
 ```
-ls /home/<the first letter of your username> <tab>
+ls ~/Down <tab>
 ```
 
-where `<the first letter of your username>` would be j for john and `tab` represents the tab key.
+where `<tab>` represents the tab key.
 
-Notice how your username is completed automatically!
+Notice how `Downloads` is completed automatically!
 This functionality will automatically fill as far as it can until conflicting options are reached.
 In this case, there was only one option so it was able to complete all the way to the end of the file path.
 This enables us to quickly enter long file paths without the risk of typos.
@@ -353,9 +353,10 @@ Wildcards in the terminal are somewhat like this. Here is the basic set of wildc
 
 We have set up some exercises for you to try out your skills using wildcards and below
 are some examples of how wildcards are used.
-*Please just copy and paste the following three line of code into your terminal to create some files for this section.*
+**Please just copy and paste the following four lines of code into your terminal to create some files for this section.**
 
 ```
+cd
 mkdir temp
 cd temp
 touch cubane.pdb ethane.pdb methane.pdb octane.pdb propane.pdb elephant.txt i_dont_belong.txt neither_do_i.txt pentane.pdb this_is_boring_as_hell.txt
