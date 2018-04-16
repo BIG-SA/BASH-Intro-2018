@@ -4,7 +4,7 @@
 
 # Grep, Sed and Awk
 
-In this lesson, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
+In this session, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
 
 ## Command Line Interface (CLI) Text editors (for Small-ish Files)
 
