@@ -59,26 +59,26 @@ cd ~
 mkdir -p BashWk3/files
 cd BashWk3/files
 ```
+(**Q:** What did the `-p` argument do in the above `mkdir` command?)
 
-**What did the `-p` argument do in the above `mkdir` command"**
 
 1. Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
 
-(*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+  (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
 
 2. Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-(*Hint: Refer to last week for details on how to extract a tar archive.**)
+  (*Hint: Refer to last week for details on how to extract a tar archive.*)
 
 3. Use what you have learnt so far and find out:
 
-- What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
-- How are the data organised in the file?
-- What is the column separator?
-- How many columns does it contain?
-- What are the column headers?
-- Which column is "**Gene name**"? How many unique gene names are there in the file?
+  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
+  - How are the data organised in the file?
+  - What is the column separator?
+  - How many columns does it contain?
+  - What are the column headers?
+  - Which column is "**Gene name**"? How many unique gene names are there in the file?
 
 4. Can you answer the above questions without uncompressing the original file?
 
