@@ -12,6 +12,9 @@ In general, we rarely work with binary file formats (e.g. MS Office files) in th
 
 We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
 
+#### Nano (or Pico)
+{:.no_toc}
+
 - **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
 To quit, hold [Ctrl] and press X (^X).
 There are a couple important caveats to remember when using Nano:
@@ -20,6 +23,8 @@ There are a couple important caveats to remember when using Nano:
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
+#### Vi (or Vim)
+{:.no_toc}
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
@@ -27,10 +32,16 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
+#### Emacs
+{:.no_toc}
+
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
 - **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
+
+#### Ne
+{:.no_toc}
 
 - **ne** (**n**ice **e**ditor) is intended to be easier to use than **vi**, but more functional than **nano**.
 Start by **ne** by entering `ne`.<sup>[4]</sup>
@@ -41,21 +52,33 @@ Start by **ne** by entering `ne`.<sup>[4]</sup>
 -----
 
 ## Prepare the data files (and some revision exercises)
-For this session, we need to prepare some data files for demonstration.
+For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
 
-1. Locate and uncompress the file `GRCh38.chr22.ensembl.biomart.txt.gz` in the `files` directory.
-   (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+```
+cd ~
+mkdir -p BashWk3/files
+cd BashWk3/files
+```
 
-2. Locate and extract the file `3_many_files.tar.gz` in the `files` directory.
-   This should create a sub-direction (`3_many_files`) containing 100 files, each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
+**What did the `-p` argument do in the above `mkdir` command"**
+
+1. Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
+
+(*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+
+2. Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
+This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
+
+(*Hint: Refer to last week for details on how to extract a tar archive.**)
 
 3. Use what you have learnt so far and find out:
-   - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
-   - How are the data organised in the file?
-   - What is the column separator?
-   - How many columns does it contain?
-   - What are the column headers?
-   - Which column is "**Gene name**"? How many unique gene names are there in the file?
+
+- What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
+- How are the data organised in the file?
+- What is the column separator?
+- How many columns does it contain?
+- What are the column headers?
+- Which column is "**Gene name**"? How many unique gene names are there in the file?
 
 4. Can you answer the above questions without uncompressing the original file?
 
@@ -87,14 +110,18 @@ The list of column names below will be useful:
 21	Gene description
 ```
 
+We will also need the file `BDGP6_genes.gtf` from previous session, so let's copy that across.
+Make sure you're in the `BashWk3/files` directory first.
 
-We will also need the file `BDGP6_genes.gtf` from previous session.
+```
+cp ../../BashWk2/BDGP6_genes_gtf ./
+```
 
 -----
 
 ## Working with large files or many files
 
-Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `more`, `less` or `cat`), however, they are less useful when the files are very large.
+Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
 Consider the following questions (try using **nano** to answer them):
 
@@ -117,34 +144,31 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 <details>
 <summary>**Answers**</summary>
-<ol>
-<li> 55151
-<li> 1 line only
-<li> Too many to count in **nano** (but the answer is 5775).
-<li> Too hard in **nano** (answer is 36).
-<li> Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
-</ol>
+
+1. 55151
+2. 1 line only
+3. Too many to count in **nano** (but the answer is 5775).
+4. Too hard in **nano** (answer is 36).
+5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+
 </details>
 
-<br>
-
-Now look into the files in the created sub-directory **`3_many_files`**.
+Now look into the files in the created sub-directory `3_many_files`.
 
 1. Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?
 
 2. Which files in **`3_many_files`** directory contain entries for "MAPK1"?
 
+(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)
+
 <details>
 <summary>**Answers**</summary>
 
-<ol>
-<li> There is an entry for MAPK11, but not MAPK1.
-<li> It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
+1. There is an entry for MAPK11, but not MAPK1.
+2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
 datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
-</ol>
-</details>
 
-<br>
+</details>
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 
@@ -152,17 +176,14 @@ As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI)
 
 In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.
 
-<br>
-----
 
+----
 
 ### Primer on Linux Command Structure
 
 Before we introduce these tools, you may find it useful to familiarise yourself
 with [the structure (or syntax) of a typical Linux command](extra_command_syntax.md).
 However, feel free to continue on if you already understand the topic.
-
-<br>
 
 ----
 

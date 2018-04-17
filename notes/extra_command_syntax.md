@@ -22,7 +22,9 @@ In the following examples, we will use two commands to illustrate the various us
 
 The default behaviour of `head` is to display the first 10 lines of an input file or stream. Consider the command:
 
-`$ head BDGP6_genes.gtf`
+```
+head BDGP6_genes.gtf
+```
 
 `head` expects an input file or stream, so `BDGP6_genes.gtf` is an argument expected by the program, but is not associated with any options.
 
@@ -32,13 +34,17 @@ What happens if you enter `head` without specifying any files?</details>
 
 As show in Session 2, we can change the default behaviour of displaying 10 lines by using the option `-n`.
 
-`$ head -n 20 BDGP6_genes.gtf`
+```
+head -n 20 BDGP6_genes.gtf
+```
 
 ### Long and short options
 
 If you look up the `man` page for `head`, you will see that actually `-n` is the shortened version of the option `--lines`. You can check this by trying the long form, which should provide identical output:
 
-`$ head --lines 20 BDGP6_genes.gtf`
+```
+head --lines 20 BDGP6_genes.gtf
+```
 
 Options usually (but not always) have a long and short version, and by convention, the long version is preceded by `--`, while the short version is preceded by `-`.
 
@@ -51,8 +57,8 @@ Some options don't require an argument, but some can be used without any argumen
 By default, `head` prints file names only if multiple files are provided as argument. But we can use the option `-v`/`--verbose` to force `head` to always print the input file name.
 
 ```
-$ head -v BDGP6_genes.gtf
-$ head --verbose BDGP6_genes.gtf
+head -v BDGP6_genes.gtf
+head --verbose BDGP6_genes.gtf
 ```
 
 Some commands have options that can function with or without an argument, basically if no argument is provided, a default value is assumed (e.g. `sed -i`).
@@ -63,11 +69,11 @@ Some commands have options that can function with or without an argument, basica
 Using the short form of the options, we can combine multiple options together. For example, the command `ls` has many different switches:
 
 ```
-$ ls --all -l -S   # -S and -l have no long forms
+ls --all -l -S   # -S and -l have no long forms
 ```
 which we can combine together as:
 ```
-$ ls -laS
+ls -laS
 ```
 
 We have seen two options for `head`: `-n` and `-v`. To combine them in long form, we'd type:
@@ -86,7 +92,7 @@ But if you switch the order of `v` and `n` the command will fail. This is becaus
 
 You can also skip the space between `n` and `20`:
 ```
-$ head -vn20 BDGP6_genes.gtf
+head -vn20 BDGP6_genes.gtf
 ```
 But this works *ONLY* in the short form.
 
@@ -94,7 +100,9 @@ But this works *ONLY* in the short form.
 
 `head` has an even shorter form for `-n`. Since the most common option for `head` is to change the number of lines to display, it can accept an even shorter form:
 
-`head -20 BDGP6_genes.gtf`
+```
+head -20 BDGP6_genes.gtf
+```
 
 However, this will only work if no other options are called. This is not a standard short form, most other programs do not support it (except for maybe `tail`).
 
@@ -106,11 +114,11 @@ However, this will only work if no other options are called. This is not a stand
 `tar` always expects at least one option (one of `-Acdtrux`), which are function letters (or main operation mode), and usually requires `-f/--file` as well. Since one of the function letters are always expected as the first option, you will sometimes see the `-` omitted. For example, the following two commands work identically:
 
 ```
-$ tar czf archive.tar.gz [files_to_add]
-$ tar -czf archive.tar.gz [files_to_add]
+tar czf archive.tar.gz [files_to_add]
+tar -czf archive.tar.gz [files_to_add]
 ```
 
-However, this is *not* a general behaviour for command options.
+However, this is *not* the general behaviour for command options.
 
 First option that are mandatory and are specified without `-` are often **sub-commands**. We will see a lot of them in common bioinformatics tools, such as `samtools` and `bedtools`.
 
