@@ -772,7 +772,7 @@ awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {prin
 
 # Exercises
 
-Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that sections now using what you have learnt in this session.
+Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that section using what you have learnt in this session.
 
 -------------
 
