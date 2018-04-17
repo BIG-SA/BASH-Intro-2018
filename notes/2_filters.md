@@ -168,7 +168,7 @@ Although we can navigate through the less pager using up & down arrows on our ke
 You won't be able to type anything into the file, or into `bash` here so after you've tried navigating around, return to `bash` using the `q` key for `q`uit.
 
 `less` is actually quite powerful and has functions for searching for key pieces of text.
-Open the `gtf` file in `less` again and try entering `/ncRNA`.
+Open the `gtf` file in `less` again and try entering `/ncRNA` **once the file has opened**.
 By typing the `/` we are telling `less` that a search pattern follows, and once we hit the `<Enter>` key, less searches for the pattern and highlights any occurrences.
 We can search for the same pattern again simply by hitting the `/` key and hitting `<Enter>` again.
 We only need to re-enter a pattern if we're searching for something new.
@@ -388,9 +388,13 @@ We can specify this as the delimiter using the argument `-d\;`.
 Here we've had to escape the semi-colon as it is a special character as we want to use it as a true semi-colon.
 
 
-**If we wanted to get the gene_biotype column, what number would we need to put after the `-f`argument?**
+**If we wanted to get the gene_biotype column, what number would we need to put after the `-f` argument?**
 Try piping this into `uniq -c` and see what happens?
 **Was this as you expected?**
+
+```
+cut -f4 -s -d\; BDGP6_genes.gtf | uniq -c
+```
 
 ## Summarising files using `sort`
 
@@ -445,14 +449,14 @@ For small files like this, it's very fast to calculate, but can be a fair bit sl
 We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
 
 ```
-mds5sum *gtf
+md5sum *gtf
 ```
 
 
 And we could sort these in order to more easily detect duplicated files
 
 ```
-mds5sum * | sort
+md5sum * | sort
 ```
 
 These sums are sometimes given by data providers so we can check our files against the originals to ensure nothing has become corrupted during a file transfer.
@@ -477,6 +481,7 @@ The most common formats are given below.
 Let's try compressing some of our additional `.gtf` files so we can see how this works.
 The most common format (particularly for Windows users) is a `zip` file, and this is pretty easy to use.
 If `zip` doesn't work on `git bash` head to the [windows installation page](../install/windowsInstall) for instructions to set this up correctly.
+(If you can't get this installed, it just means theres one line below you can't perform).
 To `zip` a file, we just enter the name of the intended archive as the first argument to `zip` (without the suffix), and the file we wish to compress as the final argument to `zip`.
 
 ```
