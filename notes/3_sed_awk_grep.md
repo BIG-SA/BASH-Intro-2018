@@ -377,7 +377,7 @@ grep 3R BDGP6_genes.gtf
 ```
 
 there is no guarantee that the string "3R" does not appear somewhere else in the line and not at the beginning. In fact, one of the lines return is matching to the gene name "Rpn13R". Using the option `-w` may help a bit, but what we really want is that the string "3R" appears at the start of the line.
-To do this, we use the caret symbol (^), again.
+To do this, we use the caret symbol (`^`), again.
 
 ```
 grep ^3R BDGP6_genes.gtf
@@ -413,16 +413,13 @@ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq 
 - contain a dot `.`  
 
 <details><summary>Answers</summary>
-  <ul>
-    <li>`$ grep ^z fly_genes`
-    <li>`$ grep ^a.*[0-9]$ fly_genes` or `$ grep ^a fly_genes | grep [0-9]$`
-    <li>`$ grep [^a-z0-9] fly_genes`
-    <li>`$ grep "\." fly_genes `
-  </ul>
+1. `grep ^z fly_genes`
+2. `grep ^a.*[0-9]$ fly_genes` or `grep ^a fly_genes | grep [0-9]$`
+3. `grep [^a-z0-9] fly_genes`
+4. `grep "\." fly_genes `
 </details>  
 
 3) Look up the help page to see which option can provide the line number of search output.
-
 
 
 ## More `grep` functions
@@ -443,47 +440,74 @@ Unfortunately we don't have time to cover it all in this session, but if you wis
 
 While `grep` is excellent at searching, it essentially only performs queries and does not allow us to edit the output.
 For that we need different tools.
-
-Like most command line utilities, it is designed to process input data (file or stream) line by line.
+Like most command line utilities, `sed` is designed to process input data (file or stream) line by line.
 From the GNU sed documentation (https://www.gnu.org/software/sed/manual/sed.html):
 
-```
-sed is a stream editor. A stream editor is used to perform basic text
+> sed is a stream editor. A stream editor is used to perform basic text
 transformations on an input stream (a file or input from a pipeline). While in
 some ways similar to an editor which permits scripted edits (such as ed), sed
 works by making only one pass over the input(s), and is consequently more
 efficient. But it is sed’s ability to filter text in a pipeline which
 particularly distinguishes it from other types of editors.
-```
 
 It is important to remember that `sed` is a very complex tool that has been in use and constantly
 evolving for decades, and as it's open-sourced it has diverged on different platforms.
-Therefore `sed` on Mac OSX may not work exactly the same as on Linux.
+Therefore `sed` on Mac OSX may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
 For this workshop, we typically focus on GNU tools (Linux).
 If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
 
 `sed` is a very complex tool, and it is impossible to cover all its functions in this session.
-Here we will only show you one of the most common usage: "search-and-replace".
+Here we will only show you the most common usage 1) printing select lines from a file, and 2) search-and-replace.
+
+## Basic Printing with `sed`
+
+A basic `sed` command has the form: `sed SCRIPT INPUTFILE` where the script contains instructions on how to process the input.
+At it's simplest, we can simply print a few rows very much like `head`.
+In the following command, we'll print the first 10 lines of the file.
+
+```
+sed -n '1,10p' BDGP6_genes.gtf
+```
+
+By default, `sed` will stream the entire file to `stdout` so by setting the `-n` flag we're turning this function off, and my including `'1,10p'` we're telling `sed` to print (`p`) lines 1 to 10.
+Unlike `head` or `tail` which only print the beginning or end of the file, `sed` can print lines from anywhere in the file.
+
+```
+sed -n `5,9p` BDGP6_genes.gtf
+```
+
+`sed` can also print a recurring pattern of lines. In the following, we'll print every 2nd line, starting at the 1st line.
+This will just dump everything into the terminal, so if you want to look more carefully, pipe the output into `head` or `less`.
+
+```
+sed -n `1~2p` BDGP6_genes.gtf
+```
+
+## Editing Text 'On The Fly'
 
 First, let's prepare a smaller file so that it's easier to see how `sed` functions.
 Extract from `BDGP6_genes.gtf` all entries that contain "Ac3", "ADD1", and "Acn"
 into a file, "small.gtf".
-  <details><summary>howto:</summary>
-  `egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf`
-  </details>
 
-A basic `sed` command has this form:
+<details><summary>Hint</summary>
+```
+egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
+```
+</details>
 
-`sed SCRIPT INPUTFILE`
 
-where the script contains instructions on how to process the input. Let us consider a basic search-and-replace command:
+ Let us consider a basic search-and-replace command:
 
-`$ sed 's\Ac3\AC-3\' small.gtf`
+```
+sed 's\Ac3\AC-3\' small.gtf
+```
 
 `sed` can be called to directly act on a file, or be used to process a standard stream.
 So the following command is essentially the same:
 
-`$ cat small.gtf | sed 's\Ac3\AC-3\'`
+```
+cat small.gtf | sed 's\Ac3\AC-3\'
+```
 
 If you run the command, you should see that:
 1. by default the entire content of the file is printed
@@ -492,20 +516,18 @@ If you run the command, you should see that:
 Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
 
 1. The enclosing quotation marks are necessary. You can also use double-quotes ("), but they are problematic with the backslash.
-
-2. The backslashes are separators that divide the expression into 4 parts.
-   - the first part is `s`, which tells `sed` that it is to perform substitution.
-   - the second part is the search pattern,
-   - the third part is the term to replace with,
+2. The backslashes are separators that **divide the expression into 4 parts**.
+   - the first part is `s`, which tells `sed` that it is to perform *substitution*.
+   - the second part is the *search pattern*,
+   - the third part is the term to *replace with*,
    - the fourth part is empty at the moment
 
-You can actually use any character for the separator. In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
+You can actually use any character for the separator.
+In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
 
-`$ sed 's Ac3 AC-3 ' small.gtf`  works, and uses space " " as separator
-
-`$ sed 's1Ac31AC-31' small.gtf`  while confusing, it also works, and uses "1" as separator
-
-`$ sed 's3Ac33AC-33' small.gtf`  doesn't work, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
+- `sed 's Ac3 AC-3 ' small.gtf` uses space " " as separator
+- `sed 's1Ac31AC-31' small.gtf`  (deliberately confusing) also works, and uses "1" as separator
+- `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
 
 ## s command flags
 
@@ -513,80 +535,99 @@ The fourth and last part of the s command contain zero or more flags that alter 
 
 A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the first matching instance:
 
-`$ sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
-
-`$ sed 's\gene\GENE\g' small.gtf` will alter all instances.
+- `sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
+- `sed 's\gene\GENE\g' small.gtf` will alter all instances.
 
 Rather than using "g", we can also use a number to specify exactly which instance to alter:
 
-`$ sed 's\gene\GENE\2' small.gtf` will alter the second instance only.
+```
+sed 's\gene\GENE\2' small.gtf
+```
+
+will alter the second instance only.
 
 Another frequently used flag is "I" or "i", which allows for case-insensitive matching.
 
 `$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
-
-## Regular expression
+## Regular expressions
 
 The search term in `sed` supports regular expression in very similar ways to `grep`.
-
 As exercises, can you explain what each of these `sed` commands are doing?
 
-1. `$ sed 's|ac[n3]|ACX|Ig' small.gtf`
+1) `sed 's|ac[n3]|ACX|Ig' small.gtf`
 
-2. `$ sed 's\^\chr\' small.gtf`
+2) `sed 's\^\chr\' small.gtf`
 
-3. `$ sed 's\;$\\' small.gtf`
-
+3) `sed 's\;$\\' small.gtf`
 
 <details><summary>Answers</summary>
 
-<ol>
-  <li>Change all instances of acn/ac3 (case-insensitive) to ACX
-  <li>Append "chr" to the start of every line
-  <li>Strips off ";" at the end of the line
-</ol>
+1. Change all instances of acn/ac3 (case-insensitive) to ACX
+2. Append "chr" to the start of every line
+3. Strips off ";" at the end of the line
+
 </details>
 
 
-
-## Formatting replacement
+## Formatting replacement strings
 
 Sometimes, we want to alter a string by adding to it without modifying the search term itself.
-
 For example, if we want to add a star symbol next to gene names Acn and Ac3, without altering gene names. We can perform this one by one:
 
-`$ sed 's\Acn\Acn*\' small.gtf | sed 's\Ac3\Ac3*\'`
+```
+sed 's\Acn\Acn*\' small.gtf | sed 's\Ac3\Ac3*\'
+```
 
-or we can use regular expression search and "$":
+or we can use regular expression search and "&":
 
-`$ sed 's\Ac[n3]\&*\' small.gtf`
+```
+sed 's\Ac[n3]\&*\' small.gtf
+```
 
-where "$" simply means the string that matches the search pattern.
+where "&" simply means the string that matches the search pattern.
 
 Can you explain what the following command does?
 
-`$ sed 's\fly\&OrWorm\gi' small.gtf`
-
-
+```
+sed 's\fly\&OrWorm\gi' small.gtf
+```
 
 ## Redirecting output
 
 Like most stream editors, `sed` does not alter the original file, and instead writes the output to the stdout.
 Therefore to save the changes, we can simply redirect to a file:
 
-`sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf`
+```
+sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf
+```
 
 As is almost the case, you should **never** redirect the file back to itself, expecting it to have made the changes in place.
 You will simply end up with an empty file!
 
 But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
 
-`$ sed 's\Ac[n3]\&*\' small.gtf > small.gtf` THIS WILL FAIL (data loss!)
+```
+sed 's\Ac[n3]\&*\' small.gtf > small.gtf
+```
 
-`$ sed -i 's\Ac[n3]\&*\' small.gtf` THIS WILL WORK
+THIS WILL FAIL (data loss!).
+Check the contents using `cat`, `head` or `sed` and you'll see the file is now empty.
 
-Note: On Mac OSX `-i` doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
+First we'll recreate the file
+
+```
+egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
+```
+
+Now we'll try the correct approach where we edit the file *in place*.
+
+```
+sed -i 's\Ac[n3]\&*\' small.gtf
+```
+
+THIS WILL WORK on Ubuntu and `git bash`.
+Note: On Mac OSX `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
 
 
 ## Exercise: Batch-rename files
@@ -599,19 +640,14 @@ It's a bit tedious to do this one by one, can you write a command line that can 
 
 <details><summary>Answer</summary>
 This command line will generate all the required "mv" commands:
-
-<br>
-`ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' `
-
-<br>
-<br>
+```
+ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |'
+```
 We can then add "| sh " to the end to execute it all:
-
-<br>
-`ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh `
+```
+ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh
+```
 </details>
-
-
 
 -------------
 
