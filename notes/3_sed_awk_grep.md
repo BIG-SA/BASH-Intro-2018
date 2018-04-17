@@ -753,7 +753,7 @@ sed 's|; |\t|g' BDGP6_genes.gtf | \
 
 Can you explain what the command above does?
 
-Re-direct the output to a file, name it `BDGP6_genes.tsv`.
+Re-direct the output to a file: `BDGP6_genes.tsv`.
 
 As `awk` is a programming language, we can write much more complicated conditions using `if` and `else`. Here we have two different "if" conditions, and each have its own matching action to perform:
 
