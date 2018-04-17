@@ -12,6 +12,16 @@ In general, we rarely work with binary file formats (e.g. MS Office files) in th
 
 We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
 
+- **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
+To quit, hold [Ctrl] and press X (^X).
+There are a couple important caveats to remember when using Nano:
+  - Nano will load the entire file into memory, so it may take a while when working with large files.
+  - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
+
+![Nano screenshot](../images/3_nano_screenshot.png)
+
+
+
 <ol>
 <li> <b>Nano</b>/<b>Pico</b>:  Nano is an easy to use text editor. On most Linux systems, just type <code>nano</code> to start the program (or <code>pico</code>, the command <code>pico</code> is often soft-linked to <code>nano</code><sup>[1]</sup>). To quit, hold [Ctrl] and press X (^X).
 There are a couple important caveats to remember when using Nano:
