@@ -22,8 +22,7 @@ There are a couple important caveats to remember when using Nano:
 <li> Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by <code>-w</code> option.
 </ul>
 
-
-  ![Nano screenshot](../images/3_nano_screenshot.png)
+![Nano screenshot](../images/3_nano_screenshot.png)
 
 <br><br>
 
