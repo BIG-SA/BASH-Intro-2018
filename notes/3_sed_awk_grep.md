@@ -59,26 +59,26 @@ cd ~
 mkdir -p BashWk3/files
 cd BashWk3/files
 ```
+(**Q:** What did the `-p` argument do in the above `mkdir` command?)
 
-**What did the `-p` argument do in the above `mkdir` command"**
 
 1. Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
 
-(*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+  (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
 
 2. Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-(*Hint: Refer to last week for details on how to extract a tar archive.**)
+  (*Hint: Refer to last week for details on how to extract a tar archive.*)
 
 3. Use what you have learnt so far and find out:
 
-- What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
-- How are the data organised in the file?
-- What is the column separator?
-- How many columns does it contain?
-- What are the column headers?
-- Which column is "**Gene name**"? How many unique gene names are there in the file?
+  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
+  - How are the data organised in the file?
+  - What is the column separator?
+  - How many columns does it contain?
+  - What are the column headers?
+  - Which column is "**Gene name**"? How many unique gene names are there in the file?
 
 4. Can you answer the above questions without uncompressing the original file?
 
@@ -127,39 +127,50 @@ Consider the following questions (try using **nano** to answer them):
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1 - What is the first line that contains "**DNAJB7**"? Give line number.
-<details><summary>Hint:</summary>
+1. What is the first line that contains "**DNAJB7**"? Give line number.
+  <details><summary>Hint:</summary>
   You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
-</details>  
-2 - How many lines contain "**DNAJB7**"?
+  </details>  
 
-<details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
-</details>  
-3 - How many lines contain "**RBX1**"?  
-4 - In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
-5 - Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
-<details>
-<summary>**Answers**</summary>
+2. How many lines contain "**DNAJB7**"?
+
+  <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
+  </details>  
+
+3. How many lines contain "**RBX1**"?  
+
+4. In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+
+5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
+
+<details><summary>**Answers**</summary>
 
 1. 55151
+
 2. 1 line only
+
 3. Too many to count in **nano** (but the answer is 5775).
+
 4. Too hard in **nano** (answer is 36).
+
 5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
 </details>  
+
 Now look into the files in the created sub-directory `3_many_files`.  
 
 1 - Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+
 2 - Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
 (*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
-<details>
-<summary>**Answers**</summary>
+  <details><summary>**Answers**</summary>
 
-1. There is an entry for MAPK11, but not MAPK1.
-2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
-datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
+  1. There is an entry for MAPK11, but not MAPK1.
 
-</details>  
+  2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
+  datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
+
+  </details>  
+
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
@@ -739,15 +750,61 @@ The command above requires two conditions to be met:
 
 You may have noticed that no action is specified in the command. In such cases, the default behaviour of `awk` is to print the entire line.
 
+## Exercise
 
-## More advanced functions
+Extract lines from the file `BDGP6_genes.gtf` that satisfies these conditions:
 
-- give an example using IF, but simply to illustrate the capability, rather than actually expecting students to learn it
+- on chromosome "3R"
+- starting position is between 1,000,000 and 5,000,000
+- is a protein-coding gene
+
+For an extra point, print out just the gene names rather than entire lines.
+
+<details><summary>Answer</summary>
+<pre>
+awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {print $9}' BDGP6_genes.gtf | cut -f 2 -d ";" | cut -f 2 -d "\""
+</pre>
+</details>
+
 
 
 -------------
 
-## get students to decipher some unholy combination of sed, awk and grep command
+# Exercises
+
+Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that sections now using what you have learnt in this session.
+
+-------------
+
+# Combining everything and more advanced functions
+
+
+
+```
+sed 's|; |\t|g' BDGP6_genes.gtf | \
+  sed -E 's\gene_(id|name|source|biotype) \\g' | \
+  sed 's\[";]\\g' | \
+  grep -v "^#"
+```
+
+Can you explain what the command above does? (*Answer: converts the gtf file to a simple tab-separated file.*)
+
+Re-direct the output to a file: `BDGP6_genes.tsv`.
+
+As `awk` is a programming language, we can write much more complicated conditions using `if` and `else`. Here we have two different "if" conditions, and each have its own matching action to perform:
+
+```
+awk -F "\t" '{
+  if ($1 == "3R" && $12 == "protein_coding" && $4<=1000000)
+     print $10 " is a protein-coding gene";
+  else if ($1 == "2L" && $12 == "snoRNA" && $4 <=1000000)
+     print $10 " is a snoRNA";
+  }' BDGP6_genes.tsv
+```
+
+
+
+
 
 
 
