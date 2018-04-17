@@ -751,7 +751,7 @@ sed 's|; |\t|g' BDGP6_genes.gtf | \
   grep -v "^#"
 ```
 
-Can you explain what the command above does?
+Can you explain what the command above does? (*Answer: converts the gtf file to a simple tab-separated file.*)
 
 Re-direct the output to a file: `BDGP6_genes.tsv`.
 
