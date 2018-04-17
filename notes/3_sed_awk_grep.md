@@ -475,10 +475,19 @@ As exercises, can you explain what each of these `sed` commands are doing?
 
 1. `$ sed 's|ac[n3]|ACX|Ig' small.gtf`
 
-2. `$ sed 's\^2\chr2\' small.gtf`
+2. `$ sed 's\^\chr\' small.gtf`
 
 3. `$ sed 's\;$\\' small.gtf`
 
+
+<details><summary>Answers</summary>
+
+<ol>
+  <li>Change all instances of acn/ac3 (case-insensitive) to ACX
+  <li>Append "chr" to the start of every line
+  <li>Strips off ";" at the end of the line
+</ol>
+</details>
 
 
 
