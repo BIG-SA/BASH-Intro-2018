@@ -189,7 +189,6 @@ You can also search for multiple files at the same time, by:
 
 **`grep`** has many useful options. You can find out all of the available options by reading its help page (`man grep`). We will look at examples of some of the more common options.
 
-### Word-matching
 
 **Example 1 (`-w`)**
 
@@ -202,6 +201,7 @@ However, this will also retrieve entries that match **DDTL**. To retrieve entrie
 `grep -w DDT GRCh38.chr22.ensembl.biomart.txt`
 
 This will match lines that contain the string "`DDT`" which are immediately flanked by non-word constituent characters (word constituent characters are alphanumerics and the underscore) and therefore DDTL will no longer match.
+
 
 **Example 2**
 
@@ -221,6 +221,8 @@ While this works when you are entering commands directly in the command line ter
 
 `$ grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt`
 
+
+
 **Example 3: case sensitivity**
 
 *We will use `BDGP6_genes.gtf` for this example.*
@@ -232,6 +234,9 @@ As you should know by now, unlike Windows, in Linux almost everything is case se
 However, this will return zero results. This is because the gene name used is "zen". So we can perform an case-insensitive search using the option `-i`:
 
 `$ grep -wi Zen BDGP6_genes.gtf`
+
+
+
 
 **Example 4: searching for multiple terms at the same time**
 
@@ -252,21 +257,85 @@ First we need to create a file, and enter the genes of interest one per line. Ca
 However, take care that there are no trailing spaces after the gene names, and there are no empty lines.
 
 
+
+
 **Example 5: inverse search**
 
 We can use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
 
-`grep -w protein_coding BDGP6_genes.gtf`
+`$ grep -w protein_coding BDGP6_genes.gtf`
 
 But if we want to get all *other* entries, we can instead run:
 
-`grep -v protein_coding BDGP6_genes.gtf`
+`$ grep -v protein_coding BDGP6_genes.gtf`
+
+
+
+
 
 **Example 6: simple regular expression**
 
+One of the most useful feature of `grep` is the ability to search using regular expressions.
+However, we don't have the time to cover the full scope of the regular expression support provided by `grep`. But here we will demonstrate a few basic cases.
+
+*1) Wild-cards*
+
+Regular expressions allow us to search beyond exact string matches. The simplest cases are the use of wild-cards. File name wild-cards use `?` and `*` for single and zero-to-multiple character match, respectively. Here, `.` is the only wild-card symbol. For example:
+
+`$ grep -w a.z BDGP6_genes.gtf`
+
+The star symbol `*` is also used, but it means to match any number of the previous character, by itself it does not match anything. So:
+
+- `$ grep * BDGP6_genes.gtf` will return nothing
+- `$ grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
+
+*2) Range search*
+
+`grep` provides a more restrictive pattern matching through the use of square brackets: `[]`. Any letters inside the square brackets is allowed. For example:
+
+- `a[bc]d` will match `abd` and `acd`
+- `a[a-z]e` will match everything from `aaa`, `abe`, ... to `aze`, the dash means a range.
+- `a[0-5]e` will match `a0e`, `a1e`, `a2e`, `a3e`, `a4e` and `a5e`, so range works for numerics too.
+
+The following command is looking for entries with any gene name matching `ada`, `adc`, `ala` and `alc`:
+
 `$ grep -wi A[dl][ac] BDGP6_genes.gtf`
+
+Unfortunately, it is also matching entries that contain gene names like `"tRNA:Ala-AGC"`. So let's be a bit more specific, and search for terms that are flanked by double-quotes:
+
 `$ grep -wi "\"A[dl][ac]\"" BDGP6_genes.gtf`
+
+*3) Exclusion*
+
+We can also use the caret symbol (^) to exclude specific characters.
+For example `A[^dl][ac]` will match any 3-letter term that begins with `A`,
+ends with `a` or `c`, but doesn't have `d` or `l` in the middle. So this command:
+
 `$ grep -wi "\"A[^dl][ac]\"" BDGP6_genes.gtf`
+
+should show lines containing `Ama`, `Apc`, `ara`, `ACC` and `ana`.
+
+*4) Anchoring*
+
+Suppose we want to extract all entries from chromosome 3R from the file `BDGP6_genes.gtf`.
+If we simply run this command:
+
+`$ grep 3R BDGP6_genes.gtf`
+
+there is no guarantee that the string "3R" does not appear somewhere else in the line and not at the beginning. In fact, one of the lines return is matching to the gene name "Rpn13R". Using the option `-w` may help a bit, but what we really want is that the string "3R" appears at the start of the line.
+To do this, we use the caret symbol (^), again.
+
+`$ grep ^3R BDGP6_genes.gtf`
+
+
+
+
+
+
+
+
+
+
 
 Create gene list:
 `cut -f 2 -d ";" BDGP6_genes.gtf   | cut -f 2 -d "\"" | sort > fly_genes`
@@ -274,6 +343,12 @@ Create gene list:
 Look for genes:
 - starts with z
 - starts with a and ends with a numeral
+
+
+
+
+If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching: `-G/--basic-regexp` is the default basic mode, `-E/--extended-regexp` is the extended mode we have used earlier, `-P/--perl-regexp` supports the Perl-style regular expression, while `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup>
+
 
 
 **Exercises**
@@ -313,3 +388,7 @@ Look for genes:
 [4] You can install `ne` by entering `sudo apt install ne` on Ubuntu.
 
 [5] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
+
+[6] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
+
+If you want to perform any benchmarking, you may find the command `time` to be useful. Just add it to the beginning of any command line, e.g.: `$ time grep -v protein_coding BDGP6_genes.gtf`
