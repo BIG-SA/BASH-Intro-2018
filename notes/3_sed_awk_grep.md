@@ -521,7 +521,7 @@ Therefore to save the changes, we can simply redirect to a file:
 As is almost the case, you should **never** redirect the file back to itself, expecting it to have made the changes in place.
 You will simply end up with an empty file!
 
-But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`.
+But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
 
 `$ sed 's\Ac[n3]\&*\' small.gtf > small.gtf` THIS WILL FAIL (data loss!)
 
@@ -529,6 +529,28 @@ But `sed` actually has an option that will allow you to make edits *in-place*: `
 
 Note: On Mac OSX `-i` doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
 
+
+## Exercise: Batch-rename files
+
+In the directory **`3_many_files`**, there are a number of files with only a single digit (e.g. datafile1), this makes it harder to sort the files in numerical order. So ideally we want to rename the files with single digit to double digit:
+
+`mv datafile1 datafile01`
+
+It's a bit tedious to do this one by one, can you write a command line that can do this all in one go?
+
+<details><summary>Answer</summary>
+This command line will generate all the required "mv" commands:
+
+<br>
+<code>ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' </code>
+
+<br>
+<br>
+We can then add "| sh " to the end to execute it all:
+
+<br>
+<code>ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh </code>
+</details>
 
 
 
@@ -563,3 +585,5 @@ Note: On Mac OSX `-i` doesn't work without an argument provided. In GNU sed, `-i
 [6] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
 
 If you want to perform any benchmarking, you may find the command `time` to be useful. Just add it to the beginning of any command line, e.g.: `$ time grep -v protein_coding BDGP6_genes.gtf`
+
+[7] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
