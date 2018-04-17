@@ -59,19 +59,20 @@ cd ~
 mkdir -p BashWk3/files
 cd BashWk3/files
 ```
-(**Q:** What did the `-p` argument do in the above `mkdir` command?)
+
+**Q:** What did the `-p` argument do in the above `mkdir` command?
 
 
-1. Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
+1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
 
   (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
 
-2. Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
+2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
   (*Hint: Refer to last week for details on how to extract a tar archive.*)
 
-3. Use what you have learnt so far and find out:
+3) Use what you have learnt so far and find out:
 
   - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
   - How are the data organised in the file?
@@ -80,7 +81,7 @@ This should create a sub-directory (`3_many_files`) containing 100 files, where 
   - What are the column headers?
   - Which column is "**Gene name**"? How many unique gene names are there in the file?
 
-4. Can you answer the above questions without uncompressing the original file?
+4) Can you answer the above questions without uncompressing the original file?
 
 You should now have some idea of the structure of the data file.
 
@@ -127,21 +128,21 @@ Consider the following questions (try using **nano** to answer them):
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1. What is the first line that contains "**DNAJB7**"? Give line number.
+1) What is the first line that contains "**DNAJB7**"? Give line number.
   <details><summary>Hint:</summary>
   You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
   </details>  
 
-2. How many lines contain "**DNAJB7**"?
+2) How many lines contain "**DNAJB7**"?
 
   <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
   </details>  
 
-3. How many lines contain "**RBX1**"?  
+3) How many lines contain "**RBX1**"?  
 
-4. In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
 
-5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
+5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
 
 <details><summary>**Answers**</summary>
 
@@ -158,14 +159,13 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 Now look into the files in the created sub-directory `3_many_files`.  
 
-1 - Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
 
-2 - Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
+2() Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
 (*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
   <details><summary>**Answers**</summary>
 
   1. There is an entry for MAPK11, but not MAPK1.
-
   2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
   datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
@@ -681,14 +681,16 @@ While it was possible, we could not guarantee that the output was absolutely cor
 
 However in `awk`, we would run a command line like:
 
-`$ awk -F "\t" '$16=="transport" {print $0}' GRCh38.chr22.ensembl.biomart.txt  `
+```
+awk -F "\t" '$16=="transport" {print $0}' GRCh38.chr22.ensembl.biomart.txt
+```
 
 Let's break the command line down into components:
 
-- ` awk `
-- ` -F "\t" `
-- ` '$16=="transport" {print $0}' `
-- `  GRCh38.chr22.ensembl.biomart.txt `
+1. ` awk `
+2. ` -F "\t" `
+3. ` '$16=="transport" {print $0}' `
+4. `  GRCh38.chr22.ensembl.biomart.txt `
 
 1) `awk` is simply calling the `awk` command, while the last part `GRCh38.chr22.ensembl.biomart.txt` specifies the input file. `awk` also accepts `stdin`.
 
@@ -700,12 +702,12 @@ In this example, the program is relatively simple, consists of only a single rul
 `pattern { action }`
 
 In this example, the pattern is `$16=="transport"`, meaning that the 16th term (separated by tab) is exactly equal to "transport" (string values are enclosed in quotation marks). We can use `!=` to specify "not equal to".
-
 Once `awk` finds a line that matches the specified pattern, it performs the action stated in `{ }`, which in this case is: `print $0`, simply meaning to print the entire line.
-
 Alternatively, we can also print just the chromosome ($3), positions ($4, $5) and gene name ($12):
 
-`$ awk -F "\t" '$16=="transport" {print $3 $4 $5 $12 $16}' GRCh38.chr22.ensembl.biomart.txt  `
+```
+awk -F "\t" '$16=="transport" {print $3 $4 $5 $12 $16}' GRCh38.chr22.ensembl.biomart.txt
+```
 
 However, if you run the command line above, you'll notice that the values are not separated. This means that:
 
@@ -714,34 +716,41 @@ However, if you run the command line above, you'll notice that the values are no
 
 Try this instead:
 
-`$ awk -F "\t" '$16=="transport" {print "chr" $3 ":" $4 "-" $5 "\t" $12 "\t" $16}' GRCh38.chr22.ensembl.biomart.txt  `
+```
+awk -F "\t" '$16=="transport" {print "chr" $3 ":" $4 "-" $5 "\t" $12 "\t" $16}' GRCh38.chr22.ensembl.biomart.txt  
+```
 
 Remember that string values need to be enclosed in quotation marks.
-
 Other than exact matching using "==", `awk` also supports partial matching and regular expression. We won't go into regular expression here, but to retrieve list of genes and GO term where the GO term contains "process", we can run:
 
-`$ awk -F "\t" '$16~"process" {print $16 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq `
+```
+awk -F "\t" '$16~"process" {print $16 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq
+```
 
 This will match lines with "process" anywhere in the 16th column. We can also use `^` and `$` to match to the start and end, similar to `grep` and `sed`.
 
-
 ## Numerical searching
 
-One of the big advantage of `awk` is that it is able to perform range comparison. For example, the file `GRCh38.chr22.ensembl.biomart.txt` has "Gene start (bp)" (col 4) and "Gene end (bp)" (col 5). If we want to extract entries within a specific range, it is very difficult to do in `grep` for two main reasons:
+One of the big advantage of `awk` is that it is able to perform range comparison.
+For example, the file `GRCh38.chr22.ensembl.biomart.txt` has "Gene start (bp)" (col 4) and "Gene end (bp)" (col 5).
+If we want to extract entries within a specific range, it is very difficult to do in `grep` for two main reasons:
 
 - `grep` does not have true numerical comparison
 - `grep` cannot search for values in a specific column
 
 Whereas in `awk`, if we want to find genes where "Gene start" value is less than 16,000,000, we can simply run:
 
-`awk -F "\t" '$4 < 16000000 {print $4 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq`
-
+```
+awk -F "\t" '$4 < 16000000 {print $4 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq
+```
 
 ## Combining search patterns
 
 We can combine multiple search patterns using `&&` (and) and `||` (or). For example:
 
-`awk -F "\t" '$7=="q12.1" && $16=="transport"' GRCh38.chr22.ensembl.biomart.txt`
+```
+awk -F "\t" '$7=="q12.1" && $16=="transport"' GRCh38.chr22.ensembl.biomart.txt
+```
 
 The command above requires two conditions to be met:
 
@@ -766,8 +775,6 @@ awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {prin
 </pre>
 </details>
 
-
-
 -------------
 
 # Exercises
@@ -777,7 +784,6 @@ Go back to [Working with large files or many files](#working-with-large-files-or
 -------------
 
 # Combining everything and more advanced functions
-
 
 
 ```
@@ -801,11 +807,6 @@ awk -F "\t" '{
      print $10 " is a snoRNA";
   }' BDGP6_genes.tsv
 ```
-
-
-
-
-
 
 
 -------------
