@@ -327,33 +327,49 @@ To do this, we use the caret symbol (^), again.
 
 `$ grep ^3R BDGP6_genes.gtf`
 
+The caret symbol tells `grep` to look for "3R" only at the beginning of the line.
 
-
-
-
-
-
-
-
-
-
-Create gene list:
-`cut -f 2 -d ";" BDGP6_genes.gtf   | cut -f 2 -d "\"" | sort > fly_genes`
-
-Look for genes:
-- starts with z
-- starts with a and ends with a numeral
-
-
-
-
-If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching: `-G/--basic-regexp` is the default basic mode, `-E/--extended-regexp` is the extended mode we have used earlier, `-P/--perl-regexp` supports the Perl-style regular expression, while `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup>
-
+Similarly we use dollar sign ($) to look for strings anchor at the end of the line.
 
 
 **Exercises**
 
-1. Look up the help page to see which option can provide the line number of search output.
+1. Create a list of gene names from BDGP6_genes.gtf:
+
+  `$ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes`
+
+  Can you explain what the command above is doing? A good way of testing a complex command line
+  is to simply break it down and examine the output from each section.
+  ```
+  $ cut -f 2 -d ";" BDGP6_genes.gtf
+  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\""
+  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#"
+  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+  ```
+
+2. Extract from the file created above ("fly_genes") gene names that:
+  - start with "z"
+  - start with "a" and ends with a numeral
+  - contain non-alphanumerics
+  - contain a dot `.`
+
+  <details><summary>Answers</summary>
+  <ul>
+    <li><code>$ grep ^z fly_genes</code>
+    <li><code>$ grep ^a.*[0-9]$ fly_genes</code> or <code>$ grep ^a fly_genes | grep [0-9]$</code>
+    <li><code>$ grep [^a-z0-9] fly_genes</code>
+    <li><code>$ grep "\." fly_genes </code>
+  </ul>
+  </details>
+
+3. Look up the help page to see which option can provide the line number of search output.
+[//]: **
+
+** More `grep` functions **
+
+If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching: `-G/--basic-regexp` is the default basic mode, `-E/--extended-regexp` is the extended mode we have used earlier, `-P/--perl-regexp` supports the Perl-style regular expression, while `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
+
+Unfortunately we don't have time to cover it all in this session, but if you wish to learn more about it, you should look up `grep` tutorials online.
 
 -------------
 
