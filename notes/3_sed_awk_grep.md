@@ -84,6 +84,33 @@ For this session, we need to prepare some data files for demonstration.
 
 You should now have some idea of the structure of the data file.
 
+The list of column names below will be useful:
+
+```
+1	Gene stable ID
+2	Transcript stable ID
+3	Chromosome/scaffold name
+4	Gene start (bp)
+5	Gene end (bp)
+6	Strand
+7	Karyotype band
+8	Transcript start (bp)
+9	Transcript end (bp)
+10	Transcription start site (TSS)
+11	Transcript length (including UTRs and CDS)
+12	Gene name
+13	Gene type
+14	Transcript type
+15	Gene % GC content
+16	GO term name
+17	GO term definition
+18	GO domain
+19	HGNC symbol
+20	Reactome ID
+21	Gene description
+```
+
+
 We will also need the file `BDGP6_genes.gtf` from previous session.
 
 -----
@@ -557,14 +584,105 @@ We can then add "| sh " to the end to execute it all:
 -------------
 
 # `awk`
-- introduce only the simplest mode
-- most useful for working with tabulated data
-- can search for values in specific columns
-- can format output more easily than sed, e.g. can print specific columns
+
+`awk` is a a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
+
+Some of the most important (or most commonly used) features of `awk` are:
+
+- typically used with tabulated data files (.csv or .tsv)
+- can perform numerical comparison
+- can format output more easily than `sed`
+
+Again, as this workshop is based on GNU awk, some of the commands may not work correctly in Mac OSX.
+
+## Text searching
+
+In one of the examples for `grep`, we wanted to search for entries which have "transport" as value in the "GO term name" column.
+While it was possible, we could not guarantee that the output was absolutely correct, since `grep` doesn't have the ability to specify the location (column) in a line.
+
+However in `awk`, we would run a command line like:
+
+`$ awk -F "\t" '$16=="transport" {print $0}' GRCh38.chr22.ensembl.biomart.txt  `
+
+Let's break the command line down into components:
+
+- ` awk `
+- ` -F "\t" `
+- ` '$16=="transport" {print $0}' `
+- `  GRCh38.chr22.ensembl.biomart.txt `
+
+1) `awk` is simply calling the `awk` command, while the last part specifies the input file. `awk` also accepts `stdin`
+ so we can also just pipe the output from another command into `awk`.
+
+2) the second part `-F "\t"` is not entirely necessary, it says that the separator (`-F`) used for this command is the tab character (`"\t"`). `awk` can do perform some auto-detection to check whether the separator is space, comma or tab, but it doesn't always get it right, so sometimes it is safer to explicitly specify the separator.
+
+3) the third part is the "program", analogous to the SCRIPT in `sed`. It tells `awk` how to process the input data.
+In this example, the program is relatively simple, consists of only a single rule, which have the format of:
+
+`pattern { action }`
+
+In this example, the pattern is `$16=="transport"`, meaning that the 16th term (separated by tab) is exactly equal to "transport" (string values are enclosed in quotation marks). We can use `!=` to specify "not equal to".
+
+Once `awk` finds a line that matches the specified pattern, it performs the action stated in `{ }`, which in this case is: `print $0`, simply meaning to print the entire line.
+
+Alternatively, we can also print just the chromosome ($3), positions ($4, $5) and gene name ($12):
+
+`$ awk -F "\t" '$16=="transport" {print $3 $4 $5 $12 $16}' GRCh38.chr22.ensembl.biomart.txt  `
+
+However, if you run the command line above, you'll notice that the values are not separated. This means that:
+
+- `-F` applies to only the input
+- if not printing the entire line, we need to be more specific about how to print the output.
+
+Try this instead:
+
+`$ awk -F "\t" '$16=="transport" {print "chr" $3 ":" $4 "-" $5 "\t" $12 "\t" $16}' GRCh38.chr22.ensembl.biomart.txt  `
+
+Remember that string values need to be enclosed in quotation marks.
+
+Other than exact matching using "==", `awk` also supports partial matching and regular expression. We won't go into regular expression here, but to retrieve list of genes and GO term where the GO term contains "process", we can run:
+
+`$ awk -F "\t" '$16~"process" {print $16 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq `
+
+This will match lines with "process" anywhere in the 16th column. We can also use `^` and `$` to match to the start and end, similar to `grep` and `sed`.
+
+
+## Numerical searching
+
+One of the big advantage of `awk` is that it is able to perform range comparison. For example, the file `GRCh38.chr22.ensembl.biomart.txt` has "Gene start (bp)" (col 4) and "Gene end (bp)" (col 5). If we want to extract entries within a specific range, it is very difficult to do in `grep` for two main reasons:
+
+- `grep` does not have true numerical comparison
+- `grep` cannot search for values in a specific column
+
+Whereas in `awk`, if we want to find genes where "Gene start" value is less than 16,000,000, we can simply run:
+
+`awk -F "\t" '$4 < 16000000 {print $4 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq`
+
+
+## Combining search patterns
+
+We can combine multiple search patterns using `&&` (and) and `||` (or). For example:
+
+`awk -F "\t" '$7=="q12.1" && $16=="transport"' GRCh38.chr22.ensembl.biomart.txt`
+
+The command above requires two conditions to be met:
+
+- `$7=="q12.1"`: Karyotype band is "q12.1"
+- `$16=="transport"`: GO term is "transport"
+
+You may have noticed that no action is specified in the command. In such cases, the default behaviour of `awk` is to print the entire line.
+
+
+## More advanced functions
+
+- give an example using IF, but simply to illustrate the capability, rather than actually expecting students to learn it
+
 
 -------------
 
 ## get students to decipher some unholy combination of sed, awk and grep command
+
+
 
 -------------
 
@@ -587,3 +705,5 @@ We can then add "| sh " to the end to execute it all:
 If you want to perform any benchmarking, you may find the command `time` to be useful. Just add it to the beginning of any command line, e.g.: `$ time grep -v protein_coding BDGP6_genes.gtf`
 
 [7] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
+
+[8] The GNU awk language manual: https://www.gnu.org/software/gawk/manual/gawk.html
