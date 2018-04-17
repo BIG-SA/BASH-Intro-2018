@@ -585,7 +585,7 @@ We can then add "| sh " to the end to execute it all:
 
 # `awk`
 
-`awk` is a a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
+`awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
 
 Some of the most important (or most commonly used) features of `awk` are:
 
@@ -611,10 +611,9 @@ Let's break the command line down into components:
 - ` '$16=="transport" {print $0}' `
 - `  GRCh38.chr22.ensembl.biomart.txt `
 
-1) `awk` is simply calling the `awk` command, while the last part specifies the input file. `awk` also accepts `stdin`
- so we can also just pipe the output from another command into `awk`.
+1) `awk` is simply calling the `awk` command, while the last part `GRCh38.chr22.ensembl.biomart.txt` specifies the input file. `awk` also accepts `stdin`.
 
-2) the second part `-F "\t"` is not entirely necessary, it says that the separator (`-F`) used for this command is the tab character (`"\t"`). `awk` can do perform some auto-detection to check whether the separator is space, comma or tab, but it doesn't always get it right, so sometimes it is safer to explicitly specify the separator.
+2) the second part `-F "\t"` is not entirely necessary. It specifies that the separator (`-F`) to be used for this command is the tab character (`"\t"`). `awk` can do perform some auto-detection to check whether the separator is space, comma or tab, but it doesn't always get it right, so sometimes it is safer to explicitly specify the separator.
 
 3) the third part is the "program", analogous to the SCRIPT in `sed`. It tells `awk` how to process the input data.
 In this example, the program is relatively simple, consists of only a single rule, which have the format of:
