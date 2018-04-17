@@ -365,7 +365,7 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
 3. Look up the help page to see which option can provide the line number of search output.
 [//]: **
 
-** More `grep` functions **
+**More `grep` functions**
 
 If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching: `-G/--basic-regexp` is the default basic mode, `-E/--extended-regexp` is the extended mode we have used earlier, `-P/--perl-regexp` supports the Perl-style regular expression, while `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
 
@@ -373,7 +373,13 @@ Unfortunately we don't have time to cover it all in this session, but if you wis
 
 -------------
 
-# `sed` : stream editor
+# `sed`
+
+While `grep` is excellent at searching, it essentially only performs queries and does not allow us to edit the output.
+For that we need different tools.
+
+`sed` stands for Stream EDitor.
+
 - just the most basic form: 's\search\replace\'
 - can search but also edit contents
 
