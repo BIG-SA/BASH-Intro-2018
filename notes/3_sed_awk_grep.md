@@ -127,21 +127,17 @@ Consider the following questions (try using **nano** to answer them):
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1. What is the first line that contains "**DNAJB7**"? Give line number.
+1 - What is the first line that contains "**DNAJB7**"? Give line number.
+<details><summary>Hint:</summary>
+  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
+</details>  
+2 - How many lines contain "**DNAJB7**"?
 
-  <details><summary>Hint:</summary>
-  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.</details>
-
-2. How many lines contain "**DNAJB7**"?
-
-  <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.</details>
-
-3. How many lines contain "**RBX1**"?
-
-4. In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
-
-5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
-
+<details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
+</details>  
+3 - How many lines contain "**RBX1**"?  
+4 - In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+5 - Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
 <details>
 <summary>**Answers**</summary>
 
@@ -150,17 +146,12 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 3. Too many to count in **nano** (but the answer is 5775).
 4. Too hard in **nano** (answer is 36).
 5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+</details>  
+Now look into the files in the created sub-directory `3_many_files`.  
 
-</details>
-
-Now look into the files in the created sub-directory `3_many_files`.
-
-1. Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?
-
-2. Which files in **`3_many_files`** directory contain entries for "MAPK1"?
-
-(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)
-
+1 - Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+2 - Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
+(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
 <details>
 <summary>**Answers**</summary>
 
@@ -168,16 +159,13 @@ Now look into the files in the created sub-directory `3_many_files`.
 2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
 datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
-</details>
+</details>  
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
-
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
+In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.  
 
-In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.
-
-
-----
+-----
 
 ### Primer on Linux Command Structure
 
@@ -185,91 +173,117 @@ Before we introduce these tools, you may find it useful to familiarise yourself
 with [the structure (or syntax) of a typical Linux command](extra_command_syntax.md).
 However, feel free to continue on if you already understand the topic.
 
-----
+-----
 
 
 # `grep`
 
 **`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
 
-`$ grep [PATTERN] [FILE]`
+```
+grep [PATTERN] [FILE]
+```
 
 which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`, we would enter:
 
-`$ grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt`
+```
+grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt
+```
 
 By default, **`grep`** prints every line that contains at least one instance of search pattern. (In modern terminal programs, matching strings in each line will be highlighted.)
 
 You can also search for multiple files at the same time, by:
 
-1. Providing multiple file names:
+- Providing multiple file names:
 
-  `$ grep DNAJB7 3_many_files/datafile1 3_many_files/datafile2`
+```
+grep DNAJB7 3_many_files/datafile1 3_many_files/datafile2
+```
 
-2. Or by using file name wild-cards:
+- Or by using file name wild-cards:
 
-  `$ grep DNAJB7 3_many_files/datafile2?`
+```
+grep DNAJB7 3_many_files/datafile2?
+```
 
-  `$ grep DNAJB7 3_many_files/*`
+```
+grep DNAJB7 3_many_files/*
+```
 
-**`grep`** has many useful options. You can find out all of the available options by reading its help page (`man grep`). We will look at examples of some of the more common options.
+**`grep`** has many useful options. You can find out all of the available options by reading its help page (`man grep` or `grep --help`). We will look at examples of some of the more common options.
 
 
-**Example 1 (`-w`)**
+#### Example 1 (`-w`)
+{:.no_toc}
 
 If we want to retrieve entries related to **DDT** gene, we may try a command like:
 
-`grep DDT GRCh38.chr22.ensembl.biomart.txt`
+```
+grep DDT GRCh38.chr22.ensembl.biomart.txt
+```
 
-However, this will also retrieve entries that match **DDTL**. To retrieve entries which are only related to DDT, we can use the `-w` option:
+However, this will also retrieve entries that match **DDTL**.
+To retrieve entries which are only related to DDT, we can use the `-w` option:
 
-`grep -w DDT GRCh38.chr22.ensembl.biomart.txt`
+```
+grep -w DDT GRCh38.chr22.ensembl.biomart.txt
+```
 
 This will match lines that contain the string "`DDT`" which are immediately flanked by non-word constituent characters (word constituent characters are alphanumerics and the underscore) and therefore DDTL will no longer match.
 
 
-**Example 2**
+#### Example 2
+{:.no_toc}
 
 One of the columns in the file is "**GO term name**". If we want to search for entries for which the value in this column is "transport", we may try something like:
 
-`$ grep -w transport GRCh38.chr22.ensembl.biomart.txt`
+```
+grep -w transport GRCh38.chr22.ensembl.biomart.txt
+```
 
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
 
 This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport". In other words, we are looking for the string "`[tab]transport[tab]`":
 
-`$ grep "[tab]transport[tab]" GRCh38.chr22.ensembl.biomart.txt`
+```
+grep "[tab]transport[tab]" GRCh38.chr22.ensembl.biomart.txt
+```
 
-To enter an actual [tab] character, you need to use the key sequence: [Ctrl-V][tab]. Just pressing the [tab] key will not work.
+To enter an actual [tab] character, you need to **use the key sequence:*** `[Ctrl-V][tab]`. Just pressing the `[tab]` key will not work.
 
-While this works when you are entering commands directly in the command line terminal, it will not work in a script (as you will see in the next lesson). So the alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
+While this works when you are entering commands directly in the command line terminal, it will not work in a script (as you will see in the next session). So the alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
 
-`$ grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt`
+```
+grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt
+```
 
-
-
-**Example 3: case sensitivity**
+#### Example 3: case sensitivity
+{:.no_toc}
 
 *We will use `BDGP6_genes.gtf` for this example.*
 
 As you should know by now, unlike Windows, in Linux almost everything is case sensitive. If we want to search for the entry for a gene "Zen", we can try:
 
-`$ grep -w Zen BDGP6_genes.gtf`
+```
+grep -w Zen BDGP6_genes.gtf
+```
 
 However, this will return zero results. This is because the gene name used is "zen". So we can perform an case-insensitive search using the option `-i`:
 
-`$ grep -wi Zen BDGP6_genes.gtf`
+```
+grep -wi Zen BDGP6_genes.gtf
+```
 
-
-
-
-**Example 4: searching for multiple terms at the same time**
+#### Example 4: searching for multiple terms at the same time
+{:.no_toc}
 
 If we want to extract the entries for genes "Ada" and "Zen", we can search for them separately, but this can become tedious quickly.
 
 One method to search for multiple terms at the same time is to use *extended* grep, which is enabled by the option `-E`. (Or simply use the command `egrep`, which is the same as `grep -E`):
 
-`$ grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf`
+```
+grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf
+```
 
 While this may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
 
@@ -277,44 +291,51 @@ For example if we want to search for these genes: Ace, Ada, Zen, Alc, Alh, Bdp1,
 
 First we need to create a file, and enter the genes of interest one per line. Call this file "gene_names". Then we can perform the search by:
 
-`$ grep -wif gene_names BDGP6_genes.gtf`
+```
+grep -wif gene_names BDGP6_genes.gtf
+```
 
 However, take care that there are no trailing spaces after the gene names, and there are no empty lines.
 
 
-
-
-**Example 5: inverse search**
+#### Example 5: inverse search
+{:.no_toc}
 
 We can use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
 
-`$ grep -w protein_coding BDGP6_genes.gtf`
+```
+grep -w protein_coding BDGP6_genes.gtf
+```
 
 But if we want to get all *other* entries, we can instead run:
 
-`$ grep -v protein_coding BDGP6_genes.gtf`
+```
+grep -v protein_coding BDGP6_genes.gtf
+```
 
 
-
-
-
-**Example 6: simple regular expression**
+#### Example 6: simple regular expression
+{:.no_toc}
 
 One of the most useful feature of `grep` is the ability to search using regular expressions.
 However, we don't have the time to cover the full scope of the regular expression support provided by `grep`. But here we will demonstrate a few basic cases.
 
-*1) Wild-cards*
+## Wild-cards
 
-Regular expressions allow us to search beyond exact string matches. The simplest cases are the use of wild-cards. File name wild-cards use `?` and `*` for single and zero-to-multiple character match, respectively. Here, `.` is the only wild-card symbol. For example:
+Regular expressions allow us to search beyond exact string matches.
+The simplest cases are the use of wild-cards. File name wild-cards use `?` and `*` for single and zero-to-multiple character match, respectively.
+**Here, `.` is the only wild-card symbol**. For example:
 
-`$ grep -w a.z BDGP6_genes.gtf`
+```
+grep -w a.z BDGP6_genes.gtf
+```
 
 The star symbol `*` is also used, but it means to match any number of the previous character, by itself it does not match anything. So:
 
-- `$ grep * BDGP6_genes.gtf` will return nothing
-- `$ grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
+- `grep * BDGP6_genes.gtf` will return nothing
+- `grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
 
-*2) Range search*
+## Range search
 
 `grep` provides a more restrictive pattern matching through the use of square brackets: `[]`. Any letters inside the square brackets is allowed. For example:
 
@@ -324,83 +345,96 @@ The star symbol `*` is also used, but it means to match any number of the previo
 
 The following command is looking for entries with any gene name matching `ada`, `adc`, `ala` and `alc`:
 
-`$ grep -wi A[dl][ac] BDGP6_genes.gtf`
+```
+grep -wi A[dl][ac] BDGP6_genes.gtf
+```
 
 Unfortunately, it is also matching entries that contain gene names like `"tRNA:Ala-AGC"`. So let's be a bit more specific, and search for terms that are flanked by double-quotes:
 
-`$ grep -wi "\"A[dl][ac]\"" BDGP6_genes.gtf`
+```
+grep -wi "\"A[dl][ac]\"" BDGP6_genes.gtf
+```
 
-*3) Exclusion*
+## Exclusion
 
-We can also use the caret symbol (^) to exclude specific characters.
+We can also use the caret symbol (`^`) to exclude specific characters.
 For example `A[^dl][ac]` will match any 3-letter term that begins with `A`,
 ends with `a` or `c`, but doesn't have `d` or `l` in the middle. So this command:
 
-`$ grep -wi "\"A[^dl][ac]\"" BDGP6_genes.gtf`
+```
+grep -wi "\"A[^dl][ac]\"" BDGP6_genes.gtf
+```
 
 should show lines containing `Ama`, `Apc`, `ara`, `ACC` and `ana`.
 
-*4) Anchoring*
+## Anchoring
 
 Suppose we want to extract all entries from chromosome 3R from the file `BDGP6_genes.gtf`.
 If we simply run this command:
 
-`$ grep 3R BDGP6_genes.gtf`
+```
+grep 3R BDGP6_genes.gtf
+```
 
 there is no guarantee that the string "3R" does not appear somewhere else in the line and not at the beginning. In fact, one of the lines return is matching to the gene name "Rpn13R". Using the option `-w` may help a bit, but what we really want is that the string "3R" appears at the start of the line.
 To do this, we use the caret symbol (^), again.
 
-`$ grep ^3R BDGP6_genes.gtf`
+```
+grep ^3R BDGP6_genes.gtf
+```
 
 The caret symbol tells `grep` to look for "3R" only at the beginning of the line.
-
 Similarly we use dollar sign ($) to look for strings anchor at the end of the line.
 
 
-**Exercises**
+#### Exercises
+{:.no_toc}
 
-1. Create a list of gene names from BDGP6_genes.gtf:
+1) Create a list of gene names from BDGP6_genes.gtf:
 
-  `$ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes`
+```
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+```
 
-  Can you explain what the command above is doing? A good way of testing a complex command line
-  is to simply break it down and examine the output from each section.
-  ```
-  $ cut -f 2 -d ";" BDGP6_genes.gtf
-  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\""
-  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#"
-  $ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
-  ```
+Can you explain what the command above is doing? A good way of testing a complex command line is to simply break it down and examine the output from each section.
 
-2. Extract from the file created above ("fly_genes") gene names that:
-  - start with "z"
-  - start with "a" and ends with a numeral
-  - contain non-alphanumerics
-  - contain a dot `.`
+```
+cut -f 2 -d ";" BDGP6_genes.gtf
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\""
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#"
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+```
 
-  <details><summary>Answers</summary>
+2) Extract from the file created above ("fly_genes") gene names that:
+
+- start with "z"
+- start with "a" and ends with a numeral
+- contain non-alphanumerics
+- contain a dot `.`  
+
+<details><summary>Answers</summary>
   <ul>
     <li>`$ grep ^z fly_genes`
     <li>`$ grep ^a.*[0-9]$ fly_genes` or `$ grep ^a fly_genes | grep [0-9]$`
     <li>`$ grep [^a-z0-9] fly_genes`
     <li>`$ grep "\." fly_genes `
   </ul>
-  </details>
+</details>  
 
-3. Look up the help page to see which option can provide the line number of search output.
+3) Look up the help page to see which option can provide the line number of search output.
 
-<!--- **
--->
 
-**More `grep` functions**
 
-If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching: `-G/--basic-regexp` is the default basic mode, `-E/--extended-regexp` is the extended mode we have used earlier, `-P/--perl-regexp` supports the Perl-style regular expression, while `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
+## More `grep` functions
+
+If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching:
+
+1. `-G/--basic-regexp` is the default basic mode;
+2. `-E/--extended-regexp` is the extended mode we have used earlier;
+3. `-P/--perl-regexp` supports the Perl-style regular expression, while;
+4. `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
 
 Unfortunately we don't have time to cover it all in this session, but if you wish to learn more about it, you should look up `grep` tutorials online.
-
-
-
-
 
 -------------
 
