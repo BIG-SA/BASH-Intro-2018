@@ -127,39 +127,48 @@ Consider the following questions (try using **nano** to answer them):
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1 - What is the first line that contains "**DNAJB7**"? Give line number.
+1. What is the first line that contains "**DNAJB7**"? Give line number.
 <details><summary>Hint:</summary>
   You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
 </details>  
-2 - How many lines contain "**DNAJB7**"?
+
+2. How many lines contain "**DNAJB7**"?
 
 <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
 </details>  
-3 - How many lines contain "**RBX1**"?  
-4 - In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
-5 - Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
-<details>
-<summary>**Answers**</summary>
 
+3. How many lines contain "**RBX1**"?  
+
+4. In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+
+5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
+
+<details><summary>**Answers**</summary>
 1. 55151
+
 2. 1 line only
+
 3. Too many to count in **nano** (but the answer is 5775).
+
 4. Too hard in **nano** (answer is 36).
+
 5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
 </details>  
+
 Now look into the files in the created sub-directory `3_many_files`.  
 
 1 - Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+
 2 - Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
 (*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
-<details>
-<summary>**Answers**</summary>
+  <details><summary>**Answers**</summary>
 
-1. There is an entry for MAPK11, but not MAPK1.
-2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
-datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
+  1. There is an entry for MAPK11, but not MAPK1.
 
-</details>  
+  2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
+  datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
+
+  </details>  
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
