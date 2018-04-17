@@ -23,44 +23,32 @@ There are a couple important caveats to remember when using Nano:
 
 
 <ol>
-<li> <b>Nano</b>/<b>Pico</b>:  Nano is an easy to use text editor. On most Linux systems, just type <code>nano</code> to start the program (or <code>pico</code>, the command <code>pico</code> is often soft-linked to <code>nano</code><sup>[1]</sup>). To quit, hold [Ctrl] and press X (^X).
-There are a couple important caveats to remember when using Nano:
 
-<ul>
-<li> Nano will load the entire file into memory, so it may take a while when working with large files.
-
-<li> Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by <code>-w</code> option.
-</ul>
-
-![Nano screenshot](../images/3_nano_screenshot.png)
-
-<br><br>
-
-<li> <b>vi</b>/<b>vim</b>: <b>vi</b> is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
-To start <b>vi</b>, just enter <code>vi</code>. If you are using a recent Linux distribution, you may notice that it is actually running <b>vim</b>.
+<li> **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
+To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 
   <br>
-  <b>To quit:</b> type <code>:q</code>
+  **To quit:** type `:q`
   <br>
 
   ![vi screentshot](../images/3_vi_screenshot.png)
 
 <br><br>
 
-<li> <b>Emacs</b>: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether <b>vi</b> or <b>Emacs</b> is better. To start Emacs, just enter <code>emacs</code>. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type <code>emacs -nw</code>.
+<li> **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
 
   <br>
-  <b>To quit:</b> type <code>^x^c</code> (i.e. <code>[Ctrl]-X [Ctrl]-C</code>, or in Emacs shorthand: <code>C-x  C-c</code>).<sup>[3]</sup>
+  **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
   <br>
 
   ![vi screentshot](../images/3_emacs_screenshot.png)
 
 <br><br>
 
-<li> <b>ne</b> (<b>n</b>ice <b>e</b>ditor) is intended to be easier to use than <b>vi</b>, but more functional than <b>nano</b>. Start by <b>ne</b> by entering <code>ne</code>.<sup>[4]</sup>
+<li> **ne** (**n**ice **e**ditor) is intended to be easier to use than **vi**, but more functional than **nano**. Start by **ne** by entering `ne`.<sup>[4]</sup>
 
   <br>
-  If you are stuck in <code>ne</code>, press [Esc] twice to display the program menu.
+  If you are stuck in `ne`, press [Esc] twice to display the program menu.
   <br>
 
   ![vi screentshot](../images/3_ne_screenshot.png)
@@ -135,11 +123,11 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 1. What is the first line that contains "**DNAJB7**"? Give line number.
 
   <details><summary>Hint:</summary>
-  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.</details>
+  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.</details>
 
 2. How many lines contain "**DNAJB7**"?
 
-  <details><summary>Hint:</summary>Use <code>M-W</code> (<code>[Alt]-W</code>) to repeat search.</details>
+  <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.</details>
 
 3. How many lines contain "**RBX1**"?
 
@@ -148,12 +136,12 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 5. Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
 <details>
-<summary><b>Answers</b></summary>
+<summary>**Answers**</summary>
 <ol>
 <li> 55151
 <li> 1 line only
-<li> Too many to count in <b>nano</b> (but the answer is 5775).
-<li> Too hard in <b>nano</b> (answer is 36).
+<li> Too many to count in **nano** (but the answer is 5775).
+<li> Too hard in **nano** (answer is 36).
 <li> Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
 </ol>
 </details>
@@ -167,7 +155,7 @@ Now look into the files in the created sub-directory **`3_many_files`**.
 2. Which files in **`3_many_files`** directory contain entries for "MAPK1"?
 
 <details>
-<summary><b>Answers</b></summary>
+<summary>**Answers**</summary>
 
 <ol>
 <li> There is an entry for MAPK11, but not MAPK1.
@@ -391,10 +379,10 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
 
   <details><summary>Answers</summary>
   <ul>
-    <li><code>$ grep ^z fly_genes</code>
-    <li><code>$ grep ^a.*[0-9]$ fly_genes</code> or <code>$ grep ^a fly_genes | grep [0-9]$</code>
-    <li><code>$ grep [^a-z0-9] fly_genes</code>
-    <li><code>$ grep "\." fly_genes </code>
+    <li>`$ grep ^z fly_genes`
+    <li>`$ grep ^a.*[0-9]$ fly_genes` or `$ grep ^a fly_genes | grep [0-9]$`
+    <li>`$ grep [^a-z0-9] fly_genes`
+    <li>`$ grep "\." fly_genes `
   </ul>
   </details>
 
@@ -446,7 +434,7 @@ First, let's prepare a smaller file so that it's easier to see how `sed` functio
 Extract from `BDGP6_genes.gtf` all entries that contain "Ac3", "ADD1", and "Acn"
 into a file, "small.gtf".
   <details><summary>howto:</summary>
-  <code>egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf</code>
+  `egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf`
   </details>
 
 A basic `sed` command has this form:
@@ -578,14 +566,14 @@ It's a bit tedious to do this one by one, can you write a command line that can 
 This command line will generate all the required "mv" commands:
 
 <br>
-<code>ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' </code>
+`ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' `
 
 <br>
 <br>
 We can then add "| sh " to the end to execute it all:
 
 <br>
-<code>ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh </code>
+`ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh `
 </details>
 
 
