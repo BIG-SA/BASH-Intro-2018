@@ -21,42 +21,22 @@ There are a couple important caveats to remember when using Nano:
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
 
-
-<ol>
-
-<li> **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
+- **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
+- **To quit:** type `:q`
 
-  <br>
-  **To quit:** type `:q`
-  <br>
+![vi screenshot](../images/3_vi_screenshot.png)
 
-  ![vi screentshot](../images/3_vi_screenshot.png)
+- **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
+- **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
 
-<br><br>
+![emacs screenshot](../images/3_emacs_screenshot.png)
 
-<li> **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
+- **ne** (**n**ice **e**ditor) is intended to be easier to use than **vi**, but more functional than **nano**.
+Start by **ne** by entering `ne`.<sup>[4]</sup>
+- If you are stuck in `ne`, press [Esc] twice to display the program menu.
 
-  <br>
-  **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
-  <br>
-
-  ![vi screentshot](../images/3_emacs_screenshot.png)
-
-<br><br>
-
-<li> **ne** (**n**ice **e**ditor) is intended to be easier to use than **vi**, but more functional than **nano**. Start by **ne** by entering `ne`.<sup>[4]</sup>
-
-  <br>
-  If you are stuck in `ne`, press [Esc] twice to display the program menu.
-  <br>
-
-  ![vi screentshot](../images/3_ne_screenshot.png)
-
-</ol>
-
-<br><br><br><br>
-
+![ne screenshot](../images/3_ne_screenshot.png)
 
 -----
 
