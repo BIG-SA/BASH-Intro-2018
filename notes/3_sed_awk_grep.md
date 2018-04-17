@@ -363,7 +363,9 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
   </details>
 
 3. Look up the help page to see which option can provide the line number of search output.
-[//]: **
+
+<!--- **
+-->
 
 **More `grep` functions**
 
