@@ -12,7 +12,7 @@ The most important thing to note is that the command line *always* starts with a
 
 ## Options and arguments
 
-Options are settings built into the command program (or script), that alter the default behaviour of the program. Some commands can be used without any options or arguments, e.g. `ls` and `pwd`, but some commands usually requires some sort of argument, e.g. `less` and `more`.
+Options are settings built into the command program (or script), that alter the default behaviour of the program. Some commands can be used without any options or arguments (e.g. `ls` and `pwd`), but some commands usually requires some sort of argument, (`less` and `more`).
 
 In the following examples, we will use two commands to illustrate the various uses and conventions in command options and arguments.
 
@@ -54,6 +54,9 @@ By default, `head` prints file names only if multiple files are provided as argu
 $ head -v BDGP6_genes.gtf
 $ head --verbose BDGP6_genes.gtf
 ```
+
+Some commands have options that can function with or without an argument, basically if no argument is provided, a default value is assumed (e.g. `sed -i`).
+
 
 ### Combining options
 

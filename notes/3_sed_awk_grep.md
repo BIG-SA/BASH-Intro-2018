@@ -373,17 +373,155 @@ If you look into the help page for `grep`, you will see that `grep` has 4 differ
 
 Unfortunately we don't have time to cover it all in this session, but if you wish to learn more about it, you should look up `grep` tutorials online.
 
+
+
+
+
 -------------
 
 # `sed`
 
+
 While `grep` is excellent at searching, it essentially only performs queries and does not allow us to edit the output.
 For that we need different tools.
 
-`sed` stands for Stream EDitor.
+Like most command line utilities, it is designed to process input data (file or stream) line by line.
+From the GNU sed documentation (https://www.gnu.org/software/sed/manual/sed.html):
 
-- just the most basic form: 's\search\replace\'
-- can search but also edit contents
+```
+sed is a stream editor. A stream editor is used to perform basic text
+transformations on an input stream (a file or input from a pipeline). While in
+some ways similar to an editor which permits scripted edits (such as ed), sed
+works by making only one pass over the input(s), and is consequently more
+efficient. But it is sed’s ability to filter text in a pipeline which
+particularly distinguishes it from other types of editors.
+```
+
+It is important to remember that `sed` is a very complex tool that has been in use and constantly
+evolving for decades, and as it's open-sourced it has diverged on different platforms.
+Therefore `sed` on Mac OSX may not work exactly the same as on Linux.
+For this workshop, we typically focus on GNU tools (Linux).
+If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
+
+`sed` is a very complex tool, and it is impossible to cover all its functions in this session.
+Here we will only show you one of the most common usage: "search-and-replace".
+
+First, let's prepare a smaller file so that it's easier to see how `sed` functions.
+Extract from `BDGP6_genes.gtf` all entries that contain "Ac3", "ADD1", and "Acn"
+into a file, "small.gtf".
+  <details><summary>howto:</summary>
+  <code>egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf</code>
+  </details>
+
+A basic `sed` command has this form:
+
+`sed SCRIPT INPUTFILE`
+
+where the script contains instructions on how to process the input. Let us consider a basic search-and-replace command:
+
+`$ sed 's\Ac3\AC-3\' small.gtf`
+
+`sed` can be called to directly act on a file, or be used to process a standard stream.
+So the following command is essentially the same:
+
+`$ cat small.gtf | sed 's\Ac3\AC-3\'`
+
+If you run the command, you should see that:
+1. by default the entire content of the file is printed
+2. the string "Ac3" has been replaced by "AC-3"
+
+Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
+
+1. The enclosing quotation marks are necessary. You can also use double-quotes ("), but they are problematic with the backslash.
+
+2. The backslashes are separators that divide the expression into 4 parts.
+   - the first part is `s`, which tells `sed` that it is to perform substitution.
+   - the second part is the search pattern,
+   - the third part is the term to replace with,
+   - the fourth part is empty at the moment
+
+You can actually use any character for the separator. In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
+
+`$ sed 's Ac3 AC-3 ' small.gtf`  works, and uses space " " as separator
+
+`$ sed 's1Ac31AC-31' small.gtf`  while confusing, it also works, and uses "1" as separator
+
+`$ sed 's3Ac33AC-33' small.gtf`  doesn't work, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
+
+## s command flags
+
+The fourth and last part of the s command contain zero or more flags that alter the default behaviour.
+
+A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the first matching instance:
+
+`$ sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
+
+`$ sed 's\gene\GENE\g' small.gtf` will alter all instances.
+
+Rather than using "g", we can also use a number to specify exactly which instance to alter:
+
+`$ sed 's\gene\GENE\2' small.gtf` will alter the second instance only.
+
+Another frequently used flag is "I" or "i", which allows for case-insensitive matching.
+
+`$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
+
+
+## Regular expression
+
+The search term in `sed` supports regular expression in very similar ways to `grep`.
+
+As exercises, can you explain what each of these `sed` commands are doing?
+
+1. `$ sed 's|ac[n3]|ACX|Ig' small.gtf`
+
+2. `$ sed 's\^2\chr2\' small.gtf`
+
+3. `$ sed 's\;$\\' small.gtf`
+
+
+
+
+## Formatting replacement
+
+Sometimes, we want to alter a string by adding to it without modifying the search term itself.
+
+For example, if we want to add a star symbol next to gene names Acn and Ac3, without altering gene names. We can perform this one by one:
+
+`$ sed 's\Acn\Acn*\' small.gtf | sed 's\Ac3\Ac3*\'`
+
+or we can use regular expression search and "$":
+
+`$ sed 's\Ac[n3]\&*\' small.gtf`
+
+where "$" simply means the string that matches the search pattern.
+
+Can you explain what the following command does?
+
+`$ sed 's\fly\&OrWorm\gi' small.gtf`
+
+
+
+## Redirecting output
+
+Like most stream editors, `sed` does not alter the original file, and instead writes the output to the stdout.
+Therefore to save the changes, we can simply redirect to a file:
+
+`sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf`
+
+As is almost the case, you should **never** redirect the file back to itself, expecting it to have made the changes in place.
+You will simply end up with an empty file!
+
+But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`.
+
+`$ sed 's\Ac[n3]\&*\' small.gtf > small.gtf` THIS WILL FAIL (data loss!)
+
+`$ sed -i 's\Ac[n3]\&*\' small.gtf` THIS WILL WORK
+
+Note: On Mac OSX `-i` doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
+
+
+
 
 -------------
 
