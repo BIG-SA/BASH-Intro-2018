@@ -32,7 +32,7 @@
 
 ## Week 3
 
-Everything so far was reading/extracting/summarising. Today's topics:
+Today's topics:
 
 1. Searching for *patterns*
     + Just returning information we want
