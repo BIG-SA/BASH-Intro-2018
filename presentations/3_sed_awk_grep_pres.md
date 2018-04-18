@@ -30,9 +30,7 @@
 
 +++
 
-## Week 3
-
-Today's topics:
+## Today's topics:
 
 1. Searching for *patterns*
     + Just returning information we want
@@ -42,7 +40,7 @@ Today's topics:
 
 +++
 
-## Week 3
+## Today's topics:
 
 - We'll start editing files the *horrible* way
     + Introduces a few bash editors (`nano`, `vim`, `emacs`, `ne`)
