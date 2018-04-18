@@ -338,7 +338,7 @@ The simplest cases are the use of wild-cards. File name wild-cards use `?` and `
 **Here, `.` is the only wild-card symbol**. For example:
 
 ```
-grep -w a.z BDGP6_genes.gtf
+grep -w a.x BDGP6_genes.gtf
 ```
 
 The star symbol `*` is also used, but it means to match any number of the previous character, by itself it does not match anything. So:
