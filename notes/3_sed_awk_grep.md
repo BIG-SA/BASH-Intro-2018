@@ -189,6 +189,16 @@ However, feel free to continue on if you already understand the topic.
 
 # `grep`
 
+#### Handy Hint For OSX
+{:.no_toc}
+
+- If you are on OSX (Mac), copy the next two lines into your terminal to make sure `grep` highlights the patterns we find. Otherwise, just move to the next lines
+
+```
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;30;40'
+```
+
 **`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
 
 ```
