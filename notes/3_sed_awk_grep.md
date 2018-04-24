@@ -414,7 +414,7 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
 1) Create a list of gene names from BDGP6_genes.gtf:
 
 ```
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > fly_genes
 ```
 
 Can you explain what the command above is doing? A good way of testing a complex command line is to simply break it down and examine the output from each section.
