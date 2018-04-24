@@ -421,9 +421,9 @@ Can you explain what the command above is doing? A good way of testing a complex
 
 ```
 cut -f 2 -d ";" BDGP6_genes.gtf
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\""
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#"
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\"
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#"
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > fly_genes
 ```
 
 2) Extract from the file created above ("fly_genes") gene names that:
