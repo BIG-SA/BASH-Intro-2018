@@ -196,7 +196,7 @@ However, feel free to continue on if you already understand the topic.
 
 ```
 export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;30;40'
+export GREP_COLOR='1;35;40'
 ```
 
 **`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
