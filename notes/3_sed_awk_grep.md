@@ -133,7 +133,11 @@ cp ../../BashWk2/BDGP6_genes_gtf ./
 
 Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
-Consider the following questions (try using **nano** to answer them):
+Consider the following questions.
+**These are primarily thought exercises!!!**
+Maybe try one, but notice how difficult it is, and how hard it is to work with this file in `nano`.
+This exactly what we're trying to teach you to avoid.
+Do not waste time doing more than one of these.
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
@@ -144,42 +148,43 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 2) How many lines contain "**DNAJB7**"?
 
-  <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
+  <details><summary>Hint:</summary>Use <kbd>M-W</kbd> (<kbd>[Alt]-W</kbd>) to repeat search.
   </details>  
 
 3) How many lines contain "**RBX1**"?  
 
+<details><summary>Hint:</summary>Seriously, dont' try this. We'll show you how to do it super easily in a few minutes.
+</details>  
+
 4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+
+<details><summary>Hint:</summary>Why are you still trying to do these? We'll show you how easy it is later.
+</details>  
 
 5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
 
-<details><summary>**Answers**</summary>
+<details><summary><b>Answers</b></summary>
 
-1. 55151
-
-2. 1 line only
-
-3. Too many to count in **nano** (but the answer is 5775).
-
-4. Too hard in **nano** (answer is 36).
-
-5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+1. 55151<br>
+2. 1 line only<br>
+3. Too many to count in **nano** (but the answer is 5775).<br>
+4. Too hard in **nano** (answer is 36).<br>
+5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.<br>
 </details>  
 
 Now look into the files in the created sub-directory `3_many_files`.  
 
 1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
 
-2() Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
+2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
 (*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
-  <details><summary>**Answers**</summary>
+  <details><summary><b>Answers</b></summary>
 
-  1. There is an entry for MAPK11, but not MAPK1.
+  1. There is an entry for MAPK11, but not MAPK1.<br>
   2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
   datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
   </details>  
-
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
