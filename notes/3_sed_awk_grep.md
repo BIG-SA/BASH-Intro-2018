@@ -160,7 +160,7 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 3) How many lines contain "**RBX1**"?  
 
-<details><summary>Hint:</summary>Seriously, dont' try this. We'll show you how to do it super easily in a few minutes.
+<details><summary>Hint:</summary>Seriously, don't try this. We'll show you how to do it super easily in a few minutes.
 </details>  
 
 4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
@@ -563,13 +563,14 @@ egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 </details>
 
 
- Let us consider a basic search-and-replace command:
+ Let us consider a basic search-and-replace command where we'll replace all entries of `Ac3` with `AC-3`.
+ We'll break this down gradually over the next few lines.
 
 ```
 sed 's\Ac3\AC-3\' small.gtf
 ```
 
-`sed` can be called to directly act on a file, or be used to process a standard stream.
+`sed` can be called to directly act on a file or to process input from `stdout`/`stdin`.
 So the following command is essentially the same:
 
 ```
@@ -577,7 +578,7 @@ cat small.gtf | sed 's\Ac3\AC-3\'
 ```
 
 If you run the command, you should see that:
-1. by default the entire content of the file is printed
+1. by default the entire content of the file is printed to `stdout`
 2. the string "Ac3" has been replaced by "AC-3"
 
 Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
@@ -593,14 +594,14 @@ You can actually use any character for the separator.
 In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
 
 - `sed 's Ac3 AC-3 ' small.gtf` uses space " " as separator
-- `sed 's1Ac31AC-31' small.gtf`  (deliberately confusing) also works, and uses "1" as separator
+- `sed 's1Ac31AC-31' small.gtf`  (**deliberately confusing**) also works, and uses "1" as separator to show that you can literally use anything.
 - `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
 
 ## s command flags
 
 The fourth and last part of the s command contain zero or more flags that alter the default behaviour.
 
-A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the first matching instance:
+A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the *first matching instance*:
 
 - `sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
 - `sed 's\gene\GENE\g' small.gtf` will alter all instances.
@@ -613,7 +614,7 @@ sed 's\gene\GENE\2' small.gtf
 
 will alter the second instance only.
 
-Another frequently used flag is "I" or "i", which allows for case-insensitive matching.
+Another frequently used flag is "I" or "i", which allows for case-insensitive matching on the search pattern.
 
 `$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
@@ -662,17 +663,15 @@ sed 's\fly\&OrWorm\gi' small.gtf
 
 ## Redirecting output
 
-Like most stream editors, `sed` does not alter the original file, and instead writes the output to the stdout.
+Like most stream editors, `sed` does not alter the original file, and instead writes the output to `stdout`.
 Therefore to save the changes, we can simply redirect to a file:
 
 ```
 sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf
 ```
 
-As is almost the case, you should **never** redirect the file back to itself, expecting it to have made the changes in place.
+As is almost the case, you should **never redirect the file back to itself**, expecting it to have made the changes in place.
 You will simply end up with an empty file!
-
-But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
 
 ```
 sed 's\Ac[n3]\&*\' small.gtf > small.gtf
@@ -687,7 +686,8 @@ First we'll recreate the file
 egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 ```
 
-Now we'll try the correct approach where we edit the file *in place*.
+`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
+Now we'll try the correct approach where we edit the file using this strategy.
 
 ```
 sed -i 's\Ac[n3]\&*\' small.gtf
@@ -815,7 +815,7 @@ The command above requires two conditions to be met:
 
 You may have noticed that no action is specified in the command. In such cases, the default behaviour of `awk` is to print the entire line.
 
-## Exercise
+## Homework Exercises
 
 Extract lines from the file `BDGP6_genes.gtf` that satisfies these conditions:
 
@@ -832,8 +832,6 @@ awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {prin
 </details>
 
 -------------
-
-# Exercises
 
 Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that section using what you have learnt in this session.
 
@@ -863,7 +861,6 @@ awk -F "\t" '{
      print $10 " is a snoRNA";
   }' BDGP6_genes.tsv
 ```
-
 
 -------------
 
