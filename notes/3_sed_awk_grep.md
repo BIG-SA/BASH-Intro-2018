@@ -10,7 +10,12 @@ In this session, we will learn about a few of the most frequently used tools tha
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
+We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
+Below is a selection of the 4 most commonly used editors.
+There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
+Most of you should have `nano` installed, and we recommend this for today's sessions.
+`Git Bash` users probably won't have `emacs` installed, and no-one will likely have `ne` installed, but it's a useful editor to know about.
+Once you've had a look at `nano` move to the next section, as the remainder are just here for your information.
 
 #### Nano (or Pico)
 {:.no_toc}
@@ -28,7 +33,7 @@ There are a couple important caveats to remember when using Nano:
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
-- **To quit:** type `:q`
+- **To quit:** type `:q` (The colon is required. Typing just `q` won't work.)
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
@@ -53,6 +58,10 @@ Start by **ne** by entering `ne`.<sup>[4]</sup>
 
 ## Prepare the data files (and some revision exercises)
 For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
+If you do have a HPC account on either `phoenix` or eRSA, it might be good practice to use this account today.
+All the tools we discuss will be installed natively there and everything will run much faster than using your `/u/` drive on `Gt Bash`
+
+(If using the HPC option, type `echo $SHELL` when you first login and make sure you get `/bin/bash` as the answer. If you get `/bin/tcsh` either type the command `bash`, or call a tutor over for help.)
 
 ```
 cd ~
@@ -62,10 +71,10 @@ cd BashWk3/files
 
 **Q:** What did the `-p` argument do in the above `mkdir` command?
 
+1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed verison.
+You can use the commands `wget` or `curl` to perform this
 
-1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
-
-  (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)
 
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
@@ -74,17 +83,17 @@ This should create a sub-directory (`3_many_files`) containing 100 files, where 
 
 3) Use what you have learnt so far and find out:
 
-  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
-  - How are the data organised in the file?
+  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? (*Hint: Use `ls` with long listing and human readable options selected.*)
+  - How many characters, words and lines does it contain? (*Hint: What do the numbers in `wc` output mean?*)
+  - How are the data organised in the file? (*Hint: Use `head`*)
   - What is the column separator?
-  - How many columns does it contain?
+  - How many columns does it contain? (*Hint: You'll have to do it manually, we'll be learning the actual tool later.*)
   - What are the column headers?
-  - Which column is "**Gene name**"? How many unique gene names are there in the file?
+  - Which column is "**Gene name**"? How many unique gene names are there in the file? (*Hint: Use `cut`, `sort`, `uniq` and `wc`*)
 
 4) Can you answer the above questions without uncompressing the original file?
 
 You should now have some idea of the structure of the data file.
-
 The list of column names below will be useful:
 
 ```
@@ -112,7 +121,7 @@ The list of column names below will be useful:
 ```
 
 We will also need the file `BDGP6_genes.gtf` from previous session, so let's copy that across.
-Make sure you're in the `BashWk3/files` directory first.
+**Make sure you're in the `BashWk3/files` directory first.**
 
 ```
 cp ../../BashWk2/BDGP6_genes_gtf ./
@@ -130,7 +139,7 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 1) What is the first line that contains "**DNAJB7**"? Give line number.
   <details><summary>Hint:</summary>
-  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
+  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.
   </details>  
 
 2) How many lines contain "**DNAJB7**"?
