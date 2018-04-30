@@ -68,7 +68,7 @@ Have a look at our Adelaide CBD dataset by using the command `less` on the first
     Step 3: Print 1st, 4th and 5th column
     Step 4: Output the result into a new file
 
-This simple example can be written in bash below (Don't worry that you don't understand all of it yet. That will come later):
+This simple example can be written as a bash script below (Don't worry that you don't understand all of it yet. That will come later):
 
     #!/bin/bash
 
@@ -84,13 +84,14 @@ This simple example can be written in bash below (Don't worry that you don't und
     #   - create a new file
     cut -d',' -f1,4,5 ${INPUT} > ${INPUT}.new.csv
 
-Save this file as "basic_example_1.sh". To run this file on the command-line, we would run:
+Using your text editor of choice, save this file as "basic_example_1.sh".
+To then run this script on the command-line, we would run:
 
     $ bash basic_example_1.sh
 
 __Questions__
 
-- What was the output? 
+- What was the output?
 - What was contained in the new file and what was the file called?
 - Where was this file saved and why was it saved there?
 
@@ -187,7 +188,7 @@ The command `basename` is incredibly useful in bash scripting because it can als
     NAME=$(basename ${INPUT} .csv)
     BASE=$(pwd)
 
-    echo "I am current in the directory: ${BASE}"
+    echo "I am currently in the directory: ${BASE}"
     echo "The file directory name is ${DIR}"
     echo "The file base name is ${NAME}"
 
