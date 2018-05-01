@@ -239,7 +239,7 @@ Using the text editor gedit, enter the code below into a file setting your actua
     MESSAGE='This is your first script'
 
     # Now well place these variables into a command to get some output
-    echo -e 'Hello ${ME}\n"${MESSAGE}"\nWell Done!'
+    echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
 
 Now change permissions and execute the script, and see what the output is
 
