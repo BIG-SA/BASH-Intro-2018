@@ -10,8 +10,8 @@
 - [1 Bash Basics](notes/1_bash.md)
 - [2 Filters](notes/2_filters.md)
 - [3 Sed, Awk and Grep](notes/3_sed_awk_grep.md)
-- [4 Writing Bash Scripts](notes/4_bash_scripting.md)
-- [Optional: More Advanced Scripting Techniques](notes/4_bash_minimised.md)
+- [4 Writing Bash Scripts](notes/4_bash_scripting_minimised.md)
+- [Optional: More Advanced Scripting Techniques](notes/4_bash_scripting.md)
 
 # Course Schedule
 
