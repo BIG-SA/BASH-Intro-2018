@@ -14,6 +14,7 @@
 - Nth Tce: Steve Pederson, Hien To
 - Waite: Steve Pederson, Hien To, Charlotte Sai
 - Roseworthy: Lloyd Low, Rick Tearle, Steve Pederson
+- AHMS: Jimmy Breen, Alastair Ludington, Rick Tearle
 
 +++
 
