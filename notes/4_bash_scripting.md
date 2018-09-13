@@ -28,8 +28,8 @@ Much like we have begun all other weeks, if you didn’t create a folder for las
 
 From here let’s create a new folder for today:
 
-    mkdir BashWk4
-    cd BashWk4
+    mkdir -p BashWk4/files
+    cd BashWk4/files
     pwd
 
 ## Today's Data
@@ -40,7 +40,6 @@ Side note: Public datasets are becoming increasily common in today's society, an
 
 To download this data, we will need to go to our "files" directory, run the `wget` command to get a zip file containing all our csv files, and unpack the zip file:
 
-    cd ./BASH-Intro-2018/files/
     wget -c https://data.sa.gov.au/data/dataset/9fd65c8d-a3bc-474e-9cf2-03a58a837fc0/resource/a0fa35fb-fedf-4db6-8bbb-668f9959fe42/download/adl07p.zip
     unzip adl07p.zip
 
@@ -68,13 +67,13 @@ Have a look at our Adelaide CBD dataset by using the command `less` on the first
     Step 3: Print 1st, 4th and 5th column
     Step 4: Output the result into a new file
 
-This simple example can be written in bash below (Don't worry that you don't understand all of it yet. That will come later):
+This simple example can be written as a bash script below (Don't worry that you don't understand all of it yet. That will come later):
 
     #!/bin/bash
 
     # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
-    # The following line will need to be modified accordingly if you saved the files somewhere other than ~/BashWk4/BASH-Intro-2018/files
-    cd ~/BashWk4/BASH-Intro-2018/files
+    # The following line will need to be modified accordingly if you saved the files somewhere other than ~/BashWk4/files
+    cd ~/BashWk4/files
 
     # Read the input file in my current directory into a variable
     INPUT="ADL07p/ADL07p_1hr201501.csv"
@@ -84,13 +83,14 @@ This simple example can be written in bash below (Don't worry that you don't und
     #   - create a new file
     cut -d',' -f1,4,5 ${INPUT} > ${INPUT}.new.csv
 
-Save this file as "basic_example_1.sh". To run this file on the command-line, we would run:
+Using your text editor of choice, save this file as "basic_example_1.sh".
+To then run this script on the command-line, we would run:
 
     $ bash basic_example_1.sh
 
 __Questions__
 
-- What was the output? 
+- What was the output?
 - What was contained in the new file and what was the file called?
 - Where was this file saved and why was it saved there?
 
@@ -176,8 +176,8 @@ The command `basename` is incredibly useful in bash scripting because it can als
 
     #!/bin/bash
 
-    # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
-    #cd ./BASH-Intro-2018/files
+    # If you havent already, change into the files directory in the "BashWk4" diectory
+    #cd ./files
 
     # Read the input file in my current directory into a variable
     INPUT="ADL07p/ADL07p_1hr201501.csv"
@@ -187,7 +187,7 @@ The command `basename` is incredibly useful in bash scripting because it can als
     NAME=$(basename ${INPUT} .csv)
     BASE=$(pwd)
 
-    echo "I am current in the directory: ${BASE}"
+    echo "I am currently in the directory: ${BASE}"
     echo "The file directory name is ${DIR}"
     echo "The file base name is ${NAME}"
 
@@ -239,7 +239,7 @@ Using the text editor gedit, enter the code below into a file setting your actua
     MESSAGE='This is your first script'
 
     # Now well place these variables into a command to get some output
-    echo -e 'Hello ${ME}\n"${MESSAGE}"\nWell Done!'
+    echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
 
 Now change permissions and execute the script, and see what the output is
 

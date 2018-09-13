@@ -10,16 +10,16 @@
 - [1 Bash Basics](notes/1_bash.md)
 - [2 Filters](notes/2_filters.md)
 - [3 Sed, Awk and Grep](notes/3_sed_awk_grep.md)
-- [4 Writing Bash Scripts](notes/4_bash_scripting.md)
-- [5 More Advanced Scripting Techniques](notes/5_MoreAdvancedScripts.md)
+- [4 Writing Bash Scripts](notes/4_bash_scripting_minimised.md)
+- [Optional: More Advanced Scripting Techniques](notes/4_bash_scripting.md)
 
 # Course Schedule
 
 The workshop will be run in a weekly series of 2 hour sessions, with sessions for each campus as below
 
-### North Terrace
+### Medical School (AHMS)
 
-All sessions will be held in The Braggs, 313-314
+All sessions will be held in AHMS Level 8 Room 8052a/8052b
 
 | Date | Time | Main Topics |
 | ---------- |---------- | ---------- |
@@ -27,6 +27,7 @@ All sessions will be held in The Braggs, 313-314
 | Wed, Sept 19th | 1:30pm-3:30pm | Working with files in `bash` |
 | Wed, Sept 26th | 10:30am-12:30pm  | The tools `grep`, `sed` and `awk` |
 | Wed, Sept 26th | 1:30pm-3:30pm | Bash Scripting |
+
 
 
 # Extra Material

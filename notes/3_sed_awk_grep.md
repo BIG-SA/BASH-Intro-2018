@@ -10,7 +10,12 @@ In this session, we will learn about a few of the most frequently used tools tha
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
+We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
+Below is a selection of the 4 most commonly used editors.
+There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
+Most of you should have `nano` installed, and we recommend this for today's sessions.
+`Git Bash` users probably won't have `emacs` installed, and no-one will likely have `ne` installed, but it's a useful editor to know about.
+Once you've had a look at `nano` move to the next section, as the remainder are just here for your information.
 
 #### Nano (or Pico)
 {:.no_toc}
@@ -28,7 +33,7 @@ There are a couple important caveats to remember when using Nano:
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
-- **To quit:** type `:q`
+- **To quit:** type `:q` (The colon is required. Typing just `q` won't work.)
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
@@ -53,6 +58,10 @@ Start by **ne** by entering `ne`.<sup>[4]</sup>
 
 ## Prepare the data files (and some revision exercises)
 For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
+If you do have a HPC account on either `phoenix` or eRSA, it might be good practice to use this account today.
+All the tools we discuss will be installed natively there and everything will run much faster than using your `/u/` drive on `Gt Bash`
+
+(If using the HPC option, type `echo $SHELL` when you first login and make sure you get `/bin/bash` as the answer. If you get `/bin/tcsh` either type the command `bash`, or call a tutor over for help.)
 
 ```
 cd ~
@@ -62,29 +71,31 @@ cd BashWk3/files
 
 **Q:** What did the `-p` argument do in the above `mkdir` command?
 
+1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed verison.
+You can use the commands `wget` or `curl` to perform this
 
-1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, keeping the original as well as the uncompressed verison.
-
-  (*Hint: when uncompressing the gzip file, use the `-k` option to keep the original gzip file.*)
+  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)  
 
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-  (*Hint: Refer to last week for details on how to extract a tar archive.*)
+  (*Hint: Refer to last week for details on how to extract a tar archive. Note that you don't need to use `gunzip` first for these files.*)  
 
 3) Use what you have learnt so far and find out:
 
-  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? How many characters, words and lines does it contain?
-  - How are the data organised in the file?
+(*Hint: Try to make your terminal as wide as possible on your screen to enable you to see the column layout the most clearly*)
+
+  - What is the size of the uncompressed file (`GRCh38.chr22.ensembl.biomart.txt.gz`)? (*Hint: Use `ls` with long listing and human readable options selected.*)
+  - How many characters, words and lines does it contain? (*Hint: What do the numbers in `wc` output mean?*)
+  - How are the data organised in the file? (*Hint: Use `head`*)
   - What is the column separator?
-  - How many columns does it contain?
+  - How many columns does it contain? (*Hint: You'll have to do it manually, we'll be learning the actual tool later.*)
   - What are the column headers?
-  - Which column is "**Gene name**"? How many unique gene names are there in the file?
+  - Which column is "**Gene name**"? How many unique gene names are there in the file? (*Hint: Use `cut`, `sort`, `uniq` and `wc`*)
 
 4) Can you answer the above questions without uncompressing the original file?
 
 You should now have some idea of the structure of the data file.
-
 The list of column names below will be useful:
 
 ```
@@ -111,11 +122,16 @@ The list of column names below will be useful:
 21	Gene description
 ```
 
-We will also need the file `BDGP6_genes.gtf` from previous session, so let's copy that across.
-Make sure you're in the `BashWk3/files` directory first.
+We will also need the file `BDGP6_genes.gtf` from previous session, so if you're on your usual machine let's copy that across.
+**Make sure you're in the `BashWk3/files` directory first.**
 
 ```
 cp ../../BashWk2/BDGP6_genes_gtf ./
+```
+
+If you're on an HPC account, you'll need to download this straight into today's folder.
+```
+wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf
 ```
 
 -----
@@ -124,48 +140,54 @@ cp ../../BashWk2/BDGP6_genes_gtf ./
 
 Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
-Consider the following questions (try using **nano** to answer them):
+Consider the following questions.
+**These are primarily thought exercises!!!**
+Maybe try one, but notice how difficult it is, and how hard it is to work with this file in `nano`.
+This exactly what we're trying to teach you to avoid.
+Do not waste time doing more than one of these but please do contemplate how difficult the tasks may be.
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
 1) What is the first line that contains "**DNAJB7**"? Give line number.
   <details><summary>Hint:</summary>
-  You will need `^W` (search), and `^C` (view line number), unless you really enjoy counting and scrolling line by line.
-  </details>  
+  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.
+  </details>   
 
 2) How many lines contain "**DNAJB7**"?
 
-  <details><summary>Hint:</summary>Use `M-W` (`[Alt]-W`) to repeat search.
+  <details><summary>Hint:</summary>Use <kbd>M-W</kbd> (<kbd>[Alt]-W</kbd>) to repeat search.
   </details>  
 
 3) How many lines contain "**RBX1**"?  
 
+<details><summary>Hint:</summary>Seriously, don't try this. We'll show you how to do it super easily in a few minutes.
+</details>  
+
 4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+
+<details><summary>Hint:</summary>Why are you still trying to do these? We'll show you how easy it is later.
+</details>  
 
 5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
 
-<details><summary>**Answers**</summary>
+<details><summary><b>Answers</b></summary>
 
-1. 55151
-
-2. 1 line only
-
-3. Too many to count in **nano** (but the answer is 5775).
-
-4. Too hard in **nano** (answer is 36).
-
-5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.
+1. 55151<br>
+2. 1 line only<br>
+3. Too many to count in **nano** (but the answer is 5775).<br>
+4. Too hard in **nano** (answer is 36).<br>
+5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.<br>
 </details>  
 
 Now look into the files in the created sub-directory `3_many_files`.  
 
 1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
 
-2() Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
+2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
 (*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
-  <details><summary>**Answers**</summary>
+  <details><summary><b>Answers</b></summary>
 
-  1. There is an entry for MAPK11, but not MAPK1.
+  1. There is an entry for MAPK11, but not MAPK1.<br>
   2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
   datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
@@ -189,21 +211,43 @@ However, feel free to continue on if you already understand the topic.
 
 # `grep`
 
+#### Handy Hint For OSX
+{:.no_toc}
+
+- If you are on OSX (Mac), copy the next two lines into your terminal to make sure `grep` highlights the patterns we find. Otherwise, just move to the next lines
+
+```
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;35;40'
+```
+
 **`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
 
 ```
 grep [PATTERN] [FILE]
 ```
 
-which would search for the string PATTERN (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`, we would enter:
+which would search for the string `PATTERN` (either fixed string or regular expression) in the specified FILE. For example, to search for the string `DNAJB7` in `GRCh38.chr22.ensembl.biomart.txt`, we would enter:
 
 ```
 grep DNAJB7 GRCh38.chr22.ensembl.biomart.txt
 ```
 
 By default, **`grep`** prints every line that contains at least one instance of search pattern. (In modern terminal programs, matching strings in each line will be highlighted.)
+The easy way to answer the above questions would be to use the `-n` argument to print line numbers at the beginning of each matched line.
 
-You can also search for multiple files at the same time, by:
+```
+grep -n DNAJB7 GRCh38.chr22.ensembl.biomart.txt
+```
+
+We can easily count lines with this pattern by setting the `-c` option.
+
+```
+grep -c DNAJB7 GRCh38.chr22.ensembl.biomart.txt
+```
+
+As you can see, this is much easier than in the earlier thought exercises.
+In addition, you can also search multiple files at the same time, by:
 
 - Providing multiple file names:
 
@@ -233,8 +277,8 @@ If we want to retrieve entries related to **DDT** gene, we may try a command lik
 grep DDT GRCh38.chr22.ensembl.biomart.txt
 ```
 
-However, this will also retrieve entries that match **DDTL**.
-To retrieve entries which are only related to DDT, we can use the `-w` option:
+However, this will also retrieve entries that match **DDTL**. (You'll need to look carefully through your results.)
+To retrieve entries which are only related to DDT, we can use the `-w` option which specifies matching to complete *words*:
 
 ```
 grep -w DDT GRCh38.chr22.ensembl.biomart.txt
@@ -253,16 +297,17 @@ grep -w transport GRCh38.chr22.ensembl.biomart.txt
 ```
 
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
-
-This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport". In other words, we are looking for the string "`[tab]transport[tab]`":
+This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport".
+In other words, we are looking for the string "`[tab]transport[tab]`".
+To enter an actual [tab] character, you need to **use the key sequence:*** `[Ctrl-V][tab]`.
+Just pressing the `[tab]` key will not work.
 
 ```
 grep "[tab]transport[tab]" GRCh38.chr22.ensembl.biomart.txt
 ```
 
-To enter an actual [tab] character, you need to **use the key sequence:*** `[Ctrl-V][tab]`. Just pressing the `[tab]` key will not work.
-
-While this works when you are entering commands directly in the command line terminal, it will not work in a script (as you will see in the next session). So the alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
+While this works when you are entering commands directly in the command line terminal, it will not work in a script (as you will see in the next session).
+The alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
 
 ```
 grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt
@@ -285,6 +330,8 @@ However, this will return zero results. This is because the gene name used is "z
 grep -wi Zen BDGP6_genes.gtf
 ```
 
+**NB: It appears Git Bash can be case insensitive. Even OSX has been behaving weirdly.**
+
 #### Example 4: searching for multiple terms at the same time
 {:.no_toc}
 
@@ -298,21 +345,22 @@ grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf
 
 While this may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
 
-For example if we want to search for these genes: Ace, Ada, Zen, Alc, Alh, Bdp1, Bft, bwa.
+For example if we want to search for the genes *Ace, Ada, Zen, Alc, Alh, Bdp1, Bft & bwa*.
 
-First we need to create a file, and enter the genes of interest one per line. Call this file "gene_names". Then we can perform the search by:
+First we need to create a file, and enter the genes of interest **one per line**.
+(Do this **using nano** as some other text editors like notepad, wordpad, word etc will break this.)
+Take care that there are *no trailing spaces after the gene names, and there are no empty lines.*
+Call this file "gene_names".
+Then we can perform the search by:
 
 ```
 grep -wif gene_names BDGP6_genes.gtf
 ```
 
-However, take care that there are no trailing spaces after the gene names, and there are no empty lines.
-
-
 #### Example 5: inverse search
 {:.no_toc}
 
-We can use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
+We can also use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
 
 ```
 grep -w protein_coding BDGP6_genes.gtf
@@ -335,13 +383,13 @@ However, we don't have the time to cover the full scope of the regular expressio
 
 Regular expressions allow us to search beyond exact string matches.
 The simplest cases are the use of wild-cards. File name wild-cards use `?` and `*` for single and zero-to-multiple character match, respectively.
-**Here, `.` is the only wild-card symbol**. For example:
+When using `grep`, **`.` is the only wild-card symbol**. For example:
 
 ```
-grep -w a.z BDGP6_genes.gtf
+grep -w a.x BDGP6_genes.gtf
 ```
 
-The star symbol `*` is also used, but it means to match any number of the previous character, by itself it does not match anything. So:
+The star symbol `*` is also used by `grep`, but it means to match any number of the previous character, by itself it does not match anything. So:
 
 - `grep * BDGP6_genes.gtf` will return nothing
 - `grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
@@ -354,13 +402,16 @@ The star symbol `*` is also used, but it means to match any number of the previo
 - `a[a-z]e` will match everything from `aaa`, `abe`, ... to `aze`, the dash means a range.
 - `a[0-5]e` will match `a0e`, `a1e`, `a2e`, `a3e`, `a4e` and `a5e`, so range works for numerics too.
 
-The following command is looking for entries with any gene name matching `ada`, `adc`, `ala` and `alc`:
+The following command is looking for entries with any lines matching `ada`, `adc`, `ala` and `alc`:
 
 ```
 grep -wi A[dl][ac] BDGP6_genes.gtf
 ```
 
-Unfortunately, it is also matching entries that contain gene names like `"tRNA:Ala-AGC"`. So let's be a bit more specific, and search for terms that are flanked by double-quotes:
+Unfortunately, it is also matching entries that contain gene names like `"tRNA:Ala-AGC"`.
+There are ways of finding results in specific columns, and these approaches become easier with experience.
+Here, we'll use the `\` to "escape" a quotation, which stops it having it's "special meaning" and returns it to just being an ASCII character.
+The search pattern will need to be enclosed in double quote marks here for this to work too.
 
 ```
 grep -wi "\"A[dl][ac]\"" BDGP6_genes.gtf
@@ -397,23 +448,28 @@ grep ^3R BDGP6_genes.gtf
 The caret symbol tells `grep` to look for "3R" only at the beginning of the line.
 Similarly we use dollar sign ($) to look for strings anchor at the end of the line.
 
+**NB: This can initially appear to be confusing as the `^` has two functions.** To be clear about this:
 
-#### Exercises
+1. Inside square brackets, `^` behaves as the word 'NOT'
+2. Outside square brackets, it is used to indicate the *start of a line.*
+
+
+#### Homework Exercises
 {:.no_toc}
 
 1) Create a list of gene names from BDGP6_genes.gtf:
 
 ```
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > fly_genes
 ```
 
 Can you explain what the command above is doing? A good way of testing a complex command line is to simply break it down and examine the output from each section.
 
 ```
 cut -f 2 -d ";" BDGP6_genes.gtf
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\""
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#"
-cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq > fly_genes
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\"
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#"
+cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > fly_genes
 ```
 
 2) Extract from the file created above ("fly_genes") gene names that:
@@ -424,10 +480,10 @@ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d "\"" | grep -v "^#" | sort | uniq 
 - contain a dot `.`  
 
 <details><summary>Answers</summary>
-1. `grep ^z fly_genes`
-2. `grep ^a.*[0-9]$ fly_genes` or `grep ^a fly_genes | grep [0-9]$`
-3. `grep [^a-z0-9] fly_genes`
-4. `grep "\." fly_genes `
+1. `grep ^z fly_genes`<br>
+2. `grep ^a.*[0-9]$ fly_genes` or `grep ^a fly_genes | grep [0-9]$`<br>
+3. `grep [^a-z0-9] fly_genes`<br>
+4. `grep "\." fly_genes `<br>
 </details>  
 
 3) Look up the help page to see which option can provide the line number of search output.
@@ -507,13 +563,14 @@ egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 </details>
 
 
- Let us consider a basic search-and-replace command:
+ Let us consider a basic search-and-replace command where we'll replace all entries of `Ac3` with `AC-3`.
+ We'll break this down gradually over the next few lines.
 
 ```
 sed 's\Ac3\AC-3\' small.gtf
 ```
 
-`sed` can be called to directly act on a file, or be used to process a standard stream.
+`sed` can be called to directly act on a file or to process input from `stdout`/`stdin`.
 So the following command is essentially the same:
 
 ```
@@ -521,7 +578,7 @@ cat small.gtf | sed 's\Ac3\AC-3\'
 ```
 
 If you run the command, you should see that:
-1. by default the entire content of the file is printed
+1. by default the entire content of the file is printed to `stdout`
 2. the string "Ac3" has been replaced by "AC-3"
 
 Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
@@ -537,14 +594,14 @@ You can actually use any character for the separator.
 In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
 
 - `sed 's Ac3 AC-3 ' small.gtf` uses space " " as separator
-- `sed 's1Ac31AC-31' small.gtf`  (deliberately confusing) also works, and uses "1" as separator
+- `sed 's1Ac31AC-31' small.gtf`  (**deliberately confusing**) also works, and uses "1" as separator to show that you can literally use anything.
 - `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
 
 ## s command flags
 
 The fourth and last part of the s command contain zero or more flags that alter the default behaviour.
 
-A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the first matching instance:
+A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the *first matching instance*:
 
 - `sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
 - `sed 's\gene\GENE\g' small.gtf` will alter all instances.
@@ -557,7 +614,7 @@ sed 's\gene\GENE\2' small.gtf
 
 will alter the second instance only.
 
-Another frequently used flag is "I" or "i", which allows for case-insensitive matching.
+Another frequently used flag is "I" or "i", which allows for case-insensitive matching on the search pattern.
 
 `$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
@@ -606,17 +663,15 @@ sed 's\fly\&OrWorm\gi' small.gtf
 
 ## Redirecting output
 
-Like most stream editors, `sed` does not alter the original file, and instead writes the output to the stdout.
+Like most stream editors, `sed` does not alter the original file, and instead writes the output to `stdout`.
 Therefore to save the changes, we can simply redirect to a file:
 
 ```
 sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf
 ```
 
-As is almost the case, you should **never** redirect the file back to itself, expecting it to have made the changes in place.
+As is almost the case, you should **never redirect the file back to itself**, expecting it to have made the changes in place.
 You will simply end up with an empty file!
-
-But `sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
 
 ```
 sed 's\Ac[n3]\&*\' small.gtf > small.gtf
@@ -631,7 +686,8 @@ First we'll recreate the file
 egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 ```
 
-Now we'll try the correct approach where we edit the file *in place*.
+`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
+Now we'll try the correct approach where we edit the file using this strategy.
 
 ```
 sed -i 's\Ac[n3]\&*\' small.gtf
@@ -759,7 +815,7 @@ The command above requires two conditions to be met:
 
 You may have noticed that no action is specified in the command. In such cases, the default behaviour of `awk` is to print the entire line.
 
-## Exercise
+## Homework Exercises
 
 Extract lines from the file `BDGP6_genes.gtf` that satisfies these conditions:
 
@@ -776,8 +832,6 @@ awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {prin
 </details>
 
 -------------
-
-# Exercises
 
 Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that section using what you have learnt in this session.
 
@@ -807,7 +861,6 @@ awk -F "\t" '{
      print $10 " is a snoRNA";
   }' BDGP6_genes.tsv
 ```
-
 
 -------------
 
