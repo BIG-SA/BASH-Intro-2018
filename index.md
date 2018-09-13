@@ -17,9 +17,9 @@
 
 The workshop will be run in a weekly series of 2 hour sessions, with sessions for each campus as below
 
-### Medical School (AHMS)
+### North Terrace Campus
 
-All sessions will be held in AHMS Level 8 Room 8052a/8052b
+All sessions will be held in The Braggs, Room 450
 
 | Date | Time | Main Topics |
 | ---------- |---------- | ---------- |
@@ -27,7 +27,6 @@ All sessions will be held in AHMS Level 8 Room 8052a/8052b
 | Wed, Sept 19th | 1:30pm-3:30pm | Working with files in `bash` |
 | Wed, Sept 26th | 10:30am-12:30pm  | The tools `grep`, `sed` and `awk` |
 | Wed, Sept 26th | 1:30pm-3:30pm | Bash Scripting |
-
 
 
 # Extra Material
