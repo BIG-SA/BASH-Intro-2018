@@ -120,6 +120,7 @@ Figure 2. Typical file system hierarchy
 ![Typical file system hierarchy](../images/1_bash_fig2_file_sys_hierarchy.png)
 
 Here’s a depiction of the Linux file system.
+
 Obviously, *there is a lot missing in the above figure.*
 The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root folder. 
 This does confuse a few people, but once you realise that the `/home` folder is where the set of home folders are placed for all users, this makes a little more sense.
@@ -298,7 +299,7 @@ Hit the tab twice and both will appear in the terminal, then choose one.
 As well as directory paths, you can use this to auto-complete filenames.
 
 **Handy tip:** This technique can be used to also find command names.
-Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that being with the string `he`, such as head, help or any others that may be installed on your computer.
+Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that begin with the string `he`, such as head, help or any others that may be installed on your computer.
 If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
 
 **Handy tip:** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
