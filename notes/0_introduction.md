@@ -32,6 +32,9 @@ If you don't have adminstrative access and require help from ITS, please call th
 Otherwise `git bash` is the preferred option.
 Once you've got this setup, open `git bash` and you should see something that looks like a terminal.
 
+Most of the tools we use on the VM are also available in your OSX terminal, or in `git bash`.
+There can be subtle differences in the way they work, but by and large with both of these you can actually run `bash` on your own machine as well as the remote VM we connect to.
+
 
 ## Logging Onto Your VM
 

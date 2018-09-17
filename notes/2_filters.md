@@ -8,7 +8,7 @@
 
 ## Recap
 
-Last week we discovered some key bash commands:
+Last time we discovered some key bash commands:
 
 - Navigating directories using `cd`, `pwd` and `ls`
 - Creating and deleting files or directories using `touch`, `mkdir`, `rmdir` and `rm`
@@ -25,7 +25,7 @@ We also learned some important concepts
 ## This Session
 
 We will introduce a set of highly useful additional commands, often known as *filters*.
-Whilst the first session was mainly focussed on navigation around the file system, this week will be focussed on working with the *contents* of files.
+Whilst the first session was mainly focussed on navigation around the file system, this session will be focussed on working with the *contents* of files.
 
 Commands for today:
 
@@ -44,44 +44,27 @@ Key concepts for today:
 
 ## Before we start
 
-If you didn't create a folder for last week's files, let's create one and put all of today's work in there.
-First navigate to your home folder, which may be one of `/home/<yourname>`, `/Users/<yourname>`, `/u` or `/c/Users/<yourname>`.
-The best way to get to this directory is
+Login to your VM if you haven't already and navigate to your home folder.
 
 ```
 cd ~
 ```
 
-From here let's create a new folder for today:
+You should see a file in this folder called `BDGP6_genes.gtf`, so let's move this into the `Bash_Workshop` folder we created in the last session.
+After that we'll move into this folder.
 
 ```
-mkdir BashWk2
-cd BashWk2
-pwd
+mv BDGP6_genes.gtf Bash_Workshop
 ```
-
-It might also be worth checking to see if any changes have been made to the [computer setup](0_introduction.html#computer-setup) instructions.
 
 #### Question
 {:.no_toc}
+*Can you think of any other way we could have done this? Could we have entered the `Bash_Workshop` folder first? If so, what commands would we use?*
 
-Did we specify a relative or absolute path when we created the directory?  
-
-(If you weren't in your home folder when you  executed the `mkdir` command, make sure you know where you created this folder.)
-
-It might be a good idea to open your usual file explorer and navigate to this folder.
-You'll be able to see any files we create appearing, and that will help you download any files to the correct place.
-
-## Today's Data
-
-Let's get some data for this session.
-Save [this file](../files/BDGP6_genes.gtf) to the folder `BashWk2` which you just created.
-Just use Firefox, Chrome, Explorer, Safari or whichever browser you prefer.
-This file contains genomic information for every known gene in the Drosophila melanogaster genome in a (mostly) tab-separated format.
 
 ## File Suffixes and Plain Text Files
 
-This file we've downloaded has the suffix `.gtf`.
+This file we've moved has the suffix `.gtf`.
 
 **What program do you think you should open this with?**
 
@@ -96,13 +79,14 @@ We could actually open a `.csv` (`c`omma `s`eparated `v`alues) file with any pla
 Another common file type is a `.tsv` file, which represents *tab-separated values* as opposed to *comma-separated values*.
 **If we changed the suffix of a .csv file to .tsv, would we have changed the commas within the file to tabs?**
 Clearly, the answer is no.
-
 File suffixes for plain text files like this are really just communicating to other users what the layout of the file is.
 In the case of a `.gtf` file there is a set layout, which includes some "header" lines followed by a series of tab-separated columns.
 It's really just a plain text file though and we could change the suffix at will, like we imagined for our imaginary csv/tsv file.
 If we do that though, nobody else will know what the internal structure of the file will be & we'll either be a difficult co-worker or a terrible practical joker.
 The important thing to realise is that the suffix of files doesn't affect their internal structure.
-They are simply used to communicate *what the structure of the file is*.
+They are simply used to communicate clearly *what the structure of the file is*.
+Unfortunately, it's not uncommon to come across files with a `.csv` suffix that are actually tab-delimited.
+Anyone who does this should be sent to the naughty corner and forced to use nothing but MS Office products for the remainder of their life.
 
 
 # Looking Through Large Files
@@ -249,7 +233,7 @@ As we’ve seen above, the command echo just repeats any subsequent text. Now en
 echo ~
 ```
 
-We've already tried this last week, so you should now understand why this has happened.
+We've already tried this last time, so you should now understand why this has happened.
 If you don't quite get it, call a helper over or ask someone next to you.
 
 Although this may have seemed trivial, we often include lines like the above in scripts to provide messages about the progress of our tasks.
@@ -262,7 +246,7 @@ If the file doesn’t exist, bash will simply create the specified file and writ
 If the file does exist, it will *immediately be overwritten* without any warnings.
 
 Let’s see the > symbol in action.
-*First, make sure you’re still in the `BashWk2` folder.*
+*First, make sure you’re still in the `Bash_Workshop` folder.*
 
 Now we’ll combine the echo command with the redirection:
 
@@ -410,7 +394,7 @@ cut -f4 -s -d\; BDGP6_genes.gtf | sort | uniq -c
 
 ## Downloading Files
 
-At the beginning of today's session, we downloaded a file using our browser, but we can also download files using `bash`.
+most of us are familiar with downloading a file using our browser, but we can also download files using `bash`.
 Two common tools for this are `wget` and `curl`.
 They behave quite similarly, so let's try them both.
 First we'll **delete our `gtf` file**, so we can download it again using `bash`.
@@ -428,7 +412,7 @@ To avoid this type of problem , we can assign the name of the downloaded file us
 wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf -O duplicate.gtf
 ```
 
-As some OSs don't have `wget` installed by default, you may need to use `curl` for downloading files.
+As some operating systems don't have `wget` installed by default, you may need to use `curl` for downloading files.
 An important difference is that `curl` streams the download to `stdout`, so you need to redirect this to a file.
 
 ```
@@ -480,8 +464,6 @@ The most common formats are given below.
 
 Let's try compressing some of our additional `.gtf` files so we can see how this works.
 The most common format (particularly for Windows users) is a `zip` file, and this is pretty easy to use.
-If `zip` doesn't work on `git bash` head to the [windows installation page](../install/windowsInstall) for instructions to set this up correctly.
-(If you can't get this installed, it just means theres one line below you can't perform).
 To `zip` a file, we just enter the name of the intended archive as the first argument to `zip` (without the suffix), and the file we wish to compress as the final argument to `zip`.
 
 ```
@@ -550,7 +532,7 @@ Many software tools actually come using this format and require you to run a `Ma
 #### Homework Questions
 {:.no_toc}
 
-Using your `BashWk2` folder
+Using your `Bash_Workshop` folder
 
 1. Count how many genes are on each strand of each chromosome for the gtf `BDGP6_genes.gtf`.
 2. Using `wget` or `curl`, download the file ftp://ftp.ensembl.org/pub/release-92/gtf/drosophila_melanogaster/Drosophila_melanogaster.BDGP6.92.gtf.gz

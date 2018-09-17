@@ -2,7 +2,7 @@
 {:toc}
 
 
-# Grep, Sed and Awk
+# Grep and Sed 
 
 In this session, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
 

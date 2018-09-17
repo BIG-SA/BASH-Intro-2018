@@ -408,7 +408,7 @@ The command we use to remove a directory is rmdir which is short for **r**e**m**
 ### Make/Remove Files (`touch` `rm`)
 
 Interestingly, unlike `mkdir` there is no dedicated command to make a file.
-Fortunately, any one of about a dozen commands that manipulate files will, when executed, create a file if that file does not already exist.
+Fortunately, any one of about a dozen commands that manipulate files will, create a file if that file does not already exist.
 The most commonly used command to acheive this is `touch` which was originally created for an entirely different purpose.
 I don’t know anyone who uses touch for it’s intended purpose anymore but it’s an easy way to make a new file.
 Create a new file called “practice_file”.
@@ -501,13 +501,14 @@ rm -r temp
 Done!
 
 
-## Adding Arguments (or flags) to Commands
+### Adding Arguments (or flags) to Commands
+{:.no_toc}
 
 In the previous command we added the flag `-r` to the command `rm`.
 This took the place of the first argument placing the directory name as the second argument, and told `rm` how to operate on the directory.
 Here, we set the command `rm` to act **r**ecursively.
 
-### Accessing Help Pages
+## Accessing Help Pages
 
 How do we know what additional flags can be set as an argument?
 Most commands come with an inbuilt help page, that we can access a few ways.
@@ -559,3 +560,4 @@ Use the `man` command to access the help page for `ls`.
 1. How would we sort files by size when using `ls`?
 2. How would we only display directories instead of all files?
 3. How would we sort files by the last time they were saved?
+4. Why can we not use the `-h` method to access the help page for `ls`?
