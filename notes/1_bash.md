@@ -154,8 +154,8 @@ Figure 2. Typical file system hierarchy
 
 Here’s a depiction of the Linux file system.
 Obviously, there is a lot missing in the above figure.
-The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root fol
-der. The path all the way from the top is thus “root–>home –>jono or in command-line terms /home/jono.
+The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root folder. 
+The path all the way from the top is thus “root–>home –>jono or in command-line terms /home/jono.
 
 **Note:** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
 
