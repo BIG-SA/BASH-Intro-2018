@@ -15,7 +15,7 @@
 
 # Course Schedule
 
-The workshop will be run in a weekly series of 2 hour sessions, with sessions for each campus as below
+The workshop will be run in a series of 2 hour sessions
 
 ### North Terrace Campus
 

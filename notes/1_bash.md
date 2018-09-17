@@ -54,27 +54,19 @@ Without further ado,
 ### Meet the prompt
 {:.no_toc}
 
-Firstly we need to open a terminal as we did during the set-up steps.
-Mac/Linux users will notice some text describing your computer of the form
-
- `user@computer:~$`
-
-Windows users will see
-
-`MINGW64:~`
-
-or something similar.
-
-The terminal interface will look different as you browse around the room. Here is an example of what it usually looks like in a Linux environment.
+Firstly we need to make sure we have an open terminal as we did during the set-up steps.
+The terminal interface may look different as you browse around the room. Here is an example of what it usually looks like in a Linux environment.
 
 Figure 1. The Terminal
 
 ![The Terminal](../images/1_bash_fig1_ubuntu_terminal.png)
 
-On bash you will have this `$` sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computers name and other things that can be set.
+On bash you will have this `$` sign on most lines. The text before the dollar sign is called the “prompt”, which usually tells you something about your username, the current folder you are in, your remote computer's name and other things that can be set.
 Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
 
 The main point here is that all the bash commands you'll use in this workshop should be typed after the `$` where you should see a cursor flashing.
+Sometimes command examples you see on the internet (and maybe even here) start with this `$ ` followed by a code example.
+If you see this you can ignore it as this is just indicating where your command should begin, and there is no need to type it.
 
 The prompt is there to indicate that the shell is waiting for a task/instruction.
 The user defines the task by using the keyboard and typing in commands.
@@ -91,33 +83,8 @@ ls
 The command `ls` stands for **l**i**s**ting as the name implies, lists the contents of a directory/folder.
 (More to come on this!)
 `ls` is possibly one of the most used commands on the command-line and we will use it often throughout this workshop.
-Now try this as well
-
-```
-echo $SHELL
-```
-
-`echo` is like an inbuilt print command and `$SHELL` is a system variable that holds the name of the current shell in use.
-Some of these terms like variable may seem foreign but don’t worry too much about them right now, we’ll get to all of that in good time.
-
-We need to take note of a couple of things before we move on. First, the shell is case sensitive! try the second command all in lower case like this
-
-```
-echo $shell
-```
-
-**Can you explain the different output?**
-
-A Linux-based file system such as Ubuntu or Mac OS-X is case-sensitive, whilst Windows is not.
-As such, the command `LS` is completely different to `ls` and if `LS` is the name of a command which has been defined in your shell, you will get completely different results than from the intended ls command.
-
-**The term "print"**
-
-In the paragraph above, we mentioned that `echo` is like an inbuilt print command.
-Did we mean that we sent something to a printer?
-Clearly not.
-Back in 1989, everyone had dot-matrix printers and printing actally meant "print the results to the screen."
-As we'll learn later, this is also called "standard output" or `stdout`.
+We are more used to seeing this in our conventional graphical view with folder and files showing as clear icons, but once you've used `bash` for a while you may find yourself preferring this view.
+Many bioinformaticians do in fact prefer this as it can be much faster to move around than clicking your way through.
 
 #### A Handy Tip:
 {:.no_toc}
@@ -153,9 +120,12 @@ Figure 2. Typical file system hierarchy
 ![Typical file system hierarchy](../images/1_bash_fig2_file_sys_hierarchy.png)
 
 Here’s a depiction of the Linux file system.
-Obviously, there is a lot missing in the above figure.
-The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root fol
-der. The path all the way from the top is thus “root–>home –>jono or in command-line terms /home/jono.
+Obviously, *there is a lot missing in the above figure.*
+The home directory (jono) for the user Jono is housed within the home folder which itself is housed within the root folder. 
+This does confuse a few people, but once you realise that the `/home` folder is where the set of home folders are placed for all users, this makes a little more sense.
+All users have their own home folder and that will live here.
+For Jono, the path all the way from the top is thus “root–>home –>jono or in command-line terms `/home/jono`.
+For any other users (such as Cathy), this would be `/home/cathy`
 
 **Note:** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
 
@@ -181,25 +151,22 @@ The built-in command which we use to *change directory* is `cd`. For example, If
 ```
 cd /
 cd home
-cd johnny
-cd workshop1
+cd trainee
 ```
 
 We can also move through multiple directories in one command by separating the folder and file names with the forward slash “/”. For example, we could also get to the same directory by typing this
 
 ```
-cd /home/johnny/workshop1
+cd /home/trainee
 ```
-
-Use the `ls` command to inspect the contents of the folder and compare it to what you see in the GUI.
-
-**Note:** you may have come stuck here due to "absolute" and "relative" paths. We'll clear this up in the next section.
 
 No matter where we are in a file system, we can move up a directory (i.e. one step towards the root) by using the command
 
 ```
-cd .. #the space between the `cd` and `..` is important and the hash character on this line is special too. Why?
+cd ..
 ```
+
+**NB: The space between the `cd` and `..` is important and the hash character on this line is special too. Why?**
 
 The string `..` is the convention for *one directory above*, whilst a single dot `.` represents the current directory.
 
@@ -211,7 +178,8 @@ If we continue to enter
 cd ..
 ```
 
-enough times we should end up in the root directory of the file system. Try it and print the working directory again (`pwd`). The output should be the root directory given as `/`.
+enough times we should end up in the root directory of the file system, at which point we can go no further. 
+Try it and print the working directory again (`pwd`). The output should be the root directory given as `/`.
 
 We can change back to our home directory from anywhere by entering one of:
 
@@ -225,10 +193,14 @@ or even just
 cd
 ```
 
+This has introduced an important shortcut (`~`) which contains the address for your home folder (`/home/trainee`).
+We can check this using the `echo` command, which prints text to our terminal (formally known as standard output, but we'll get to that later.)
+
+```
+echo ~
+```
+
 Let's stay in our home directory and make sure we know where it is.
-This will vary considerably for each of our computers.
-**For University-administered Windows computers, this may be `/u`, or it may be `/c/Users/<yourname>` if you're the administrator for your own laptop**.
-For OSX users, this may be `/Users/<yourname>`
 
 ### Looking at the Contents of any Directory (`ls`)
 
@@ -273,11 +245,6 @@ In summary:
 As mentioned before, the special charater to denote this location is the tilda `~`.
 It can be used from anywhere as a landmark just like the slash. Try it!
 
-You can even use the `echo` command to see the path it represents, noting that this is an absolute path itself.
-
-```
-echo ~
-```
 
 #### Questions
 {:.no_toc}
@@ -339,7 +306,7 @@ If we’d hit the `tab` key after typing `hea`, then the command head would have
 ### Wildcards
 
 Alternatively referred to as a wild character or wildcard character, a wildcard is a symbol used to replace or represent one or more characters.
-Wildcards are typically either an asterisk (*), which represents one or more characters or question mark (?), which represents a single character.
+Wildcards are typically either an asterisk (\*), which represents one or more characters or question mark (?), which represents a single character.
 This is like in some card games the joker is used as a wildcard meaning that the owner of that joker can choose to view it as any one of the 52 playing cards in the deck.  
 A similar concept is the blank tile in Scrabble which can be used as any one of the letters in the alphabet in order to complete words (like Free and ”Bear”!)
 
@@ -460,8 +427,8 @@ rm practice_file
 Let's create a folder for the rest of the session, and perform all the remaining commands in this folder
 
 ```
-mkdir BashWk1
-cd BashWk1
+mkdir ~/Bash_Workshop
+cd ~/Bash_Workshop
 ```
 
 ### Copy/Move/Rename (`cp` `mv`)
@@ -580,9 +547,9 @@ We'll come back to this later.
 
 The above command `rm -r` is potentially **VERY** dangerous.
 **DO NOT** enter this, but if we executed `rm -r` from the root of our file system (`/`), can you imagine what would happen?
-If you just broke out into a cold sweat, that's normal & completely justified.
+If you just broke out into a cold sweat, that's normal & completely justified!
 
-**It is also important to note that there is no `undo` option in bash.**
+It is also important to note that there is **no `undo` option in bash.**
 What's done is done, so do be careful.
 
 #### Homework Question

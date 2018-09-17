@@ -8,7 +8,7 @@
 ## General Information
 
 Thank you for your attendance & welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
-This is series of training workshops and materials developed by the Bioinformatics Interest Group - South Australia (BIG-SA), specifically using the skills and resources of the Bioinformatics Hub (University of Adelaide) and the ACRF Cancer Genomics Facility
+This is series of training workshops and materials developed by the Bioinformatics Interest Group - South Australia (BIG-SA), specifically using the skills and resources of the Bioinformatics Hub (University of Adelaide) and the ACRF Cancer Genomics Facility (UniSA).
 
 Some additional resources run by the Bioinformatics Hub which may be of interest beyond today are:
 
@@ -19,18 +19,66 @@ Some additional resources run by the Bioinformatics Hub which may be of interest
 
 ## Computer Setup
 
-Previously we have run these sessions using Virtual Machines, but today we are opting for running all sessions using the tools locally installed on your own machines.
-*As there will be a huge variety of laptops in the room, the initial set-up may be a difficult to begin with*, but will settle as the day progresses.
-Although this will present numerous challenges from our perspective, we feel this is a better approach as everyone will leave knowing exactly how to get the ball rolling on their own familiar systems.
+For all sessions, we'll be running on virtual machines (VMs) and we'd like you to log in to these machines using a terminal.
+This is how we commonly interact with these machines so will be good practice.
+If you're on OSX or ubuntu, you simply need to know how to find a terminal:
 
-Instructions for how to set-up everything on your own machine are at the following pages.
-Please follow these very carefully, and call an instructor over if you have trouble.
-In particular, the Windows set-ups may take a while to get sorted.
+- OSX: `CMD + Space` then type the word terminal
+- Ubuntu: `Ctrl + Alt + t`
 
-- [Mac/OSX](../install/osxInstall.md)
-- [Windows](../install/windowsInstall.md)
+For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
+Installation instructions [can be found here](../install/windowsInstall.md).
+If you don't have adminstrative access and require help from ITS, please call them and ask for PuTTY to be installed as this is very common within the University.
+Otherwise `git bash` is the preferred option.
+Once you've got this setup, open `git bash` and you should see something that looks like a terminal.
 
-If you are already running Ubuntu, your computer will already be set-up correctly.
+
+## Logging Onto Your VM
+
+You will have been assigned an IP address which corresponds to your VM, and we will connect to this using your terminal.
+Enter the command
+
+```
+ssh trainee@<your.ip.address>
+```
+
+Type `yes` when requested and **use the password** provided.
+At this point you should see a message similar to:
+
+```
+Welcome to Ubuntu 16.04.5 LTS (GNU/Linux 4.4.0-116-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+117 packages can be updated.
+46 updates are security updates.
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+```
+
+Your terminal will also now have the value `trainee@Intro-NGS-xxx:~$` at the far left and this is your machine identifier.
+It's mostly irrelevant information for you, but is just a check that you're in the correct place.
+
+### Note for PuTTY users
+
+The login is slightly different when using PuTTY, and you will enter `trainee@<your.ip.address>` in the main space provided (under `Host Name or IP address`) and hit `Enter` (or the `Open` button).
+Beyond that, you should be able to enter your password and yuo should see the same login screen.
 
 
 ## Course Information
@@ -86,18 +134,18 @@ We hope it will be useful in enabling you to continue and to advance your resear
 ### Entering Commands
 {:.no_toc}
 
-In the following pages, we strongly encourage you to manually type all commands.
+In the following pages, we **strongly encourage** you to manually type all commands.
 The mistakes you will inevitably make will actually *be important learning steps*.
 Additionally, in your work beyond today, you will probably not have any instructions to follow.
 The experience of typing these commands will equip you for future work far better than if you simply copy & paste.
 
-### Calling For Help
+### Copy & Paste
 {:.no_toc}
 
-For today’s session, you will also be provided with red post-it notes.
-Please use these to signal whether you need help or not **by placing them on your monitors**.
-These are easy for instructors to spot so we can make our way over, although do be aware that there will be times when all instructors are busy.
-This will be important as we all set our computers up in the following section.
+As we're dealing with a large number of setups here the strategy for copy & pasting will vary.
+To paste into a standard bash terminal, you usually use `Shift + Ctrl + C` for copy, substituting `V` for paste.
+On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
+Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.
 
 
 [Home](https://big-sa.github.io/BASH-Intro-2018/)
