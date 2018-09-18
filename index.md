@@ -4,6 +4,12 @@
 
 [Introductory Slides](https://gitpitch.com/BIG-SA/BASH-Intro-2018/)
 
+### Wi-Fi
+
+- Use your University of Adelaide login
+- External attendees can use the UofA gues WiFi
+    + Today's password is `stationwork`
+
 # Course Material
 
 - [0 Introduction](notes/0_introduction.md)

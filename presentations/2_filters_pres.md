@@ -2,7 +2,7 @@
 
 +++
 
-## Last week
+## Last session
 
 - Found our way around (`pwd`, `cd`, `ls`)
 - Created new directories and files (`touch`, `mkdir`)

@@ -4,17 +4,8 @@
 
 ### Computer Setup
 
-- May be challenging
-- We have spare "live" USBs
-
-+++
-
-### Course Tutors
-
-- Nth Tce: Steve Pederson, Hien To
-- Waite: Steve Pederson, Hien To, Charlotte Sai
-- Roseworthy: Lloyd Low, Rick Tearle, Steve Pederson
-- AHMS: Jimmy Breen, Alastair Ludington, Rick Tearle
+- Log on to your VM as instructed
+- If `UofA-guest` may not allow you to login to your VM
 
 +++
 
