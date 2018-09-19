@@ -194,7 +194,7 @@ We'll introduce `stdin` in a few minutes too, but this is an alternative input w
 
 Figure 1: Data Streams
 
-![DataStreams](https://ryanstutorials.net/linuxtutorial/img/streams.png)
+![DataStreams](../images/streams.png)
 
 When a command sends information to us via `stdout`, we refer to this as printing to `stdout`.
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
