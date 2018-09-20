@@ -25,15 +25,17 @@ To quit, hold [Ctrl] and press X (^X).
 There are a couple important caveats to remember when using Nano:
   - Nano will load the entire file into memory, so it may take a while when working with large files.
   - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
+  - Nano doesn't utilise any colours on the screen
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
 #### Vi (or Vim)
 {:.no_toc}
 
-- **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually not recommended for beginners.
+- **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually *not recommended for beginners.*
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 - **To quit:** type `:q` (The colon is required. Typing just `q` won't work.)
+- Many people prefer `vim` as it will use colours in any bash script to highlight variables and commands that it recognises.
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
@@ -45,31 +47,22 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
-#### Ne
-{:.no_toc}
-
-- **ne** (**n**ice **e**ditor) is intended to be easier to use than **vi**, but more functional than **nano**.
-Start by **ne** by entering `ne`.<sup>[4]</sup>
-- If you are stuck in `ne`, press [Esc] twice to display the program menu.
-
-![ne screenshot](../images/3_ne_screenshot.png)
+**For today, we strongly advise just using nano** to make sure we're all seeing similar things.
+It's the most intuitive to use of the three explained above.
 
 -----
 
 ## Prepare the data files (and some revision exercises)
-For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
-If you do have a HPC account on either `phoenix` or eRSA, it might be good practice to use this account today.
-All the tools we discuss will be installed natively there and everything will run much faster than using your `/u/` drive on `Gt Bash`
 
-(If using the HPC option, type `echo $SHELL` when you first login and make sure you get `/bin/bash` as the answer. If you get `/bin/tcsh` either type the command `bash`, or call a tutor over for help.)
+For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
 
 ```
 cd ~
-mkdir -p BashWk3/files
-cd BashWk3/files
+mkdir -p Bash_Workshop/files
+cd Bash_Workshop/files
 ```
 
-**Q:** What did the `-p` argument do in the above `mkdir` command?
+**Question:** What did the `-p` argument do in the above `mkdir` command, and was it necessary?
 
 1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed verison.
 You can use the commands `wget` or `curl` to perform this
@@ -79,7 +72,7 @@ You can use the commands `wget` or `curl` to perform this
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-  (*Hint: Refer to last week for details on how to extract a tar archive. Note that you don't need to use `gunzip` first for these files.*)  
+  (*Hint: Refer to last week for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)  
 
 3) Use what you have learnt so far and find out:
 
@@ -90,7 +83,7 @@ This should create a sub-directory (`3_many_files`) containing 100 files, where 
   - How are the data organised in the file? (*Hint: Use `head`*)
   - What is the column separator?
   - How many columns does it contain? (*Hint: You'll have to do it manually, we'll be learning the actual tool later.*)
-  - What are the column headers?
+  - Are there column headers, and if so what are they?
   - Which column is "**Gene name**"? How many unique gene names are there in the file? (*Hint: Use `cut`, `sort`, `uniq` and `wc`*)
 
 4) Can you answer the above questions without uncompressing the original file?
@@ -122,17 +115,10 @@ The list of column names below will be useful:
 21	Gene description
 ```
 
-We will also need the file `BDGP6_genes.gtf` from previous session, so if you're on your usual machine let's copy that across.
-**Make sure you're in the `BashWk3/files` directory first.**
+We will also need the file `BDGP6_genes.gtf` from previous session, so copy that into the `files` filder that we've just made.
 
-```
-cp ../../BashWk2/BDGP6_genes_gtf ./
-```
+(Hint: Use `cp` for this)
 
-If you're on an HPC account, you'll need to download this straight into today's folder.
-```
-wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf
-```
 
 -----
 
@@ -143,8 +129,8 @@ Text editors (either CLI or GUI) are very convenient when you want to quickly ed
 Consider the following questions.
 **These are primarily thought exercises!!!**
 Maybe try one, but notice how difficult it is, and how hard it is to work with this file in `nano`.
-This exactly what we're trying to teach you to avoid.
-Do not waste time doing more than one of these but please do contemplate how difficult the tasks may be.
+**This is exactly what we're trying to teach you to avoid.
+Do not waste time doing more than one of these** but please do contemplate how difficult the tasks may be.
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
