@@ -8,20 +8,20 @@ In this session, we will learn about a few of the most frequently used tools tha
 
 ## Command Line Interface (CLI) Text editors (for Small-ish Files)
 
-In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we work with ASCII (or plain text) files.
+In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we usually work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit or pluma (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. However, there are also several command line programs available that you can use to edit files inside the command line console.
-Below is a selection of the 4 most commonly used editors.
+We can use a GUI program like gedit (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. 
+However, there are also several command line programs available that you can use to edit files inside the command line console.
+Below is a selection of the most commonly used editors.
 There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
-Most of you should have `nano` installed, and we recommend this for today's sessions.
-`Git Bash` users probably won't have `emacs` installed, and no-one will likely have `ne` installed, but it's a useful editor to know about.
-Once you've had a look at `nano` move to the next section, as the remainder are just here for your information.
+Most of you should have `nano` installed, and **we recommend this for today's sessions**.
+Once you've had a look at `nano` move to the next section, as the remainder are really just here for your information beyond today.
 
 #### Nano (or Pico)
 {:.no_toc}
 
 - **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
-To quit, hold [Ctrl] and press X (^X).
+To quit, hold [Ctrl] and press X (`^X`).
 There are a couple important caveats to remember when using Nano:
   - Nano will load the entire file into memory, so it may take a while when working with large files.
   - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
@@ -34,7 +34,7 @@ There are a couple important caveats to remember when using Nano:
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually *not recommended for beginners.*
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
-- **To quit:** type `:q` (The colon is required. Typing just `q` won't work.)
+- **To quit:** type `:q` (**The colon is required**. Typing just `q` won't work.)
 - Many people prefer `vim` as it will use colours in any bash script to highlight variables and commands that it recognises.
 
 ![vi screenshot](../images/3_vi_screenshot.png)
@@ -48,7 +48,7 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
 **For today, we strongly advise just using nano** to make sure we're all seeing similar things.
-It's the most intuitive to use of the three explained above.
+It's also the most intuitive to use of the three explained above.
 
 -----
 
@@ -64,8 +64,8 @@ cd Bash_Workshop/files
 
 **Question:** What did the `-p` argument do in the above `mkdir` command, and was it necessary?
 
-1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed verison.
-You can use the commands `wget` or `curl` to perform this
+1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed version.
+You can use the commands `wget` or `curl` to download this
 
   (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)  
 
@@ -197,17 +197,8 @@ However, feel free to continue on if you already understand the topic.
 
 # `grep`
 
-#### Handy Hint For OSX
-{:.no_toc}
 
-- If you are on OSX (Mac), copy the next two lines into your terminal to make sure `grep` highlights the patterns we find. Otherwise, just move to the next lines
-
-```
-export GREP_OPTIONS='--color=auto'
-export GREP_COLOR='1;35;40'
-```
-
-**`grep`**<sup>[5]</sup> is an utility for searching fixed-strings or regular expressions in plaintext files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[5]</sup> (Global seach for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
 
 ```
 grep [PATTERN] [FILE]
@@ -316,8 +307,6 @@ However, this will return zero results. This is because the gene name used is "z
 grep -wi Zen BDGP6_genes.gtf
 ```
 
-**NB: It appears Git Bash can be case insensitive. Even OSX has been behaving weirdly.**
-
 #### Example 4: searching for multiple terms at the same time
 {:.no_toc}
 
@@ -329,7 +318,16 @@ One method to search for multiple terms at the same time is to use *extended* gr
 grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf
 ```
 
-While this may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
+This is the same as: 
+
+```
+egrep -wi "(Ada|Zen)" BDGP6_genes.gtf
+```
+
+(Many people actually use `egrep` as their default tool as their really is minimal advantage to using `grep`.)
+
+
+While the above may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
 
 For example if we want to search for the genes *Ace, Ada, Zen, Alc, Alh, Bdp1, Bft & bwa*.
 
@@ -522,7 +520,7 @@ In the following command, we'll print the first 10 lines of the file.
 sed -n '1,10p' BDGP6_genes.gtf
 ```
 
-By default, `sed` will stream the entire file to `stdout` so by setting the `-n` flag we're turning this function off, and my including `'1,10p'` we're telling `sed` to print (`p`) lines 1 to 10.
+Unless told otherwise, `sed` will stream the entire file to `stdout` so by setting the `-n` flag we're turning this function off, and by including `'1,10p'` we're then telling `sed` to print (`p`) lines 1 to 10.
 Unlike `head` or `tail` which only print the beginning or end of the file, `sed` can print lines from anywhere in the file.
 
 ```
@@ -542,14 +540,13 @@ First, let's prepare a smaller file so that it's easier to see how `sed` functio
 Extract from `BDGP6_genes.gtf` all entries that contain "Ac3", "ADD1", and "Acn"
 into a file, "small.gtf".
 
-<details><summary>Hint</summary>
+
 ```
 egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 ```
-</details>
 
-
- Let us consider a basic search-and-replace command where we'll replace all entries of `Ac3` with `AC-3`.
+ Let us consider a basic search-and-replace command where we'll replace all entries of `Ac3` with `AC-3` while we're streaming to `stdout`.
+ (NB: We're not changing the file on disk.)
  We'll break this down gradually over the next few lines.
 
 ```
@@ -704,7 +701,7 @@ ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh
 
 -------------
 
-# `awk`
+# `awk` 
 
 `awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
 
