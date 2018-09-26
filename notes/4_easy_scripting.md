@@ -77,7 +77,7 @@ Although we have initially set them each to be one value, they are still variabl
 
 Let's create an empty file which will become our script.
 We'll give it the suffix `.sh` as that is the common convention for bash scripts.
-Make sure you're in the `Bash_Workshop` folder, then enter:
+Make sure you're in the `Bash_Workshop/Session4` folder, then enter:
 
 ```
 touch wellDone.sh
@@ -108,7 +108,7 @@ ls -lh *.sh
 
 You should see output similar to this:
 ```
--rw-rw-r-- 1 your_login_name your_login_name  247 Aug  14 14:48 wellDone.sh
+-rw-rw-r-- 1 trainee trainee  247 Aug  14 14:48 wellDone.sh
 ```
 
 - Note how the first entry is a dash (`-`) indicating this is a file.
