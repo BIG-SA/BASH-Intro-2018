@@ -19,14 +19,15 @@ This session we will be tying together many of the concepts that you have learnt
 
 ## Before we start
 
-Much like we have begun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of /home/<yourname>, /Users/<yourname>, /u or /c/Users/<yourname>. The best way to get to this directory is
+Let’s create a new folder and put all of this session's work in there. 
+First navigate to your home folder, then create a new directory as below.
 
     cd ~
 
 From here let’s create a new folder for today:
 
-    mkdir BashWk4
-    cd BashWk4
+    mkdir -p Bash_Workshop/Session4/files
+    cd Bash_Workshop/Session4
     pwd
 
 ## Today's Data
@@ -37,7 +38,7 @@ Side note: Public datasets are becoming increasily common in today's society, an
 
 To download this data, we will need to go to our "files" directory, run the `wget` command to get a zip file containing all our csv files, and unpack the zip file:
 
-    cd ./BASH-Intro-2018/files/
+    cd files/
     wget -c https://data.sa.gov.au/data/dataset/9fd65c8d-a3bc-474e-9cf2-03a58a837fc0/resource/a0fa35fb-fedf-4db6-8bbb-668f9959fe42/download/adl07p.zip
     unzip adl07p.zip
 
@@ -67,9 +68,9 @@ This simple example can be written in bash below (Don't worry that you don't und
 
     #!/bin/bash
 
-    # If you havent already, change into the files directory in the "BASH-Intro-2018" diectory
-    # The following line will need to be modified accordingly if you saved the files somewhere other than ~/BashWk4/BASH-Intro-2018/files
-    cd ~/BashWk4/BASH-Intro-2018/files
+    # If you havent already, change into the files directory 
+    # The following line will need to be modified accordingly if you saved the files somewhere other than ~/Bash_Workshop/Session4/files
+    cd ~/Bash_Workshop/Session4/files
 
     # Read the input file in my current directory into a variable
     INPUT="ADL07p/ADL07p_1hr201501.csv"
@@ -106,17 +107,17 @@ Comments are very important in programming because they act as notes or explaina
 
 There are two main ways of executing a script. Firstly, as shown in "Basic Example 1", we can just declare the intepreter of the language on the command-line, followed by the name of the script.
 
-    $ bash basic_example_1.sh
+    bash basic_example_1.sh
 
 However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
 
 First we’ll look at the files in the folder using `ls -l` and note that unlike the above figure, these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
 
-    $ chmod +x ./basic_example_1.sh
+    chmod +x ./basic_example_1.sh
 
 If you run `ls -l` again, you'll notice that the third flag in the triplet has now become an x. This indicates that we can now execute the file in the terminal. As a security measure, Linux doesn’t allow you to execute a script from within the same directory so to execute it enter the following:
 
-    $ ./basic_example_1.sh
+    ./basic_example_1.sh
 
 Let’s now look at another simple scripts.
 
@@ -164,6 +165,8 @@ In the following example we are going to read some text and make four files
     # Loop:  1.Iterate over the list of numbers "1 2 3 4 5" and read into NUM
     #   2. Echo some text into a new file
     #   and 3. print file using the command cat
+    WORKING_DIR=$(pwd)
+
     for NUM in 1 2 3 4 5
      do
         echo "The file has the number ${NUM} in it" > ${WORKING_DIR}/results/file_"${NUM}".txt
