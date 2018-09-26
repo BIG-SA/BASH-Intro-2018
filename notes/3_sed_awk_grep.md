@@ -115,7 +115,7 @@ The list of column names below will be useful:
 21	Gene description
 ```
 
-We will also need the file `BDGP6_genes.gtf` from previous session, so copy that into the `files` filder that we've just made.
+We will also need the file `BDGP6_genes.gtf` from previous session, so copy that into the `files` folder that we've just made.
 
 (Hint: Use `cp` for this)
 
