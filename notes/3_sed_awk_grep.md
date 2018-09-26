@@ -198,7 +198,7 @@ However, feel free to continue on if you already understand the topic.
 # `grep`
 
 
-**`grep`**<sup>[5]</sup> (Global seach for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[5]</sup> (Global search for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
 
 ```
 grep [PATTERN] [FILE]
@@ -324,7 +324,7 @@ This is the same as:
 egrep -wi "(Ada|Zen)" BDGP6_genes.gtf
 ```
 
-(Many people actually use `egrep` as their default tool as their really is minimal advantage to using `grep`.)
+(Many people actually use `egrep` as their default tool as there really is minimal advantage to using `grep`.)
 
 
 While the above may work fine for just a few terms, if we want to search for many terms  this can still be rather tedious. We can try using the `-f` option instead.
