@@ -18,13 +18,13 @@ Sometimes we need to perform repetitive tasks on multiple files, or need to perf
 They are also an excellent way of ensuring the commands you have used in your research *are retained for future reference*.
 Keeping copies of all electronic processes to ensure reproducibility is a very important component of any research.
 
-Now that we've been through just some of the concepts & tools we can use when writing scripts, it's time to tackle one of our own where we can bring it all together.
+Now that we've been through just some of the concepts and tools we can use when writing scripts, it's time to tackle one of our own where we can bring it all together.
 
 ### The `shebang`
 
 Every bash shell script begins with what is known as a *shebang*, which we would commonly recognise as a hash sign followed by an exclamation mark, i.e `#!`.
 This is immediately followed by `/bin/bash`, which tells the interpreter to run the command `bash ` which is contained in the directory `/bin`.
-This opening sequence is essential for all `bash` scripts & tells the computer how to respond to all of the following commands.
+This opening sequence is essential for all `bash` scripts and tells the computer how to respond to all of the following commands.
 As a string this looks like:
 
 ```
@@ -33,12 +33,12 @@ As a string this looks like:
 
 The hash symbol generally functions as a comment character in scripts.
 Sometimes we can include lines in a script to remind ourselves what we're trying to do, and we can preface these with the hash to ensure the interpreter doesn't try to run them.
-It's presence as a comment in the very first position of a script followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts & programs.
+It's presence as a comment in the very first position of a script followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts and programs.
 
 ## An Example Script
 
 First let's look at some simple scripts.
-These are really just examples of some useful things you can do & may not really be the best scripts from a technical perspective.
+These are really just examples of some useful things you can do and may not really be the best scripts from a technical perspective.
 Hopefully they give you some pointers so you can get going
 
 **Don't try to enter the following commands directly in the terminal!!!**
@@ -56,12 +56,12 @@ MESSAGE='This is your first script'
 echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
 ```
 
-- You may notice some lines that begin with the # character.
+- You may notice some lines that begin with the `#` character.
 These are *comments* which have no impact on the execution of the script, but are written so you can understand what you were thinking when you wrote it.
 If you look at your code 6 months from now, there is a very strong chance that you won't recall exactly what you were thinking, so these comments can be a good place just to explain something to the future version of yourself.
 There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
 - Another coding style which can be helpful is the enclosing of each *variable name* in curly braces every time the value is called, e.g. `${ME}`
-Whilst not being strictly required, this can make it easy for you to follow in the future when you're looking back.
+While not being strictly required, this can make it easy for you to follow in the future when you're looking back.
 - Variables have also been named using strictly upper-case letters.
 This is another optional coding style, but can also make things clear for you as you look back through your work.
 Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
@@ -89,8 +89,8 @@ Now open this using the using the text editor `nano`:
 nano wellDone.sh
 ```
 
-Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using `Ctrl+o` (indicated as `^O`) in the nano screen.
-Once you're finished, you can exit the `nano` editor by hitting `Ctrl+x` (written as `^X`).
+Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using `Ctrl+O` (indicated as `^O`) in the nano screen.
+Once you're finished, you can exit the `nano` editor by hitting `Ctrl+X` (written as `^X`).
 Assuming that you've entered everything correctly, we can now execute this script by simply entering
 
 ```
@@ -155,14 +155,14 @@ Thus each combination of flags can be represented by a single integer, as shown 
 
 | Value | Binary | Flags | Meaning |
 |:----- | ------ | ----- |:------- |
-| 0     | `000`  | `---` | No read, no write, no execute |
-| 1	    | `001`  | `--x` | No read, no write, execute	|
-| 2	    | `010`  | `-w-` | No read, write, no execute	|
-| 3	    | `011`  | `-wx` | No read, write, execute	  |
-| 4	    | `100`  | `r--` | Read, no write, no execute	|
-| 5	    | `101`  | `r-x` | Read, no write, execute	  |
-| 6	    | `110`  | `rw-` | Read, write, no execute	  |
-| 7	    | `111`  | `rwx` | Read, write, execute	      |
+| 00    | `000`  | `---` | No read, no write, no execute |
+| 01    | `001`  | `--x` | No read, no write, execute |
+| 02    | `010`  | `-w-` | No read, write, no execute |
+| 03    | `011`  | `-wx` | No read, write, execute    |
+| 04    | `100`  | `r--` | Read, no write, no execute |
+| 05    | `101`  | `r-x` | Read, no write, execute    |
+| 06    | `110`  | `rw-` | Read, write, no execute    |
+| 07    | `111`  | `rwx` | Read, write, execute	      |
 
 We can now set permissions using a 3-digit code, where 1) the first digit represents the file owner, 2) the second digit represents the group permissions and 3) the third digit represents all remaining users.
 
@@ -222,11 +222,11 @@ FILES=$(ls *sh)
 
 COUNT=0 # Initialise a counter variable at zero
 for f in ${FILES};
-  do
+do
     ((COUNT++)) # This will increment the COUNT variable by one every time
     ln=$(wc -l ${f} | sed -r 's/([0-9]+).+/\1/g')
     echo "File number ${COUNT} (${f}) has ${ln} lines"
-  done
+done
 ```
 
 #### Task
@@ -250,7 +250,7 @@ touch changeSuffix.sh
 nano changeSuffix.sh
 ```
 
-Once the `nano` editor has opened, enter the following script before *writing out* (`Ctrl+o`).
+Once the `nano` editor has opened, enter the following script before *writing out* (`Ctrl+O`).
 
 ```
 #!/bin/bash
@@ -259,11 +259,11 @@ OLDSUFFIX=fa
 NEWSUFFIX=fasta
 echo "Change all files of suffix" $OLDSUFFIX "to " $NEWSUFFIX
 for f in *.${OLDSUFFIX};
-  do
+do
     F=${f%.${OLDSUFFIX}}.${NEWSUFFIX}
     echo "Rename file" $f "to" $F
     mv $f $F
-  done
+done
 echo "DONE"
 ```
 
@@ -293,8 +293,8 @@ In your script, return a tab-delimited output where each line contains the name 
 
 ```
 for fasta in *.fa
- do
-   grep -c "^>" ${fasta} >> ${fasta}.count
+do
+    grep -c "^>" ${fasta} >> ${fasta}.count
 done
 ```
 
@@ -326,10 +326,10 @@ INFILE=$1
 # Check the file has the suffix .fa or .fasta
 SUFFIX=$(echo ${INFILE} | sed -r 's/.+(fasta|fa)$/\1/')
 if [ ${SUFFIX} == "fa" ] || [ ${SUFFIX} == "fasta" ]; then
-  echo File has the suffix ${SUFFIX}
+    echo File has the suffix ${SUFFIX}
 else
-  echo File does not have the suffix 'fa' or 'fasta'. Exiting with error.
-  exit 1
+    echo File does not have the suffix 'fa' or 'fasta'. Exiting with error.
+    exit 1
 fi
 
 # Define the output file by changing the suffix to .locations

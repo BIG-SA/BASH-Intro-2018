@@ -22,7 +22,7 @@ This session we will be tying together many of the concepts that you have learnt
 
 ## Before we start
 
-Much like we have begun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of /home/<yourname>, /Users/<yourname>, /u or /c/Users/<yourname>. The best way to get to this directory is
+Much like we have begun all other weeks, if you didn’t create a folder for last week’s files, let’s create one and put all of today’s work in there. First navigate to your home folder, which may be one of `/home/<yourname>`, `/Users/<yourname>`, `/u` or `/c/Users/<yourname>`. The best way to get to this directory is
 
     cd ~
 
@@ -36,7 +36,7 @@ From here let’s create a new folder for today:
 
 To run example scripts in this tutorial, we will need some example data. The Australian government provide a large amount of open data on the website [data.gov.au](https://data.gov.au/), and to create scripts we will use a dataset containing information about particle pollution data for the year 2015 and ongoing for the Adelaide CBD region.
 
-Side note: Public datasets are becoming increasily common in today's society, and many companies and media outlets use this data to investigate everything from the missuse of public funds, to environmental monitoring. A brilliant example of "data journalism" is the US website [fivethirtyeight](http://fivethirtyeight.com/).
+Side note: Public datasets are becoming increasingly common in today's society, and many companies and media outlets use this data to investigate everything from the misuse of public funds, to environmental monitoring. A brilliant example of "data journalism" is the US website [fivethirtyeight](http://fivethirtyeight.com/).
 
 To download this data, we will need to go to our "files" directory, run the `wget` command to get a zip file containing all our csv files, and unpack the zip file:
 
@@ -99,18 +99,18 @@ __Questions__
 
 The example above displayed a very basic example of a bash shell script.
 
-Every bash shell script begins with what is known as a "shebang", which we would commonly recognise as a hash sign followed by an exclamation mark, i.e #!. This is immediately followed by /bin/bash, which tells the interpreter to run the command `bash` in the directory /bin. This opening sequence is vital & tells the computer how to respond to all of the following commands. As a string this looks like:
+Every bash shell script begins with what is known as a "shebang", which we would commonly recognise as a hash sign followed by an exclamation mark, i.e #!. This is immediately followed by /bin/bash, which tells the interpreter to run the command `bash` in the directory /bin. This opening sequence is vital and tells the computer how to respond to all of the following commands. As a string this looks like:
 
     #!/bin/bash
 
-The hash symbol generally functions as a comment character in scripts (as shown above in "Basic example 1"). Sometimes we can include lines in a script to remind ourselves what we’re trying to do, and we can preface these with the hash to ensure the interpreter doesn’t try to run them. It’s presence as a comment here, followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts & programs.
+The hash symbol generally functions as a comment character in scripts (as shown above in "Basic example 1"). Sometimes we can include lines in a script to remind ourselves what we’re trying to do, and we can preface these with the hash to ensure the interpreter doesn’t try to run them. It’s presence as a comment here, followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts and programs.
 
-Comments are very important in programming because they act as notes or explainations so you can understand what you were thinking when you wrote it. If you look at your code 6 months from now, there is a very strong chance that you won’t recall exactly what you were thinking at the time, so these comments can be a good place just to explain something to the future version of yourself. There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
+Comments are very important in programming because they act as notes or explanations so you can understand what you were thinking when you wrote it. If you look at your code 6 months from now, there is a very strong chance that you won’t recall exactly what you were thinking at the time, so these comments can be a good place just to explain something to the future version of yourself. There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
 
 
 ## File permissions
 
-An important concept in UNIX computing is file permissions. There are files in which you look at and interact with when you are running analysis on a UNIX command line, and there are files in which are incredibily important to the system that we shouldnt be able to touch. And of course, if you are creating and interacting with files in your home directory, you want to make those files only available to you, and not other users.
+An important concept in UNIX computing is file permissions. There are files in which you look at and interact with when you are running analysis on a UNIX command line, and there are files in which are incredibily important to the system that we shouldn't be able to touch. And of course, if you are creating and interacting with files in your home directory, you want to make those files only available to you, and not other users.
 
 A file can have there are three types of attributes:
 
@@ -151,7 +151,7 @@ There are two main ways of executing a script. Firstly, as shown in "Basic Examp
 
 However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
 
-First we’ll look at the files in the folder using `ls -l` and note that unlike the above figure, these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
+First we’ll look at the files in the folder using `ls -l` and note that unlike the above figure, these triplets should be `rw-` for the user and the group you belong to. To make this script executable, enter the following in your terminal.
 
     $ chmod +x ./basic_example_1.sh
 
@@ -176,7 +176,7 @@ The command `basename` is incredibly useful in bash scripting because it can als
 
     #!/bin/bash
 
-    # If you havent already, change into the files directory in the "BashWk4" diectory
+    # If you haven't already, change into the files directory in the "BashWk4" diectory
     #cd ./files
 
     # Read the input file in my current directory into a variable
@@ -200,7 +200,7 @@ The command `basename` is incredibly useful in bash scripting because it can als
 
 As you've probably noticed above, a variable is essentially a holding place for information that the program needs to run its code. In "Basic example 1", we read our input file into the variable INPUT and in "Basic example 2", we will read text into the variables ME and MESSAGE. You'll notice that when you declare the variable you use the equals sign to assign the information to that variable name (e.g. VARIABLE_NAME="THIS IS THE INFORMATION"), while when you actually use the variable in your code, we put a `$` in front to declare that this is in fact a variable.
 
-Additionally, notice the use of the curly brackets around the variable name in "Basic example 1" (e.g. `${INPUT}`). Whilst not being strictly required, this can make it easy for you to follow in the future when you’re looking back. Its also helpful to type variables using strictly upper-case letters. This is another optional coding style, but can also make things clear for you as you look back through your work. Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
+Additionally, notice the use of the curly braces around the variable name in "Basic example 1" (e.g. `${INPUT}`). While not being strictly required, this can make it easy for you to follow in the future when you’re looking back. Its also helpful to type variables using strictly upper-case letters. This is another optional coding style, but can also make things clear for you as you look back through your work. Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
 
 ### What can be a variable?
 
@@ -284,7 +284,7 @@ Set the permissions and execute the file by declaring the name of the script and
 
 ### EXERCISE
 
-The Adelaide CBD Particule data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
+The Adelaide CBD Particulate data is measured by a Beta Attenuation Monitor (BAM) where the two individual measurements are PM10 BAM µg/m3 (Particulate Matter 10 microns or less) and PM2.5 BAM µg/m3 (Particulate Matter 2.5 microns or less). Across every month in 2015, during what time of the day was the PM10 and PM2.5 measurements at their highest?
 
 Using the skills in this tutorial, as well as your knowledge of commands such as `echo`, `awk`, `grep`, write a script that reads the 2015 data and outputs the answer
 

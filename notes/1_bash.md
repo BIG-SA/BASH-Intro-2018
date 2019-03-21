@@ -7,13 +7,13 @@
 
 Command-line tools are the mainstay of analysis for large (biological or non-biological) data sets. Good candidate examples for command-line analyses in bioinformatics are:
 
-- manual inspection of fastq, bam & sam files from NGS pipelines
+- manual inspection of FASTQ, BAM and SAM files from NGS pipelines
 - automating analyses across multiple datasets/experiments
 - manipulations of data which are repetitive or laborious to perform manually
 - job submission to HPC clusters
 - the list goes on and on....
 
-Today we’ll explore a few commands to help you gain a little familiarity with some important ones, and to enable you to find help when you’re working by yourself. We don’t expect you to remember all the commands & options from today. The important thing is to become familiar with the basic syntax for commands, how to put them together, and where to look for help when you’re unsure.
+Today we’ll explore a few commands to help you gain a little familiarity with some important ones, and to enable you to find help when you’re working by yourself. We don’t expect you to remember all the commands and options from today. The important thing is to become familiar with the basic syntax for commands, how to put them together, and where to look for help when you’re unsure.
 
 ### Why should you learn the basics
 {:.no_toc}
@@ -37,7 +37,7 @@ Learning even just the basic `bash` commands will open up new avenues of explora
 {:.no_toc}
 
 1. Gain familiarity and confidence within the `bash` environment
-2. Learn how to navigate directories, as well as to copy, move & delete the files within them
+2. Learn how to navigate directories, as well as to copy, move and delete the files within them
 3. Look up the help page of a command needed to perform a specified task
 
 ## What is `bash`?
@@ -65,7 +65,7 @@ On bash you will have this `$` sign on most lines. The text before the dollar si
 Because of this ability to manually customise the prompt, it may look different between computers that share the exact same operating system.
 
 The main point here is that all the bash commands you'll use in this workshop should be typed after the `$` where you should see a cursor flashing.
-Sometimes command examples you see on the internet (and maybe even here) start with this `$ ` followed by a code example.
+Sometimes command examples you see on the Internet (and maybe even here) start with this `$ ` followed by a code example.
 If you see this you can ignore it as this is just indicating where your command should begin, and there is no need to type it.
 
 The prompt is there to indicate that the shell is waiting for a task/instruction.
@@ -130,7 +130,7 @@ For any other users (such as Cathy), this would be `/home/cathy`
 
 **Note:** the forward slash was used to delimit (i.e. separate) the individual folder names as well as indicating the root of the file system.
 
-**Note:** Spaces are highly important on the command line, so take note of them where-ever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
+**Note:** Spaces are highly important on the command line, so take note of them wherever they appear in the given commands. Best practice is to **avoid using spaces** whenever naming folders or files.
 
 #### Task
 {:.no_toc}
@@ -225,7 +225,7 @@ Try looking in that directory:
 ls /home
 ```
 
-### Relative Vs Absolute Paths
+### Relative vs Absolute Paths
 
 This is an important concept required for finding your way around any computer (or file system).
 To aid you in your understanding of this concept lets do a simple mind experiment.
@@ -246,7 +246,7 @@ In summary:
 - Relative paths specify a location in the system *relative the the current working directory* and will never start with the slash. This is an important point which will hopefully become more clear throughout the session.
 
 **Note:** The terminal also knows of one more landmark which we hinted at before and that is the users home directory.
-As mentioned before, the special charater to denote this location is the tilda `~`.
+As mentioned before, the special charater to denote this location is the tilde `~`.
 It can be used from anywhere as a landmark just like the slash. Try it!
 
 
@@ -319,7 +319,7 @@ A similar concept is the blank tile in Scrabble which can be used as any one of 
 Wildcards in the terminal are somewhat like this. Here is the basic set of wildcards;
 
 1. `?` Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
-2. `*` Asterix - represents zero or more characters
+2. `*` Asterisk - represents zero or more characters
 3. `[ ]` Closed square brackets - user defined range of characters
 
 We have set up some exercises for you to try out your skills using wildcards and below
@@ -552,7 +552,7 @@ We'll come back to this later.
 
 The above command `rm -r` is potentially **VERY** dangerous.
 **DO NOT** enter this, but if we executed `rm -r` from the root of our file system (`/`), can you imagine what would happen?
-If you just broke out into a cold sweat, that's normal & completely justified!
+If you just broke out into a cold sweat, that's normal and completely justified!
 
 It is also important to note that there is **no `undo` option in bash.**
 What's done is done, so do be careful.

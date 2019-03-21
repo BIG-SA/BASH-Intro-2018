@@ -7,7 +7,7 @@
 
 ## General Information
 
-Thank you for your attendance & welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
+Thank you for your attendance and welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
 This is series of training workshops and materials developed by the Bioinformatics Interest Group - South Australia (BIG-SA), specifically using the skills and resources of the Bioinformatics Hub (University of Adelaide) and the ACRF Cancer Genomics Facility (UniSA).
 
 Some additional resources run by the Bioinformatics Hub which may be of interest beyond today are:
@@ -21,10 +21,10 @@ Some additional resources run by the Bioinformatics Hub which may be of interest
 
 For all sessions, we'll be running on virtual machines (VMs) and we'd like you to log in to these machines using a terminal.
 This is how we commonly interact with these machines so will be good practice.
-If you're on OSX or ubuntu, you simply need to know how to find a terminal:
+If you're on OSX or Ubuntu, you simply need to know how to find a terminal:
 
 - OSX: `CMD + Space` then type the word terminal
-- Ubuntu: `Ctrl + Alt + t`
+- Ubuntu: `Ctrl + Alt + T`
 
 For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
 Installation instructions [can be found here](../install/windowsInstall.md).
@@ -103,9 +103,9 @@ There will be a number of areas covered during these sessions:
 
 The majority of data handling and analysis required in the field of bioinformatics uses the command line, alternatively known as the terminal or the `bash` shell.
 This is a text-based interface in which commands must be typed, as opposed to the Graphical User Interfaces (aka GUIs) that most of us have become accustomed to.
-Being able to access these tools enables you to more fully utilise the power & capabilities of your machine, for both Linux & Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
+Being able to access these tools enables you to more fully utilise the power and capabilities of your machine, for both Linux and Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
 
-Whilst some of the tools we cover may appear trivial, they are used on a daily basis by those working in the field.
+While some of the tools we cover may appear trivial, they are used on a daily basis by those working in the field.
 These basic tools are essential for writing what are known as shell scripts, which we will work towards throughout the first three sessions and begin to cover in the last.
 These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to the genome.
 A knowledge of this simple type of programming and navigation is also essential for accessing the high-performance computing resources such as *phoenix*.
@@ -140,12 +140,12 @@ We hope it will be useful in enabling you to continue and to advance your resear
 In the following pages, we **strongly encourage** you to manually type all commands.
 The mistakes you will inevitably make will actually *be important learning steps*.
 Additionally, in your work beyond today, you will probably not have any instructions to follow.
-The experience of typing these commands will equip you for future work far better than if you simply copy & paste.
+The experience of typing these commands will equip you for future work far better than if you simply copy and paste.
 
-### Copy & Paste
+### Copy and Paste
 {:.no_toc}
 
-As we're dealing with a large number of setups here the strategy for copy & pasting will vary.
+As we're dealing with a large number of setups here the strategy for copy and pasting will vary.
 To paste into a standard bash terminal, you usually use `Shift + Ctrl + C` for copy, substituting `V` for paste.
 On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
 Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.

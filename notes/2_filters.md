@@ -82,7 +82,7 @@ Clearly, the answer is no.
 File suffixes for plain text files like this are really just communicating to other users what the layout of the file is.
 In the case of a `.gtf` file there is a set layout, which includes some "header" lines followed by a series of tab-separated columns.
 It's really just a plain text file though and we could change the suffix at will, like we imagined for our imaginary csv/tsv file.
-If we do that though, nobody else will know what the internal structure of the file will be & we'll either be a difficult co-worker or a terrible practical joker.
+If we do that though, nobody else will know what the internal structure of the file will be and we'll either be a difficult co-worker or a terrible practical joker.
 The important thing to realise is that the suffix of files doesn't affect their internal structure.
 They are simply used to communicate clearly *what the structure of the file is*.
 Unfortunately, it's not uncommon to come across files with a `.csv` suffix that are actually tab-delimited.
@@ -96,7 +96,7 @@ Anyone who does this should be sent to the naughty corner and forced to use noth
 Now we have a file to look through let's try to look at it to see what we mean by a 'plain-text' file and 'header lines'.
 The way to dump the entire contents of a file to the terminal (or `stdout`) is to use the command `cat`.
 Try this and all the information in the file will whiz past you in the terminal.
-If you get sick of watching it, just hit `Ctrl+c` to stop the stream of text.
+If you get sick of watching it, just hit `Ctrl+C` to stop the stream of text.
 
 ```
 cat BDGP6_genes.gtf
@@ -138,7 +138,7 @@ less BDGP6_genes.gtf
 ```
 
 Now we can browse the file using the space bar to move down a page, the `b` key to move back a page and the arrows to move up or down a line.
-Although we can navigate through the less pager using up & down arrows on our keyboards, some helpful shortcuts are:
+Although we can navigate through the less pager using up and down arrows on our keyboards, some helpful shortcuts are:
 
 | Command |	Action  |
 | ------- | ------- |
@@ -207,19 +207,19 @@ echo 'Hello World'
 ```
 
 
-That’s pretty amazing isn’t it & you can make the terminal window say anything you want without meaning it.
+That’s pretty amazing isn’t it and you can make the terminal window say anything you want without meaning it.
 
 ```
 echo 'This computer will self destruct in 10 seconds!'
 ```
 
 There are a few subtleties about text which are worth noting.
-**Inspect the `man echo` page & note the effects of the -e option.**
+**Inspect the `man echo` page and note the effects of the -e option.**
 *(Unfortunately, it appears that this option has not been included in the help page for those in OSX.
 The argument does work in the actual command though. Go figure...)*
-This allows you to specify tabs, new lines & other special characters by using the backslash to signify these characters.
-This is an important concept & the use of a backslash to escape the normal meaning of a character is very common.
-Try the following three commands & see what effects these special characters have.
+This allows you to specify tabs, new lines and other special characters by using the backslash to signify these characters.
+This is an important concept and the use of a backslash to escape the normal meaning of a character is very common.
+Try the following three commands and see what effects these special characters have.
 
 ```
 echo 'Hello\tWorld'

@@ -68,7 +68,7 @@ This simple example can be written in bash below (Don't worry that you don't und
 
     #!/bin/bash
 
-    # If you havent already, change into the files directory 
+    # If you haven't already, change into the files directory 
     # The following line will need to be modified accordingly if you saved the files somewhere other than ~/Bash_Workshop/Session4/files
     cd ~/Bash_Workshop/Session4/files
 
@@ -105,11 +105,11 @@ Comments are very important in programming because they act as notes or explaina
 
 ## Adjusting file permissions and executing a script
 
-There are two main ways of executing a script. Firstly, as shown in "Basic Example 1", we can just declare the intepreter of the language on the command-line, followed by the name of the script.
+There are two main ways of executing a script. Firstly, as shown in "Basic Example 1", we can just declare the interpreter of the language on the command-line, followed by the name of the script.
 
     bash basic_example_1.sh
 
-However, we shouldnt need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
+However, we shouldn't need to call the name of the script, considering that the interpreter is already declared in line 1! To do this, the script needs to be executible, and we need to adjust the read/write/execute file permissions explained above. By adding execute permissions to the file, the script can be run as a program and not just a regular file.
 
 First we’ll look at the files in the folder using `ls -l` and note that unlike the above figure, these triplets should be `rw-` for the user & the group you belong to. To make this script executable, enter the following in your terminal.
 
