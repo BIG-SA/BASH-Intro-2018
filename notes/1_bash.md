@@ -195,6 +195,9 @@ cd
 ```
 
 This has introduced an important shortcut (`~`) which contains the address for your home folder (`/home/trainee`).
+
+![Home is where the ~ is.](../images/1_bash_ADM3A-keyboard.png "Photo credit vintagecomputer.ca")
+
 We can check this using the `echo` command, which prints text to our terminal (formally known as standard output, but we'll get to that later.)
 
 ```
