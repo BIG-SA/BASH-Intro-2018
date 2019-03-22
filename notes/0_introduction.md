@@ -21,10 +21,10 @@ Some additional resources run by the Bioinformatics Hub which may be of interest
 
 For all sessions, we'll be running on virtual machines (VMs) and we'd like you to log in to these machines using a terminal.
 This is how we commonly interact with these machines so will be good practice.
-If you're on OSX or Ubuntu, you simply need to know how to find a terminal:
+If you're on macOS or Ubuntu, you simply need to know how to find a terminal:
 
-- OSX: `CMD + Space` then type the word terminal
-- Ubuntu: `Ctrl + Alt + T`
+- macOS: <kbd>CMD</kbd><kbd>Space</kbd> then type the word terminal
+- Ubuntu: <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>T</kbd>
 
 For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
 Installation instructions [can be found here](../install/windowsInstall.md).
@@ -32,7 +32,7 @@ If you don't have adminstrative access and require help from ITS, please call th
 Otherwise `git bash` is the preferred option.
 Once you've got this setup, open `git bash` and you should see something that looks like a terminal.
 
-Most of the tools we use on the VM are also available in your OSX terminal, or in `git bash`.
+Most of the tools we use on the VM are also available in your macOS terminal, or in `git bash`.
 There can be subtle differences in the way they work, but by and large with both of these you can actually run `bash` on your own machine as well as the remote VM we connect to.
 
 
@@ -146,7 +146,7 @@ The experience of typing these commands will equip you for future work far bette
 {:.no_toc}
 
 As we're dealing with a large number of setups here the strategy for copy and pasting will vary.
-To paste into a standard bash terminal, you usually use `Shift + Ctrl + C` for copy, substituting `V` for paste.
+To paste into a standard bash terminal, you usually use <kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>C</kbd> for copy, and <kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>C</kbd> for paste.
 On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
 Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.
 

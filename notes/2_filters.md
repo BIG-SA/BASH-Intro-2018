@@ -96,7 +96,7 @@ Anyone who does this should be sent to the naughty corner and forced to use noth
 Now we have a file to look through let's try to look at it to see what we mean by a 'plain-text' file and 'header lines'.
 The way to dump the entire contents of a file to the terminal (or `stdout`) is to use the command `cat`.
 Try this and all the information in the file will whiz past you in the terminal.
-If you get sick of watching it, just hit `Ctrl+C` to stop the stream of text.
+If you get sick of watching it, just hit <kbd>Ctrl</kbd><kbd>C</kbd> to stop the stream of text.
 
 ```
 cat BDGP6_genes.gtf

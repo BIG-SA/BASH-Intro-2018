@@ -21,7 +21,7 @@ Once you've had a look at `nano` move to the next section, as the remainder are 
 {:.no_toc}
 
 - **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
-To quit, hold [Ctrl] and press X (`^X`).
+To quit, hold <kbd>Ctrl</kbd><kbd>X</kbd>.
 There are a couple important caveats to remember when using Nano:
   - Nano will load the entire file into memory, so it may take a while when working with large files.
   - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
@@ -43,7 +43,7 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 {:.no_toc}
 
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
-- **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd><kbd>X</kbd> <kbd>Ctrl</kbd><kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
@@ -135,24 +135,21 @@ Do not waste time doing more than one of these** but please do contemplate how d
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
 1) What is the first line that contains "**DNAJB7**"? Give line number.
-  <details><summary>Hint:</summary>
-  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.
-  </details>   
+<details><summary>Hint:</summary>
+  You will need <kbd>Ctrl</kbd><kbd>W</kbd> (search), and <kbd>Ctrl</kbd><kbd>C</kbd> (view line number), unless you really enjoy counting and scrolling line by line.
+</details><br>
 
 2) How many lines contain "**DNAJB7**"?
-
-  <details><summary>Hint:</summary>Use <kbd>M-W</kbd> (<kbd>[Alt]-W</kbd>) to repeat search.
-  </details>  
+<details><summary>Hint:</summary>Use <kbd>Meta</kbd><kbd>W</kbd> or <kbd>Alt</kbd><kbd>W</kbd> to repeat search.
+</details><br>
 
 3) How many lines contain "**RBX1**"?  
-
 <details><summary>Hint:</summary>Seriously, don't try this. We'll show you how to do it super easily in a few minutes.
-</details>  
+</details><br>
 
 4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
-
 <details><summary>Hint:</summary>Why are you still trying to do these? We'll show you how easy it is later.
-</details>  
+</details><br>
 
 5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
 
@@ -276,7 +273,7 @@ grep -w transport GRCh38.chr22.ensembl.biomart.txt
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
 This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport".
 In other words, we are looking for the string "`[tab]transport[tab]`".
-To enter an actual [tab] character, you need to **use the key sequence:*** `[Ctrl-V][tab]`.
+To enter an actual [tab] character, you need to **use the key sequence:*** <kbd>Ctrl</kbd><kbd>V</kbd> then <kbd>tab</kbd>.
 Just pressing the `[tab]` key will not work.
 
 ```
@@ -855,7 +852,7 @@ awk -F "\t" '{
 
 [2] Emacs is not installed by default on Ubuntu (16.04). To install, type `sudo apt install emacs` on Ubuntu or `apt`-based Linux systems.
 
-[3] The Control (Ctrl) key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
+[3] The Control <kbd>Ctrl</kbd> key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
 
 [4] You can install `ne` by entering `sudo apt install ne` on Ubuntu.
 
