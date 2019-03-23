@@ -17,15 +17,16 @@ There's no real difference in capabilities, it's simply a matter of personal pre
 Most of you should have `nano` installed, and **we recommend this for today's sessions**.
 Once you've had a look at `nano` move to the next section, as the remainder are really just here for your information beyond today.
 
-#### Nano (or Pico)
+#### Nano
 {:.no_toc}
 
-- **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
+- **Nano**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program.
 To quit, hold <kbd>Ctrl</kbd><kbd>X</kbd>.
 There are a couple important caveats to remember when using Nano:
-  - Nano will load the entire file into memory, so it may take a while when working with large files.
-  - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
-  - Nano doesn't utilise any colours on the screen
+
+- Nano will load the entire file into memory, so it may take a while when working with large files.
+- Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
+- Nano doesn't utilise any colours on the screen
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
@@ -43,7 +44,7 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 {:.no_toc}
 
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
-- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd><kbd>X</kbd> <kbd>Ctrl</kbd><kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd><kbd>X</kbd> <kbd>Ctrl</kbd><kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[2]</sup>
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
@@ -195,7 +196,7 @@ However, feel free to continue on if you already understand the topic.
 # `grep`
 
 
-**`grep`**<sup>[5]</sup> (Global search for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[3]</sup> (Global search for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
 
 ```
 grep [PATTERN] [FILE]
@@ -477,7 +478,7 @@ If you look into the help page for `grep`, you will see that `grep` has 4 differ
 1. `-G/--basic-regexp` is the default basic mode;
 2. `-E/--extended-regexp` is the extended mode we have used earlier;
 3. `-P/--perl-regexp` supports the Perl-style regular expression, while;
-4. `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
+4. `-F/--fixed-strings` only performs exact matches.<sup>[4]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
 
 Unfortunately we don't have time to cover it all in this session, but if you wish to learn more about it, you should look up `grep` tutorials online.
 
@@ -666,7 +667,7 @@ First we'll recreate the file
 egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 ```
 
-`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
+`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[5]</sup>.
 Now we'll try the correct approach where we edit the file using this strategy.
 
 ```
@@ -700,7 +701,7 @@ ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh
 
 # `awk` 
 
-`awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
+`awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[6]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
 
 Some of the most important (or most commonly used) features of `awk` are:
 
@@ -848,20 +849,16 @@ awk -F "\t" '{
 
 *Footnotes*
 
-[1] Nano is a opensource GNU clone of the proprietary program, Pico.
+[1] Emacs is not installed by default on Ubuntu (16.04). To install, type `sudo apt install emacs` on Ubuntu or `apt`-based Linux systems.
 
-[2] Emacs is not installed by default on Ubuntu (16.04). To install, type `sudo apt install emacs` on Ubuntu or `apt`-based Linux systems.
+[2] The Control <kbd>Ctrl</kbd> key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
 
-[3] The Control <kbd>Ctrl</kbd> key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
+[3] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
 
-[4] You can install `ne` by entering `sudo apt install ne` on Ubuntu.
-
-[5] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
-
-[6] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
+[4] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
 
 If you want to perform any benchmarking, you may find the command `time` to be useful. Just add it to the beginning of any command line, e.g.: `$ time grep -v protein_coding BDGP6_genes.gtf`
 
-[7] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
+[5] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
 
-[8] The GNU awk language manual: https://www.gnu.org/software/gawk/manual/gawk.html
+[6] The GNU awk language manual: https://www.gnu.org/software/gawk/manual/gawk.html
