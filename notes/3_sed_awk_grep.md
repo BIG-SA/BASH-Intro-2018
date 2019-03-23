@@ -17,6 +17,10 @@ There's no real difference in capabilities, it's simply a matter of personal pre
 Most of you should have `nano` installed, and **we recommend this for today's sessions**.
 Once you've had a look at `nano` move to the next section, as the remainder are really just here for your information beyond today.
 
+#### ed (ee-dee)
+
+- **ed**: Ed is the standard text editor. Type `q` and then press <kbd>Enter</kbd> to quit.
+
 #### Nano
 {:.no_toc}
 
