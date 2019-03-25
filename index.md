@@ -29,10 +29,10 @@ All sessions will be held in The Braggs, Room 450
 
 | Date | Time | Main Topics |
 | ---------- |---------- | ---------- |
-| Tues, April 16th | 10:30am-12:30pm  | Introduction to `bash` |
-| Tues, April 16th | 1:30pm-3:30pm | Working with files in `bash` |
-| Tues, April 16th | 10:30am-12:30pm  | The tools `grep` and `sed` |
-| Tues, April 16th | 1:30pm-3:30pm | Bash Scripting |
+| Tues, April 16th |  9:00am-10:30pm  | Introduction to `bash` |
+| Tues, April 16th | 11:00pm-12:30pm  | Working with files in `bash` |
+| Tues, April 16th | 13:30am-15:00pm  | The tools `grep` and `sed` |
+| Tues, April 16th | 15:30pm-17:00pm  | Bash Scripting |
 
 
 # Extra Material
