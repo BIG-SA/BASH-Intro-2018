@@ -43,5 +43,5 @@
 ## Today's topics:
 
 - We'll start editing files the *horrible* way
-    + Introduces a few bash editors (`nano`, `vim`, `emacs`, `ne`)
+    + Introduces a few bash editors (`nano`, `vim`, `emacs`)
 - Then we'll move to the *smart* way
