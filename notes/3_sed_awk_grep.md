@@ -30,17 +30,17 @@ There are a couple important caveats to remember when using Nano:
 
 - Nano will load the entire file into memory, so it may take a while when working with large files.
 - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
-- Nano doesn't utilise any colours on the screen
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
-#### Vi (or Vim)
+#### Vi (or Vim/[Neovim](https://neovim.io/))
 {:.no_toc}
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually *not recommended for beginners.*
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 - **To quit:** type `:q` (**The colon is required**. Typing just `q` won't work.)
 - Many people prefer `vim` as it will use colours in any bash script to highlight variables and commands that it recognises.
+Vim has a tutorial mode that can be started with `:vimtutor`.
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
@@ -49,6 +49,8 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
 - **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd>+<kbd>X</kbd> <kbd>Ctrl</kbd>+<kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[2]</sup>
+Emacs also has a tutor mode, although it is not installed by default.
+It is available [here](https://github.com/syl20bnr/evil-tutor).
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
@@ -289,7 +291,13 @@ While this works when you are entering commands directly in the command line ter
 The alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
 
 ```
-grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt
+grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt # Single or double quotes.
+```
+
+Alternatively, with recent bash versions, you can use [a special quoting with the `$''` quotes](https://www.gnu.org/software/bash/manual/bashref.html#ANSI_002dC-Quoting).
+
+```
+grep $'\ttransport\t' GRCh38.chr22.ensembl.biomart.txt # Note single quotes.
 ```
 
 #### Example 3: case sensitivity
