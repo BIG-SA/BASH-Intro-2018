@@ -23,8 +23,8 @@ For all sessions, we'll be running on virtual machines (VMs) and we'd like you t
 This is how we commonly interact with these machines so will be good practice.
 If you're on macOS or Ubuntu, you simply need to know how to find a terminal:
 
-- macOS: <kbd>CMD</kbd><kbd>Space</kbd> then type the word terminal
-- Ubuntu: <kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>T</kbd>
+- macOS: <kbd>CMD</kbd>+<kbd>Space</kbd> then type the word terminal
+- Ubuntu: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>
 
 For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
 Installation instructions [can be found here](../install/windowsInstall.md).
@@ -146,7 +146,7 @@ The experience of typing these commands will equip you for future work far bette
 {:.no_toc}
 
 As we're dealing with a large number of setups here the strategy for copy and pasting will vary.
-To paste into a standard bash terminal, you usually use <kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>C</kbd> for copy, and <kbd>Shift</kbd><kbd>Ctrl</kbd><kbd>C</kbd> for paste.
+To paste into a standard bash terminal, you usually use <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for copy, and <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for paste.
 On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
 Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.
 

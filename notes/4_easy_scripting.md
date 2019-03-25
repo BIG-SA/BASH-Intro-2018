@@ -89,8 +89,8 @@ Now open this using the using the text editor `nano`:
 nano wellDone.sh
 ```
 
-Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using <kbd>Ctrl</kbd><kbd>O</kbd> (indicated as `^O`) in the nano screen.
-Once you're finished, you can exit the `nano` editor by hitting <kbd>Ctrl</kbd><kbd>X</kbd> (written as `^X`).
+Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using <kbd>Ctrl</kbd>+<kbd>O</kbd> (indicated as `^O`) in the nano screen.
+Once you're finished, you can exit the `nano` editor by hitting <kbd>Ctrl</kbd>+<kbd>X</kbd> (written as `^X`).
 Assuming that you've entered everything correctly, we can now execute this script by simply entering
 
 ```
@@ -250,7 +250,7 @@ touch changeSuffix.sh
 nano changeSuffix.sh
 ```
 
-Once the `nano` editor has opened, enter the following script before *writing out* (<kbd>Ctrl</kbd><kbd>O</kbd>).
+Once the `nano` editor has opened, enter the following script before *writing out* (<kbd>Ctrl</kbd>+<kbd>O</kbd>).
 
 ```
 #!/bin/bash

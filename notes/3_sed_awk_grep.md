@@ -25,7 +25,7 @@ Once you've had a look at `nano` move to the next section, as the remainder are 
 {:.no_toc}
 
 - **Nano**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program.
-To quit, hold <kbd>Ctrl</kbd><kbd>X</kbd>.
+To quit, hold <kbd>Ctrl</kbd>+<kbd>X</kbd>.
 There are a couple important caveats to remember when using Nano:
 
 - Nano will load the entire file into memory, so it may take a while when working with large files.
@@ -48,7 +48,7 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 {:.no_toc}
 
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
-- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd><kbd>X</kbd> <kbd>Ctrl</kbd><kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[2]</sup>
+- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd>+<kbd>X</kbd> <kbd>Ctrl</kbd>+<kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[2]</sup>
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
@@ -141,11 +141,11 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 
 1) What is the first line that contains "**DNAJB7**"? Give line number.
 <details><summary>Hint:</summary>
-  You will need <kbd>Ctrl</kbd><kbd>W</kbd> (search), and <kbd>Ctrl</kbd><kbd>C</kbd> (view line number), unless you really enjoy counting and scrolling line by line.
+  You will need <kbd>Ctrl</kbd>+<kbd>W</kbd> (search), and <kbd>Ctrl</kbd>+<kbd>C</kbd> (view line number), unless you really enjoy counting and scrolling line by line.
 </details><br>
 
 2) How many lines contain "**DNAJB7**"?
-<details><summary>Hint:</summary>Use <kbd>Meta</kbd><kbd>W</kbd> or <kbd>Alt</kbd><kbd>W</kbd> to repeat search.
+<details><summary>Hint:</summary>Use <kbd>Meta</kbd>+<kbd>W</kbd> or <kbd>Alt</kbd>+<kbd>W</kbd> to repeat search.
 </details><br>
 
 3) How many lines contain "**RBX1**"?  
@@ -278,7 +278,7 @@ grep -w transport GRCh38.chr22.ensembl.biomart.txt
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
 This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport".
 In other words, we are looking for the string "`[tab]transport[tab]`".
-To enter an actual [tab] character, you need to **use the key sequence:*** <kbd>Ctrl</kbd><kbd>V</kbd> then <kbd>tab</kbd>.
+To enter an actual [tab] character, you need to **use the key sequence:*** <kbd>Ctrl</kbd>+<kbd>V</kbd> then <kbd>tab</kbd>.
 Just pressing the `[tab]` key will not work.
 
 ```
