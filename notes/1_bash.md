@@ -325,6 +325,7 @@ Wildcards in the terminal are somewhat like this. Here is the basic set of wildc
 1. `?` Question mark - represents exactly one character and can be used side by side to represent more characters (ie. ??? for exactly 3).
 2. `*` Asterisk - represents zero or more characters
 3. `[ ]` Closed square brackets - user defined range of characters
+4. `{ , }` Closed curly braces around list of strings - alternations of whole strings, e.g. `{this,that,other}-file` matches `this-file`, `that-file` and `other-file`.
 
 We have set up some exercises for you to try out your skills using wildcards and below
 are some examples of how wildcards are used.
