@@ -512,7 +512,7 @@ efficient. But it is sed’s ability to filter text in a pipeline which
 particularly distinguishes it from other types of editors.
 
 It is important to remember that `sed` is a very complex tool that has been in use and constantly
-evolving for decades, and as it's open-sourced it has diverged on different platforms.
+evolving for decades, and as for licensing reasons it has diverged on different platforms.
 Therefore `sed` on Mac OSX may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
 For this workshop, we typically focus on GNU tools (Linux).
 If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
