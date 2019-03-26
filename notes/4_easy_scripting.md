@@ -367,8 +367,8 @@ Now run it passing the `.fa` file as the first argument.
 
 # Using an HPC environment
 
-Much of the time we'll be using an HPC environment such as `phoenix` or `tango` which rely on a queueing system and each script being submitted as a job in ths queue.
-On `phoenix` the queueing system is known as `slurm`.
+Much of the time we'll be using an HPC environment such as `phoenix` or `tango` which rely on a queueing system and each script being submitted as a job in the queue.
+On `phoenix` the queuing system is known as `slurm`.
 
 Additionally, due to the large number of avaiable tools for the large number of users, the exact tools we need won't be automatically available like they are on your VM.
 Instead, they are available as 'modules' which we load at the start of our script.
@@ -389,7 +389,7 @@ This would then ask you for your usual ITS password and will take you to your ho
 If you're on `phoenix` or another HPC, the most common way of accessing the list of available modules is to use the command `module avail`.
 Alternatively, you may choose to search explicitly for a tool using `module spider samtools`, which would look for all modules that matched 'samtools'.
 
-## Slurm Paramters
+## Slurm Parameters
 
 At the start of a script written to run on `slurm` you'll commonly see a set of specific comments, which the queuing system is able to interpret.
 An example may be:
@@ -412,7 +412,7 @@ Let's look at these on at a time:
 ```
 #SBATCH -p batch
 ```
-This is requesting a spcific section of the HPC. You can request sections such as `himem` here depending on your job, but choosing `batch` just puts it into the general pool able to run wherever appropriate.
+This is requesting a specific section of the HPC. You can request sections such as `himem` here depending on your job, but choosing `batch` just puts it into the general pool able to run wherever appropriate.
 
 ```
 #SBATCH -N 1
