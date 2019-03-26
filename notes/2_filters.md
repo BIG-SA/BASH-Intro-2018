@@ -20,7 +20,7 @@ We also learned some important concepts
 - Tab auto-completion and using the [Up]/[Down] arrows
 - Relative vs Absolute paths
 - The `<command> <argument>` structure of bash commands
-- Using wild cards `?`, `*` and `[]` to select subsets of files or directories
+- Using wild cards `?`, `*`, `[]` and `{}` to select subsets of files or directories
 
 ## This Session
 

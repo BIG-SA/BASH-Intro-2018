@@ -482,7 +482,7 @@ You should now see the file with it's new name in that list, so let's delete it.
 rm renamed_file.txt
 ```
 
-#### Homework Task
+#### Task
 {:.no_toc}
 
 1 - See if you can recreate these directories in your home directory (`~`).
@@ -563,7 +563,7 @@ If you did not, please try out [this linux distribution](https://qntm.org/suicid
 It is also important to note that there is **no `undo` option in bash.**
 What's done is done, so do be careful.
 
-#### Homework Question
+#### Question
 
 Use the `man` command to access the help page for `ls`.
 

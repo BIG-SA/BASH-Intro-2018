@@ -448,7 +448,7 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
 2. Outside square brackets, it is used to indicate the *start of a line.*
 
 
-#### Homework Exercises
+#### Exercises
 {:.no_toc}
 
 1) Create a list of gene names from BDGP6_genes.gtf:
