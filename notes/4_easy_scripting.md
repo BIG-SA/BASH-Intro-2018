@@ -245,7 +245,7 @@ Save this as a script in the `Bash_Workshop/Session4` folder called `lineCount.s
 Before we write our net simple script, we'll need to download a pair of `fasta` files.
 
 ```
-curl "https://universityofadelaide.box.com/shared/static/d4rs2qphctukwxwg2y6ypdii9i4g4bo8.gz" | tar xvz -C ./
+curl "https://universityofadelaide.box.com/s/d4rs2qphctukwxwg2y6ypdii9i4g4bo8" | tar xvz -C ./
 ```
 
 This will give you two files `SRR5882797_R1.fa` and `SRR5882797_R2.fa` which are paired fastq files.
