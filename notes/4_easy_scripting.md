@@ -23,13 +23,17 @@ Now that we've been through just some of the concepts and tools we can use when 
 ### The `shebang`
 
 Every bash shell script begins with what is known as a *shebang*, which we would commonly recognise as a hash sign followed by an exclamation mark, i.e `#!`.
-This is immediately followed by `/bin/bash`, which tells the interpreter to run the command `bash ` which is contained in the directory `/bin`.
-This opening sequence is essential for all `bash` scripts and tells the computer how to respond to all of the following commands.
+This is immediately followed by an executable path, in this case `/bin/bash`.
+This information is used by the program loader so that it knows which interpreter to start in order to run the script.
+The interpreter is then started and given the script file itself to run.
+So, if a `/bin/bash` shebang is in an [executable](#Setting-File-Permissions) file called `script.bash`, then invoking `./script.bash` is equivalent to running `/bin/bash ./script.bash`.
 As a string this looks like:
 
 ```
 #!/bin/bash
 ```
+
+(A similar mechanism is used for starting binary executables; try running `file /bin/bash` and `file /usr/bin/R` and compare the output. `ELF` is the binary equivalent of `#!`.)
 
 The hash symbol generally functions as a comment character in scripts.
 Sometimes we can include lines in a script to remind ourselves what we're trying to do, and we can preface these with the hash to ensure the interpreter doesn't try to run them.
@@ -59,9 +63,13 @@ echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
 - You may notice some lines that begin with the `#` character.
 These are *comments* which have no impact on the execution of the script, but are written so you can understand what you were thinking when you wrote it.
 If you look at your code 6 months from now, there is a very strong chance that you won't recall exactly what you were thinking, so these comments can be a good place just to explain something to the future version of yourself.
-There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
+Programs perform two main functions: 1) make a machine perform a set of defined actions and 2) explain to other humans (or yourself later on) what the machine is doing and why.
+The second function is more important, otherwise scripts would be written in machine code rather than something that looks like English.
 - Another coding style which can be helpful is the enclosing of each *variable name* in curly braces every time the value is called, e.g. `${ME}`
-While not being strictly required, this can make it easy for you to follow in the future when you're looking back.
+While not being strictly required, this can make it easy for you to follow in the future when you're looking back and it clarifies where variable labels end and other text begins.
+For example what is the difference between `${NAME_FRAG}rest_of_name` and `$NAME_FRAGrest_of_name`?
+In the first case, `${NAME_FRAG}` is added to `rest_of_name`, but in the second case, `bash` will try to find to value of the variable `$NAME_FRAGrest_of_name`.
+A variable that may not exist!
 - Variables have also been named using strictly upper-case letters.
 This is another optional coding style, but can also make things clear for you as you look back through your work.
 Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
@@ -145,11 +153,11 @@ ls -lh *.sh
 
 This can be a very useful trick for *write-protecting* files and directories!
 
-These flags actually represent *binary bits* that are either on or off.
-Reading from right to left:
-1. the first bit is the execute flag, which has value 1
-2. the second bit is the write flag, which has the value 2
-3. the third bit is the read flag, which has the value 4
+These flags are represented by *binary bits* that are either on or off.
+Reading from left to right:
+1. the first bit is the **r**ead flag, which has the value 4
+2. the second bit is the **w**rite flag, which has the value 2
+3. the third bit is the e**x**ecute flag, which has value 1
 
 Thus each combination of flags can be represented by a single integer, as shown in the following table:
 
@@ -188,8 +196,6 @@ nano wellDone2.sh
 ```
 
 (Change the `ME` variable now...)
-
-We may need to set the execute permissions again.
 
 ```
 chmod +x wellDone2.sh
@@ -239,7 +245,7 @@ Save this as a script in the `Bash_Workshop/Session4` folder called `lineCount.s
 Before we write our net simple script, we'll need to download a pair of `fasta` files.
 
 ```
-wget -qO- "https://universityofadelaide.box.com/shared/static/d4rs2qphctukwxwg2y6ypdii9i4g4bo8.gz" | tar xvz -C ./
+curl "https://universityofadelaide.box.com/shared/static/d4rs2qphctukwxwg2y6ypdii9i4g4bo8.gz" | tar xvz -C ./
 ```
 
 This will give you two files `SRR5882797_R1.fa` and `SRR5882797_R2.fa` which are paired fastq files.
@@ -298,12 +304,14 @@ do
 done
 ```
 
+(Note that for simple loops like the one above, there is an excellent tool called `parallel` that does this work for you and distributes it across all available cores. The loop here would be written as `parallel 'grep -c "^>" {} >> {}.count' ::: *.fa`. See [here](https://www.gnu.org/software/parallel/) for more details.)
+
 ## A Final Script
 
 Let's get one final file containing all the `ncRNA` sequences from *Drosophila melanogaster*.
 
 ```
-wget ftp://ftp.ensembl.org/pub/release-93/fasta/drosophila_melanogaster/ncrna/Drosophila_melanogaster.BDGP6.ncrna.fa.gz
+curl -O ftp://ftp.ensembl.org/pub/release-93/fasta/drosophila_melanogaster/ncrna/Drosophila_melanogaster.BDGP6.ncrna.fa.gz
 ```
 
 After you've downloaded it, unzip the file using `gunzip`
