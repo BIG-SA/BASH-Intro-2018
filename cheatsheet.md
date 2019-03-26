@@ -7,15 +7,15 @@
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:----------- |:----------------------------- |:------------------ |:------------------ |
-| `man`       | Display on-line manual        | -k                 |
+| `man`       | Display on-line manual        | `-k`                 |
 | `pwd`       | Print working directory, i.e show where you are | none commonly used |
-| `ls`        | List contents of a directory  | -a, -h, -l         |
+| `ls`        | List contents of a directory  | `-a`, `-h`, `-l`         |
 | `cd`        | Change directory              | (scroll down in `man builtins` to find `cd`) |
-| `mv`        |                               | -b, -f, -u         |
-| `cp`        |                               | -b, -f, -u         |
-| `rm`        |                               | -r (careful...)    |
+| `mv`        |                               | `-b`, `-f`, `-u`         |
+| `cp`        |                               | `-b`, `-f`, `-u`         |
+| `rm`        |                               | `-r` (careful...)    |
 | `rmdir`     |                               |                    |
-| `mkdir`     |                               | -p                 |
+| `mkdir`     |                               | `-p`                 |
 
 
 
@@ -28,9 +28,9 @@
 | `cat`       |                               |                    |
 | `less`      |                               |                    |
 | `more`      |                               |                    |
-| `head`      |                               | -n# (e.g., -n100)  |
-| `tail`      |                               | -n# (e.g., -n100)  |
-| `wc`        |                               | -l                 |
+| `head`      |                               | `-n#` (e.g., `-n100`)  |
+| `tail`      |                               | `-n#` (e.g., `-n100`)  |
+| `wc`        |                               | `-l`                 |
 
 
 
@@ -51,12 +51,12 @@
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:----------- |:----------------------------- |:------------------ |:------------------ |
-| `cut`       |                               | -d, -f, -s         |
+| `cut`       |                               | `-d`, `-f`, `-s`         |
 | `paste`     |                               |                    |
 | `sort`      |                               |                    |
-| `uniq`      |                               | -c                 |
+| `uniq`      |                               | `-c`                 |
 | `grep`      |                               |                    |
-| `echo`      |                               | -e                 |
+| `echo`      |                               | `-e`                 |
 | `tee`       |                               |                    |
 | `sed`       |                               |                    |
 | `awk`       |                               |                    |
@@ -66,11 +66,11 @@
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:------------------ |:--------------- |:------------------ |:--------- |
-| `history`          |                 | -c                 |           |
+| `history`          |                 | `-c`                 |           |
 | `top`              |                 |                    |           |
-| `ps`               |                 | -u                 |           |
-| `kill`, `pkill`    |                 | -u                 |           |
-| `whoami`           |                 | -u                 |           |
+| `ps`               |                 | `-u`                 |           |
+| `kill`, `pkill`    |                 | `-u`                 |           |
+| `whoami`           |                 | `-u`                 |           |
 | `fg`               | bring process to foreground |        |           |
 
 
@@ -99,8 +99,8 @@
 
 | **Command/Symbol** | **Description** | **Useful options** |  Section  |
 |:------------------ |:--------------- |:------------------ |:--------- |
-| `tar`              |                 | -x -z -c -v -f     |           |
-| `gunzip`, `gzip`   |                 | -k, -c             |           |
+| `tar`              |                 | `-x` `-z` `-c` `-v` `-f`     |           |
+| `gunzip`, `gzip`   |                 | `-k`, `-c`             |           |
 
 
 
