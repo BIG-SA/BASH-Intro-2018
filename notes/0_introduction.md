@@ -23,7 +23,7 @@ For all sessions, we'll be running on virtual machines (VMs) and we'd like you t
 This is how we commonly interact with these machines so will be good practice.
 If you're on macOS or Ubuntu, you simply need to know how to find a terminal:
 
-- macOS: <kbd>CMD</kbd>+<kbd>Space</kbd> then type the word terminal
+- macOS: <kbd>⌘</kbd>+<kbd>Space</kbd> then type the word terminal
 - Ubuntu: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>
 
 For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
