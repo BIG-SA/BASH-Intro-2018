@@ -79,7 +79,7 @@ You can use the commands `wget` or `curl` to download this
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-  (*Hint: Refer to last week for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)  
+  (*Hint: Refer to the previous sessions for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)  
 
 3) Use what you have learnt so far and find out:
 

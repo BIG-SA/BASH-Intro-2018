@@ -139,7 +139,7 @@ These are 3 ways to look through any plain text file in `bash` by printing a str
 
 ## Using the Pager `less`
 
-If we want to browse through the file in a more interactive way, we can use the pager `less` which many of us saw last week when we discovered `man` pages.
+If we want to browse through the file in a more interactive way, we can use the pager `less` which many of us saw last session when we discovered `man` pages.
 In actual fact, using the `-h` or `--help` flags effectively dumped the whole help page to `stdout`, whilst using the `man` command instead sends the stream of information to `less`.
 Let's try this with our `.gtf` file.
 
@@ -209,7 +209,7 @@ Figure 1: Data Streams
 
 When a command sends information to us via `stdout`, we refer to this as printing to `stdout`.
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
-We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last week.
+We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last session.
 The most simple program that people learn to write in most languages is called "Hello World" and we’ll do the same thing today.
 For this line, the quotes can either be single or double.
 
@@ -447,7 +447,7 @@ md5sum BDGP6_genes.gtf
 ```
 
 For small files like this, it's very fast to calculate, but can be a fair bit slower for large files.
-We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
+We can also run this on an entire directory, or a subset of files, using the wild cards from last session.
 
 ```
 md5sum *gtf
