@@ -30,6 +30,7 @@ Whilst the first session was mainly focussed on navigation around the file syste
 Commands for today:
 
 - `head`, `tail`, `cat`, `less`, `wc`
+- `file`
 - `cut`, `sort`, `uniq`
 - `|`, `>`, `>>`, `echo`
 - `wget`,`curl`
@@ -74,6 +75,15 @@ We're very used to files with a given suffix being associated with a specific pr
 These file types are binary files, which means they are not in plain text format, but have been (at least partially) encoded into `0/1` binary numbers that computers see everything as.
 We generally can't read files like this with anything but specific software which knows how to decode these patterns of `0` and `1`.
 
+You can use the `file` command to have the computer *guess* the file type from its contents.
+Try this on a few files.
+
+```
+file /usr/bin/man
+file Bash_Workshop
+file .
+```
+
 Many other file types are actually just saved as plain text, with the most common of these being a `.csv` file.
 We could actually open a `.csv` (`c`omma `s`eparated `v`alues) file with any plain text editor/viewer, even though we're used to opening them with Excel.
 Another common file type is a `.tsv` file, which represents *tab-separated values* as opposed to *comma-separated values*.
@@ -103,7 +113,7 @@ cat BDGP6_genes.gtf
 ```
 
 This is clearly not a helpful way to look at a large file like this, so an alternate method is just to print the first few lines using the command `head`.
-Note the lines at the start which begin with a `#` symbol.
+Note the lines at the start which begin with a `#` (hash) symbol.
 These are the 'header' lines which are not in the tab-separated format that the rest of the file is, but contain important information about the contents of the file.
 Here is the genome build, genome build date etc., which is pretty darn useful information for a bioinformatician.
 
@@ -142,28 +152,29 @@ Although we can navigate through the less pager using up and down arrows on our 
 
 | Command |	Action  |
 | ------- | ------- |
-| `<enter>`	|go down one line |
-| `<spacebar>` | go down one page (i.e. a screenful) |
-| `b`	| go backwards one page |
-| `<` |	go to the beginning of the document |
-| `>` |	go to the end of the document |
-| `q` |	quit |
+| <kbd>Enter</kbd>	| go down one line |
+| <kbd>Spacebar</kbd> | go down one page (i.e. a screenful) |
+| <kbd>B</kbd>	| go backwards one page |
+| <kbd><</kbd> |	go to the beginning of the document |
+| <kbd>></kbd> |	go to the end of the document |
+| `<number>` <kbd>Enter</kbd> | go to the line at `<number>` |
+| <kbd>Q</kbd> |	quit |
 
 You won't be able to type anything into the file, or into `bash` here so after you've tried navigating around, return to `bash` using the `q` key for `q`uit.
 
 `less` is actually quite powerful and has functions for searching for key pieces of text.
 Open the `gtf` file in `less` again and try entering `/ncRNA` **once the file has opened**.
-By typing the `/` we are telling `less` that a search pattern follows, and once we hit the `<Enter>` key, less searches for the pattern and highlights any occurrences.
-We can search for the same pattern again simply by hitting the `/` key and hitting `<Enter>` again.
+By typing the `/` we are telling `less` that a search pattern follows, and once we hit the <kbd>Enter</kbd> key, less searches for the pattern and highlights any occurrences.
+We can search for the same pattern again simply by hitting the <kbd>/</kbd> key and hitting <kbd>Enter</kbd> again, or simply by pressing <kbd>N</kbd> for "next".
 We only need to re-enter a pattern if we're searching for something new.
 This way we can quickly step through large files and look for any text that we're trying to find.
 
 Try entering a few other patterns and see if you can find anything you're interested in.
-Once you've finished exploring, hit `q` to quit `less`.
+Once you've finished exploring, hit <kbd>Q</kbd> to quit `less`.
 To fully explore `less` you can check out the `man` page for `less`, which will ironically be shown to you in `less`.
 (Programmers are hilarious).
 If you're on `git bash` you'll have to be content with the less hysterical `less --help`.
-(Get it: "less hysterical". I told you we're hilarious)
+(Get it: "less hysterical". I told you we're hilarious.)
 
 
 ## Word and line counts
@@ -306,7 +317,7 @@ Let's confirm what we're seeing by changing that `<tab>` separator to a line bre
 echo -e "Hello\nWorld" | wc -l
 ```
 
-*There is literally no limit to how many commands we can chain together like this.*
+*There is no realistic limit to how many commands we can chain together like this.*
 
 We can even do silly (but sometime useful) things like piping the output of a help page into `less` if we're on `git bash`, and don't have any `man` pages.
 Unfortunately, this won't work for OSX due to the weirdness of the different implementations of bash (BSD vs GNU).
@@ -399,24 +410,30 @@ Two common tools for this are `wget` and `curl`.
 They behave quite similarly, so let's try them both.
 First we'll **delete our `gtf` file**, so we can download it again using `bash`.
 
-This file is stored at `https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf`, so let's try this using `wget`.
+This file is stored at `https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf`, so let's try this using `curl`.
 
 ```
-wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf
+curl -O https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
+```
+
+or equivalently with `wget` (you do not need to do this since it will just repeat the download to the same file name),
+
+```
+wget https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
 ```
 
 This will save the original file, and if you didn't delete it, the new copy may have been renamed.
 To avoid this type of problem , we can assign the name of the downloaded file using the `-O` flag.
 
 ```
-wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf -O duplicate.gtf
+wget https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf -O duplicate.gtf
 ```
 
 As some operating systems don't have `wget` installed by default, you may need to use `curl` for downloading files.
 An important difference is that `curl` streams the download to `stdout`, so you need to redirect this to a file.
 
 ```
-curl https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf > another_duplicate.gtf
+curl -o another_duplicate.gtf https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
 ```
 
 ## Checking Files
@@ -454,10 +471,10 @@ The most common formats are given below.
 
 | File Suffix |	Compression Command |	Extraction Command	| Useful Arguments |
 | ----------- | ------------------- | ------------------- | ---------------- |
-| .zip	| zip |	unzip	 | -d, -c, -f |
-| .gz	| gzip	| gunzip <br> zcat| -d, -c, -f |
-| .tar.gz	 | tar	  | tar	| -x, -v, -f, -z |
-| .bz2	   | bzip2	| bunzip2	 |  |
+| `.zip`	| `zip` |	`unzip`	 | `-d`, `-c`, `-f` |
+| `.gz`	| `gzip`	| `gunzip` <br> `zcat`| `-d`, `-c`, `-f` |
+| `.tar.gz`	 | `tar`	  | `tar`	| `-x`, `-v`, `-f`, `-z` |
+| `.bz2`	   | `bzip2`	| `bunzip2`	 |  |
 
 ### Using `zip`
 {:.no_toc}
@@ -525,7 +542,7 @@ The only difference is we can type fewer letters and get away with it.
 {:.no_toc}
 
 The final of the most common compression formats is the `t`ape `ar`chive format, which has a very long history.
-These files usually end with the `tar.gz` suffix, but we **don't need to use `gunzip` first**.
+These files usually end with the `tar.gz` or `tgz` suffix, but we **don't need to use `gunzip` first**.
 Usually these files contain complex directory structures and the common way to extract these is using `tar -xzvf`.
 Many software tools actually come using this format and require you to run a `Makefile` in a specific directory, but this is starting to get into the serious part of town if you're having to do this and you may want to ask for help.
 

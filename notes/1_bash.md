@@ -285,7 +285,7 @@ This is the ability to automatically complete a command, file or directory name 
 ls ~/Down <tab>
 ```
 
-where `<tab>` represents the tab key.
+where `<tab>` represents the <kbd>Tab</kbd> key.
 
 Notice how `Downloads` is completed automatically!
 This functionality will automatically fill as far as it can until conflicting options are reached.
