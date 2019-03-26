@@ -304,7 +304,7 @@ do
 done
 ```
 
-(Note that for simple loops like the one above, there is an excellent tool called `parallel` that does this work for you and distributes it across all available cores. The loop here would be written as `parallel 'grep -c "^>" {} >> {}.count' ::: *.fa`. See [here](https://www.gnu.org/software/parallel/) for more details.)
+(Note that for simple loops like the one above, there is an excellent tool called `parallel` that does this work for you and distributes it across all available cores. The loop here would be written as "`parallel 'grep -c "^>" {} >> {}.count' ::: *.fa`". See [here](https://www.gnu.org/software/parallel/) for more details.)
 
 ## A Final Script
 
