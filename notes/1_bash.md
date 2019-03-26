@@ -279,10 +279,10 @@ Starting from /home/amanda/data/, which of the following commands could Amanda u
 
 Typing in long paths and/or filenames can be tedious.
 Fortunately the terminal has a special feature which aids in completing this task called tab completion.
-This is the ability to automatically complete a command, file or directory name using the `tab` key. Try typing
+This is the ability to automatically complete a command, file or directory name using the <kbd>Tab</kbd> key. Try typing
 
 ```
-ls ~/Down <tab>
+ls ~/Down<tab>
 ```
 
 where `<tab>` represents the <kbd>Tab</kbd> key.
@@ -297,7 +297,7 @@ The most common error we’ll see today will be mistakes in file paths caused by
 Now enter
 
 ```
-ls ~/D <tab>
+ls ~/D<tab>
 ```
 
 and for most of you, it will look like the auto-complete is not working.
@@ -306,8 +306,8 @@ Hit the tab twice and both will appear in the terminal, then choose one.
 As well as directory paths, you can use this to auto-complete filenames.
 
 **Handy tip:** This technique can be used to also find command names.
-Type in `he` followed by two strikes of the `tab` key and it will show you all of the commands that begin with the string `he`, such as head, help or any others that may be installed on your computer.
-If we’d hit the `tab` key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
+Type in `he` followed by two strikes of the <kbd>Tab</kbd> key and it will show you all of the commands that begin with the string `he`, such as head, help or any others that may be installed on your computer.
+If we’d hit the <kbd>Tab</kbd> key after typing `hea`, then the command head would have auto-completed, although clearly this wouldn’t have saved you any typing.
 
 **Handy tip:** And just to reiterate, you can scroll through your previous commands by using the up arrow to go backward, and the down arrow to move forward. This can be a big time saver if you’ve typed a long command with a simple typo, or if you have to do a series of similar commands.
 
