@@ -18,6 +18,7 @@ Most of you should have `nano` installed, and **we recommend this for today's se
 Once you've had a look at `nano` move to the next section, as the remainder are really just here for your information beyond today.
 
 #### ed (ee-dee)
+{:.no_toc}
 
 - **ed**: Ed is the standard text editor. Type `q` and then press <kbd>Enter</kbd> to quit.
 
