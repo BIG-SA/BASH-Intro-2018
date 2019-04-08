@@ -250,11 +250,10 @@ Save this as a script in the `scripting` folder called `lineCount.sh`.
 
 ## Using the `%` shortcut
 
-Before we write our net simple script, we'll need to download a pair of `fasta` files.
+Before we write our net simple script, we'll need to get a pair of `fasta` files.
 
-<!--FIXME(kortschak): This is no longer the locations. Update where is it - currently on the data server, but likely changed to ~/data-->
 ```
-curl "https://universityofadelaide.box.com/s/d4rs2qphctukwxwg2y6ypdii9i4g4bo8" | tar xvz -C ./
+cat ~/data/pe_fasta_blast.tar.gz | tar xvz -C ./
 ```
 
 This will give you two files `SRR5882797_R1.fa` and `SRR5882797_R2.fa` which are paired fastq files.
