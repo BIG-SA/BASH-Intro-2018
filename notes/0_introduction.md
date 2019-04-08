@@ -98,7 +98,7 @@ There will be a number of areas covered during these sessions:
 - command line arguments and file permissions
 - pipes and redirects
 - regular expression
-- advanced built-in tools (`grep`, `awk`, `sed`)
+- advanced text processing tools (`grep`, `sed`)
 - bash scripting
 
 The majority of data handling and analysis required in the field of bioinformatics uses the command line, alternatively known as the terminal or the `bash` shell.
@@ -149,6 +149,13 @@ As we're dealing with a large number of setups here the strategy for copy and pa
 To paste into a standard bash terminal, you usually use <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for copy, and <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for paste.
 On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
 Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.
+
+### Differences between platforms
+{:no_toc}
+
+At various places in the notes there are comments relating to differences between commands on linux and macOS.
+These will not make a difference to your work during the workshop but may help you to understand differences you see in your own work later.
+When you find different uses of commands and options, read the documentation for the tool to understand the differences.
 
 
 [Home](https://big-sa.github.io/BASH-Intro-2018/)
