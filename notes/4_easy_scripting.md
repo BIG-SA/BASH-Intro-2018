@@ -8,8 +8,8 @@ Before we start this session, let's create a new folder for writing scripts.
 
 ```
 cd
-mkdir -p Bash_Workshop/Session4
-cd Bash_Workshop/Session4
+mkdir -p scripting
+cd scripting
 ```
 
 ## Shell Scripts
@@ -71,7 +71,7 @@ For example what is the difference between `${NAME_FRAG}rest_of_name` and `$NAME
 In the first case, `${NAME_FRAG}` is added to `rest_of_name`, but in the second case, `bash` will try to find to value of the variable `$NAME_FRAGrest_of_name`.
 A variable that may not exist!
 - Variables have also been named using strictly upper-case letters.
-This is another optional coding style, but can also make things clear for you as you look back through your work.
+This is another optional coding style, but can also make things clearer for you as you look back through your work.
 Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
 
 #### Question
@@ -85,7 +85,7 @@ Although we have initially set them each to be one value, they are still variabl
 
 Let's create an empty file which will become our script.
 We'll give it the suffix `.sh` as that is the common convention for bash scripts.
-Make sure you're in the `Bash_Workshop/Session4` folder, then enter:
+Make sure you're in the `scripting` directory, then enter:
 
 ```
 touch wellDone.sh
@@ -153,26 +153,29 @@ ls -lh *.sh
 
 This can be a very useful trick for *write-protecting* files and directories!
 
-These flags are represented by *binary bits* that are either on or off.
+### Numerical representation of permissions
+
+Permission flags are represented by numerically using *binary bits* that are either on or off.
 Reading from left to right:
-1. the first bit is the **r**ead flag, which has the value 4
-2. the second bit is the **w**rite flag, which has the value 2
-3. the third bit is the e**x**ecute flag, which has value 1
+1. the first bit, **r**, is the **r**ead flag, which has the value 4
+2. the second bit, **w**, is the **w**rite flag, which has the value 2
+3. the third bit, **x**, is the e**x**ecute flag, which has value 1
 
 Thus each combination of flags can be represented by a single integer, as shown in the following table:
 
 | Value | Binary | Flags | Meaning |
 |:----- | ------ | ----- |:------- |
-| 00    | `000`  | `---` | No read, no write, no execute |
-| 01    | `001`  | `--x` | No read, no write, execute |
-| 02    | `010`  | `-w-` | No read, write, no execute |
-| 03    | `011`  | `-wx` | No read, write, execute    |
-| 04    | `100`  | `r--` | Read, no write, no execute |
-| 05    | `101`  | `r-x` | Read, no write, execute    |
-| 06    | `110`  | `rw-` | Read, write, no execute    |
-| 07    | `111`  | `rwx` | Read, write, execute	      |
+| 0    | `000`  | `---` | No read, no write, no execute |
+| 1    | `001`  | `--x` | No read, no write, execute |
+| 2    | `010`  | `-w-` | No read, write, no execute |
+| 3    | `011`  | `-wx` | No read, write, execute    |
+| 4    | `100`  | `r--` | Read, no write, no execute |
+| 5    | `101`  | `r-x` | Read, no write, execute    |
+| 6    | `110`  | `rw-` | Read, write, no execute    |
+| 7    | `111`  | `rwx` | Read, write, execute	      |
 
 We can now set permissions using a 3-digit code, where 1) the first digit represents the file owner, 2) the second digit represents the group permissions and 3) the third digit represents all remaining users.
+This can be much quicker for setting complex permissions.
 
 To set the permissions for our script to `read-write-execute`for you and any other users in the group you belong to, we could now use
 ```
@@ -237,7 +240,7 @@ done
 
 #### Task
 {:.no_toc}
-Save this as a script in the `Bash_Workshop/Session4` folder called `lineCount.sh`.
+Save this as a script in the `scripting` folder called `lineCount.sh`.
 **Add comments** where you think you need them to make sure you understand what's happening.
 
 ## Using the `%` shortcut
