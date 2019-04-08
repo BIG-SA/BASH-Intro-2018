@@ -6,7 +6,7 @@ Specifically, typing and entering the name of a file at the command prompt in mo
 
 The general structure of a Linux/UNIX command line looks like:
 
-`command [-option(s)] [argument(s)]`
+`command [-flag(s)] [-option(s) [value]] [argument(s)]`
 
 The most important thing to note is that the command line *usually* starts with a "command", which is an executable file or program (any file with the executable bit set).
 
