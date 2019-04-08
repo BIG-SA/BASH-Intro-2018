@@ -699,13 +699,13 @@ It's a bit tedious to do this one by one, can you write a command line that can 
 
 <details><summary>Answer</summary>
 This command line will generate all the required "mv" commands:
-```
+<pre>
 ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /'
-```
+</pre>
 We can then add "| sh " to the end to execute it all:
-```
+<pre>
 ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /' | sh
-```
+</pre>
 </details>
 
 -------------
