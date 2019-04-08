@@ -576,18 +576,22 @@ If you run the command, you should see that:
 Let us now examine the second term, `'s/Ac3/AC-3/'` (also, the s command, or the "script"):
 
 1. The enclosing quotation marks are helpful.
-2. The backslashes are separators that **divide the expression into 4 parts**.
-   - the first part is `s`, which tells `sed` that it is to perform *substitution*.
+2. The slashes are separators that **divide the expression into 4 parts**.
+   - the first part is `s`, which tells `sed` that it is to perform ***s**ubstitution*.
    - the second part is the *search pattern*,
    - the third part is the term to *replace with*,
-   - the fourth part is empty at the moment
+   - the fourth part is empty at the moment.
 
 You can actually use any character for the separator.
-In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
+This is useful if you have slash characters in your search pattern or replacement string as can happen if you are changing file paths.
+In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use.
+You should choose characters that stand out from the rest of the line.
+Conventionally, people use `!`, `|`, `#`, `_`, etc. For example:
 
 - `sed 's Ac3 AC-3 ' small.gtf` uses space " " as separator
-- `sed 's1Ac31AC-31' small.gtf`  (**deliberately confusing**) also works, and uses "1" as separator to show that you can literally use anything.
-- `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
+- `sed 's#Ac3#AC-3#' small.gtf` uses `#` character.
+
+Make sure you are being clear; using a `1` for the separator would be valid, but not helpful.
 
 ## s command modifiers
 
