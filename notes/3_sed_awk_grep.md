@@ -73,7 +73,7 @@ cd Bash_Workshop/files
 **Question:** What did the `-p` argument do in the above `mkdir` command, and was it necessary?
 
 1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed version.
-You can use the commands `wget` or `curl` to download this
+You can use the commands `curl` to download this
 
   (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)  
 
@@ -135,14 +135,13 @@ We will also need the file `BDGP6_genes.gtf` from previous session, so copy that
 Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
 Consider the following questions.
-**These are primarily thought exercises!!!**
-Maybe try one, but notice how difficult it is, and how hard it is to work with this file in `nano`.
-**This is exactly what we're trying to teach you to avoid.
-Do not waste time doing more than one of these** but please do contemplate how difficult the tasks may be.
+**These are primarily thought exercises do not try to complete them!!!**
+**This is exactly what we're trying to teach you to avoid.**
+Please do contemplate how difficult the tasks may be.
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1) What is the first line that contains "**DNAJB7**"? Give line number.
+1) What is the first line that contains "**DNAJB7**"? Give the line number.
 <details><summary>Hint:</summary>
   You will need <kbd>Ctrl</kbd>+<kbd>W</kbd> (search), and <kbd>Ctrl</kbd>+<kbd>C</kbd> (view line number), unless you really enjoy counting and scrolling line by line.
 </details><br>
@@ -512,9 +511,8 @@ works by making only one pass over the input(s), and is consequently more
 efficient. But it is sed’s ability to filter text in a pipeline which
 particularly distinguishes it from other types of editors.
 
-It is important to remember that `sed` is a very complex tool that has been in use and constantly
-evolving for decades, and as for licensing reasons it has diverged on different platforms.
-Therefore `sed` on Mac OSX may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
+It is important to remember that `sed` is a very complex tool that has been in use and constantly evolving for decades, and as for licensing reasons it has diverged on different platforms.
+Therefore `sed` on macOS may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
 For this workshop, we typically focus on GNU tools (Linux).
 If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
 
@@ -535,14 +533,14 @@ Unless told otherwise, `sed` will stream the entire file to `stdout` so by setti
 Unlike `head` or `tail` which only print the beginning or end of the file, `sed` can print lines from anywhere in the file.
 
 ```
-sed -n `5,9p` BDGP6_genes.gtf
+sed -n '5,9p' BDGP6_genes.gtf
 ```
 
 `sed` can also print a recurring pattern of lines. In the following, we'll print every 2nd line, starting at the 1st line.
 This will just dump everything into the terminal, so if you want to look more carefully, pipe the output into `head` or `less`.
 
 ```
-sed -n `1~2p` BDGP6_genes.gtf
+sed -n '1~2p' BDGP6_genes.gtf
 ```
 
 ## Editing Text 'On The Fly'
@@ -561,23 +559,23 @@ egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
  We'll break this down gradually over the next few lines.
 
 ```
-sed 's\Ac3\AC-3\' small.gtf
+sed 's/Ac3/AC-3/' small.gtf
 ```
 
 `sed` can be called to directly act on a file or to process input from `stdout`/`stdin`.
 So the following command is essentially the same:
 
 ```
-cat small.gtf | sed 's\Ac3\AC-3\'
+cat small.gtf | sed 's/Ac3/AC-3/'
 ```
 
 If you run the command, you should see that:
 1. by default the entire content of the file is printed to `stdout`
 2. the string "Ac3" has been replaced by "AC-3"
 
-Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
+Let us now examine the second term, `'s/Ac3/AC-3/'` (also, the s command, or the "script"):
 
-1. The enclosing quotation marks are necessary. You can also use double-quotes ("), but they are problematic with the backslash.
+1. The enclosing quotation marks are helpful.
 2. The backslashes are separators that **divide the expression into 4 parts**.
    - the first part is `s`, which tells `sed` that it is to perform *substitution*.
    - the second part is the *search pattern*,
@@ -597,31 +595,31 @@ The fourth and last part of the s command contain zero or more flags that alter 
 
 A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the *first matching instance*:
 
-- `sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
-- `sed 's\gene\GENE\g' small.gtf` will alter all instances.
+- `sed 's/gene/GENE/' small.gtf`  will only alter the first instance of "gene" in each line, where as
+- `sed 's/gene/GENE/g' small.gtf` will alter all instances.
 
 Rather than using "g", we can also use a number to specify exactly which instance to alter:
 
 ```
-sed 's\gene\GENE\2' small.gtf
+sed 's/gene/GENE/2' small.gtf
 ```
 
 will alter the second instance only.
 
 Another frequently used flag is "I" or "i", which allows for case-insensitive matching on the search pattern.
 
-`$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
+`$ sed 's/fly/FLY/ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
 ## Regular expressions
 
 The search term in `sed` supports regular expression in very similar ways to `grep`.
 As exercises, can you explain what each of these `sed` commands are doing?
 
-1) `sed 's|ac[n3]|ACX|Ig' small.gtf`
+1) `sed 's/ac[n3]/ACX/Ig' small.gtf`
 
-2) `sed 's\^\chr\' small.gtf`
+2) `sed 's/^/chr/' small.gtf`
 
-3) `sed 's\;$\\' small.gtf`
+3) `sed 's/;$//' small.gtf`
 
 <details><summary>Answers</summary>
 
@@ -638,13 +636,13 @@ Sometimes, we want to alter a string by adding to it without modifying the searc
 For example, if we want to add a star symbol next to gene names Acn and Ac3, without altering gene names. We can perform this one by one:
 
 ```
-sed 's\Acn\Acn*\' small.gtf | sed 's\Ac3\Ac3*\'
+sed 's/Acn/Acn*/' small.gtf | sed 's/Ac3/Ac3*/'
 ```
 
 or we can use regular expression search and "&":
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf
+sed 's/Ac[n3]/&*/' small.gtf
 ```
 
 where "&" simply means the string that matches the search pattern.
@@ -652,7 +650,7 @@ where "&" simply means the string that matches the search pattern.
 Can you explain what the following command does?
 
 ```
-sed 's\fly\&OrWorm\gi' small.gtf
+sed 's/fly/&OrWorm/gi' small.gtf
 ```
 
 ## Redirecting output
@@ -661,14 +659,14 @@ Like most stream editors, `sed` does not alter the original file, and instead wr
 Therefore to save the changes, we can simply redirect to a file:
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf
+sed 's/Ac[n3]/&*/' small.gtf > small_starred.gtf
 ```
 
 As is almost the case, you should **never redirect the file back to itself**, expecting it to have made the changes in place.
 You will simply end up with an empty file!
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf > small.gtf
+sed 's/Ac[n3]/&*/' small.gtf > small.gtf
 ```
 
 THIS WILL FAIL (data loss!).
@@ -684,7 +682,7 @@ egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 Now we'll try the correct approach where we edit the file using this strategy.
 
 ```
-sed -i 's\Ac[n3]\&*\' small.gtf
+sed -i 's/Ac[n3]/&*/' small.gtf
 ```
 
 THIS WILL WORK on Ubuntu and `git bash`.
@@ -702,11 +700,11 @@ It's a bit tedious to do this one by one, can you write a command line that can 
 <details><summary>Answer</summary>
 This command line will generate all the required "mv" commands:
 ```
-ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |'
+ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /'
 ```
 We can then add "| sh " to the end to execute it all:
 ```
-ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh
+ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /' | sh
 ```
 </details>
 
