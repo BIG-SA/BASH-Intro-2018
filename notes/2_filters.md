@@ -226,8 +226,7 @@ echo 'This computer will self destruct in 10 seconds!'
 
 There are a few subtleties about text which are worth noting.
 **Inspect the `man echo` page and note the effects of the -e option.**
-*(Unfortunately, it appears that this option has not been included in the help page for those in OSX.
-The argument does work in the actual command though. Go figure...)*
+*(This option has not been included in the help page on macOS. The argument does work in the actual command though.)*
 This allows you to specify tabs, new lines and other special characters by using the backslash to signify these characters.
 This is an important concept and the use of a backslash to escape the normal meaning of a character is very common.
 Try the following three commands and see what effects these special characters have.
@@ -320,7 +319,7 @@ echo -e "Hello\nWorld" | wc -l
 *There is no realistic limit to how many commands we can chain together like this.*
 
 We can even do silly (but sometime useful) things like piping the output of a help page into `less` if we're on `git bash`, and don't have any `man` pages.
-Unfortunately, this won't work for OSX due to the weirdness of the different implementations of bash (BSD vs GNU).
+This won't work on macOS since `ls` does not have a help page on macOS (this is a BSD vs GNU difference).
 
 ```
 ls --help | less
@@ -429,8 +428,7 @@ To avoid this type of problem , we can assign the name of the downloaded file us
 wget https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf -O duplicate.gtf
 ```
 
-As some operating systems don't have `wget` installed by default, you may need to use `curl` for downloading files.
-An important difference is that `curl` streams the download to `stdout`, so you need to redirect this to a file.
+An important difference between `curl` and `wget` is that `curl` streams the download to `stdout` unless a `-O` or `-o` (check the man page for this option) is set.
 
 ```
 curl -o another_duplicate.gtf https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
@@ -440,7 +438,7 @@ curl -o another_duplicate.gtf https://uofabioinformaticshub.github.io/BASH-Intro
 
 If you've just run all of the above lines, you'll actually have three copies of the same file on your disk.
 There is a convenient utility in bash called `md5sum` which we can use to check if two files are identical.
-The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a unique sum using this algorithm. **NB: OSX users won't have `md5sum` installed. Please use `md5 -r` instead for all subsequent commands.**
+The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a reasonable chance of having a unique sum using this algorithm. **NB: macOS users won't have `md5sum` installed. Please use `md5 -r` instead for all subsequent commands.**
 
 ```
 md5sum BDGP6_genes.gtf
