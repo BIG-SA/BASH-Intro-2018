@@ -177,10 +177,15 @@ Thus each combination of flags can be represented by a single integer, as shown 
 We can now set permissions using a 3-digit code, where 1) the first digit represents the file owner, 2) the second digit represents the group permissions and 3) the third digit represents all remaining users.
 This can be much quicker for setting complex permissions.
 
-To set the permissions for our script to `read-write-execute`for you and any other users in the group you belong to, we could now use
+To set the permissions for our script to `read-write-execute` for you and any other users in the group you belong to, we could now use
 ```
 chmod 774 wellDone.sh
 ls -lh *sh
+```
+
+This is equivalent to the following.
+```
+chmod u+rwx,g+rwx,o=r wellDone.sh
 ```
 
 #### Question
