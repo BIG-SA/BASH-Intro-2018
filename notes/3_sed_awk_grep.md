@@ -589,9 +589,9 @@ In this case, any symbol or character after the first `s` is recognised as the s
 - `sed 's1Ac31AC-31' small.gtf`  (**deliberately confusing**) also works, and uses "1" as separator to show that you can literally use anything.
 - `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
 
-## s command flags
+## s command modifiers
 
-The fourth and last part of the s command contain zero or more flags that alter the default behaviour.
+The fourth and last part of the s command contain zero or more modifiers that alter the default behaviour.
 
 A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the *first matching instance*:
 
