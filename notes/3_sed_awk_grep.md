@@ -10,7 +10,7 @@ In this session, we will learn about a few of the most frequently used tools tha
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we usually work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. 
+We can use a GUI program like gedit (Ubuntu), Text Edit (macOS), or Notepad++ (Windows) to edit these files. 
 However, there are also several command line programs available that you can use to edit files inside the command line console.
 Below is a selection of the most commonly used editors.
 There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
@@ -514,7 +514,7 @@ particularly distinguishes it from other types of editors.
 It is important to remember that `sed` is a very complex tool that has been in use and constantly evolving for decades, and as for licensing reasons it has diverged on different platforms.
 Therefore `sed` on macOS may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
 For this workshop, we typically focus on GNU tools (Linux).
-If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
+If you are on macOS and find that some things don't quite work, please ask (or perform a Google search).
 
 `sed` is a very complex tool, and it is impossible to cover all its functions in this session.
 Here we will only show you the most common usage 1) printing select lines from a file, and 2) search-and-replace.
@@ -686,7 +686,7 @@ sed -i 's/Ac[n3]/&*/' small.gtf
 ```
 
 THIS WILL WORK on Ubuntu and `git bash`.
-Note: On Mac OSX `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
+Note: On macOS `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
 
 
 ## Exercise: Batch-rename files
