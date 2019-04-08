@@ -232,16 +232,16 @@ Here's an example of a script which uses a `for` loop.
 ```
 #!/bin/bash
 
-FILES=$(ls *sh)
-
 COUNT=0 # Initialise a counter variable at zero
-for f in ${FILES};
+for f in ./*sh;
 do
     ((COUNT++)) # This will increment the COUNT variable by one every time
     ln=$(wc -l ${f} | sed -r 's/([0-9]+).+/\1/g')
     echo "File number ${COUNT} (${f}) has ${ln} lines"
 done
 ```
+
+Note that this code depends on file names not containing spaces for it to be safe.
 
 #### Task
 {:.no_toc}
