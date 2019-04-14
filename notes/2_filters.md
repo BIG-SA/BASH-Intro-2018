@@ -8,7 +8,7 @@
 
 ## Recap
 
-Last time we discovered some key bash commands:
+Last session we discovered some key bash commands:
 
 - Navigating directories using `cd`, `pwd` and `ls`
 - Creating and deleting files or directories using `touch`, `mkdir`, `rmdir` and `rm`
@@ -20,7 +20,7 @@ We also learned some important concepts
 - Tab auto-completion and using the [Up]/[Down] arrows
 - Relative vs Absolute paths
 - The `<command> <argument>` structure of bash commands
-- Using wild cards `?`, `*` and `[]` to select subsets of files or directories
+- Using wild cards `?`, `*`, `[]` and `{}` to select subsets of files or directories
 
 ## This Session
 
@@ -30,6 +30,7 @@ Whilst the first session was mainly focussed on navigation around the file syste
 Commands for today:
 
 - `head`, `tail`, `cat`, `less`, `wc`
+- `file`
 - `cut`, `sort`, `uniq`
 - `|`, `>`, `>>`, `echo`
 - `wget`,`curl`
@@ -42,7 +43,7 @@ Key concepts for today:
 - Downloading data
 - Compressed data
 
-## Before we start
+## Before we Start
 
 Login to your VM if you haven't already and navigate to your home folder.
 
@@ -74,6 +75,15 @@ We're very used to files with a given suffix being associated with a specific pr
 These file types are binary files, which means they are not in plain text format, but have been (at least partially) encoded into `0/1` binary numbers that computers see everything as.
 We generally can't read files like this with anything but specific software which knows how to decode these patterns of `0` and `1`.
 
+You can use the `file` command to have the computer *guess* the file type from its contents.
+Try this on a few files.
+
+```
+file /usr/bin/man
+file Bash_Workshop
+file .
+```
+
 Many other file types are actually just saved as plain text, with the most common of these being a `.csv` file.
 We could actually open a `.csv` (`c`omma `s`eparated `v`alues) file with any plain text editor/viewer, even though we're used to opening them with Excel.
 Another common file type is a `.tsv` file, which represents *tab-separated values* as opposed to *comma-separated values*.
@@ -82,7 +92,7 @@ Clearly, the answer is no.
 File suffixes for plain text files like this are really just communicating to other users what the layout of the file is.
 In the case of a `.gtf` file there is a set layout, which includes some "header" lines followed by a series of tab-separated columns.
 It's really just a plain text file though and we could change the suffix at will, like we imagined for our imaginary csv/tsv file.
-If we do that though, nobody else will know what the internal structure of the file will be & we'll either be a difficult co-worker or a terrible practical joker.
+If we do that though, nobody else will know what the internal structure of the file will be and we'll either be a difficult co-worker or a terrible practical joker.
 The important thing to realise is that the suffix of files doesn't affect their internal structure.
 They are simply used to communicate clearly *what the structure of the file is*.
 Unfortunately, it's not uncommon to come across files with a `.csv` suffix that are actually tab-delimited.
@@ -96,14 +106,14 @@ Anyone who does this should be sent to the naughty corner and forced to use noth
 Now we have a file to look through let's try to look at it to see what we mean by a 'plain-text' file and 'header lines'.
 The way to dump the entire contents of a file to the terminal (or `stdout`) is to use the command `cat`.
 Try this and all the information in the file will whiz past you in the terminal.
-If you get sick of watching it, just hit `Ctrl+c` to stop the stream of text.
+If you get sick of watching it, just hit <kbd>Ctrl</kbd>+<kbd>C</kbd> to stop the stream of text.
 
 ```
 cat BDGP6_genes.gtf
 ```
 
 This is clearly not a helpful way to look at a large file like this, so an alternate method is just to print the first few lines using the command `head`.
-Note the lines at the start which begin with a `#` symbol.
+Note the lines at the start which begin with a `#` (hash) symbol.
 These are the 'header' lines which are not in the tab-separated format that the rest of the file is, but contain important information about the contents of the file.
 Here is the genome build, genome build date etc., which is pretty darn useful information for a bioinformatician.
 
@@ -129,7 +139,7 @@ These are 3 ways to look through any plain text file in `bash` by printing a str
 
 ## Using the Pager `less`
 
-If we want to browse through the file in a more interactive way, we can use the pager `less` which many of us saw last week when we discovered `man` pages.
+If we want to browse through the file in a more interactive way, we can use the pager `less` which many of us saw last session when we discovered `man` pages.
 In actual fact, using the `-h` or `--help` flags effectively dumped the whole help page to `stdout`, whilst using the `man` command instead sends the stream of information to `less`.
 Let's try this with our `.gtf` file.
 
@@ -138,35 +148,36 @@ less BDGP6_genes.gtf
 ```
 
 Now we can browse the file using the space bar to move down a page, the `b` key to move back a page and the arrows to move up or down a line.
-Although we can navigate through the less pager using up & down arrows on our keyboards, some helpful shortcuts are:
+Although we can navigate through the less pager using up and down arrows on our keyboards, some helpful shortcuts are:
 
 | Command |	Action  |
 | ------- | ------- |
-| `<enter>`	|go down one line |
-| `<spacebar>` | go down one page (i.e. a screenful) |
-| `b`	| go backwards one page |
-| `<` |	go to the beginning of the document |
-| `>` |	go to the end of the document |
-| `q` |	quit |
+| <kbd>Enter</kbd>	| go down one line |
+| <kbd>Spacebar</kbd> | go down one page (i.e. a screenful) |
+| <kbd>B</kbd>	| go backwards one page |
+| <kbd><</kbd> |	go to the beginning of the document |
+| <kbd>></kbd> |	go to the end of the document |
+| `<number>` <kbd>Enter</kbd> | go to the line at `<number>` |
+| <kbd>Q</kbd> |	quit |
 
 You won't be able to type anything into the file, or into `bash` here so after you've tried navigating around, return to `bash` using the `q` key for `q`uit.
 
 `less` is actually quite powerful and has functions for searching for key pieces of text.
 Open the `gtf` file in `less` again and try entering `/ncRNA` **once the file has opened**.
-By typing the `/` we are telling `less` that a search pattern follows, and once we hit the `<Enter>` key, less searches for the pattern and highlights any occurrences.
-We can search for the same pattern again simply by hitting the `/` key and hitting `<Enter>` again.
+By typing the `/` we are telling `less` that a search pattern follows, and once we hit the <kbd>Enter</kbd> key, less searches for the pattern and highlights any occurrences.
+We can search for the same pattern again simply by hitting the <kbd>/</kbd> key and hitting <kbd>Enter</kbd> again, or simply by pressing <kbd>N</kbd> for "next".
 We only need to re-enter a pattern if we're searching for something new.
 This way we can quickly step through large files and look for any text that we're trying to find.
 
 Try entering a few other patterns and see if you can find anything you're interested in.
-Once you've finished exploring, hit `q` to quit `less`.
+Once you've finished exploring, hit <kbd>Q</kbd> to quit `less`.
 To fully explore `less` you can check out the `man` page for `less`, which will ironically be shown to you in `less`.
 (Programmers are hilarious).
 If you're on `git bash` you'll have to be content with the less hysterical `less --help`.
-(Get it: "less hysterical". I told you we're hilarious)
+(Get it: "less hysterical". I told you we're hilarious.)
 
 
-## Word and line counts
+## Word and Line Counts
 
 We can quickly check for the number of entries in a file by using the command `wc`.
 This gives three values by default.
@@ -182,7 +193,7 @@ Try it out and see how many lines our `gtf` file has.
 
 # Standard Output
 
-## Text In the Terminal
+## Text in the Terminal
 
 All the information we’ve seen in the terminal so far has been from a data stream known as standard output, or `stdout` for short.
 There are two primary data output streams in play when we use commands in `bash`.
@@ -198,7 +209,7 @@ Figure 1: Data Streams
 
 When a command sends information to us via `stdout`, we refer to this as printing to `stdout`.
 This dates back to the days before everyone had printers, when printing to the screen was the main method of interacting with computers.
-We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last week.
+We can display a line of plain text in `stdout` by using the command `echo`, which we briefly saw last session.
 The most simple program that people learn to write in most languages is called "Hello World" and we’ll do the same thing today.
 For this line, the quotes can either be single or double.
 
@@ -207,19 +218,18 @@ echo 'Hello World'
 ```
 
 
-That’s pretty amazing isn’t it & you can make the terminal window say anything you want without meaning it.
+That’s pretty amazing isn’t it and you can make the terminal window say anything you want without meaning it.
 
 ```
 echo 'This computer will self destruct in 10 seconds!'
 ```
 
 There are a few subtleties about text which are worth noting.
-**Inspect the `man echo` page & note the effects of the -e option.**
-*(Unfortunately, it appears that this option has not been included in the help page for those in OSX.
-The argument does work in the actual command though. Go figure...)*
-This allows you to specify tabs, new lines & other special characters by using the backslash to signify these characters.
-This is an important concept & the use of a backslash to escape the normal meaning of a character is very common.
-Try the following three commands & see what effects these special characters have.
+**Inspect the `man echo` page and note the effects of the -e option.**
+*(This option has not been included in the help page on macOS. The argument does work in the actual command though.)*
+This allows you to specify tabs, new lines and other special characters by using the backslash to signify these characters.
+This is an important concept and the use of a backslash to escape the normal meaning of a character is very common.
+Try the following three commands and see what effects these special characters have.
 
 ```
 echo 'Hello\tWorld'
@@ -306,10 +316,10 @@ Let's confirm what we're seeing by changing that `<tab>` separator to a line bre
 echo -e "Hello\nWorld" | wc -l
 ```
 
-*There is literally no limit to how many commands we can chain together like this.*
+*There is no realistic limit to how many commands we can chain together like this.*
 
 We can even do silly (but sometime useful) things like piping the output of a help page into `less` if we're on `git bash`, and don't have any `man` pages.
-Unfortunately, this won't work for OSX due to the weirdness of the different implementations of bash (BSD vs GNU).
+This won't work on macOS since `ls` does not have a help page on macOS (this is a BSD vs GNU difference).
 
 ```
 ls --help | less
@@ -317,7 +327,7 @@ ls --help | less
 
 # Manipulating Data From Files
 
-## Selecting a column
+## Selecting a Column
 
 Sometimes we want to dig a little deeper through a file, and we can extract one or more columns from any delimited file using the filter `cut`.
 By default `cut` looks for `<tab>` separated columns, but this can be set to any delimiter.
@@ -333,7 +343,7 @@ By default we're using the `<tab>` symbol as the delimiter, so check the help or
 
 Now we've found out how to extract the chromosome information from this file, which is what the first column holds, let's try and do something useful.
 
-## Summarising data using `uniq`
+## Summarising Data using `uniq`
 
 Let's see how many chromosomes we have gene information about, by taking this column and just restricting it to unique entries, using the command `uniq`.
 Now we're familiar with the pipe, we can send this column to `uniq`.
@@ -380,7 +390,7 @@ Try piping this into `uniq -c` and see what happens?
 cut -f4 -s -d\; BDGP6_genes.gtf | uniq -c
 ```
 
-## Summarising files using `sort`
+## Summarising Files Using `sort`
 
 The algorithm underlying `uniq -c` checks adjacent lines for equality, and if they're not equal keeps them both.
 If they're equal it discards the second entry.
@@ -399,38 +409,43 @@ Two common tools for this are `wget` and `curl`.
 They behave quite similarly, so let's try them both.
 First we'll **delete our `gtf` file**, so we can download it again using `bash`.
 
-This file is stored at `https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf`, so let's try this using `wget`.
+This file is stored at `https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf`, so let's try this using `curl`.
 
 ```
-wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf
+curl -O https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
+```
+
+or equivalently with `wget` (you do not need to do this since it will just repeat the download to the same file name),
+
+```
+wget https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
 ```
 
 This will save the original file, and if you didn't delete it, the new copy may have been renamed.
 To avoid this type of problem , we can assign the name of the downloaded file using the `-O` flag.
 
 ```
-wget https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf -O duplicate.gtf
+wget https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf -O duplicate.gtf
 ```
 
-As some operating systems don't have `wget` installed by default, you may need to use `curl` for downloading files.
-An important difference is that `curl` streams the download to `stdout`, so you need to redirect this to a file.
+An important difference between `curl` and `wget` is that `curl` streams the download to `stdout` unless a `-O` or `-o` (check the man page for this option) is set.
 
 ```
-curl https://big-sa.github.io/BASH-Intro-2018/files/BDGP6_genes.gtf > another_duplicate.gtf
+curl -o another_duplicate.gtf https://uofabioinformaticshub.github.io/BASH-Intro/files/BDGP6_genes.gtf
 ```
 
 ## Checking Files
 
 If you've just run all of the above lines, you'll actually have three copies of the same file on your disk.
 There is a convenient utility in bash called `md5sum` which we can use to check if two files are identical.
-The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a unique sum using this algorithm. **NB: OSX users won't have `md5sum` installed. Please use `md5 -r` instead for all subsequent commands.**
+The process of calculating an md5Sum is well beyond the scope of today, but according to the algorithm gurus, every file in existence will have a reasonable chance of having a unique sum using this algorithm. **NB: macOS users won't have `md5sum` installed. Please use `md5 -r` instead for all subsequent commands.**
 
 ```
 md5sum BDGP6_genes.gtf
 ```
 
 For small files like this, it's very fast to calculate, but can be a fair bit slower for large files.
-We can also run this on an entire directory, or a subset of files, using the wild cards from last week.
+We can also run this on an entire directory, or a subset of files, using the wild cards from last session.
 
 ```
 md5sum *gtf
@@ -454,10 +469,10 @@ The most common formats are given below.
 
 | File Suffix |	Compression Command |	Extraction Command	| Useful Arguments |
 | ----------- | ------------------- | ------------------- | ---------------- |
-| .zip	| zip |	unzip	 | -d, -c, -f |
-| .gz	| gzip	| gunzip <br> zcat| -d, -c, -f |
-| .tar.gz	 | tar	  | tar	| -x, -v, -f, -z |
-| .bz2	   | bzip2	| bunzip2	 |  |
+| `.zip`	| `zip` |	`unzip`	 | `-d`, `-c`, `-f` |
+| `.gz`	| `gzip`	| `gunzip` <br> `zcat`| `-d`, `-c`, `-f` |
+| `.tar.gz`	 | `tar`	  | `tar`	| `-x`, `-v`, `-f`, `-z` |
+| `.bz2`	   | `bzip2`	| `bunzip2`	 |  |
 
 ### Using `zip`
 {:.no_toc}
@@ -525,7 +540,7 @@ The only difference is we can type fewer letters and get away with it.
 {:.no_toc}
 
 The final of the most common compression formats is the `t`ape `ar`chive format, which has a very long history.
-These files usually end with the `tar.gz` suffix, but we **don't need to use `gunzip` first**.
+These files usually end with the `tar.gz` or `tgz` suffix, but we **don't need to use `gunzip` first**.
 Usually these files contain complex directory structures and the common way to extract these is using `tar -xzvf`.
 Many software tools actually come using this format and require you to run a `Makefile` in a specific directory, but this is starting to get into the serious part of town if you're having to do this and you may want to ask for help.
 

@@ -8,8 +8,8 @@ Before we start this session, let's create a new folder for writing scripts.
 
 ```
 cd
-mkdir -p Bash_Workshop/Session4
-cd Bash_Workshop/Session4
+mkdir -p scripting
+cd scripting
 ```
 
 ## Shell Scripts
@@ -18,27 +18,31 @@ Sometimes we need to perform repetitive tasks on multiple files, or need to perf
 They are also an excellent way of ensuring the commands you have used in your research *are retained for future reference*.
 Keeping copies of all electronic processes to ensure reproducibility is a very important component of any research.
 
-Now that we've been through just some of the concepts & tools we can use when writing scripts, it's time to tackle one of our own where we can bring it all together.
+Now that we've been through just some of the concepts and tools we can use when writing scripts, it's time to tackle one of our own where we can bring it all together.
 
 ### The `shebang`
 
 Every bash shell script begins with what is known as a *shebang*, which we would commonly recognise as a hash sign followed by an exclamation mark, i.e `#!`.
-This is immediately followed by `/bin/bash`, which tells the interpreter to run the command `bash ` which is contained in the directory `/bin`.
-This opening sequence is essential for all `bash` scripts & tells the computer how to respond to all of the following commands.
+This is immediately followed by an executable path, in this case `/bin/bash`.
+This information is used by the program loader so that it knows which interpreter to start in order to run the script.
+The interpreter is then started and given the script file itself to run.
+So, if a `/bin/bash` shebang is in an [executable](#Setting-File-Permissions) file called `script.bash`, then invoking `./script.bash` is equivalent to running `/bin/bash ./script.bash`.
 As a string this looks like:
 
 ```
 #!/bin/bash
 ```
 
+(A similar mechanism is used for starting binary executables; try running `file /bin/bash` and `file /usr/bin/R` and compare the output. `ELF` is the binary equivalent of `#!`.)
+
 The hash symbol generally functions as a comment character in scripts.
 Sometimes we can include lines in a script to remind ourselves what we're trying to do, and we can preface these with the hash to ensure the interpreter doesn't try to run them.
-It's presence as a comment in the very first position of a script followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts & programs.
+It's presence as a comment in the very first position of a script followed by the exclamation mark, is specifically looked for by the interpreter but beyond this specific occurrence, comment lines are generally ignored by scripts and programs.
 
 ## An Example Script
 
 First let's look at some simple scripts.
-These are really just examples of some useful things you can do & may not really be the best scripts from a technical perspective.
+These are really just examples of some useful things you can do and may not really be the best scripts from a technical perspective.
 Hopefully they give you some pointers so you can get going
 
 **Don't try to enter the following commands directly in the terminal!!!**
@@ -56,14 +60,18 @@ MESSAGE='This is your first script'
 echo -e "Hello ${ME}\n${MESSAGE}\nWell Done!"
 ```
 
-- You may notice some lines that begin with the # character.
+- You may notice some lines that begin with the `#` character.
 These are *comments* which have no impact on the execution of the script, but are written so you can understand what you were thinking when you wrote it.
 If you look at your code 6 months from now, there is a very strong chance that you won't recall exactly what you were thinking, so these comments can be a good place just to explain something to the future version of yourself.
-There is a school of thought which says that you write code primarily for humans to read, not for the computer to understand.
+Programs perform two main functions: 1) make a machine perform a set of defined actions and 2) explain to other humans (or yourself later on) what the machine is doing and why.
+The second function is more important, otherwise scripts would be written in machine code rather than something that looks like English.
 - Another coding style which can be helpful is the enclosing of each *variable name* in curly braces every time the value is called, e.g. `${ME}`
-Whilst not being strictly required, this can make it easy for you to follow in the future when you're looking back.
+While not being strictly required, this can make it easy for you to follow in the future when you're looking back and it clarifies where variable labels end and other text begins.
+For example what is the difference between `${NAME_FRAG}rest_of_name` and `$NAME_FRAGrest_of_name`?
+In the first case, `${NAME_FRAG}` is added to `rest_of_name`, but in the second case, `bash` will try to find to value of the variable `$NAME_FRAGrest_of_name`.
+A variable that may not exist!
 - Variables have also been named using strictly upper-case letters.
-This is another optional coding style, but can also make things clear for you as you look back through your work.
+This is another optional coding style, but can also make things clearer for you as you look back through your work.
 Most command line tools use strictly lower-case names, so this is another reason the upper-case variable names can be helpful.
 
 #### Question
@@ -77,7 +85,7 @@ Although we have initially set them each to be one value, they are still variabl
 
 Let's create an empty file which will become our script.
 We'll give it the suffix `.sh` as that is the common convention for bash scripts.
-Make sure you're in the `Bash_Workshop/Session4` folder, then enter:
+Make sure you're in the `scripting` directory, then enter:
 
 ```
 touch wellDone.sh
@@ -89,8 +97,8 @@ Now open this using the using the text editor `nano`:
 nano wellDone.sh
 ```
 
-Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using `Ctrl+o` (indicated as `^O`) in the nano screen.
-Once you're finished, you can exit the `nano` editor by hitting `Ctrl+x` (written as `^X`).
+Enter the above code into this file **setting your actual name as the ME variable**,  and save it by using <kbd>Ctrl</kbd>+<kbd>O</kbd> (indicated as `^O`) in the nano screen.
+Once you're finished, you can exit the `nano` editor by hitting <kbd>Ctrl</kbd>+<kbd>X</kbd> (written as `^X`).
 Assuming that you've entered everything correctly, we can now execute this script by simply entering
 
 ```
@@ -145,31 +153,39 @@ ls -lh *.sh
 
 This can be a very useful trick for *write-protecting* files and directories!
 
-These flags actually represent *binary bits* that are either on or off.
-Reading from right to left:
-1. the first bit is the execute flag, which has value 1
-2. the second bit is the write flag, which has the value 2
-3. the third bit is the read flag, which has the value 4
+### Numerical representation of permissions
+
+Permission flags are represented by numerically using *binary bits* that are either on or off.
+Reading from left to right:
+1. the first bit, **r**, is the **r**ead flag, which has the value 4
+2. the second bit, **w**, is the **w**rite flag, which has the value 2
+3. the third bit, **x**, is the e**x**ecute flag, which has value 1
 
 Thus each combination of flags can be represented by a single integer, as shown in the following table:
 
 | Value | Binary | Flags | Meaning |
 |:----- | ------ | ----- |:------- |
-| 0     | `000`  | `---` | No read, no write, no execute |
-| 1	    | `001`  | `--x` | No read, no write, execute	|
-| 2	    | `010`  | `-w-` | No read, write, no execute	|
-| 3	    | `011`  | `-wx` | No read, write, execute	  |
-| 4	    | `100`  | `r--` | Read, no write, no execute	|
-| 5	    | `101`  | `r-x` | Read, no write, execute	  |
-| 6	    | `110`  | `rw-` | Read, write, no execute	  |
-| 7	    | `111`  | `rwx` | Read, write, execute	      |
+| 0    | `000`  | `---` | No read, no write, no execute |
+| 1    | `001`  | `--x` | No read, no write, execute |
+| 2    | `010`  | `-w-` | No read, write, no execute |
+| 3    | `011`  | `-wx` | No read, write, execute    |
+| 4    | `100`  | `r--` | Read, no write, no execute |
+| 5    | `101`  | `r-x` | Read, no write, execute    |
+| 6    | `110`  | `rw-` | Read, write, no execute    |
+| 7    | `111`  | `rwx` | Read, write, execute	      |
 
 We can now set permissions using a 3-digit code, where 1) the first digit represents the file owner, 2) the second digit represents the group permissions and 3) the third digit represents all remaining users.
+This can be much quicker for setting complex permissions.
 
-To set the permissions for our script to `read-write-execute`for you and any other users in the group you belong to, we could now use
+To set the permissions for our script to `read-write-execute` for you and any other users in the group you belong to, we could now use
 ```
 chmod 774 wellDone.sh
 ls -lh *sh
+```
+
+This is equivalent to the following.
+```
+chmod u+rwx,g+rwx,o=r wellDone.sh
 ```
 
 #### Question
@@ -188,8 +204,6 @@ nano wellDone2.sh
 ```
 
 (Change the `ME` variable now...)
-
-We may need to set the execute permissions again.
 
 ```
 chmod +x wellDone2.sh
@@ -218,28 +232,28 @@ Here's an example of a script which uses a `for` loop.
 ```
 #!/bin/bash
 
-FILES=$(ls *sh)
-
 COUNT=0 # Initialise a counter variable at zero
-for f in ${FILES};
-  do
+for f in ./*sh;
+do
     ((COUNT++)) # This will increment the COUNT variable by one every time
     ln=$(wc -l ${f} | sed -r 's/([0-9]+).+/\1/g')
     echo "File number ${COUNT} (${f}) has ${ln} lines"
-  done
+done
 ```
+
+Note that this code depends on file names not containing spaces for it to be safe.
 
 #### Task
 {:.no_toc}
-Save this as a script in the `Bash_Workshop/Session4` folder called `lineCount.sh`.
+Save this as a script in the `scripting` folder called `lineCount.sh`.
 **Add comments** where you think you need them to make sure you understand what's happening.
 
 ## Using the `%` shortcut
 
-Before we write our net simple script, we'll need to download a pair of `fasta` files.
+Before we write our net simple script, we'll need to get a pair of `fasta` files.
 
 ```
-wget -qO- "https://universityofadelaide.box.com/shared/static/d4rs2qphctukwxwg2y6ypdii9i4g4bo8.gz" | tar xvz -C ./
+cat ~/data/pe_fasta_blast.tar.gz | tar xvz -C ./
 ```
 
 This will give you two files `SRR5882797_R1.fa` and `SRR5882797_R2.fa` which are paired fastq files.
@@ -250,7 +264,7 @@ touch changeSuffix.sh
 nano changeSuffix.sh
 ```
 
-Once the `nano` editor has opened, enter the following script before *writing out* (`Ctrl+o`).
+Once the `nano` editor has opened, enter the following script before *writing out* (<kbd>Ctrl</kbd>+<kbd>O</kbd>).
 
 ```
 #!/bin/bash
@@ -259,11 +273,11 @@ OLDSUFFIX=fa
 NEWSUFFIX=fasta
 echo "Change all files of suffix" $OLDSUFFIX "to " $NEWSUFFIX
 for f in *.${OLDSUFFIX};
-  do
+do
     F=${f%.${OLDSUFFIX}}.${NEWSUFFIX}
     echo "Rename file" $f "to" $F
     mv $f $F
-  done
+done
 echo "DONE"
 ```
 
@@ -293,20 +307,22 @@ In your script, return a tab-delimited output where each line contains the name 
 
 ```
 for fasta in *.fa
- do
-   grep -c "^>" ${fasta} >> ${fasta}.count
+do
+    grep -c "^>" ${fasta} >> ${fasta}.count
 done
 ```
+
+(Note that for simple loops like the one above, there is an excellent tool called `parallel` that does this work for you and distributes it across all available cores. The loop here would be written as "`parallel 'grep -c "^>" {} >> {}.count' ::: *.fa`". See [here](https://www.gnu.org/software/parallel/) for more details.)
 
 ## A Final Script
 
 Let's get one final file containing all the `ncRNA` sequences from *Drosophila melanogaster*.
 
 ```
-wget ftp://ftp.ensembl.org/pub/release-93/fasta/drosophila_melanogaster/ncrna/Drosophila_melanogaster.BDGP6.ncrna.fa.gz
+curl -O ftp://ftp.ensembl.org/pub/release-93/fasta/drosophila_melanogaster/ncrna/Drosophila_melanogaster.BDGP6.ncrna.fa.gz
 ```
 
-After you've donwloaded it, unzip the file using `gunzip`
+After you've downloaded it, unzip the file using `gunzip`
 
 Briefly inspect the file before checking the script.
 We're going to extract some key information from those sequence header lines.
@@ -326,10 +342,10 @@ INFILE=$1
 # Check the file has the suffix .fa or .fasta
 SUFFIX=$(echo ${INFILE} | sed -r 's/.+(fasta|fa)$/\1/')
 if [ ${SUFFIX} == "fa" ] || [ ${SUFFIX} == "fasta" ]; then
-  echo File has the suffix ${SUFFIX}
+    echo File has the suffix ${SUFFIX}
 else
-  echo File does not have the suffix 'fa' or 'fasta'. Exiting with error.
-  exit 1
+    echo File does not have the suffix 'fa' or 'fasta'. Exiting with error.
+    exit 1
 fi
 
 # Define the output file by changing the suffix to .locations
@@ -367,8 +383,8 @@ Now run it passing the `.fa` file as the first argument.
 
 # Using an HPC environment
 
-Much of the time we'll be using an HPC environment such as `phoenix` or `tango` which rely on a queueing system and each script being submitted as a job in ths queue.
-On `phoenix` the queueing system is known as `slurm`.
+Much of the time we'll be using an HPC environment such as `phoenix` or `tango` which rely on a queueing system and each script being submitted as a job in the queue.
+On `phoenix` the queuing system is known as `slurm`.
 
 Additionally, due to the large number of avaiable tools for the large number of users, the exact tools we need won't be automatically available like they are on your VM.
 Instead, they are available as 'modules' which we load at the start of our script.
@@ -389,7 +405,7 @@ This would then ask you for your usual ITS password and will take you to your ho
 If you're on `phoenix` or another HPC, the most common way of accessing the list of available modules is to use the command `module avail`.
 Alternatively, you may choose to search explicitly for a tool using `module spider samtools`, which would look for all modules that matched 'samtools'.
 
-## Slurm Paramters
+## Slurm Parameters
 
 At the start of a script written to run on `slurm` you'll commonly see a set of specific comments, which the queuing system is able to interpret.
 An example may be:
@@ -412,7 +428,7 @@ Let's look at these on at a time:
 ```
 #SBATCH -p batch
 ```
-This is requesting a spcific section of the HPC. You can request sections such as `himem` here depending on your job, but choosing `batch` just puts it into the general pool able to run wherever appropriate.
+This is requesting a specific section of the HPC. You can request sections such as `himem` here depending on your job, but choosing `batch` just puts it into the general pool able to run wherever appropriate.
 
 ```
 #SBATCH -N 1
@@ -427,14 +443,14 @@ You can change this depending on your requirements.
 #SBATCH --mem=32GB
 ```
 
-The next two lines jusy specify how long you expect the job to run and how much memory to allocate.
+The next two lines just specify how long you expect the job to run and how much memory to allocate.
 If you underestimate, the job will fail as it reaches the limit.
 If you overestimate, you may just wait a little longer in the queue.
 Either way, it's nothing to become too anxious about.
 
 ```
 #SBATCH -o /home/axxxxxxx/AnalysisName/scriptName_%j.out
-#SBATCH -e /home/axxxxxxx/AnalysisName/scriptName_%j..err
+#SBATCH -e /home/axxxxxxx/AnalysisName/scriptName_%j.err
 ```
 
 These two lines specify files which will take the output generated by `stdout` and `stderr`.

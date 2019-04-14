@@ -7,7 +7,7 @@
 
 ## General Information
 
-Thank you for your attendance & welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
+Thank you for your attendance and welcome to the *Introduction to Bash: Using the Terminal For Bioinformatics* Workshop.
 This is series of training workshops and materials developed by the Bioinformatics Interest Group - South Australia (BIG-SA), specifically using the skills and resources of the Bioinformatics Hub (University of Adelaide) and the ACRF Cancer Genomics Facility (UniSA).
 
 Some additional resources run by the Bioinformatics Hub which may be of interest beyond today are:
@@ -21,10 +21,10 @@ Some additional resources run by the Bioinformatics Hub which may be of interest
 
 For all sessions, we'll be running on virtual machines (VMs) and we'd like you to log in to these machines using a terminal.
 This is how we commonly interact with these machines so will be good practice.
-If you're on OSX or ubuntu, you simply need to know how to find a terminal:
+If you're on macOS or Ubuntu, you simply need to know how to find a terminal:
 
-- OSX: `CMD + Space` then type the word terminal
-- Ubuntu: `Ctrl + Alt + t`
+- macOS: <kbd>⌘</kbd>+<kbd>Space</kbd> then type the word terminal
+- Ubuntu: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>T</kbd>
 
 For **Windows users**, we advise either using `PuTTY` or `git bash`, both of which require installation.
 Installation instructions [can be found here](../install/windowsInstall.md).
@@ -32,7 +32,7 @@ If you don't have adminstrative access and require help from ITS, please call th
 Otherwise `git bash` is the preferred option.
 Once you've got this setup, open `git bash` and you should see something that looks like a terminal.
 
-Most of the tools we use on the VM are also available in your OSX terminal, or in `git bash`.
+Most of the tools we use on the VM are also available in your macOS terminal, or in `git bash`.
 There can be subtle differences in the way they work, but by and large with both of these you can actually run `bash` on your own machine as well as the remote VM we connect to.
 
 
@@ -81,7 +81,7 @@ It's mostly irrelevant information for you, but is just a check that you're in t
 ### Note for PuTTY users
 
 The login is slightly different when using PuTTY, and you will enter `trainee@<your.ip.address>` in the main space provided (under `Host Name or IP address`) and hit `Enter` (or the `Open` button).
-Beyond that, you should be able to enter your password and yuo should see the same login screen.
+Beyond that, you should be able to enter your password and you should see the same login screen.
 
 
 ## Course Information
@@ -98,28 +98,28 @@ There will be a number of areas covered during these sessions:
 - command line arguments and file permissions
 - pipes and redirects
 - regular expression
-- advanced built-in tools (`grep`, `awk`, `sed`)
+- advanced text processing tools (`grep`, `sed`)
 - bash scripting
 
 The majority of data handling and analysis required in the field of bioinformatics uses the command line, alternatively known as the terminal or the `bash` shell.
 This is a text-based interface in which commands must be typed, as opposed to the Graphical User Interfaces (aka GUIs) that most of us have become accustomed to.
-Being able to access these tools enables you to more fully utilise the power & capabilities of your machine, for both Linux & Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
+Being able to access these tools enables you to fully utilise the power and capabilities of your machine, for both Linux and Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
 
-Whilst some of the tools we cover may appear trivial, they are used on a daily basis by those working in the field.
+While some of the tools we cover may appear trivial, they are used on a daily basis by those working in the field.
 These basic tools are essential for writing what are known as shell scripts, which we will work towards throughout the first three sessions and begin to cover in the last.
-These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to the genome.
+These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to a genome.
 A knowledge of this simple type of programming and navigation is also essential for accessing the high-performance computing resources such as *phoenix*.
 
 ### Course Aims
 {:.no_toc}
 The long-term goal of this workshop is to enable you to carry out your own data analysis in a **reproducible** manner, using standard bioinformatics tools or write your own programs.
-This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming later in the year.
+This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming tomorrow
 
-By the end of both courses, we expect the participants to:
+By the end of both days, we expect the participants to:
 1. Be relatively comfortable working with the command line interface, and familiar with the standard Unix command line tools
 2. Understand standard NGS data formats
-3. Be able to run several basic NGS data analysis methods (e.g. variant calling)
-4. Understand how some simple python scripts work for custom data analysis
+3. Run quality control (QC) analyses on NGS data
+4. Be able to run several basic NGS data analysis methods (e.g. genome alignments)
 
 ### Acknowledgements
 {:.no_toc}
@@ -140,15 +140,22 @@ We hope it will be useful in enabling you to continue and to advance your resear
 In the following pages, we **strongly encourage** you to manually type all commands.
 The mistakes you will inevitably make will actually *be important learning steps*.
 Additionally, in your work beyond today, you will probably not have any instructions to follow.
-The experience of typing these commands will equip you for future work far better than if you simply copy & paste.
+The experience of typing these commands will equip you for future work far better than if you simply copy and paste.
 
-### Copy & Paste
+### Copy and Paste
 {:.no_toc}
 
-As we're dealing with a large number of setups here the strategy for copy & pasting will vary.
-To paste into a standard bash terminal, you usually use `Shift + Ctrl + C` for copy, substituting `V` for paste.
+As we're dealing with a large number of setups here the strategy for copy and pasting will vary.
+To paste into a standard bash terminal, you usually use <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for copy, and <kbd>Shift</kbd>+<kbd>Ctrl</kbd>+<kbd>C</kbd> for paste.
 On Mac this may be different, and for `git bash` and `PuTTY` this is also different.
 Typing will be much simpler, and we'll show you a lot of shortcuts to speed this up.
+
+### Differences between platforms
+{:no_toc}
+
+At various places in the notes there are comments relating to differences between commands on linux and macOS.
+These will not make a difference to your work during the workshop but may help you to understand differences you see in your own work later.
+When you find different uses of commands and options, read the documentation for the tool to understand the differences.
 
 
 [Home](https://big-sa.github.io/BASH-Intro-2018/)

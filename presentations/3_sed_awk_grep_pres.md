@@ -2,7 +2,7 @@
 
 +++
 
-## Week 1
+## Session 1
 
 - Found our way around (`pwd`, `cd`, `ls`)
 - Created new directories and files (`touch`, `mkdir`)
@@ -11,7 +11,7 @@
 
 +++
 
-## Week 2
+## Session 2
 
 - View files (`head`, `tail`, `cat`, `less`)
 - Extracting key information (`cut`, `sort`, `uniq`, `wc`)
@@ -21,7 +21,7 @@
 
 +++
 
-## Week 2
+## Session 2
 
 ![DataStreams](https://ryanstutorials.net/linuxtutorial/img/streams.png)
 
@@ -30,7 +30,7 @@
 
 +++
 
-## Today's topics:
+## This session:
 
 1. Searching for *patterns*
     + Just returning information we want
@@ -40,8 +40,8 @@
 
 +++
 
-## Today's topics:
+## This session:
 
 - We'll start editing files the *horrible* way
-    + Introduces a few bash editors (`nano`, `vim`, `emacs`, `ne`)
+    + Introduces a few bash editors (`nano`, `vim`, `emacs`)
 - Then we'll move to the *smart* way

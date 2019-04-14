@@ -12,17 +12,17 @@
 ### Why use the command line?
 
 - We can work with huge files
-- How we interact with most HPC systems (e.g. `phoenix`, eRSA)
+- How we interact with most HPC systems (e.g. `phoenix`)
 - Retain more control over data and processes
 - You better understand every step
-- It's easy & fun!
+- It's easy and fun!
 
 +++
 
-- Reproducible Research $\implies$ Script Everything!
+- Reproducible Research ⇒ Script Everything!
 - Science is littered with retractions as a result of GUI mistakes (*Google "Keith Baggerly"*)
-- Nothing is forgotten & you can find any errors
-- Common workflows can be easily automated
+- Nothing is forgotten and you can find any errors
+- Common work-flows can be easily automated
 
 +++
 
@@ -30,7 +30,7 @@
 
 - We'll start very simple by moving around directories
 - Copying files, making directories etc
-- Using Wildcards
+- Using Wild-cards
 
 These are the key initial steps in all pipelines and scripts
 
@@ -38,7 +38,4 @@ These are the key initial steps in all pipelines and scripts
 
 ### The Panic Button!
 
-The most common fix:
-```
-Ctrl+c
-```
+The most common fix:&nbsp;<kbd> Ctrl </kbd>+<kbd> C </kbd>.

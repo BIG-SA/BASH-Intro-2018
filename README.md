@@ -1,2 +1,3 @@
-# BASH-Intro-2018
-Introduction to BASH
+# BASH-Intro
+
+Introduction to BASH one day training sessions.

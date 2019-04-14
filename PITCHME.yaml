@@ -2,3 +2,4 @@ theme : white
 mathjax : TeX-MML-AM_HTMLorMML-full
 layout : center-left
 published : true
+theme-override : assets/css/kbd.css

@@ -2,40 +2,46 @@
 {:toc}
 
 
-# Grep and Sed 
+# Grep and Sed
 
-In this session, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
+In this session, we will learn about a few of the most frequently-used tools that are very useful for extracting and modifying data.
 
-## Command Line Interface (CLI) Text editors (for Small-ish Files)
+## Command Line Interface (CLI) Text Editors (for Small-ish Files)
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we usually work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit (Ubuntu), Text Edit (Mac OS X), or Notepad++ (Windows) to edit these files. 
+We can use a GUI program like gedit (Ubuntu), Text Edit (macOS), or Notepad++ (Windows) to edit these files.
 However, there are also several command line programs available that you can use to edit files inside the command line console.
 Below is a selection of the most commonly used editors.
 There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
 Most of you should have `nano` installed, and **we recommend this for today's sessions**.
 Once you've had a look at `nano` move to the next section, as the remainder are really just here for your information beyond today.
 
-#### Nano (or Pico)
+#### ed (ee-dee)
 {:.no_toc}
 
-- **Nano**/**Pico**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program (or `pico`, the command `pico` is often soft-linked to `nano`<sup>[1]</sup>).
-To quit, hold [Ctrl] and press X (`^X`).
+- **ed**: Ed is the standard text editor. Type `q` and then press <kbd>Enter</kbd> to quit.
+
+#### Nano
+{:.no_toc}
+
+- **Nano**:  Nano is an easy to use text editor. On most Linux systems, just type `nano` to start the program.
+To quit, hold <kbd>Ctrl</kbd>+<kbd>X</kbd>.
 There are a couple important caveats to remember when using Nano:
-  - Nano will load the entire file into memory, so it may take a while when working with large files.
-  - Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
-  - Nano doesn't utilise any colours on the screen
+
+- Nano will load the entire file into memory, so it may take a while when working with large files.
+- Be careful when editing configuration files, as Nano hard-wraps long lines by default. This behaviour can be disabled by `-w` option.
 
 ![Nano screenshot](../images/3_nano_screenshot.png)
 
-#### Vi (or Vim)
+#### Vi (or Vim/[Neovim](https://neovim.io/))
 {:.no_toc}
 
 - **vi**/**vim**: **vi** is arguably the most popular text editor among Linux users. It was designed to minimise hand movements, thus allowing very fast typing and editing. However, it has very steep learning curve and are usually *not recommended for beginners.*
 To start **vi**, just enter `vi`. If you are using a recent Linux distribution, you may notice that it is actually running **vim**.
 - **To quit:** type `:q` (**The colon is required**. Typing just `q` won't work.)
 - Many people prefer `vim` as it will use colours in any bash script to highlight variables and commands that it recognises.
+Vim has a tutorial mode that can be started with `:vimtutor`.
 
 ![vi screenshot](../images/3_vi_screenshot.png)
 
@@ -43,7 +49,9 @@ To start **vi**, just enter `vi`. If you are using a recent Linux distribution, 
 {:.no_toc}
 
 - **Emacs**: Emacs is another popular CLI text editor. There are many flame wars on older Internet sites centred on whether **vi** or **Emacs** is better. To start Emacs, just enter `emacs`. However, this will probably bring up a windowed mouse-enabled version. To use the pure CLI version, type `emacs -nw`.
-- **To quit:** type `^x^c` (i.e. `[Ctrl]-X [Ctrl]-C`, or in Emacs shorthand: `C-x  C-c`).<sup>[3]</sup>
+- **To quit:** type `^x^c` (i.e. <kbd>Ctrl</kbd>+<kbd>X</kbd> <kbd>Ctrl</kbd>+<kbd>C</kbd>, or in Emacs shorthand: `C-x  C-c`).<sup>[2]</sup>
+Emacs also has a tutor mode, although it is not installed by default.
+It is available [here](https://github.com/syl20bnr/evil-tutor).
 
 ![emacs screenshot](../images/3_emacs_screenshot.png)
 
@@ -52,7 +60,7 @@ It's also the most intuitive to use of the three explained above.
 
 -----
 
-## Prepare the data files (and some revision exercises)
+## Prepare the Data Files (and Some Revision Exercises)
 
 For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
 
@@ -65,14 +73,14 @@ cd Bash_Workshop/files
 **Question:** What did the `-p` argument do in the above `mkdir` command, and was it necessary?
 
 1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed version.
-You can use the commands `wget` or `curl` to download this
+You can use the commands `curl` to download this
 
-  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)  
+  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)
 
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-  (*Hint: Refer to last week for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)  
+  (*Hint: Refer to the previous sessions for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)
 
 3) Use what you have learnt so far and find out:
 
@@ -122,39 +130,35 @@ We will also need the file `BDGP6_genes.gtf` from previous session, so copy that
 
 -----
 
-## Working with large files or many files
+## Working with Large Files or Many Files
 
 Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
 Consider the following questions.
-**These are primarily thought exercises!!!**
-Maybe try one, but notice how difficult it is, and how hard it is to work with this file in `nano`.
-**This is exactly what we're trying to teach you to avoid.
-Do not waste time doing more than one of these** but please do contemplate how difficult the tasks may be.
+**These are primarily thought exercises do not try to complete them!!!**
+**This is exactly what we're trying to teach you to avoid.**
+Please do contemplate how difficult the tasks may be.
 
 For `GRCh38.chr22.ensembl.biomart.txt`:
 
-1) What is the first line that contains "**DNAJB7**"? Give line number.
-  <details><summary>Hint:</summary>
-  You will need <code>^W</code> (search), and <code>^C</code> (view line number), unless you really enjoy counting and scrolling line by line.
-  </details>   
+1) What is the first line that contains "**DNAJB7**"? Give the line number.
+<details><summary>Hint:</summary>
+  You will need <kbd>Ctrl</kbd>+<kbd>W</kbd> (search), and <kbd>Ctrl</kbd>+<kbd>C</kbd> (view line number), unless you really enjoy counting and scrolling line by line.
+</details><br>
 
 2) How many lines contain "**DNAJB7**"?
+<details><summary>Hint:</summary>Use <kbd>Meta</kbd>+<kbd>W</kbd> or <kbd>Alt</kbd>+<kbd>W</kbd> to repeat search.
+</details><br>
 
-  <details><summary>Hint:</summary>Use <kbd>M-W</kbd> (<kbd>[Alt]-W</kbd>) to repeat search.
-  </details>  
-
-3) How many lines contain "**RBX1**"?  
-
+3) How many lines contain "**RBX1**"?
 <details><summary>Hint:</summary>Seriously, don't try this. We'll show you how to do it super easily in a few minutes.
-</details>  
+</details><br>
 
-4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
-
+4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
 <details><summary>Hint:</summary>Why are you still trying to do these? We'll show you how easy it is later.
-</details>  
+</details><br>
 
-5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
+5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
 <details><summary><b>Answers</b></summary>
 
@@ -163,26 +167,26 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 3. Too many to count in **nano** (but the answer is 5775).<br>
 4. Too hard in **nano** (answer is 36).<br>
 5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.<br>
-</details>  
+</details>
 
-Now look into the files in the created sub-directory `3_many_files`.  
+Now look into the files in the created sub-directory `3_many_files`.
 
-1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?
 
-2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
-(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
+2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?
+(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)
   <details><summary><b>Answers</b></summary>
 
   1. There is an entry for MAPK11, but not MAPK1.<br>
   2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
   datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
-  </details>  
+  </details>
 
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
-In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.  
+In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.
 
 -----
 
@@ -198,7 +202,7 @@ However, feel free to continue on if you already understand the topic.
 # `grep`
 
 
-**`grep`**<sup>[5]</sup> (Global search for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
+**`grep`**<sup>[3]</sup> (Global search for a Regular Expression and Print) is an utility for searching fixed-strings or regular expressions in plain text files. The basic syntax of a grep command requires two arguments:
 
 ```
 grep [PATTERN] [FILE]
@@ -276,7 +280,7 @@ grep -w transport GRCh38.chr22.ensembl.biomart.txt
 However, if you examine the output you will see that it also retrieved many lines in which "transport" is simply a word in a longer phrase or sentence, sometimes in the "GO term name" column, and sometimes in other columns.
 This is because the `-w` option will allow for any non-alphanumerical, including spaces and commas, whereas what we really want are instances where entire column value is just "transport".
 In other words, we are looking for the string "`[tab]transport[tab]`".
-To enter an actual [tab] character, you need to **use the key sequence:*** `[Ctrl-V][tab]`.
+To enter an actual [tab] character, you need to **use the key sequence:*** <kbd>Ctrl</kbd>+<kbd>V</kbd> then <kbd>tab</kbd>.
 Just pressing the `[tab]` key will not work.
 
 ```
@@ -287,10 +291,16 @@ While this works when you are entering commands directly in the command line ter
 The alternative method is to use the usual tab symbol representation (`\t`), but for this to work, you'll also need to use the `-P` option in **`grep`**:
 
 ```
-grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt
+grep -P "\ttransport\t" GRCh38.chr22.ensembl.biomart.txt # Single or double quotes.
 ```
 
-#### Example 3: case sensitivity
+Alternatively, with recent bash versions, you can use [a special quoting with the `$''` quotes](https://www.gnu.org/software/bash/manual/bashref.html#ANSI_002dC-Quoting).
+
+```
+grep $'\ttransport\t' GRCh38.chr22.ensembl.biomart.txt # Note single quotes.
+```
+
+#### Example 3: Case Sensitivity
 {:.no_toc}
 
 *We will use `BDGP6_genes.gtf` for this example.*
@@ -307,7 +317,7 @@ However, this will return zero results. This is because the gene name used is "z
 grep -wi Zen BDGP6_genes.gtf
 ```
 
-#### Example 4: searching for multiple terms at the same time
+#### Example 4: Searching for Multiple Terms at the Same Time
 {:.no_toc}
 
 If we want to extract the entries for genes "Ada" and "Zen", we can search for them separately, but this can become tedious quickly.
@@ -318,7 +328,7 @@ One method to search for multiple terms at the same time is to use *extended* gr
 grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf
 ```
 
-This is the same as: 
+This is the same as:
 
 ```
 egrep -wi "(Ada|Zen)" BDGP6_genes.gtf
@@ -341,7 +351,7 @@ Then we can perform the search by:
 grep -wif gene_names BDGP6_genes.gtf
 ```
 
-#### Example 5: inverse search
+#### Example 5: Inverse Search
 {:.no_toc}
 
 We can also use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
@@ -357,7 +367,7 @@ grep -v protein_coding BDGP6_genes.gtf
 ```
 
 
-#### Example 6: simple regular expression
+#### Example 6: Simple Regular Expression
 {:.no_toc}
 
 One of the most useful feature of `grep` is the ability to search using regular expressions.
@@ -378,7 +388,7 @@ The star symbol `*` is also used by `grep`, but it means to match any number of 
 - `grep * BDGP6_genes.gtf` will return nothing
 - `grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
 
-## Range search
+## Range Search
 
 `grep` provides a more restrictive pattern matching through the use of square brackets: `[]`. Any letters inside the square brackets is allowed. For example:
 
@@ -438,7 +448,7 @@ Similarly we use dollar sign ($) to look for strings anchor at the end of the li
 2. Outside square brackets, it is used to indicate the *start of a line.*
 
 
-#### Homework Exercises
+#### Exercises
 {:.no_toc}
 
 1) Create a list of gene names from BDGP6_genes.gtf:
@@ -461,26 +471,26 @@ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > f
 - start with "z"
 - start with "a" and ends with a numeral
 - contain non-alphanumerics
-- contain a dot `.`  
+- contain a dot `.`
 
 <details><summary>Answers</summary>
 1. `grep ^z fly_genes`<br>
 2. `grep ^a.*[0-9]$ fly_genes` or `grep ^a fly_genes | grep [0-9]$`<br>
 3. `grep [^a-z0-9] fly_genes`<br>
 4. `grep "\." fly_genes `<br>
-</details>  
+</details>
 
 3) Look up the help page to see which option can provide the line number of search output.
 
 
-## More `grep` functions
+## More `grep` Functions
 
 If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching:
 
 1. `-G/--basic-regexp` is the default basic mode;
 2. `-E/--extended-regexp` is the extended mode we have used earlier;
 3. `-P/--perl-regexp` supports the Perl-style regular expression, while;
-4. `-F/--fixed-strings` only performs exact matches.<sup>[6]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
+4. `-F/--fixed-strings` only performs exact matches.<sup>[4]</sup> Using the extended or Perl modes, you can perform even more complex and flexible searches.
 
 Unfortunately we don't have time to cover it all in this session, but if you wish to learn more about it, you should look up `grep` tutorials online.
 
@@ -501,11 +511,10 @@ works by making only one pass over the input(s), and is consequently more
 efficient. But it is sed’s ability to filter text in a pipeline which
 particularly distinguishes it from other types of editors.
 
-It is important to remember that `sed` is a very complex tool that has been in use and constantly
-evolving for decades, and as it's open-sourced it has diverged on different platforms.
-Therefore `sed` on Mac OSX may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
+It is important to remember that `sed` is a very complex tool that has been in use and constantly evolving for decades, and as for licensing reasons it has diverged on different platforms.
+Therefore `sed` on macOS may not work exactly the same as on Linux, this is the classic `BSD` vs `GNU` issue which we've already come across.
 For this workshop, we typically focus on GNU tools (Linux).
-If you are on OSX and find that some things don't quite work, please ask (or perform a Google search).
+If you are on macOS and find that some things don't quite work, please ask (or perform a Google search).
 
 `sed` is a very complex tool, and it is impossible to cover all its functions in this session.
 Here we will only show you the most common usage 1) printing select lines from a file, and 2) search-and-replace.
@@ -524,14 +533,14 @@ Unless told otherwise, `sed` will stream the entire file to `stdout` so by setti
 Unlike `head` or `tail` which only print the beginning or end of the file, `sed` can print lines from anywhere in the file.
 
 ```
-sed -n `5,9p` BDGP6_genes.gtf
+sed -n '5,9p' BDGP6_genes.gtf
 ```
 
 `sed` can also print a recurring pattern of lines. In the following, we'll print every 2nd line, starting at the 1st line.
 This will just dump everything into the terminal, so if you want to look more carefully, pipe the output into `head` or `less`.
 
 ```
-sed -n `1~2p` BDGP6_genes.gtf
+sed -n '1~2p' BDGP6_genes.gtf
 ```
 
 ## Editing Text 'On The Fly'
@@ -550,67 +559,71 @@ egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
  We'll break this down gradually over the next few lines.
 
 ```
-sed 's\Ac3\AC-3\' small.gtf
+sed 's/Ac3/AC-3/' small.gtf
 ```
 
 `sed` can be called to directly act on a file or to process input from `stdout`/`stdin`.
 So the following command is essentially the same:
 
 ```
-cat small.gtf | sed 's\Ac3\AC-3\'
+cat small.gtf | sed 's/Ac3/AC-3/'
 ```
 
 If you run the command, you should see that:
 1. by default the entire content of the file is printed to `stdout`
 2. the string "Ac3" has been replaced by "AC-3"
 
-Let us now examine the second term, `'s\Ac3\AC-3\'` (also, the s command, or the "script"):
+Let us now examine the second term, `'s/Ac3/AC-3/'` (also, the s command, or the "script"):
 
-1. The enclosing quotation marks are necessary. You can also use double-quotes ("), but they are problematic with the backslash.
-2. The backslashes are separators that **divide the expression into 4 parts**.
-   - the first part is `s`, which tells `sed` that it is to perform *substitution*.
+1. The enclosing quotation marks are helpful.
+2. The slashes are separators that **divide the expression into 4 parts**.
+   - the first part is `s`, which tells `sed` that it is to perform ***s**ubstitution*.
    - the second part is the *search pattern*,
    - the third part is the term to *replace with*,
-   - the fourth part is empty at the moment
+   - the fourth part is empty at the moment.
 
 You can actually use any character for the separator.
-In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use, but be careful not to use a symbol or character that also appears in the search term or replacement term. For example:
+This is useful if you have slash characters in your search pattern or replacement string as can happen if you are changing file paths.
+In this case, any symbol or character after the first `s` is recognised as the separator character. You can choose whichever feels most comfortable to use.
+You should choose characters that stand out from the rest of the line.
+Conventionally, people use `!`, `|`, `#`, `_`, etc. For example:
 
 - `sed 's Ac3 AC-3 ' small.gtf` uses space " " as separator
-- `sed 's1Ac31AC-31' small.gtf`  (**deliberately confusing**) also works, and uses "1" as separator to show that you can literally use anything.
-- `sed 's3Ac33AC-33' small.gtf`  *doesn't work*, because it's trying to use "3" as separator, but 3 also appears in the search and replacement terms.
+- `sed 's#Ac3#AC-3#' small.gtf` uses `#` character.
 
-## s command flags
+Make sure you are being clear; using a `1` for the separator would be valid, but not helpful.
 
-The fourth and last part of the s command contain zero or more flags that alter the default behaviour.
+## s Command Modifiers
+
+The fourth and last part of the s command contain zero or more modifiers that alter the default behaviour.
 
 A frequently used flag is "g", which means global replacement. By default, the s command will only perform substitution for the *first matching instance*:
 
-- `sed 's\gene\GENE\' small.gtf`  will only alter the first instance of "gene" in each line, where as
-- `sed 's\gene\GENE\g' small.gtf` will alter all instances.
+- `sed 's/gene/GENE/' small.gtf`  will only alter the first instance of "gene" in each line, where as
+- `sed 's/gene/GENE/g' small.gtf` will alter all instances.
 
 Rather than using "g", we can also use a number to specify exactly which instance to alter:
 
 ```
-sed 's\gene\GENE\2' small.gtf
+sed 's/gene/GENE/2' small.gtf
 ```
 
 will alter the second instance only.
 
 Another frequently used flag is "I" or "i", which allows for case-insensitive matching on the search pattern.
 
-`$ sed 's\fly\FLY\ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
+`$ sed 's/fly/FLY/ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
-## Regular expressions
+## Regular Expressions
 
 The search term in `sed` supports regular expression in very similar ways to `grep`.
 As exercises, can you explain what each of these `sed` commands are doing?
 
-1) `sed 's|ac[n3]|ACX|Ig' small.gtf`
+1) `sed 's/ac[n3]/ACX/Ig' small.gtf`
 
-2) `sed 's\^\chr\' small.gtf`
+2) `sed 's/^/chr/' small.gtf`
 
-3) `sed 's\;$\\' small.gtf`
+3) `sed 's/;$//' small.gtf`
 
 <details><summary>Answers</summary>
 
@@ -621,19 +634,19 @@ As exercises, can you explain what each of these `sed` commands are doing?
 </details>
 
 
-## Formatting replacement strings
+## Formatting Replacement Strings
 
 Sometimes, we want to alter a string by adding to it without modifying the search term itself.
 For example, if we want to add a star symbol next to gene names Acn and Ac3, without altering gene names. We can perform this one by one:
 
 ```
-sed 's\Acn\Acn*\' small.gtf | sed 's\Ac3\Ac3*\'
+sed 's/Acn/Acn*/' small.gtf | sed 's/Ac3/Ac3*/'
 ```
 
 or we can use regular expression search and "&":
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf
+sed 's/Ac[n3]/&*/' small.gtf
 ```
 
 where "&" simply means the string that matches the search pattern.
@@ -641,23 +654,23 @@ where "&" simply means the string that matches the search pattern.
 Can you explain what the following command does?
 
 ```
-sed 's\fly\&OrWorm\gi' small.gtf
+sed 's/fly/&OrWorm/gi' small.gtf
 ```
 
-## Redirecting output
+## Redirecting Output
 
 Like most stream editors, `sed` does not alter the original file, and instead writes the output to `stdout`.
 Therefore to save the changes, we can simply redirect to a file:
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf > small_starred.gtf
+sed 's/Ac[n3]/&*/' small.gtf > small_starred.gtf
 ```
 
 As is almost the case, you should **never redirect the file back to itself**, expecting it to have made the changes in place.
 You will simply end up with an empty file!
 
 ```
-sed 's\Ac[n3]\&*\' small.gtf > small.gtf
+sed 's/Ac[n3]/&*/' small.gtf > small.gtf
 ```
 
 THIS WILL FAIL (data loss!).
@@ -669,18 +682,18 @@ First we'll recreate the file
 egrep "(Ac3|ADD1|Acn)" BDGP6_genes.gtf > small.gtf
 ```
 
-`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[7]</sup>.
+`sed` actually has an option that will allow you to make edits *in-place*: `-i`/`--in-place`<sup>[5]</sup>.
 Now we'll try the correct approach where we edit the file using this strategy.
 
 ```
-sed -i 's\Ac[n3]\&*\' small.gtf
+sed -i 's/Ac[n3]/&*/' small.gtf
 ```
 
 THIS WILL WORK on Ubuntu and `git bash`.
-Note: On Mac OSX `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
+Note: On macOS `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
 
 
-## Exercise: Batch-rename files
+## Exercise: Batch-rename Files
 
 In the directory **`3_many_files`**, there are a number of files with only a single digit (e.g. datafile1), this makes it harder to sort the files in numerical order. So ideally we want to rename the files with single digit to double digit:
 
@@ -690,20 +703,20 @@ It's a bit tedious to do this one by one, can you write a command line that can 
 
 <details><summary>Answer</summary>
 This command line will generate all the required "mv" commands:
-```
-ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |'
-```
+<pre>
+ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /'
+</pre>
 We can then add "| sh " to the end to execute it all:
-```
-ls datafile? | sed 's|[0-9]|& datafile0&|' | sed 's|^|mv |' | sh
-```
+<pre>
+ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /' | sh
+</pre>
 </details>
 
 -------------
 
-# `awk` 
+# `awk`
 
-`awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[8]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover everything in this session.
+`awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[6]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover it in this session.
 
 Some of the most important (or most commonly used) features of `awk` are:
 
@@ -711,160 +724,24 @@ Some of the most important (or most commonly used) features of `awk` are:
 - can perform numerical comparison
 - can format output more easily than `sed`
 
-Again, as this workshop is based on GNU awk, some of the commands may not work correctly in Mac OSX.
-
-## Text searching
-
-In one of the examples for `grep`, we wanted to search for entries which have "transport" as value in the "GO term name" column.
-While it was possible, we could not guarantee that the output was absolutely correct, since `grep` doesn't have the ability to specify the location (column) in a line.
-
-However in `awk`, we would run a command line like:
-
-```
-awk -F "\t" '$16=="transport" {print $0}' GRCh38.chr22.ensembl.biomart.txt
-```
-
-Let's break the command line down into components:
-
-1. ` awk `
-2. ` -F "\t" `
-3. ` '$16=="transport" {print $0}' `
-4. `  GRCh38.chr22.ensembl.biomart.txt `
-
-1) `awk` is simply calling the `awk` command, while the last part `GRCh38.chr22.ensembl.biomart.txt` specifies the input file. `awk` also accepts `stdin`.
-
-2) the second part `-F "\t"` is not entirely necessary. It specifies that the separator (`-F`) to be used for this command is the tab character (`"\t"`). `awk` can do perform some auto-detection to check whether the separator is space, comma or tab, but it doesn't always get it right, so sometimes it is safer to explicitly specify the separator.
-
-3) the third part is the "program", analogous to the SCRIPT in `sed`. It tells `awk` how to process the input data.
-In this example, the program is relatively simple, consists of only a single rule, which have the format of:
-
-`pattern { action }`
-
-In this example, the pattern is `$16=="transport"`, meaning that the 16th term (separated by tab) is exactly equal to "transport" (string values are enclosed in quotation marks). We can use `!=` to specify "not equal to".
-Once `awk` finds a line that matches the specified pattern, it performs the action stated in `{ }`, which in this case is: `print $0`, simply meaning to print the entire line.
-Alternatively, we can also print just the chromosome ($3), positions ($4, $5) and gene name ($12):
-
-```
-awk -F "\t" '$16=="transport" {print $3 $4 $5 $12 $16}' GRCh38.chr22.ensembl.biomart.txt
-```
-
-However, if you run the command line above, you'll notice that the values are not separated. This means that:
-
-- `-F` applies to only the input
-- if not printing the entire line, we need to be more specific about how to print the output.
-
-Try this instead:
-
-```
-awk -F "\t" '$16=="transport" {print "chr" $3 ":" $4 "-" $5 "\t" $12 "\t" $16}' GRCh38.chr22.ensembl.biomart.txt  
-```
-
-Remember that string values need to be enclosed in quotation marks.
-Other than exact matching using "==", `awk` also supports partial matching and regular expression. We won't go into regular expression here, but to retrieve list of genes and GO term where the GO term contains "process", we can run:
-
-```
-awk -F "\t" '$16~"process" {print $16 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq
-```
-
-This will match lines with "process" anywhere in the 16th column. We can also use `^` and `$` to match to the start and end, similar to `grep` and `sed`.
-
-## Numerical searching
-
-One of the big advantage of `awk` is that it is able to perform range comparison.
-For example, the file `GRCh38.chr22.ensembl.biomart.txt` has "Gene start (bp)" (col 4) and "Gene end (bp)" (col 5).
-If we want to extract entries within a specific range, it is very difficult to do in `grep` for two main reasons:
-
-- `grep` does not have true numerical comparison
-- `grep` cannot search for values in a specific column
-
-Whereas in `awk`, if we want to find genes where "Gene start" value is less than 16,000,000, we can simply run:
-
-```
-awk -F "\t" '$4 < 16000000 {print $4 "\t" $12}' GRCh38.chr22.ensembl.biomart.txt | sort | uniq
-```
-
-## Combining search patterns
-
-We can combine multiple search patterns using `&&` (and) and `||` (or). For example:
-
-```
-awk -F "\t" '$7=="q12.1" && $16=="transport"' GRCh38.chr22.ensembl.biomart.txt
-```
-
-The command above requires two conditions to be met:
-
-- `$7=="q12.1"`: Karyotype band is "q12.1"
-- `$16=="transport"`: GO term is "transport"
-
-You may have noticed that no action is specified in the command. In such cases, the default behaviour of `awk` is to print the entire line.
-
-## Homework Exercises
-
-Extract lines from the file `BDGP6_genes.gtf` that satisfies these conditions:
-
-- on chromosome "3R"
-- starting position is between 1,000,000 and 5,000,000
-- is a protein-coding gene
-
-For an extra point, print out just the gene names rather than entire lines.
-
-<details><summary>Answer</summary>
-<pre>
-awk -F "\t" '$1=="3R" && $4>=1000000 && $4<=5000000 && $9~"protein_coding" {print $9}' BDGP6_genes.gtf | cut -f 2 -d ";" | cut -f 2 -d "\""
-</pre>
-</details>
+If you are interested in learning how to use awk, there is an extensive tutorial available [here](http://www.grymoire.com/Unix/Awk.html).
+This will take some time to work through.
 
 -------------
-
-Go back to [Working with large files or many files](#working-with-large-files-or-many-files) and see if you can answer the questions in that section using what you have learnt in this session.
-
--------------
-
-# Combining everything and more advanced functions
-
-
-```
-sed 's|; |\t|g' BDGP6_genes.gtf | \
-  sed -E 's\gene_(id|name|source|biotype) \\g' | \
-  sed 's\[";]\\g' | \
-  grep -v "^#"
-```
-
-Can you explain what the command above does? (*Answer: converts the gtf file to a simple tab-separated file.*)
-
-Re-direct the output to a file: `BDGP6_genes.tsv`.
-
-As `awk` is a programming language, we can write much more complicated conditions using `if` and `else`. Here we have two different "if" conditions, and each have its own matching action to perform:
-
-```
-awk -F "\t" '{
-  if ($1 == "3R" && $12 == "protein_coding" && $4<=1000000)
-     print $10 " is a protein-coding gene";
-  else if ($1 == "2L" && $12 == "snoRNA" && $4 <=1000000)
-     print $10 " is a snoRNA";
-  }' BDGP6_genes.tsv
-```
-
--------------
-
 
 
 *Footnotes*
 
-[1] Nano is a opensource GNU clone of the proprietary program, Pico.
+[1] Emacs is not installed by default on Ubuntu (16.04). To install, type `sudo apt install emacs` on Ubuntu or `apt`-based Linux systems.
 
-[2] Emacs is not installed by default on Ubuntu (16.04). To install, type `sudo apt install emacs` on Ubuntu or `apt`-based Linux systems.
+[2] The Control <kbd>Ctrl</kbd> key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
 
-[3] The Control (Ctrl) key is usually denoted as `^`, however, sometimes (e.g. in Emacs) it is denoted as `C-`.
+[3] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
 
-[4] You can install `ne` by entering `sudo apt install ne` on Ubuntu.
-
-[5] `grep` is short for `g/re/p` (Global search for Regular Expression and Print), a command in the original UNIX text editor `ed` (precursor to `vi`/`vim`).
-
-[6] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
+[4] If you are wondering why there is a mode which doesn't do any regular expression, this is because by turning off all regular expression matches, exact string search can be much faster. The datasets we have for this workshop are not large enough to see any differences, so we can't quite demonstrate this. But you can test it yourself on any large plain-text files that you can find.
 
 If you want to perform any benchmarking, you may find the command `time` to be useful. Just add it to the beginning of any command line, e.g.: `$ time grep -v protein_coding BDGP6_genes.gtf`
 
-[7] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
+[5] Technically, `sed -i` isn't making the changes in-place. It's writing the output to a temporary file, then renaming the temporary file to the original file name.
 
-[8] The GNU awk language manual: https://www.gnu.org/software/gawk/manual/gawk.html
+[6] The GNU awk language manual: https://www.gnu.org/software/gawk/manual/gawk.html

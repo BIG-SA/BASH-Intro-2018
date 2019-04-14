@@ -1,8 +1,10 @@
 ## Introduction to Bash
 
-https://big-sa.github.io/BASH-Intro-2018/
+https://uofabioinformaticshub.github.io/BASH-Intro/
 
 ---
+
+Presented by UofA Bioinformatics Hub and *BIG-SA*
 
 *BIG-SA* is a collaboration between:
 
@@ -13,8 +15,8 @@ https://big-sa.github.io/BASH-Intro-2018/
 
 ## Course Authors
 
-- John Toubia & Paul Wang (ACRF)
-- Jimmy Breen & Steve Pederson (UofA)
+- Dan Kortschak, Jimmy Breen and Steve Pederson (UofA)
+- John Toubia and Paul Wang (ACRF)
 
 ---?include=presentations/1_bash_pres.md
 
