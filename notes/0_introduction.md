@@ -81,7 +81,7 @@ It's mostly irrelevant information for you, but is just a check that you're in t
 ### Note for PuTTY users
 
 The login is slightly different when using PuTTY, and you will enter `trainee@<your.ip.address>` in the main space provided (under `Host Name or IP address`) and hit `Enter` (or the `Open` button).
-Beyond that, you should be able to enter your password and yuo should see the same login screen.
+Beyond that, you should be able to enter your password and you should see the same login screen.
 
 
 ## Course Information
@@ -103,23 +103,23 @@ There will be a number of areas covered during these sessions:
 
 The majority of data handling and analysis required in the field of bioinformatics uses the command line, alternatively known as the terminal or the `bash` shell.
 This is a text-based interface in which commands must be typed, as opposed to the Graphical User Interfaces (aka GUIs) that most of us have become accustomed to.
-Being able to access these tools enables you to more fully utilise the power and capabilities of your machine, for both Linux and Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
+Being able to access these tools enables you to fully utilise the power and capabilities of your machine, for both Linux and Mac operating systems, and to a lesser extent will even enable you to dig deeper on a Windows system.
 
 While some of the tools we cover may appear trivial, they are used on a daily basis by those working in the field.
 These basic tools are essential for writing what are known as shell scripts, which we will work towards throughout the first three sessions and begin to cover in the last.
-These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to the genome.
+These are essentially simple programs that utilise the inbuilt functions of the shell, and are used to automate processes such as de-multiplexing read libraries, or aligning reads to a genome.
 A knowledge of this simple type of programming and navigation is also essential for accessing the high-performance computing resources such as *phoenix*.
 
 ### Course Aims
 {:.no_toc}
 The long-term goal of this workshop is to enable you to carry out your own data analysis in a **reproducible** manner, using standard bioinformatics tools or write your own programs.
-This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming later in the year.
+This course serves as a prerequisite for the Introduction to Next Generation Sequencing (NGS) Data workshop coming tomorrow
 
-By the end of both courses, we expect the participants to:
+By the end of both days, we expect the participants to:
 1. Be relatively comfortable working with the command line interface, and familiar with the standard Unix command line tools
 2. Understand standard NGS data formats
-3. Be able to run several basic NGS data analysis methods (e.g. variant calling)
-4. Understand how some simple python scripts work for custom data analysis
+3. Run quality control (QC) analyses on NGS data
+4. Be able to run several basic NGS data analysis methods (e.g. genome alignments)
 
 ### Acknowledgements
 {:.no_toc}
