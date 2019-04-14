@@ -2,15 +2,15 @@
 {:toc}
 
 
-# Grep and Sed 
+# Grep and Sed
 
-In this session, we will learn about a few of the most frequently used tools that are very useful for extracting and modifying data.
+In this session, we will learn about a few of the most frequently-used tools that are very useful for extracting and modifying data.
 
-## Command Line Interface (CLI) Text editors (for Small-ish Files)
+## Command Line Interface (CLI) Text Editors (for Small-ish Files)
 
 In general, we rarely work with binary file formats (e.g. MS Office files) in the command line interface (CLI). Instead, we usually work with ASCII (or plain text) files.
 
-We can use a GUI program like gedit (Ubuntu), Text Edit (macOS), or Notepad++ (Windows) to edit these files. 
+We can use a GUI program like gedit (Ubuntu), Text Edit (macOS), or Notepad++ (Windows) to edit these files.
 However, there are also several command line programs available that you can use to edit files inside the command line console.
 Below is a selection of the most commonly used editors.
 There's no real difference in capabilities, it's simply a matter of personal preference which you prefer.
@@ -60,7 +60,7 @@ It's also the most intuitive to use of the three explained above.
 
 -----
 
-## Prepare the data files (and some revision exercises)
+## Prepare the Data Files (and Some Revision Exercises)
 
 For this session, we need to prepare some data files for demonstration and we'll also need to create some directories.
 
@@ -75,12 +75,12 @@ cd Bash_Workshop/files
 1) Download and uncompress the file [`GRCh38.chr22.ensembl.biomart.txt.gz`](../files/GRCh38.chr22.ensembl.biomart.txt.gz) into the newly-created `files` directory, **keeping the original** as well as the uncompressed version.
 You can use the commands `curl` to download this
 
-  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)  
+  (*Hint: One method to extract a file whilst keeping the original is to use `zcat file.txt.gz > file.txt`. If you have gunzip version >1.6 you can also use the `-k` option. Check your version using `gunzip --version` and decide on the best method*)
 
 2) Download and extract the file [`3_many_files.tar.gz`](../files/3_many_files.tar.gz) in the `files` directory.
 This should create a sub-directory (`3_many_files`) containing 100 files, where each file contains a subset of the data in `GRCh38.chr22.ensembl.biomart.txt.gz`.
 
-  (*Hint: Refer to the previous sessions for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)  
+  (*Hint: Refer to the previous sessions for details on how to extract a tar archive. Note that you **don't** need to use `gunzip` first for these files.*)
 
 3) Use what you have learnt so far and find out:
 
@@ -130,7 +130,7 @@ We will also need the file `BDGP6_genes.gtf` from previous session, so copy that
 
 -----
 
-## Working with large files or many files
+## Working with Large Files or Many Files
 
 Text editors (either CLI or GUI) are very convenient when you want to quickly edit a small text file (if you just want to read the file, you can use `less` or `cat`), however, they are less useful when the files are very large.
 
@@ -150,15 +150,15 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 <details><summary>Hint:</summary>Use <kbd>Meta</kbd>+<kbd>W</kbd> or <kbd>Alt</kbd>+<kbd>W</kbd> to repeat search.
 </details><br>
 
-3) How many lines contain "**RBX1**"?  
+3) How many lines contain "**RBX1**"?
 <details><summary>Hint:</summary>Seriously, don't try this. We'll show you how to do it super easily in a few minutes.
 </details><br>
 
-4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?  
+4) In how many non-header entries (lines) are the "**Gene name**" and "**HGNC symbol**" values different?
 <details><summary>Hint:</summary>Why are you still trying to do these? We'll show you how easy it is later.
 </details><br>
 
-5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.  
+5) Change all instances of "**TBX1**" in "**Gene name**" and "**HGNC symbol**" columns to "**TBX-1**", but not in other columns.
 
 <details><summary><b>Answers</b></summary>
 
@@ -167,26 +167,26 @@ For `GRCh38.chr22.ensembl.biomart.txt`:
 3. Too many to count in **nano** (but the answer is 5775).<br>
 4. Too hard in **nano** (answer is 36).<br>
 5. Replacing one or all instances is possible. But replacing only values in specific columns is very tedious.<br>
-</details>  
+</details>
 
-Now look into the files in the created sub-directory `3_many_files`.  
+Now look into the files in the created sub-directory `3_many_files`.
 
-1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?  
+1) Open the file **`datafile1`** in nano. Does it contain an entry for "MAPK1"?
 
-2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?  
-(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)  
+2) Which files in **`3_many_files`** directory contain entries for "MAPK1"?
+(*Hint: This is super tedious to do manually, and we'll show you the quick way soon.*)
   <details><summary><b>Answers</b></summary>
 
   1. There is an entry for MAPK11, but not MAPK1.<br>
   2. It would be too much work to go through each file individually, but the answer is datafile11, datafile26, datafile28,
   datafile32, datafile36, datafile38, datafile46, datafile51, datafile63, datafile80, datafile82, datafile83, datafile84, datafile95, datafile98.
 
-  </details>  
+  </details>
 
 
 Hopefully by now you can appreciate that using text editors are not the best way to query large data sets.
 As an aside, usually when you are working in BASH (or some other Linux/UNIX CLI) and you find yourself doing something repetitively, then there is probably a better way of doing it.
-In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.  
+In the rest of this session, we will examine three of the most commonly used CLI tools for working with large text data sets: `grep`, `sed`, and `awk`.
 
 -----
 
@@ -300,7 +300,7 @@ Alternatively, with recent bash versions, you can use [a special quoting with th
 grep $'\ttransport\t' GRCh38.chr22.ensembl.biomart.txt # Note single quotes.
 ```
 
-#### Example 3: case sensitivity
+#### Example 3: Case Sensitivity
 {:.no_toc}
 
 *We will use `BDGP6_genes.gtf` for this example.*
@@ -317,7 +317,7 @@ However, this will return zero results. This is because the gene name used is "z
 grep -wi Zen BDGP6_genes.gtf
 ```
 
-#### Example 4: searching for multiple terms at the same time
+#### Example 4: Searching for Multiple Terms at the Same Time
 {:.no_toc}
 
 If we want to extract the entries for genes "Ada" and "Zen", we can search for them separately, but this can become tedious quickly.
@@ -328,7 +328,7 @@ One method to search for multiple terms at the same time is to use *extended* gr
 grep -Ewi "(Ada|Zen)" BDGP6_genes.gtf
 ```
 
-This is the same as: 
+This is the same as:
 
 ```
 egrep -wi "(Ada|Zen)" BDGP6_genes.gtf
@@ -351,7 +351,7 @@ Then we can perform the search by:
 grep -wif gene_names BDGP6_genes.gtf
 ```
 
-#### Example 5: inverse search
+#### Example 5: Inverse Search
 {:.no_toc}
 
 We can also use the `-v` option to perform an inverse search. For example, to extract entries for all protein-coding genes, we can run:
@@ -367,7 +367,7 @@ grep -v protein_coding BDGP6_genes.gtf
 ```
 
 
-#### Example 6: simple regular expression
+#### Example 6: Simple Regular Expression
 {:.no_toc}
 
 One of the most useful feature of `grep` is the ability to search using regular expressions.
@@ -388,7 +388,7 @@ The star symbol `*` is also used by `grep`, but it means to match any number of 
 - `grep * BDGP6_genes.gtf` will return nothing
 - `grep an*x BDGP6_genes.gtf` will match any string that starts with `a`, ends with `x`, and has 0 or multiple `n`s in between.
 
-## Range search
+## Range Search
 
 `grep` provides a more restrictive pattern matching through the use of square brackets: `[]`. Any letters inside the square brackets is allowed. For example:
 
@@ -471,19 +471,19 @@ cut -f 2 -d ";" BDGP6_genes.gtf | cut -f 2 -d\" | grep -v "^#" | sort | uniq > f
 - start with "z"
 - start with "a" and ends with a numeral
 - contain non-alphanumerics
-- contain a dot `.`  
+- contain a dot `.`
 
 <details><summary>Answers</summary>
 1. `grep ^z fly_genes`<br>
 2. `grep ^a.*[0-9]$ fly_genes` or `grep ^a fly_genes | grep [0-9]$`<br>
 3. `grep [^a-z0-9] fly_genes`<br>
 4. `grep "\." fly_genes `<br>
-</details>  
+</details>
 
 3) Look up the help page to see which option can provide the line number of search output.
 
 
-## More `grep` functions
+## More `grep` Functions
 
 If you look into the help page for `grep`, you will see that `grep` has 4 different modes of pattern matching:
 
@@ -593,7 +593,7 @@ Conventionally, people use `!`, `|`, `#`, `_`, etc. For example:
 
 Make sure you are being clear; using a `1` for the separator would be valid, but not helpful.
 
-## s command modifiers
+## s Command Modifiers
 
 The fourth and last part of the s command contain zero or more modifiers that alter the default behaviour.
 
@@ -614,7 +614,7 @@ Another frequently used flag is "I" or "i", which allows for case-insensitive ma
 
 `$ sed 's/fly/FLY/ig' small.gtf` will alter any and all upper/lower-case combinations of "fly" to "FLY".
 
-## Regular expressions
+## Regular Expressions
 
 The search term in `sed` supports regular expression in very similar ways to `grep`.
 As exercises, can you explain what each of these `sed` commands are doing?
@@ -634,7 +634,7 @@ As exercises, can you explain what each of these `sed` commands are doing?
 </details>
 
 
-## Formatting replacement strings
+## Formatting Replacement Strings
 
 Sometimes, we want to alter a string by adding to it without modifying the search term itself.
 For example, if we want to add a star symbol next to gene names Acn and Ac3, without altering gene names. We can perform this one by one:
@@ -657,7 +657,7 @@ Can you explain what the following command does?
 sed 's/fly/&OrWorm/gi' small.gtf
 ```
 
-## Redirecting output
+## Redirecting Output
 
 Like most stream editors, `sed` does not alter the original file, and instead writes the output to `stdout`.
 Therefore to save the changes, we can simply redirect to a file:
@@ -693,7 +693,7 @@ THIS WILL WORK on Ubuntu and `git bash`.
 Note: On macOS `-i` (i.e. BSD `sed`) doesn't work without an argument provided. In GNU sed, `-i` can be used with or without an argument.
 
 
-## Exercise: Batch-rename files
+## Exercise: Batch-rename Files
 
 In the directory **`3_many_files`**, there are a number of files with only a single digit (e.g. datafile1), this makes it harder to sort the files in numerical order. So ideally we want to rename the files with single digit to double digit:
 
@@ -714,7 +714,7 @@ ls datafile? | sed 's/[0-9]/& datafile0&/' | sed 's/^/mv /' | sh
 
 -------------
 
-# `awk` 
+# `awk`
 
 `awk` is a tool frequently used for querying and extracting information from tabulated data files, and also has the ability to write formatted output. In fact, `awk` is a programming language<sup>[6]</sup>, which means that it has some functions/features that are not provided by `grep` or `sed`. But it also means that we don't have the time to cover it in this session.
 
