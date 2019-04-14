@@ -8,7 +8,7 @@
 
 ## Recap
 
-Last time we discovered some key bash commands:
+Last session we discovered some key bash commands:
 
 - Navigating directories using `cd`, `pwd` and `ls`
 - Creating and deleting files or directories using `touch`, `mkdir`, `rmdir` and `rm`
@@ -43,7 +43,7 @@ Key concepts for today:
 - Downloading data
 - Compressed data
 
-## Before we start
+## Before we Start
 
 Login to your VM if you haven't already and navigate to your home folder.
 
@@ -177,7 +177,7 @@ If you're on `git bash` you'll have to be content with the less hysterical `less
 (Get it: "less hysterical". I told you we're hilarious.)
 
 
-## Word and line counts
+## Word and Line Counts
 
 We can quickly check for the number of entries in a file by using the command `wc`.
 This gives three values by default.
@@ -193,7 +193,7 @@ Try it out and see how many lines our `gtf` file has.
 
 # Standard Output
 
-## Text In the Terminal
+## Text in the Terminal
 
 All the information we’ve seen in the terminal so far has been from a data stream known as standard output, or `stdout` for short.
 There are two primary data output streams in play when we use commands in `bash`.
@@ -327,7 +327,7 @@ ls --help | less
 
 # Manipulating Data From Files
 
-## Selecting a column
+## Selecting a Column
 
 Sometimes we want to dig a little deeper through a file, and we can extract one or more columns from any delimited file using the filter `cut`.
 By default `cut` looks for `<tab>` separated columns, but this can be set to any delimiter.
@@ -343,7 +343,7 @@ By default we're using the `<tab>` symbol as the delimiter, so check the help or
 
 Now we've found out how to extract the chromosome information from this file, which is what the first column holds, let's try and do something useful.
 
-## Summarising data using `uniq`
+## Summarising Data using `uniq`
 
 Let's see how many chromosomes we have gene information about, by taking this column and just restricting it to unique entries, using the command `uniq`.
 Now we're familiar with the pipe, we can send this column to `uniq`.
@@ -390,7 +390,7 @@ Try piping this into `uniq -c` and see what happens?
 cut -f4 -s -d\; BDGP6_genes.gtf | uniq -c
 ```
 
-## Summarising files using `sort`
+## Summarising Files Using `sort`
 
 The algorithm underlying `uniq -c` checks adjacent lines for equality, and if they're not equal keeps them both.
 If they're equal it discards the second entry.
