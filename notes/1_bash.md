@@ -126,7 +126,7 @@ Figure 2. Typical file system hierarchy
 Here’s a depiction of the Linux file system.
 
 Obviously, *there is a lot missing in the above figure.*
-The home directory (jono) for the user Jono is housed within the home directory which itself is housed within the root directory. 
+The home directory (jono) for the user Jono is housed within the home directory which itself is housed within the root directory.
 This does confuse a few people, but once you realise that the `/home` directory is where the set of home directories are placed for all users, this makes a little more sense.
 All users have their own home directory and that will live here.
 For Jono, the path all the way from the top is thus “root–>home –>jono or in command-line terms `/home/jono`.
@@ -183,7 +183,7 @@ If we continue to enter
 cd ..
 ```
 
-enough times we should end up in the root directory of the file system, at which point we can go no further. 
+enough times we should end up in the root directory of the file system, at which point we can go no further.
 Try it and print the working directory again (`pwd`). The output should be the root directory given as `/`.
 
 We can change back to our home directory from anywhere by entering one of:
@@ -315,7 +315,7 @@ If we’d hit the <kbd>Tab</kbd> key after typing `hea`, then the command head w
 
 Alternatively referred to as a wild character or wildcard character, a wildcard is a symbol used to replace or represent one or more characters.
 Wildcards are typically either an asterisk (\*), which represents one or more characters or question mark (?), which represents a single character.
-This is like in some card games the joker is used as a wildcard meaning that the owner of that joker can choose to view it as any one of the 52 playing cards in the deck.  
+This is like in some card games the joker is used as a wildcard meaning that the owner of that joker can choose to view it as any one of the 52 playing cards in the deck.
 A similar concept is the blank tile in Scrabble which can be used as any one of the letters in the alphabet in order to complete words (like Free and ”Bear”!)
 
 ![Wildcards](../images/1_bash_fig4_wildcards_scrabble2.png)
@@ -406,7 +406,7 @@ mkdir practice_directory
 {:.no_toc}
 
 1. Can you think of an alternative argument that would result in the same outcome? Hint: was that a relative or absolute path?
-2. Note that we used the underscore symbol to conect the two words in the directory name. What do you think would happen if we replaced it with a space?
+2. Note that we used the underscore symbol to connect the two words in the directory name. What do you think would happen if we replaced it with a space?
 
 
 That was simple. Lets get rid of it now.
@@ -443,7 +443,7 @@ cd ~/Bash_Workshop
 ### Copy/Move/Rename (`cp` `mv`)
 
 When calling the commands to make or remove files/directories we provide one piece of information (argument) to the command which is the name of the object to create/remove.
-With the `cp` and `mv` (stands for copy and move repectively) commands, we now need to provide an additional peice of information (2 arguments).
+With the `cp` and `mv` (stands for copy and move respectively) commands, we now need to provide an additional piece of information (2 arguments).
 
 1. the *name of the object we want to copy/move*
 2. the *place in the file system to move the object to*
